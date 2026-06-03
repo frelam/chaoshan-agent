@@ -4,6 +4,16 @@
 
 一个面向潮汕文化传承的 AI Agent 项目，以 **Hermes Agent Skill** 为载体，提供高质量的潮汕话翻译与文化知识服务。
 
+## ⚡ 快速安装
+
+```bash
+git clone https://github.com/frelam/chaoshan-agent.git
+cd chaoshan-agent
+bash install.sh
+```
+
+安装后重启 Hermes Agent 即可使用（或发送一条消息自动触发加载）。
+
 ## ✨ 功能
 
 - 🔄 **双向翻译** — 潮汕话 ↔ 普通话，保留语气、语序、文化内涵
@@ -29,6 +39,7 @@ chaoshan-agent/
 ├── fewshot-prompt.txt          # Few-Shot 聚合提示
 ├── ARCHITECTURE.md             # 架构设计文档
 ├── run_claude.py               # Claude Code 运行脚本
+├── install.sh                  # 一键安装脚本
 └── run-teochew.sh              # 潮汕话专家启动脚本
 ```
 
