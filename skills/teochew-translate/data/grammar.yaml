@@ -1,0 +1,863 @@
+# ============================================================
+# 潮汕话语法特色 (Teochew Grammar Features)
+# ============================================================
+# 潮汕话属闽南语潮汕片，保留大量古汉语特征
+# 语法与普通话差异显著，翻译时需特别注意
+#
+# 参考文献:
+#   - 《潮汕方言语法研究》(林伦伦)
+#   - 《潮州话语法》(李新魁)
+#   - A Grammar of Teochew (Xu Hui Ling, 2007)
+# ============================================================
+
+meta:
+  name: 潮汕话语法特点
+  version: "1.1.0"
+  sections:
+    - 语序差异
+    - 否定词系统
+    - 量词特点
+    - 程度副词
+    - 常见句式结构
+    - 时态表达
+    - 比较句
+    - 疑问句
+    - 领属结构
+    - 处置式
+    - 趋向补语
+    - 特殊语气词
+    - 翻译注意事项
+
+grammar:
+
+  # ========================
+  # 1. 语序差异 (Word Order)
+  # ========================
+  word_order:
+    summary: |
+      潮汕话语序与普通话最显著的差异在于状语后置。
+      普通话的状语通常放在动词前面，潮汕话则常放在动词后面。
+      这是翻译时最常见的语序调整，涉及至少四种主要模式。
+
+    rules:
+      - name: 副词"先"后置
+        description: 普通话说"你先走"，潮汕话说"汝行先"（你走先）。这是潮汕话语序最经典的差异。
+        pattern: 主语 + 动词 + 先
+        mandarin_pattern: 主语 + 先 + 动词
+        examples:
+          - teochew: 汝行先。
+            mandarin: 你先走。
+            pengim: le2 gian5 soin1
+          - teochew: 我食先。
+            mandarin: 我先吃。
+            pengim: ua2 ziah8 soin1
+          - teochew: 伊睇先。
+            mandarin: 他先睡。
+            pengim: i1 kung3 soin1
+
+      - name: 数量补语后置
+        description: "再+V+数量" 结构，普通话说"再吃一碗"，潮汕话说"食加一碗"。"加"(gê1)表"增加/再"。
+        pattern: 动词 + 加/减 + 数量
+        mandarin_pattern: 再 + 动词 + 数量
+        examples:
+          - teochew: 食加一碗。
+            mandarin: 再吃一碗。
+            pengim: ziah8 gê1 zêg8 uan2
+          - teochew: 等加两日。
+            mandarin: 再多等两天。
+            pengim: dang2 gê1 no6 rig8
+          - teochew: 写加两行。
+            mandarin: 再多写两行。
+            pengim: sia2 gê1 no6 hang5
+
+      - name: 形容词程度补语后置
+        description: "形容词+过+比较对象" 相当于普通话的 "比+比较对象+形容词"。这是潮汕话比较句的核心特征。
+        pattern: A + 形容词 + 过 + B
+        mandarin_pattern: A + 比 + B + 形容词
+        examples:
+          - teochew: 我大过汝。
+            mandarin: 我比你大。
+            pengim: ua2 dua7 guê3 le2
+          - teochew: 今日热过昨日。
+            mandarin: 今天比昨天热。
+            pengim: gim1 rig8 ruah8 guê3 za1 rig8
+          - teochew: 汕头㩼侬过潮州。
+            mandarin: 汕头人比潮州多。
+            pengim: suan1 tao5 zoi7 nang5 guê3 diê5 ziu1
+
+      - name: 双宾语语序（给予类）
+        description: 潮汕话间接宾语在前，直接宾语在后（与普通话相同），但用"乞"表给予、"共"表为动。
+        pattern: 乞 + 间接宾语 + 直接宾语 / 共 + 间接宾语 + 动词 + 直接宾语
+        examples:
+          - teochew: 乞我本书。
+            mandarin: 给我一本书。
+            pengim: kih4 ua2 bung2 ze1
+          - teochew: 共我买本书。
+            mandarin: 帮我买本书。
+            pengim: ga7 ua2 bhoi2 bung2 ze1
+
+  # ========================
+  # 2. 否定词系统 (Negation System)
+  # ========================
+  negation:
+    summary: |
+      潮汕话否定词系统比普通话丰富得多，至少有7个常用否定词，
+      每个都有明确的语义分工。这是翻译中最容易出错的地方之一——
+      普通话"不"不能机械译为"唔"，需根据语义选择正确的否定词。
+
+    words:
+      - char: 唔
+        pengim: m6
+        mandarin_equivalent: 不
+        usage: 一般否定，用于主观意愿、状态或判断的否定
+        semantic_field: 主观否定、静态否定
+        examples:
+          - teochew: 我唔知。
+            mandarin: 我不知道。
+          - teochew: 伊唔来。
+            mandarin: 他不来。（主观不愿来）
+          - teochew: 只个唔好。
+            mandarin: 这个不好。
+          - teochew: 我唔甘。
+            mandarin: 我不舍得。
+
+      - char: 无
+        pengim: bho5
+        mandarin_equivalent: 没/没有
+        usage: 对存在、领有、动作发生的否定
+        semantic_field: 存在否定、完成否定
+        examples:
+          - teochew: 我无银。
+            mandarin: 我没有钱。
+          - teochew: 伊无来。
+            mandarin: 他没来。（强调事件未发生）
+          - teochew: 内底无侬。
+            mandarin: 家里没人。
+          - teochew: 我无读大学。
+            mandarin: 我没读大学。
+
+      - char: 未
+        pengim: bhuê7
+        mandarin_equivalent: 还没/尚未
+        usage: 对动作完成或状态变化的否定，表示"尚未"
+        semantic_field: 未完成否定
+        examples:
+          - teochew: 我未食。
+            mandarin: 我还没吃。
+          - teochew: 伊未来。
+            mandarin: 他还没来。
+          - teochew: 件事未做好。
+            mandarin: 这件事还没做好。
+          - teochew: 天未光。
+            mandarin: 天还没亮。
+
+      - char: 免
+        pengim: miang2
+        mandarin_equivalent: 不用/不必
+        usage: 表示不需要、不必要
+        semantic_field: 必要性否定
+        examples:
+          - teochew: 免用客气。
+            mandarin: 不用客气。
+          - teochew: 汝免去。
+            mandarin: 你不用去。
+          - teochew: 免惊。
+            mandarin: 不用怕。
+          - teochew: 免想。
+            mandarin: 不用想/别想了。
+
+      - char: 𠀾
+        pengim: bhoi6
+        mandarin_equivalent: 不会
+        usage: 否定能力或可能性，是"会"(oi6)的否定形式
+        semantic_field: 能力/可能性否定
+        examples:
+          - teochew: 我𠀾呾潮州话。
+            mandarin: 我不会说潮州话。
+          - teochew: 只件事𠀾成。
+            mandarin: 这件事不会成。
+          - teochew: 伊𠀾来。
+            mandarin: 他不会来。（客观不可能来）
+          - teochew: 我𠀾晓。
+            mandarin: 我不会/不懂。
+
+      - char: 莫
+        pengim: mai3
+        mandarin_equivalent: 别/不要
+        usage: 祈使否定，用于劝阻或禁止
+        semantic_field: 祈使否定
+        examples:
+          - teochew: 莫去。
+            mandarin: 别去。
+          - teochew: 莫呾。
+            mandarin: 别说。
+          - teochew: 莫惊。
+            mandarin: 别怕。
+          - teochew: 莫吵。
+            mandarin: 别吵。
+
+      - char: 唔是
+        pengim: m6 si6
+        mandarin_equivalent: 不是
+        usage: 对判断、等同关系的否定
+        semantic_field: 判断否定
+        examples:
+          - teochew: 我唔是潮州侬。
+            mandarin: 我不是潮州人。
+          - teochew: 只个唔是汝个。
+            mandarin: 这个不是你的。
+
+      - char: 未曾
+        pengim: bhuê7 zêng1
+        mandarin_equivalent: 还没/从未
+        usage: "未"的强调形式，强调"到目前为止还没有"
+        examples:
+          - teochew: 我未曾去过汕头。
+            mandarin: 我还没去过汕头。
+
+    comparison_table:
+      headers: [潮汕话, 拼音, 普通话, 语义类型, 例句]
+      rows:
+        - ["唔", "m6", "不", "主观/静态否定", "我唔去"]
+        - ["无", "bho5", "没/没有", "存在/完成否定", "我无银"]
+        - ["未", "bhuê7", "还没", "未完成否定", "我未食"]
+        - ["免", "miang2", "不用/不必", "必要性否定", "汝免去"]
+        - ["𠀾", "bhoi6", "不会", "能力/可能否定", "我𠀾呾"]
+        - ["莫", "mai3", "别/不要", "祈使否定", "莫去"]
+        - ["唔是", "m6 si6", "不是", "判断否定", "唔是我"]
+
+    key_distinction: |
+      关键区分——"伊唔来" vs "伊无来" vs "伊未来" vs "伊𠀾来"：
+      - 伊唔来 = 他不来（主观意愿不来的）
+      - 伊无来 = 他没来（强调事件未发生）
+      - 伊未来 = 他还没来（尚未到达，预期会来）
+      - 伊𠀾来 = 他不会来（客观原因不可能来）
+
+  # ========================
+  # 3. 量词特点 (Measure Words)
+  # ========================
+  measure_words:
+    summary: |
+      潮汕话量词系统中，"个"(gai5)的使用范围比普通话广得多，
+      几乎可以替代大部分量词。同时潮汕话也保留了一些独特的量词。
+
+    rules:
+      - name: "个"的泛化使用
+        description: 潮汕话中"个"(gai5)几乎可以替代大部分量词，使用频率远高于普通话。在口语翻译中可大量使用。
+        examples:
+          - teochew: 一个侬
+            mandarin: 一个人
+          - teochew: 一个车
+            mandarin: 一辆车
+          - teochew: 一个狗
+            mandarin: 一只狗
+          - teochew: 一个厝
+            mandarin: 一栋房子
+
+      - name: 特色量词
+        description: 潮汕话独有的或用法不同于普通话的量词。翻译时需注意转换。
+        items:
+          - char: 粒
+            pengim: liab8
+            usage: 用于小而圆的东西，类似"个/颗"
+            examples:
+              - teochew: 一粒柑 → 一个橘子
+              - teochew: 一粒球 → 一个球
+              - teochew: 一粒糖 → 一颗糖
+              - teochew: 一粒米 → 一粒米
+
+          - char: 条
+            pengim: diao5
+            usage: 比普通话"条"使用更广，可用于人、事、歌
+            examples:
+              - teochew: 一条侬 → 一个人
+              - teochew: 一条事 → 一件事
+              - teochew: 一条歌 → 一首歌
+              - teochew: 一条蛇 → 一条蛇
+
+          - char: 丛
+            pengim: zang5
+            usage: 用于长条形物体、植物、工具
+            examples:
+              - teochew: 一丛树 → 一棵树
+              - teochew: 一丛刀 → 一把刀
+              - teochew: 一丛笔 → 一支笔
+              - teochew: 一丛针 → 一根针
+
+          - char: 间
+            pengim: goin1
+            usage: 用于房屋、店铺
+            examples:
+              - teochew: 一间厝 → 一栋房子
+              - teochew: 一间店 → 一家店
+
+          - char: 顶
+            pengim: dêng2
+            usage: 用于车辆、轿子
+            examples:
+              - teochew: 一顶车 → 一辆车
+              - teochew: 一顶轿 → 一顶轿子
+
+          - char: 只
+            pengim: ziah4
+            usage: 用于动物、鞋袜等
+            examples:
+              - teochew: 一只鸡 → 一只鸡
+              - teochew: 一只鞋 → 一只鞋
+
+  # ========================
+  # 4. 程度副词 (Degree Adverbs)
+  # ========================
+  degree_adverbs:
+    summary: |
+      潮汕话的程度副词系统非常丰富且具有特色。
+      "过"字结构是最显著的特征之一，同时程度表达有前加和后附两种方式。
+
+    words:
+      - char: 绝
+        pengim: zoh8
+        mandarin_equivalent: 非常/极其
+        usage: 放在形容词前，表极端程度，比"过"更强烈。常用于感叹。
+        position: 前置于形容词
+        intensity: 最高
+        examples:
+          - teochew: 绝好食
+            mandarin: 极其好吃
+          - teochew: 绝雅
+            mandarin: 极其漂亮
+          - teochew: 绝大
+            mandarin: 极其大
+
+      - char: 死/死去
+        pengim: si2 / si2 ke3
+        mandarin_equivalent: 极了/得不得了（程度比"过"更重）
+        usage: 补语，放在形容词后，表极度。常带负面色彩，但也可用于正面感叹。
+        position: 后置于形容词
+        intensity: 很高（后附式）
+        examples:
+          - teochew: 好食死
+            mandarin: 好吃极了
+          - teochew: 热死
+            mandarin: 热死了
+          - teochew: 气死
+            mandarin: 气死了
+          - teochew: 畅死去
+            mandarin: 高兴极了
+
+      - char: 上
+        pengim: siang6
+        mandarin_equivalent: 最
+        usage: 表示最高级，放在形容词前
+        position: 前置于形容词
+        intensity: 最高级
+        examples:
+          - teochew: 上好食
+            mandarin: 最好吃
+          - teochew: 上大
+            mandarin: 最大
+          - teochew: 上悬
+            mandarin: 最高
+          - teochew: 上厉害
+            mandarin: 最厉害
+
+      - char: 过
+        pengim: guê3
+        mandarin_equivalent: 很/非常
+        usage: 最常用的程度副词，相当于"很"，放在形容词前
+        position: 前置于形容词
+        intensity: 中等偏高
+        examples:
+          - teochew: 过好
+            mandarin: 很好
+          - teochew: 过雅
+            mandarin: 很漂亮
+          - teochew: 过好食
+            mandarin: 很好吃
+          - teochew: 只本书过好看。
+            mandarin: 这本书很好看。
+
+      - char: 堵堵/堵好
+        pengim: du2 du2 / du2 ho2
+        mandarin_equivalent: 刚好/恰好
+        usage: 表示恰到好处，不多不少
+        position: 前置于形容词或动词
+        intensity: 适中
+        examples:
+          - teochew: 堵堵好
+            mandarin: 刚刚好
+          - teochew: 堵堵遇着
+            mandarin: 刚刚遇到
+
+      - char: 伤
+        pengim: siên1
+        mandarin_equivalent: 太/过于
+        usage: 表示"过度"，通常带负面含义
+        position: 前置于形容词
+        intensity: 过度
+        examples:
+          - teochew: 伤咸
+            mandarin: 太咸了
+          - teochew: 伤大
+            mandarin: 太大了
+          - teochew: 伤㩼
+            mandarin: 太多了
+          - teochew: 伤贵
+            mandarin: 太贵了
+
+      - char: 有滴囝
+        pengim: u6 dih4 gian2
+        mandarin_equivalent: 有点/稍微
+        usage: 表示轻微程度
+        position: 前置于形容词
+        intensity: 轻微
+        examples:
+          - teochew: 有滴囝凝
+            mandarin: 有点冷
+          - teochew: 有滴囝𠀾好意思
+            mandarin: 有点不好意思
+
+    hierarchy: |
+      程度从高到低排列：
+      绝 (极其) > 死/死去 (极了/得不得了) > 上 (最) > 过 (很) > 堵堵 (恰好) > 有滴囝 (有点) > 伤 (太/过于)
+
+      注意：前加式（过/绝/上/伤/有滴囝）放在形容词前；后附式（死/死去）放在形容词后。
+
+  # ========================
+  # 5. 常见句式结构 (Sentence Patterns)
+  # ========================
+  sentence_patterns:
+    summary: 潮汕话有一批独特的句式结构，与普通话差异显著。以下按使用频率排列。
+
+    patterns:
+      - name: 有+动词+无 / V+未（正反问句）
+        description: 正反问句的潮汕话核心表达，普通话用"V不V"或"有没有V"。这是潮汕话疑问句最常用的结构。
+        pattern: 有 + 动词 + 无？/ 动词 + 未？
+        mandarin_pattern: V不V / 有没有V / V了吗
+        examples:
+          - teochew: 汝有食无？
+            mandarin: 你吃了吗？/你有没有吃？
+          - teochew: 伊有来无？
+            mandarin: 他来了吗？
+          - teochew: 食未？
+            mandarin: 吃了吗？
+          - teochew: 做好未？
+            mandarin: 做好了吗？
+        notes: |
+          "有V无"用于询问动作是否已发生，"V未"用于询问动作是否已完成。
+          "V未"的语气比"有V无"更口语化。
+
+      - name: 岂+动词/形容词（是非问句）
+        description: 潮汕话特色疑问句式，用"岂"构成正反问，相当于普通话"是不是/有没有/形不形"
+        pattern: 岂 + 动词/形容词
+        mandarin_pattern: V不V / 是不是
+        examples:
+          - teochew: 汝岂是潮州侬？
+            mandarin: 你是不是潮州人？
+          - teochew: 伊岂有来？
+            mandarin: 他有没有来？
+          - teochew: 只个岂好食？
+            mandarin: 这个好不好吃？
+          - teochew: 汝岂会晓？
+            mandarin: 你懂不懂？
+
+      - name: V+一下（尝试态）
+        description: 短时态/尝试态，相当于普通话"V一下"或"VV"
+        pattern: 动词 + 一下
+        examples:
+          - teochew: 䀢一下。
+            mandarin: 看一下。/看看。
+          - teochew: 想一下。
+            mandarin: 想一想。
+          - teochew: 试一下。
+            mandarin: 试一下。
+
+      - name: 会/𠀾 + V（能力/可能性）
+        description: 能力/可能性表达，"会"表肯定，"𠀾"表否定
+        pattern: 会/𠀾 + 动词
+        examples:
+          - teochew: 我会呾潮州话。
+            mandarin: 我会说潮州话。
+          - teochew: 我𠀾写只个字。
+            mandarin: 我不会写这个字。
+          - teochew: 伊𠀾骗我。
+            mandarin: 他不会骗我。
+
+      - name: 有 + V（确认性完成体）
+        description: 表示动作确实已经发生或存在某种状态，带有确认语气
+        pattern: 有 + 动词
+        examples:
+          - teochew: 我有去。
+            mandarin: 我去了。/我有去。
+          - teochew: 伊有呾过。
+            mandarin: 他说过。
+          - teochew: 我有䀢着。
+            mandarin: 我有看到。
+
+      - name: 乞 + 宾语 + V（被动式）
+        description: 被动句，普通话用"被/给"。注意"乞"读kêh4时为被动标记。
+        pattern: 乞 + 施事者 + 动词
+        examples:
+          - teochew: 我乞伊骂。
+            mandarin: 我被他骂了。
+          - teochew: 物件乞侬偷去。
+            mandarin: 东西被人偷走了。
+          - teochew: 只条鱼乞猫食去。
+            mandarin: 这条鱼被猫吃了。
+
+      - name: 共 + 宾语 + V（为动式/与格）
+        description: 介词结构，相当于普通话"帮/给/跟/替"
+        pattern: 共 + 宾语 + 动词
+        examples:
+          - teochew: 我共汝呾。
+            mandarin: 我跟你说。
+          - teochew: 共我买本书。
+            mandarin: 帮我买本书。
+          - teochew: 伊共我借银。
+            mandarin: 他跟我借钱。
+
+      - name: 分 + 宾语 + V（使动式/容许式）
+        description: 让/使某人做某事，表容许或致使
+        pattern: 分 + 宾语 + 动词
+        examples:
+          - teochew: 分伊去。
+            mandarin: 让他去。
+          - teochew: 分我䀢一下。
+            mandarin: 让我看一下。
+          - teochew: 分伊想一下。
+            mandarin: 让他想一下。
+
+      - name: 做一下 + V（协同态）
+        description: 表示"一起/一块儿"做某事
+        pattern: 做一下 + 动词
+        examples:
+          - teochew: 俺做一下来去。
+            mandarin: 咱们一起去。
+          - teochew: 恁做一下行。
+            mandarin: 你们一起走吧。
+
+  # ========================
+  # 6. 时态表达 (Tense/Aspect)
+  # ========================
+  aspect:
+    summary: 潮汕话通过虚词和补语表达时态和体貌，没有动词形态变化。以分析性手段为主。
+
+    markers:
+      - name: 进行体
+        particle: 在 (do6) / 著 (dioh8)
+        usage: 表示动作正在进行
+        examples:
+          - teochew: 我在食饭。
+            mandarin: 我在吃饭。
+          - teochew: 伊在睇。
+            mandarin: 他在睡觉。
+          - teochew: 阿弟在读书。
+            mandarin: 弟弟在读书。
+
+      - name: 完成体
+        particle: 了 (liao2/liao7) / 去 (ke3)
+        usage: |
+          表示动作完成。"了"和"去"常可互换，但：
+          - "了"更接近普通话的"了"，使用频率更高
+          - "去"用于不及物动词后，强调状态变化或消失
+          - "了去"连用表完成+消失/变化
+        examples:
+          - teochew: 我食饱了。
+            mandarin: 我吃饱了。
+          - teochew: 伊行去了。
+            mandarin: 他走了。
+          - teochew: 件事做好了。
+            mandarin: 这件事做好了。
+          - teochew: 物件跌了去。
+            mandarin: 东西丢掉了。
+
+      - name: 经历体
+        particle: 过 (guê3)
+        usage: 表示曾经经历过某动作或状态
+        examples:
+          - teochew: 我去过汕头。
+            mandarin: 我去过汕头。
+          - teochew: 伊食过牛肉丸。
+            mandarin: 他吃过牛肉丸。
+          - teochew: 我学过潮州话。
+            mandarin: 我学过潮州话。
+
+      - name: 起始体
+        particle: 起去 (ki2 ke3) / 起来 (ki2 lai5)
+        usage: 表示动作或状态开始并持续
+        examples:
+          - teochew: 伊笑起去。
+            mandarin: 他笑起来了。
+          - teochew: 天热起去。
+            mandarin: 天热起来了。
+
+      - name: 短时体
+        particle: 一下 (zêg8 ê7)
+        usage: 表动作短暂或尝试
+        examples:
+          - teochew: 䀢一下。
+            mandarin: 看一看。
+
+  # ========================
+  # 7. 比较句 (Comparisons)
+  # ========================
+  comparison:
+    summary: 潮汕话比较句结构与普通话差异较大，有三种主要结构。这是翻译时语序调整的重点。
+
+    structures:
+      - name: A + 形容词 + 过 + B（差比句）
+        mandarin_equivalent: A + 比 + B + 形容词
+        usage: 最基本的比较句式，表示A在某方面超过B
+        examples:
+          - teochew: 我大过汝。
+            mandarin: 我比你大。
+          - teochew: 只个好过许个。
+            mandarin: 这个比那个好。
+          - teochew: 汕头热过潮州。
+            mandarin: 汕头比潮州热。
+          - teochew: 伊悬过我。
+            mandarin: 他比我高。
+
+      - name: A + 共 + B + 平 + 形容词（平比句）
+        mandarin_equivalent: A + 和 + B + 一样 + 形容词
+        usage: 平级比较，表示A和B相等
+        examples:
+          - teochew: 我共汝平大。
+            mandarin: 我和你一样大。
+          - teochew: 只个共许个平好食。
+            mandarin: 这个和那个一样好吃。
+          - teochew: 伊共我平悬。
+            mandarin: 他和我一样高。
+
+      - name: A + 唔上/唔赢 + B（不及比较）
+        mandarin_equivalent: A + 不如 + B / A + 没有 + B + 形容词
+        usage: 表示A不如B，比不上B
+        examples:
+          - teochew: 我唔上伊。
+            mandarin: 我不如他。
+          - teochew: 只个唔赢许个。
+            mandarin: 这个不如那个。
+          - teochew: 行路唔赢坐车。
+            mandarin: 走路不如坐车。
+
+      - name: A + 比 + B + 形容词（与普通话相同的结构）
+        usage: 受普通话影响，"比"字句在年轻一代潮汕话中越来越常用
+        examples:
+          - teochew: 伊比我大。
+            mandarin: 他比我大。
+
+  # ========================
+  # 8. 疑问句 (Interrogatives)
+  # ========================
+  interrogatives:
+    summary: 潮汕话疑问句有三种主要结构以及一套特殊疑问词，翻译时需注意转换。
+
+    structures:
+      - name: 正反问（有V无 / V未）
+        description: 最常用的疑问句式，用肯定否定并列来提问
+        examples:
+          - 汝有去无？→ 你去没去？
+          - 食饱未？→ 吃饱了吗？
+
+      - name: 岂问句（岂V）
+        description: 用"岂"标记的疑问，相当于"V不V"
+        examples:
+          - 汝岂去？→ 你去不去？
+          - 岂好？→ 好不好？
+
+      - name: 特指问（疑问词）
+        description: 用疑问词提问，疑问词包括：
+        items:
+          - 底侬 (di7 diang5) — 谁
+          - 乜个 (mih4 gai5) — 什么
+          - 地块 (di7 go3) — 哪里
+          - 底时 (di7 si5) — 什么时候
+          - 做尼 (zo3 ni5) — 怎么/为什么
+          - 若㩼 (riêg8 zoi7) — 多少
+          - 底个 (di7 gai5) — 哪个/什么
+
+  # ========================
+  # 9. 领属结构 (Possession)
+  # ========================
+  possession:
+    summary: 潮汕话用"个"(gai5)作为领属标记，相当于普通话的"的"。同时"个"也兼作量词，需根据句法位置区分。
+
+    rules:
+      - pattern: 名词/代词 + 个 + 名词
+        mandarin_equivalent: 名词/代词 + 的 + 名词
+        examples:
+          - teochew: 我个册
+            mandarin: 我的书
+          - teochew: 伊个厝
+            mandarin: 他的房子
+          - teochew: 汕头个牛肉丸
+            mandarin: 汕头的牛肉丸
+          - teochew: 阿爸个手机
+            mandarin: 爸爸的手机
+
+      - pattern: 形容词/动词 + 个 + 名词（关系小句）
+        examples:
+          - teochew: 红个花
+            mandarin: 红的花
+          - teochew: 我买个大厝
+            mandarin: 我买的大房子
+
+  # ========================
+  # 10. 处置式 (Disposal Construction)
+  # ========================
+  disposal:
+    summary: 潮汕话处置式用"将"(ziang1)或"共"(ga7)，对应普通话的"把"字句。使用频率低于普通话。
+
+    patterns:
+      - name: 将字处置式
+        pattern: 将 + 宾语 + 动词 + 补语
+        examples:
+          - teochew: 将门关去。
+            mandarin: 把门关上。
+          - teochew: 将衫洗清气。
+            mandarin: 把衣服洗干净。
+
+      - name: 共字处置式
+        pattern: 共 + 宾语 + 动词
+        examples:
+          - teochew: 共伊掠去。
+            mandarin: 把他抓走。
+
+  # ========================
+  # 11. 趋向补语 (Directional Complements)
+  # ========================
+  directional_complements:
+    summary: 潮汕话趋向补语与普通话基本对应，但有一些独特说法。
+
+    items:
+      - teochew: 起去 (ki2 ke3)
+        mandarin: 起来
+        example: 徛起去 → 站起来
+
+      - teochew: 落去 (loh8 ke3)
+        mandarin: 下去
+        example: 坐落去 → 坐下去
+
+      - teochew: 入去 (rib8 ke3)
+        mandarin: 进去
+        example: 行入去 → 走进去
+
+      - teochew: 出去 (cug4 ke3)
+        mandarin: 出去
+        example: 行出去 → 走出去
+
+      - teochew: 转来 (deng2 lai5)
+        mandarin: 回来
+        example: 行转来 → 走回来
+
+  # ========================
+  # 12. 特殊语气词 (Sentence-Final Particles)
+  # ========================
+  particles:
+    summary: 潮汕话有丰富的句末语气词，表达不同的语气和态度。翻译时需在普通话中找到对应的语气表达。
+
+    items:
+      - char: 啦 (la7)
+        usage: 表示肯定、确认的语气
+        examples:
+          - teochew: 好啊啦。→ 好啊（肯定地）。
+
+      - char: 咯 (lo7)
+        usage: 表示建议、商量的语气
+        examples:
+          - teochew: 来去食饭咯。→ 去吃饭吧。
+
+      - char: 囖 / 啰 (lo1/lo7)
+        usage: 表示提醒、强调
+        examples:
+          - teochew: 注意囖。→ 注意啊。
+
+      - char: 喏 (na7)
+        usage: 表示疑问、反问
+        examples:
+          - teochew: 汝知喏？→ 你知道吗？
+
+      - char: 嗷 (ngiao5)
+        usage: 表示惊讶、感叹
+        examples:
+          - teochew: 浪险嗷！→ 太厉害了！
+
+      - char: 矣 (a1)
+        usage: 表示完成、变化或强调
+        examples:
+          - teochew: 落雨矣！→ 下雨了！
+
+      - char: 呢 (nê7)
+        usage: 表示疑问（"嗯？怎么回事？"）
+        examples:
+          - teochew: 做尼呢？→ 怎么啦？
+
+  # ========================
+  # 13. 翻译注意事项 (Translation Notes)
+  # ========================
+  translation_notes:
+    - id: 1
+      title: 语序调整 — 最优先
+      detail: |
+        潮→普：状语后置要提前（"我行先"→"我先走"）
+        数量补语后置要提前（"食加一碗"→"再吃一碗"）
+        比较句式"形+过+N"转为"比+N+形"
+        普→潮：反向操作，将前置状语移到动词后
+
+    - id: 2
+      title: 否定词匹配 — 最易出错
+      detail: |
+        注意区分7个否定词（唔/无/未/免/𠀾/莫/唔是），不同语境选择正确的否定词
+        普通话"不"不能机械译为"唔"，需根据语义判断是主观否定、存在否定、能力否定还是祈使否定
+        关键区分："伊唔来"(不来) vs "伊无来"(没来) vs "伊未来"(还没来) vs "伊𠀾来"(不会来)
+
+    - id: 3
+      title: 量词转换
+      detail: |
+        潮→普：特色量词转为普通话对应量词（"一丛树"→"一棵树"，"一条侬"→"一个人"）
+        普→潮：可简化量词为"个"（自然口语），也可用特色量词（更地道）
+
+    - id: 4
+      title: "个"的双重身份
+      detail: |
+        潮汕话"个"既是领属标记（=的）也是泛用量词
+        翻译时要根据句法位置判断："我个册"=我的书（领属），"一个侬"=一个人（量词）
+
+    - id: 5
+      title: 正反问句转换
+      detail: |
+        潮汕话"有V无"结构转为普通话"V不V"/"有没有V"
+        "V未"转为"V了吗"
+        "岂V"转为"V不V"或"是不是V"
+
+    - id: 6
+      title: 文化词汇保留
+      detail: |
+        潮汕特色词汇（工夫茶、粿条、蚝烙、鱼饭等）在翻译为普通话时
+        应保留原词并加注解释，而非机械翻译。这些词承载的文化含义无法用普通话词替代。
+
+    - id: 7
+      title: 文白异读选择
+      detail: |
+        潮汕话存在丰富的文白异读系统
+        口语翻译使用白读音（如 ziah8 食、gian5 行、no6 二）
+        书面语/正式场合使用文读音（如 sêg8 食、hêng5 行、ri6 二）
+        关键原则：日常对话=白读，朗读诗文/正式场合=文读
+
+    - id: 8
+      title: 人称代词包括/排除区分
+      detail: |
+        潮汕话"我们"必须区分包括式(俺 nang2，含听者)和排除式(阮 uang2/ng2，不含听者)
+        普通话翻译为"我们"后丢失了这个区分，可在注释中说明
+        普→潮翻译时必须根据语境选择正确的代词
+
+    - id: 9
+      title: 程度表达的位置转换
+      detail: |
+        潮→普："过+形"→"很+形"（前加式），"形+死"→"形+极了"（后附式）
+        普→潮：选择"过+形"（日常）或"形+死去"（强调），注意程度等级
+
+    - id: 10
+      title: "食"的语义范围
+      detail: |
+        潮汕话"食"兼表"吃"和"喝"：食饭=吃饭，食茶=喝茶，食酒=喝酒，食烟=抽烟
+        翻译时要根据宾语选择普通话的"吃"还是"喝"

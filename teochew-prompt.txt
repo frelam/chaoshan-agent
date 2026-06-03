@@ -1,0 +1,68 @@
+你的任务是创建一个潮汕话→普通话双向翻译的 Hermes Agent skill。
+
+请按以下顺序研究和产出：
+
+## 步骤1：研究潮汕话词映射
+先研究并整理普通话到潮汕话的常见词映射表，至少包含50个词条，覆盖以下类别：
+- 人称代词（你/我/他/我们等）
+- 日常问候（你好/吃饭/去哪等）
+- 数字/时间
+- 形容词（漂亮/厉害/好吃等）
+- 动词（吃/走/说/看等）
+- 食物名称
+- 潮汕特色词汇（浪险/雅姿娘/胶己人等）
+
+每条包含：普通话、潮汕话、潮州拼音(Peng'im)、例句
+
+## 步骤2：总结潮汕话语法特色
+整理潮汕话的主要语法特点：
+- 语序差异（如"你先走"→"你走先"）
+- 否定词用法
+- 量词特点
+- 程度副词（如"过"、"死"等）
+- 常见句式结构
+
+## 步骤3：收集特色方言词
+整理至少30个潮汕话独有的特色方言词/俗语，包括：
+- 有音无字的词
+- 潮汕俗语/谚语
+- 语气词
+- 亲属称谓
+
+## 步骤4：创建skill
+
+在 /home/charles/workspace/chaoshan-agent/skills/teochew-translate/ 目录下创建以下文件：
+
+### SKILL.md
+YAML front matter:
+- name: teochew-translate
+- version: "1.0.0"
+- description: "潮汕话↔普通话双向翻译，支持潮州拼音"
+- triggers: ["潮汕话", "翻译", "teochew", "潮语", "呾", "潮州话"]
+- requires: min_context: 8192
+- data: [data/dictionary.yaml, data/grammar.yaml, data/examples.yaml, data/slang.yaml]
+
+Markdown body 部分写一份详细的 system prompt，告诉 LLM 如何做翻译。
+
+### data/dictionary.yaml
+步骤1中整理的词映射表，YAML格式，每条含：
+- char: 潮汕话
+- mandarin: 普通话
+- pengim: 潮州拼音
+- example: 例句（潮汕话）
+- example_mandarin: 例句普通话
+- tags: [类别标签]
+
+### data/grammar.yaml
+步骤2的语法总结，YAML格式
+
+### data/examples.yaml
+至少20组翻译例句对照
+
+### data/slang.yaml
+步骤3的特色方言词/俗语
+
+### tests/cases.yaml
+至少10个测试用例
+
+请直接创建所有文件到指定目录。

@@ -1,0 +1,553 @@
+# ============================================================
+# 潮汕特色方言词 & 俗语 (Teochew Slang & Proverbs)
+# ============================================================
+# 收录潮汕话独有的特色表达、俗语谚语、语气词、亲属称谓
+# 包括有音无字的词、文化内涵丰富的成语式表达
+# ============================================================
+
+meta:
+  name: 潮汕特色方言词与俗语
+  version: "1.0.4"
+  total_entries: 37+
+  categories:
+    - 有音无字
+    - 俗语谚语
+    - 语气词
+    - 亲属称谓
+    - 特色表达
+
+entries:
+
+  # ========================
+  # 1. 有音无字的词 (Words with sound but no standard character)
+  # ========================
+  phonic_only:
+    - id: p1
+      pronunciation: niam5 (第五声)
+      approximate_char: 黏/拈
+      mandarin_meaning: 软烂、熟透（形容食物或状态）
+      usage: 糜煮到~。果子熟到~去。
+      example_teochew: 糜煮到niam5 niam5，过好食。
+      example_mandarin: 粥煮得软烂软烂的，很好吃。
+      tags: [有音无字, 食物]
+
+    - id: p2
+      pronunciation: gog8 (第八声)
+      approximate_char: 佝
+      mandarin_meaning: （液体）稠、浓
+      usage: 糜过~。墨汁过~。
+      example_teochew: 只碗糜过gog8。
+      example_mandarin: 这碗粥很稠。
+      tags: [有音无字, 食物]
+
+    - id: p3
+      pronunciation: ziêg4 (第四声入声)
+      approximate_char: —（无对应字）
+      mandarin_meaning: 挤、拥挤
+      usage: 街路过~。
+      example_teochew: 市场侬过ziêg4。
+      example_mandarin: 市场人很挤。
+      tags: [有音无字]
+
+    - id: p4
+      pronunciation: koi1 (第一声)
+      approximate_char: —（无对应字）
+      mandarin_meaning: 歪、斜
+      usage: 画挂~去。头~去。
+      example_teochew: 只幅画挂koi1去。
+      example_mandarin: 这幅画挂歪了。
+      tags: [有音无字]
+
+    - id: p5
+      pronunciation: sah8 (第八声)
+      approximate_char: —（无对应字）
+      mandarin_meaning: 张开（嘴、手等）
+      usage: 喙~~。
+      example_teochew: 喙sah8开，乞我䀢。
+      example_mandarin: 嘴张开，给我看。
+      tags: [有音无字]
+
+  # ========================
+  # 2. 潮汕俗语/谚语 (Proverbs & Idioms)
+  # ========================
+  proverbs:
+    - id: pr1
+      teochew: 食茶三冲四泡。
+      pengim: ziah8 dê5 san1 cong1 si3 pao3.
+      mandarin: 喝茶要冲三四泡（才出味）。
+      meaning: 工夫茶讲究多次冲泡，喻做事要有耐心
+      tags: [俗语, 茶文化]
+
+    - id: pr2
+      teochew: 胶己人，拍死无相干。
+      pengim: ga1 gi7 nang5, pah4 si2 bho5 siang1 gang1.
+      mandarin: 自己人，打死也没关系。
+      meaning: 潮汕人极度重视乡谊，自己人之间不计较，略带调侃
+      tags: [俗语, 文化]
+      note: 潮汕人标志性格言
+
+    - id: pr3
+      teochew: 好马唔停蹄，好牛唔停犁。
+      pengim: ho2 bhê2 m6 têng5 doi5, ho2 ghu5 m6 têng5 loi5.
+      mandarin: 好马不停蹄，好牛不停犁。
+      meaning: 勤奋的人永不停歇
+      tags: [俗语]
+
+    - id: pr4
+      teochew: 糜饭趁后生，衫裤趁后生。
+      pengim: muê5 bung7 tang3 hao6 sên1, san1 kou3 tang3 hao6 sên1.
+      mandarin: 吃饭要趁年轻，穿衣要趁年轻。
+      meaning: 劝人珍惜青春，及时行乐/努力
+      tags: [俗语]
+
+    - id: pr5
+      teochew: 一时风驶一时船。
+      pengim: zêg8 si5 huang1 sai2 zêg8 si5 zung5.
+      mandarin: 根据风向调整帆船。
+      meaning: 见机行事，随机应变
+      tags: [俗语]
+
+    - id: pr6
+      teochew: 千银买厝，万银买厝边。
+      pengim: coin1 ngeng5 bhoi2 cu3, bhuang7 ngeng5 bhoi2 cu3 bin1.
+      mandarin: 千金买房，万金买邻居。
+      meaning: 好邻居比好房子更珍贵
+      tags: [俗语]
+
+    - id: pr7
+      teochew: 大路唔行行山坪。
+      pengim: dua7 lou7 m6 gian5 gian5 suan1 pian5.
+      mandarin: 大路不走偏走山路。
+      meaning: 舍近求远，自找麻烦
+      tags: [俗语]
+
+    - id: pr8
+      teochew: 爱拚则会赢。
+      pengim: ain3 bian3 zian3 oi6 ian5.
+      mandarin: 敢拼才会赢。
+      meaning: 潮汕精神的核心——拼搏才能成功
+      tags: [俗语, 文化]
+      note: 源于闽南语歌曲《爱拼才会赢》
+
+    - id: pr9
+      teochew: 细钱唔甘使，大钱无来路。
+      pengim: soi3 zin5 m6 gam1 sai2, dua7 zin5 bho5 lai5 lou7.
+      mandarin: 小钱舍不得花，大钱就没来路。
+      meaning: 懂得投资和消费才能致富
+      tags: [俗语]
+
+    - id: pr10
+      teochew: 人细喙会呾，鸟细飞会悬。
+      pengim: nang5 soi3 cui3 oi6 dan3, ziao2 soi3 buê1 oi6 guin5.
+      mandarin: 人小嘴会说，鸟小飞得高。
+      meaning: 小孩也能说出大道理，不能小看年轻人
+      tags: [俗语]
+
+  # ========================
+  # 3. 语气词 (Sentence-final Particles)
+  # ========================
+  particles:
+    - id: fp1
+      char: 啊
+      pengim: a7
+      usage: 表示疑问、确认
+      example_teochew: 汝岂去啊？
+      example_mandarin: 你去不去啊？
+
+    - id: fp2
+      char: 啦
+      pengim: la7
+      usage: 表示肯定、强调
+      example_teochew: 好啊啦!
+      example_mandarin: 当然好啊！
+
+    - id: fp3
+      char: 咯
+      pengim: lo7
+      usage: 表示建议、回应（轻柔肯定）
+      example_teochew: 好咯，俺去咯。
+      example_mandarin: 好吧，咱们去吧。
+
+    - id: fp4
+      char: 呢
+      pengim: nê7
+      usage: 表示疑问（相当于"嗯？"）
+      example_teochew: 做尼呢？
+      example_mandarin: 怎么啦？/怎么回事？
+
+    - id: fp5
+      char: 嗷
+      pengim: ngiao5
+      usage: 表示惊叹、赞美
+      example_teochew: 过雅嗷！
+      example_mandarin: 好漂亮啊！
+
+    - id: fp6
+      char: 喏
+      pengim: na7
+      usage: 表示疑问、反问，略带责问语气
+      example_teochew: 汝岂知喏？
+      example_mandarin: 你到底知不知道？
+
+    - id: fp7
+      char: 矣
+      pengim: a1
+      usage: 表示完成、变化或强调
+      example_teochew: 落雨矣！
+      example_mandarin: 下雨了！
+
+    - id: fp8
+      char: 噢
+      pengim: o6
+      usage: 表示理解、醒悟
+      example_teochew: 噢，是只样！
+      example_mandarin: 哦，是这样！
+
+  # ========================
+  # 4. 亲属称谓 (Kinship Terms)
+  # ========================
+  kinship:
+    - id: k1
+      teochew: 阿公
+      pengim: a1 gong1
+      mandarin: 爷爷/外公
+      note: 可指祖父也可指外祖父，通过语境区分
+
+    - id: k2
+      teochew: 阿妈
+      pengim: a1 ma2
+      mandarin: 奶奶/外婆
+      note: 可指祖母也可指外祖母
+
+    - id: k3
+      teochew: 阿爸/爹
+      pengim: a1 ba1 / dia1
+      mandarin: 爸爸
+
+    - id: k4
+      teochew: 阿母/阿娘/姨
+      pengim: a1 bho2 / a1 niê5 / a1 i5
+      mandarin: 妈妈
+      note: 不同地区称呼不同
+
+    - id: k5
+      teochew: 阿兄
+      pengim: a1 hian1
+      mandarin: 哥哥
+      note: 也用于称呼同龄稍长男性
+
+    - id: k6
+      teochew: 阿弟
+      pengim: a1 di6
+      mandarin: 弟弟
+      note: 也用于称呼同龄稍幼男性
+
+    - id: k7
+      teochew: 阿姐
+      pengim: a1 zê2
+      mandarin: 姐姐
+
+    - id: k8
+      teochew: 阿妹
+      pengim: a1 muê6
+      mandarin: 妹妹
+
+    - id: k9
+      teochew: 阿伯
+      pengim: a1 bêh4
+      mandarin: 伯伯/伯父
+      note: 也用于尊称年长男性
+
+    - id: k10
+      teochew: 阿姆
+      pengim: a1 m2
+      mandarin: 伯母
+
+    - id: k11
+      teochew: 阿叔
+      pengim: a1 zêg4
+      mandarin: 叔叔
+
+    - id: k12
+      teochew: 阿婶
+      pengim: a1 sim2
+      mandarin: 婶婶
+
+    - id: k13
+      teochew: 阿舅
+      pengim: a1 gu6
+      mandarin: 舅舅
+
+    - id: k14
+      teochew: 阿妗
+      pengim: a1 gim6
+      mandarin: 舅妈
+
+    - id: k15
+      teochew: 阿丈
+      pengim: a1 diên6
+      mandarin: 姑丈/姨丈
+
+    - id: k16
+      teochew: 安
+      pengim: ang1
+      mandarin: 丈夫
+
+    - id: k17
+      teochew: 嬷
+      pengim: bhou2
+      mandarin: 妻子
+
+  # ========================
+  # 5. 特色表达 (Unique Expressions)
+  # ========================
+  expressions:
+    - id: e1
+      teochew: 无变
+      pengim: bho5 biang3
+      mandarin: 没办法/做不到
+      example: 只件事我无变帮你。
+      tags: [特色表达]
+
+    - id: e2
+      teochew: 激心
+      pengim: gêg4 sim1
+      mandarin: 烦心/郁闷
+      example: 听着只件事，我过激心。
+      tags: [特色表达]
+
+    - id: e3
+      teochew: 跌掉
+      pengim: dig4 diao7
+      mandarin: 丢掉/遗失/忘记
+      example: 本书我跌掉去。
+      tags: [特色表达]
+
+    - id: e4
+      teochew: 相借问
+      pengim: siê1 zioh4 mung7
+      mandarin: 打招呼
+      example: 出门遇着侬着相借问。
+      tags: [特色表达, 文化]
+
+    - id: e5
+      teochew: 铺
+      pengim: pou1
+      mandarin: 十华里（约5公里）
+      example: 汕头到澄海大约两铺路。
+      note: 潮汕传统长度单位
+      tags: [特色表达, 文化]
+
+    - id: e6
+      teochew: 趁食
+      pengim: tang3 ziah8
+      mandarin: 谋生/赚钱糊口
+      example: 伊去广州趁食。
+      tags: [特色表达]
+
+    - id: e7
+      teochew: 甜过蜜
+      pengim: diam5 guê3 bhig8
+      mandarin: 比蜜还甜；形容甜到极致或得意忘形
+      tags: [特色表达, 俗语]
+
+    - id: e8
+      teochew: 孥囝
+      pengim: nou1 gian2 / nao1 gian2
+      mandarin: 小孩/孩子
+      tags: [特色表达, 人称]
+
+    - id: e9
+      teochew: 姿娘
+      pengim: ze1 niê5
+      mandarin: 女人/女性
+      tags: [特色表达, 人称]
+
+    - id: e10
+      teochew: 打捕
+      pengim: da2 bou1
+      mandarin: 男人
+      tags: [特色表达, 人称]
+
+    - id: e11
+      teochew: 后生仔
+      pengim: hao6 sên1 gian2
+      mandarin: 年轻人/小伙子
+      tags: [特色表达, 人称]
+
+    - id: e12
+      teochew: 老伙
+      pengim: lao6 huê2
+      mandarin: 老人/老家伙（可轻蔑可亲昵）
+      tags: [特色表达, 人称]
+
+    - id: e13
+      teochew: 晓市
+      pengim: hiao2 ci6
+      mandarin: 懂行情/懂世面
+      example: 伊过晓市，买物件𠀾乞侬骗。
+      tags: [特色表达]
+
+    - id: e14
+      teochew: 白直
+      pengim: bêh8 dig8
+      mandarin: 直率/坦诚（略带不懂人情世故）
+      example: 伊人过白直，有话就呾。
+      tags: [特色表达]
+
+    - id: e15
+      teochew: 衰疲
+      pengim: suê1 pui5
+      mandarin: 倒霉/晦气
+      example: 今日过衰疲，出门就落雨。
+      tags: [特色表达]
+
+    - id: e16
+      teochew: 踢桃
+      pengim: ti1 tho5
+      mandarin: 玩/玩耍/出去玩
+      usage: >
+        有音无字词，"踢桃"二字为借音写法，非字面义"踢桃子"。
+        潮汕话中最常用的"玩"的说法，从孩童玩耍到朋友聚会皆可用。
+        也有写作"踢跎"的。闽南语对应词为"𨑨迌"(thit-thô)。
+      example:
+        - teochew: 瓦爱来去踢桃。
+          mandarin: 我想去玩。
+        - teochew: 明起阮来去踢桃好𠀾？
+          mandarin: 明天我们去玩好不好？
+        - teochew: 只撮孥囝在门口踢桃。
+          mandarin: 这些小孩在门口玩。
+      tags: [特色表达, 有音无字, 高频词]
+
+    # --- 粗口/脏话 ---
+
+    - id: e17
+      teochew: 领姨块鸡
+      pengim: nêng2 i5 go3 goi1
+      mandarin: 你阿姨的逼（极其粗俗的骂人话）
+      usage: 粗口/脏话，辱骂他人，极其不雅
+      note: >
+        "领"是"恁"(你/你家的)的近音字。"鸡"在此处是粗俗隐语，
+        源自闽南语/潮汕话"鸡掰"(goi1 bai1 = 膣屄，女性生殖器)。
+        整句相当于闽南语常见粗口"恁母鸡掰"(你妈的逼)，只是侮辱对象换成"阿姨"。
+        极其粗俗，日常口语中应避免使用。
+      source:
+        type: community
+        contributor: "用户指正(2026-06-03)"
+        confidence: verified
+      tags: [特色表达, 粗口, 脏话]
+
+    - id: e18
+      teochew: 扑母
+      pengim: pah4 bho2
+      mandarin: 我靠/卧槽/妈的（潮汕话最核心的粗俗感叹词）
+      usage: >
+        字面义"扑"(击打/性交)+"母"(母亲)，相当于"操你妈"的缩略。
+        实际使用中已高度语法化，语义根据语境大幅漂移：
+        【语气强弱分级】
+        ① 轻度（熟人口头禅）：无实质恶意，仅作语气填充，类似"卧槽""我靠"
+          例："扑母，今日天时过好。"=卧槽，今天天气真好。
+        ② 中度（惊讶/赞叹）：表达意外、惊叹之情
+          例："个扑母照劲！"=我靠这么厉害！
+        ③ 重度（愤怒/咒骂）：表达强烈不满、愤怒
+          例："扑母！只块乞侬偷去！"=妈的！这里被人偷了！
+        ④ 作为程度补语（置于"到"之后，表极端）：
+          例："惨到扑母"=惨到极点、"好到扑母"=好得不得了、
+          "惊到扑母"=吓得要死、"畅到扑母"=高兴得不得了
+        【常见变体】
+        - 扑母仔 (pah4 bho2 gian2)：骂第三人的"混蛋""狗娘养的"
+        - 扑领母 (pah4 nian2 bho2)：直接辱骂对方母亲，冒犯性极强，≈"操你妈"
+        - 扑你母 (pah4 le2 bho2)：同上，直接指向听者
+        - 散扑母 (suan3 pah4 bho2)：表达无语/吐槽，≈"坑爹""乱来的"
+        【使用场合】
+        ✓ 熟人之间：可作口头禅，但仍属粗俗
+        ✓ 情绪激动时：感叹或发泄
+        ✗ 正式场合：严禁！
+        ✗ 长辈面前：严禁！
+        ✗ 陌生人面前：避免使用
+        ✗ 女性/儿童通常较少使用
+      example:
+        - teochew: 个扑母照劲！汝做尼做个？
+          mandarin: 我靠这么厉害！你怎么做到的？
+        - teochew: 扑母仔，汝做尼照生？
+          mandarin: 混蛋，你怎么这样？
+        - teochew: 惨到扑母，只个月工资拢总输去。
+          mandarin: 惨到极点，这个月工资全都输光了。
+        - teochew: 热到扑母，今日天时三十过度。
+          mandarin: 热得要命，今天天气三十多度。
+      note: >
+        属潮汕粗口体系的核心词，与"领姨块鸡""扑领母"构成潮汕"三字经"。
+        语源上可追溯到闽南语粗口系统（闽南phah-bú ≈ 潮汕pah4-bho2），
+        在潮汕三市（潮州/汕头/揭阳）及海陆丰地区均极常用，随潮汕侨胞
+        流传至泰国、新加坡、马来西亚等东南亚潮人社区。
+      source:
+        type: research
+        references:
+          - 百度百科"扑母"词条
+          - 潮汕方言粗口体系民间研究
+        confidence: verified
+      tags: [特色表达, 粗口, 脏话, 感叹词, 高频词]
+
+    - id: e19
+      teochew: 早死仔
+      pengim: za2 si2 gian2
+      mandarin: 短命鬼/短命的（潮汕常用骂詈语，可作感叹词或口头禅）
+      usage: >
+        字面义"早死的孩子"，本字"早死囝"，俗写"早死仔"。
+        "囝"(gian2)本义为"儿子/孩子"，在潮汕话中作通用名词后缀
+        （孥囝=小孩、后生仔=年轻人、姿娘仔=女孩子），但在骂詈词中
+        强化贬义色彩。属潮汕"死病残"类骂詈语的中度粗口，比"扑母"
+        "领姨块鸡"等带性器官的脏话要"斯文"一些，但仍是不文明用语。
+        【语气轻重分级】
+        ① 轻度（口头禅/熟人调侃）：
+          例："早死仔，是汝上浪险！"=你这家伙，是你最厉害！
+          此处已无明显恶意，类似"你小子""这家伙""这孙子"。
+        ② 中度（责骂/训斥）：
+          例："早死仔，叫汝莫骂人汝怎又骂人！"=短命鬼，叫你别骂人你怎么又骂人！
+          常见于父母/长辈训斥小孩，带有责备但不一定是恶毒诅咒。
+        ③ 重度（愤怒咒骂）：
+          例："只个早死仔，乞我掠着拍死去！"=这个短命鬼，被我抓到打死你！
+          明显恶意，表达强烈愤怒。
+        ④ 作为程度补语（置于"到"之后，表极端）：
+          例："畅到早死仔"=高兴得要命、"气到早死仔"=气得要死、
+          "惊到早死仔"=吓个半死
+        【常见变体】
+        - 短命仔 (do2 mian7 gian2)：同义词，可互换
+        - 死囝仔 (si2 gian2 gian2)：近义词，该死的小子
+        - 吐血仔 (tao3 huêh4 gian2)：吐血短命的
+        - 破家仔 (pua3 gê1 gian2)：败家子
+        - 讨债仔 (to2 zê3 gian2)：讨债鬼，喻添麻烦的孩子
+        - 死父仔 (si2 bê6 gian2)：死老爸的（更恶毒）
+        【使用场合】
+        ✓ 熟人之间调侃：可接受，但仍属粗口
+        ✓ 情绪激动时发泄
+        ✗ 正式场合/长辈面前/陌生人面前：避免使用
+        ✗ 不建议对外地人或非潮汕话使用者使用（容易引发误会）
+        【文化背景】
+        潮汕"仔"字尾骂人话十分丰富（死父仔、吐血仔、破家仔、讨债仔等），
+        有学者认为此类以死/病/残为诅咒核心的骂人话是"原始恶意巫术的退化形式
+        或遗迹"（陈友义）。网络上有一个经典笑话：外地人问"早死仔"是什么意思，
+        潮汕人骗他说是"早上好"（与"早"字巧合），结果外地人见人就喊"早死仔"，
+        闹出大笑话。
+      example:
+        - teochew: 早死仔，是汝上浪险！
+          mandarin: 你这家伙，是你最厉害。
+        - teochew: 早死仔，叫汝莫骂人汝怎又骂人！
+          mandarin: 短命鬼，叫你别骂人你怎么又骂人！
+        - teochew: 畅到早死仔，今日中着大奖！
+          mandarin: 高兴得要命，今天中了大奖！
+        - teochew: 只个早死仔乞我掠着！
+          mandarin: 这个短命鬼被我抓到了！
+      note: >
+        与"短命仔"同义，可互换使用。比"扑母"系列冒犯程度低一级，
+        但仍属不文明用语。网上有将其误解为"女儿/走仔"的错误说法，
+        实际本字"早死囝"，与性别无关，就是咒人早死的意思。
+        权威潮语词典《潮典》释义为"短命仔、短命鬼"。
+      source:
+        type: research
+        references:
+          - 潮典(mogher.com) 早死囝词条
+          - 陈友义《潮汕民間駡文化》
+          - 潮汕方言粗口体系研究
+        confidence: verified
+      tags: [特色表达, 粗口, 詈语, 诅咒]

@@ -1,0 +1,31 @@
+修改 /home/charles/workspace/chaoshan-agent/skills/teochew-translate/SKILL.md，添加两个新能力：
+
+## 新增能力1：不确定时自动搜索
+
+在 SKILL.md 的 body 部分（翻译工作流中）加入以下逻辑：
+- 当遇到不确定的潮汕话词汇或翻译时，使用 tools 中的 web_search 搜索确认
+- 搜索策略：先搜潮汕话词典/潮州音字典等专业网站
+- 搜索后要在回答中标注依据来源（如"据潮州音字典"、"据网络资料"等）
+- 如果搜索后仍无法确认，如实说明不确定
+
+## 新增能力2：从用户更正学习
+
+在 SKILL.md 的 body 部分加入以下机制：
+- 当用户对翻译结果提出更正时，要识别是哪种类型的更正：
+  a) 词汇纠正（拼音、释义错误）
+  b) 语法纠正（语序、用词错误）
+  c) 新增词汇（用户提供了词典中没有的词）
+  d) 例句纠正
+- 对于词汇和例句的更正，直接修改 skills/teochew-translate/data/ 下对应的 YAML 文件：
+  - 用 write_file 工具修改 dictionary.yaml / examples.yaml / grammar.yaml / slang.yaml
+- 修改时必须遵守 YAML 格式，不破坏已有数据
+- 修改后要告知用户已更新 skill 知识库
+- 添加 version bump（YAML 文件中的 version 字段加小版本号）
+
+## 要求
+- 不要删除现有任何内容
+- 在已有翻译工作流中插入搜索步骤和学习步骤
+- 保持现有 Few-Shot 示例完整
+- 用中文编写新增内容
+
+直接修改 SKILL.md 文件。

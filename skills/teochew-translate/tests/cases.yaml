@@ -1,0 +1,156 @@
+# ============================================================
+# 潮汕话翻译技能 — 测试用例 (Translation Test Cases)
+# ============================================================
+# 每个测试用例包含输入、期望输出、测试类型和关注点
+# test_type: teochew_to_mandarin | mandarin_to_teochew
+# difficulty: easy | medium | hard
+# ============================================================
+
+meta:
+  name: 翻译测试用例
+  version: "1.0.0"
+  total_cases: 15
+
+cases:
+
+  # === 基础词翻译 ===
+  - id: 1
+    test_type: teochew_to_mandarin
+    difficulty: easy
+    input: 汝好
+    input_pengim: le2 ho2
+    expected_output: 你好
+    focus: 基础问候语翻译
+    tags: [人称代词, 问候]
+
+  - id: 2
+    test_type: teochew_to_mandarin
+    difficulty: easy
+    input: 我欲去汕头
+    input_pengim: ua2 ain3 ke3 suan1 tao5
+    expected_output: 我要去汕头
+    focus: 基础人称+动词翻译
+    tags: [人称代词, 动词]
+
+  - id: 3
+    test_type: mandarin_to_teochew
+    difficulty: easy
+    input: 我们一起去
+    expected_output: 俺做一下来去
+    expected_pengim: nang2 zo3 zêg8 ê7 lai5 ke3
+    focus: 包括式"俺"的使用
+    tags: [人称代词, 语序]
+    notes: "我们"区分排除式(阮)和包括式(俺)，此处为邀约场景，用"俺"
+
+  # === 语序差异 ===
+  - id: 4
+    test_type: teochew_to_mandarin
+    difficulty: medium
+    input: 汝行先，我等等就来
+    input_pengim: le2 gian5 soin1, ua2 dang2 dang2 ziu6 lai5
+    expected_output: 你先走，我等会儿就来
+    focus: 状语"先"后置 → 前置
+    tags: [语序, 副词]
+
+  - id: 5
+    test_type: mandarin_to_teochew
+    difficulty: medium
+    input: 再吃一碗
+    expected_output: 食加一碗
+    expected_pengim: ziah8 gê1 zêg8 uan2
+    focus: 数量补语后置结构
+    tags: [语序]
+
+  - id: 6
+    test_type: mandarin_to_teochew
+    difficulty: medium
+    input: 我比你大
+    expected_output: 我大过汝
+    expected_pengim: ua2 dua7 guê3 le2
+    focus: 比较句"A比B大"→"A大过B"
+    tags: [语序, 比较句]
+
+  # === 否定词 ===
+  - id: 7
+    test_type: teochew_to_mandarin
+    difficulty: medium
+    input: 我未食，汝食饱未？
+    input_pengim: ua2 bhuê7 ziah8, le2 ziah8 ba2 bhuê7?
+    expected_output: 我还没吃，你吃饱了吗？
+    focus: "未"的两种用法（否定副词 vs 疑问助词）
+    tags: [否定词, 语法]
+
+  - id: 8
+    test_type: mandarin_to_teochew
+    difficulty: easy
+    input: 不用客气
+    expected_output: 免用客气
+    expected_pengim: miang2 êng7 kêh4 ki3
+    focus: 否定词"不用"→"免"
+    tags: [否定词]
+
+  - id: 9
+    test_type: mandarin_to_teochew
+    difficulty: hard
+    input: 别去那里，那里很危险
+    expected_output: 莫去许块，许块过危险
+    expected_pengim: mai3 ke3 he2 go3, he2 go3 guê3 ngui5 hiam2
+    focus: 祈使否定"莫"+方位词"许块"
+    tags: [否定词, 方位词, 程度副词]
+
+  # === 程度副词 ===
+  - id: 10
+    test_type: teochew_to_mandarin
+    difficulty: easy
+    input: 只个粿过甜
+    input_pengim: zi2 gai5 guê2 guê3 diam5
+    expected_output: 这个粿很甜
+    focus: 程度副词"过"→"很"
+    tags: [程度副词]
+
+  - id: 11
+    test_type: teochew_to_mandarin
+    difficulty: medium
+    input: 今日凝死去
+    input_pengim: gim1 rig8 ngang5 si2 ke3
+    expected_output: 今天冷极了/今天冷死了
+    focus: 程度补语"死"后置，"去"为完成标记
+    tags: [程度副词, 时态]
+
+  # === 疑问句 ===
+  - id: 12
+    test_type: teochew_to_mandarin
+    difficulty: medium
+    input: 汝有食牛肉丸无？
+    input_pengim: le2 u6 ziah8 ghu5 nêg8 in5 bho5?
+    expected_output: 你有没有吃牛肉丸？
+    focus: "有V无"正反问结构
+    tags: [疑问句, 语法]
+
+  - id: 13
+    test_type: mandarin_to_teochew
+    difficulty: medium
+    input: 你是不是老师？
+    expected_output: 汝岂是先生？
+    expected_pengim: le2 ka2 si6 sing1 sên1?
+    focus: 疑问句式"是不是"→"岂是"
+    tags: [疑问句, 语法]
+
+  # === 综合翻译 ===
+  - id: 14
+    test_type: teochew_to_mandarin
+    difficulty: hard
+    input: 天时过好，俺来去外口行行，顺路食碗粿条汤。
+    input_pengim: tin1 si5 guê3 ho2, nang2 lai5 ke3 ghua7 kao2 gian5 gian5, sung6 lou7 ziah8 uan2 guê2 diao5 teng1.
+    expected_output: 天气很好，咱们去外面走走，顺便吃碗粿条汤。
+    focus: 综合翻译：语序+程度副词+邀约结构+特色食物
+    tags: [综合, 语序, 程度副词, 食物]
+
+  - id: 15
+    test_type: mandarin_to_teochew
+    difficulty: hard
+    input: 不好意思，我明天一大早要去汕头，今晚不能跟你们一起去喝茶了。
+    expected_output: 歹势，我明起透早欲去汕头，今暗𠀾会得共恁做一下来去食茶了。
+    expected_pengim: dai2 sê3, ua2 mua3 ki2 tao3 za2 ain3 ke3 suan1 tao5, gim1 am3 bhoi6 oi6 dig4 ga7 ning2 zo3 zêg8 ê7 lai5 ke3 ziah8 dê5 liao7.
+    focus: 复杂场景综合翻译
+    tags: [综合, 时间, 否定词, 介词结构]

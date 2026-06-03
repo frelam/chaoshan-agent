@@ -1,0 +1,1306 @@
+# ============================================================
+# 潮汕话 ↔ 普通话 词映射表 (Teochew ↔ Mandarin Dictionary)
+# ============================================================
+# 拼音采用潮州话拼音方案 (Peng'im / Teochew Romanization)
+# 声调数字: 1阴平 2阴上 3阴去 4阴入 5阳平 6阳上 7阳去 8阳入
+#
+# 参考文献:
+#   - 《潮州音字典》(林伦伦主编)
+#   - 《潮汕方言词义溯源》(林伦伦)
+#   - 《新潮汕字典》(张晓山)
+#   - 《潮汕话教程》(广东高等教育出版社)
+# ============================================================
+
+meta:
+  name: 潮汕话-普通话词典
+  version: "1.1.4"
+  total_entries: 112+
+  categories:
+    - 人称代词
+    - 日常问候
+    - 数字时间
+    - 形容词
+    - 动词
+    - 食物名称
+    - 潮汕特色词汇
+    - 疑问词
+    - 方位词
+    - 身体部位
+    - 颜色
+    - 天气自然
+    - 情感
+    - 职业身份
+
+entries:
+
+  # ========================
+  # 1. 人称代词 (Personal Pronouns)
+  # ========================
+  - char: 我
+    mandarin: 我
+    pengim: ua2
+    example: 我来去食饭。
+    example_mandarin: 我去吃饭。
+    tags: [人称代词, 基础]
+
+  - char: 汝
+    mandarin: 你
+    pengim: le2
+    example: 汝好，食饱未？
+    example_mandarin: 你好，吃饭了吗？
+    tags: [人称代词, 基础]
+
+  - char: 伊
+    mandarin: 他/她
+    pengim: i1
+    example: 伊是潮州人。
+    example_mandarin: 他/她是潮州人。
+    tags: [人称代词, 基础]
+
+  - char: 阮
+    mandarin: 我们（排除式）
+    pengim: uang2 / ng2
+    example: 阮明早起去汕头。
+    example_mandarin: 我们明天去汕头。
+    tags: [人称代词, 基础]
+    note: 排除听话人，听者不在"我们"之中
+
+  - char: 俺
+    mandarin: 咱们（包括式）
+    pengim: nang2
+    example: 俺做一下来去。
+    example_mandarin: 咱们一起去。
+    tags: [人称代词, 基础]
+    note: 包括听话人，潮汕话"我们"必须区分包括/排除
+
+  - char: 恁
+    mandarin: 你们
+    pengim: ning2
+    example: 恁爱去底块？
+    example_mandarin: 你们要去哪里？
+    tags: [人称代词, 基础]
+
+  - char: 伊侬
+    mandarin: 他们
+    pengim: i1 nang5
+    example: 伊侬拢总来去食茶。
+    example_mandarin: 他们全都去喝茶了。
+    tags: [人称代词]
+
+  - char: 胶己
+    mandarin: 自己
+    pengim: ga1 gi7
+    example: 胶己人莫客气。
+    example_mandarin: 自己人别客气。
+    tags: [人称代词, 潮汕特色]
+
+  - char: 胶己人
+    mandarin: 自己人/潮汕人
+    pengim: ga1 gi7 nang5
+    example: 胶己人，免用客气。
+    example_mandarin: 自己人，不用客气。
+    tags: [人称代词, 潮汕特色, 文化]
+    note: 既是"自己人"也是潮汕人对同胞的称呼，有强烈乡谊色彩
+
+  - char: 底侬
+    mandarin: 谁
+    pengim: di7 diang5
+    example: 汝是底侬？
+    example_mandarin: 你是谁？
+    tags: [人称代词, 疑问词]
+
+  - char: 别侬
+    mandarin: 别人
+    pengim: bag8 nang5
+    example: 莫呾乞别侬听。
+    example_mandarin: 别说给别人听。
+    tags: [人称代词]
+
+  - char: 逐个
+    mandarin: 大家/每个人
+    pengim: dag8 gai5
+    example: 逐个拢总来。
+    example_mandarin: 大家都来。
+    tags: [人称代词]
+
+  # ========================
+  # 2. 日常问候 (Daily Greetings)
+  # ========================
+  - char: 汝好
+    mandarin: 你好
+    pengim: le2 ho2
+    example: 阿伯，汝好！
+    example_mandarin: 伯伯，你好！
+    tags: [日常问候, 基础]
+
+  - char: 食饱未
+    mandarin: 吃饭了吗（问候语）
+    pengim: ziah8 ba2 bhuê7
+    example: 食饱未？来阮内食茶。
+    example_mandarin: 吃饭了吗？来我家喝茶。
+    tags: [日常问候, 文化]
+    note: 潮汕最经典的问候语，并非真正关心是否吃饭
+
+  - char: 早头好
+    mandarin: 早上好
+    pengim: za2 tao5 ho2
+    example: 早头好！今日天时真好。
+    example_mandarin: 早上好！今天天气真好。
+    tags: [日常问候]
+
+  - char: 免用客气
+    mandarin: 不用客气
+    pengim: miang2 êng7 kêh4 ki3
+    example: 免用客气，家己来。
+    example_mandarin: 不用客气，自己来。
+    tags: [日常问候]
+
+  - char: 歹势
+    mandarin: 不好意思/对不起
+    pengim: dai2 sê3
+    example: 歹势，我慢来。
+    example_mandarin: 不好意思，我来晚了。
+    tags: [日常问候, 潮汕特色]
+
+  - char: 麻烦汝
+    mandarin: 麻烦你/谢谢你
+    pengim: mua5 huêng5 le2
+    example: 麻烦汝共我买张票。
+    example_mandarin: 麻烦你帮我买张票。
+    tags: [日常问候]
+
+  - char: 心事
+    mandarin: 谢谢（较正式）
+    pengim: sim1 se7
+    example: 心事汝！
+    example_mandarin: 谢谢你！
+    tags: [日常问候]
+    note: 较正式的道谢
+
+  - char: 再见
+    mandarin: 再见
+    pengim: zai3 giang3
+    example: 我行先，再见！
+    example_mandarin: 我先走了，再见！
+    tags: [日常问候]
+
+  - char: 请坐
+    mandarin: 请坐
+    pengim: cian2 zo6
+    example: 请坐，我来泡茶。
+    example_mandarin: 请坐，我来泡茶。
+    tags: [日常问候]
+
+  - char: 慢行
+    mandarin: 慢走/再见
+    pengim: mang7 gian5
+    example: 慢行，下日再来。
+    example_mandarin: 慢走，改天再来。
+    tags: [日常问候]
+    note: 送别时的常用语
+
+  - char: 相借问
+    mandarin: 打招呼/问候
+    pengim: siê1 zioh4 mung7
+    example: 出门遇着侬着相借问。
+    example_mandarin: 出门遇到人要打招呼。
+    tags: [日常问候, 文化]
+
+  # ========================
+  # 3. 数字/时间 (Numbers & Time)
+  # ========================
+  - char: 蜀/一
+    mandarin: 一
+    pengim: zêg8 / ig4
+    example: 我有一本书。
+    example_mandarin: 我有一本书。
+    tags: [数字时间, 基础]
+    note: zêg8为白读（口语数数/量词前）, ig4为文读（序数/复合词）
+
+  - char: 两/二
+    mandarin: 二
+    pengim: no6 / ri6
+    example: 两个人来。
+    example_mandarin: 两个人来。
+    tags: [数字时间, 基础]
+    note: no6为白读（量词前）, ri6为文读（序数/复合词）
+
+  - char: 三
+    mandarin: 三
+    pengim: san1
+    example: 三人行，必有我师。
+    example_mandarin: 三人行，必有我师。
+    tags: [数字时间, 基础]
+
+  - char: 四
+    mandarin: 四
+    pengim: si3
+    example: 一年有四季。
+    example_mandarin: 一年有四季。
+    tags: [数字时间, 基础]
+
+  - char: 五
+    mandarin: 五
+    pengim: ngou6
+    example: 手有五指。
+    example_mandarin: 手有五指。
+    tags: [数字时间, 基础]
+
+  - char: 今日
+    mandarin: 今天
+    pengim: gim1 rig8
+    example: 今日欲去地块？
+    example_mandarin: 今天要去哪里？
+    tags: [数字时间, 基础]
+
+  - char: 明起
+    mandarin: 明天
+    pengim: mua3 ki2
+    example: 明起阮休息。
+    example_mandarin: 明天我们休息。
+    tags: [数字时间, 基础]
+
+  - char: 昨日
+    mandarin: 昨天
+    pengim: za1 rig8
+    example: 昨日我无来。
+    example_mandarin: 昨天我没来。
+    tags: [数字时间, 基础]
+
+  - char: 前日
+    mandarin: 前天
+    pengim: zoin5 rig8
+    example: 前日落了成日雨。
+    example_mandarin: 前天下了一整天雨。
+    tags: [数字时间]
+
+  - char: 后日
+    mandarin: 后天
+    pengim: ao6 rig8
+    example: 后日伊欲来。
+    example_mandarin: 后天他要来。
+    tags: [数字时间]
+
+  - char: 日昼
+    mandarin: 中午
+    pengim: rig8 dao3
+    example: 日昼爱食乜个？
+    example_mandarin: 中午要吃什么？
+    tags: [数字时间]
+
+  - char: 上旰
+    mandarin: 上午
+    pengim: ziên6 gua3
+    example: 上旰我上图书馆去。
+    example_mandarin: 上午我去了图书馆。
+    tags: [数字时间]
+
+  - char: 下旰
+    mandarin: 下午
+    pengim: ê6 gua3
+    example: 下旰我无闲。
+    example_mandarin: 下午我没空。
+    tags: [数字时间]
+
+  - char: 暗暝
+    mandarin: 晚上
+    pengim: am3 mên5
+    example: 暗暝来我内食。
+    example_mandarin: 晚上来我家吃。
+    tags: [数字时间]
+
+  - char: 透早
+    mandarin: 清晨/一大早
+    pengim: tao3 za2
+    example: 伊透早就出门。
+    example_mandarin: 他一大早就出门了。
+    tags: [数字时间]
+
+  - char: 下昏
+    mandarin: 傍晚
+    pengim: ê6 hng1
+    example: 下昏来去行行。
+    example_mandarin: 傍晚去走走吧。
+    tags: [数字时间]
+
+  - char: 只阵
+    mandarin: 现在
+    pengim: zi2 zung5
+    example: 只阵几点？
+    example_mandarin: 现在几点？
+    tags: [数字时间, 基础]
+
+  - char: 头先
+    mandarin: 刚才
+    pengim: tao5 soin1
+    example: 头先我有看着伊。
+    example_mandarin: 刚才我有看到他。
+    tags: [数字时间]
+
+  - char: 一困仔
+    mandarin: 一会儿
+    pengim: zêg8 kung3 gian2
+    example: 等一困仔。
+    example_mandarin: 等一会儿。
+    tags: [数字时间]
+
+  - char: 下日
+    mandarin: 改天/以后
+    pengim: ê6 rig8
+    example: 下日正来。
+    example_mandarin: 改天再来。
+    tags: [数字时间]
+
+  - char: 旧年
+    mandarin: 去年
+    pengim: gu7 ni5
+    example: 旧年我去过汕头。
+    example_mandarin: 去年我去过汕头。
+    tags: [数字时间]
+
+  # ========================
+  # 4. 形容词 (Adjectives)
+  # ========================
+  - char: 雅
+    mandarin: 漂亮/好看
+    pengim: ngia2
+    example: 只个姿娘仔过雅。
+    example_mandarin: 这个女孩子很漂亮。
+    tags: [形容词, 基础]
+
+  - char: 䆀
+    mandarin: 丑/难看
+    pengim: mai2
+    example: 伊生来𠀾䆀。
+    example_mandarin: 他长得不丑。
+    tags: [形容词]
+
+  - char: 好食
+    mandarin: 好吃
+    pengim: ho2 ziah8
+    example: 潮州菜过好食。
+    example_mandarin: 潮州菜很好吃。
+    tags: [形容词, 食物]
+
+  - char: 䭕
+    mandarin: 淡/没味道
+    pengim: zian2
+    example: 只碗汤过䭕。
+    example_mandarin: 这碗汤太淡了。
+    tags: [形容词, 食物]
+
+  - char: 咸
+    mandarin: 咸
+    pengim: giam5
+    example: 只个菜伤咸。
+    example_mandarin: 这个菜太咸了。
+    tags: [形容词, 食物]
+
+  - char: 甜
+    mandarin: 甜
+    pengim: diam5
+    example: 潮州柑过甜。
+    example_mandarin: 潮州柑很甜。
+    tags: [形容词, 食物]
+
+  - char: 酸
+    mandarin: 酸
+    pengim: seng1
+    example: 只粒柑伤酸。
+    example_mandarin: 这个橘子太酸了。
+    tags: [形容词, 食物]
+
+  - char: 苦
+    mandarin: 苦
+    pengim: kou2
+    example: 只杯茶过苦。
+    example_mandarin: 这杯茶很苦。
+    tags: [形容词, 食物]
+
+  - char: 辣
+    mandarin: 辣
+    pengim: luah8
+    example: 潮州菜𠀾伤辣。
+    example_mandarin: 潮州菜不太辣。
+    tags: [形容词, 食物]
+
+  - char: 大
+    mandarin: 大
+    pengim: dua7
+    example: 只间厝过大。
+    example_mandarin: 这间房子很大。
+    tags: [形容词, 基础]
+
+  - char: 细
+    mandarin: 小
+    pengim: soi3
+    example: 只粒柑伤细。
+    example_mandarin: 这个橘子太小了。
+    tags: [形容词, 基础]
+
+  - char: 悬
+    mandarin: 高
+    pengim: guin5
+    example: 只座楼过悬。
+    example_mandarin: 这座楼很高。
+    tags: [形容词]
+
+  - char: 下
+    mandarin: 低
+    pengim: gê6
+    example: 天顶飞机飞过下。
+    example_mandarin: 天上的飞机飞得很低。
+    tags: [形容词]
+
+  - char: 烧
+    mandarin: 热（温度）/暖和
+    pengim: siê1
+    example: 水烧烧，好洗浴。
+    example_mandarin: 水热热的，可以洗澡。
+    tags: [形容词, 基础]
+
+  - char: 凝
+    mandarin: 冷
+    pengim: ngang5
+    example: 今日过凝，着穿加件衫。
+    example_mandarin: 今天很冷，要多穿件衣服。
+    tags: [形容词, 基础]
+
+  - char: 清气
+    mandarin: 干净
+    pengim: cêng1 ki3
+    example: 伊内底过清气。
+    example_mandarin: 他家里很干净。
+    tags: [形容词]
+
+  - char: 垃圾
+    mandarin: 脏
+    pengim: lah4 sab4
+    example: 只块过垃圾。
+    example_mandarin: 这里很脏。
+    tags: [形容词]
+
+  - char: 聪明 / 灵精
+    mandarin: 聪明
+    pengim: cong1 mêng5 / lêng5 zêng1
+    example: 只个孥囝过灵精。
+    example_mandarin: 这个小孩很机灵。
+    tags: [形容词]
+
+  - char: 肥
+    mandarin: 胖/肥
+    pengim: bui5
+    example: 只只猪过肥。
+    example_mandarin: 这头猪很肥。
+    tags: [形容词]
+
+  - char: 㾪
+    mandarin: 瘦
+    pengim: sang2
+    example: 伊过㾪。
+    example_mandarin: 他很瘦。
+    tags: [形容词]
+
+  - char: 猛
+    mandarin: 快
+    pengim: mên2
+    example: 伊走过猛。
+    example_mandarin: 他跑得很快。
+    tags: [形容词]
+
+  - char: 慢
+    mandarin: 慢
+    pengim: mang7
+    example: 伊做事过慢。
+    example_mandarin: 他做事很慢。
+    tags: [形容词]
+
+  # ========================
+  # 5. 动词 (Verbs)
+  # ========================
+  - char: 食
+    mandarin: 吃/喝
+    pengim: ziah8
+    example: 来去食饭。
+    example_mandarin: 去吃饭。
+    tags: [动词, 基础]
+    note: 潮汕话"食"兼表吃和喝，如食茶=喝茶、食酒=喝酒、食烟=抽烟
+
+  - char: 行
+    mandarin: 走
+    pengim: gian5
+    example: 慢慢行，免用急。
+    example_mandarin: 慢慢走，不用急。
+    tags: [动词, 基础]
+
+  - char: 走
+    mandarin: 跑
+    pengim: zao2
+    example: 伊走过猛。
+    example_mandarin: 他跑得很快。
+    tags: [动词, 基础]
+
+  - char: 呾
+    mandarin: 说/讲
+    pengim: dan3
+    example: 汝呾乜个？
+    example_mandarin: 你说什么？
+    tags: [动词, 基础, 潮汕特色]
+    note: 潮汕话特色用字，对应闽南语的"讲"
+
+  - char: 䀢
+    mandarin: 看
+    pengim: toin2
+    example: 䀢！有飞机。
+    example_mandarin: 看！有飞机。
+    tags: [动词, 基础]
+
+  - char: 听
+    mandarin: 听
+    pengim: tian1
+    example: 我听无清楚。
+    example_mandarin: 我听不清楚。
+    tags: [动词, 基础]
+
+  - char: 鼻
+    mandarin: 闻/嗅
+    pengim: pin7
+    example: 鼻着花香。
+    example_mandarin: 闻到花香。
+    tags: [动词]
+
+  - char: 揽
+    mandarin: 抱
+    pengim: lam2
+    example: 阿妈揽着孥囝。
+    example_mandarin: 奶奶抱着小孩。
+    tags: [动词]
+
+  - char: 䟛
+    mandarin: 追/赶
+    pengim: ziêb8
+    example: 莫䟛，等等我。
+    example_mandarin: 别追，等等我。
+    tags: [动词]
+
+  - char: 知
+    mandarin: 知道
+    pengim: zai1
+    example: 我知只件事。
+    example_mandarin: 我知道这件事。
+    tags: [动词, 基础]
+
+  - char: 歇
+    mandarin: 休息
+    pengim: hiah4
+    example: 歇一困仔。
+    example_mandarin: 休息一会儿。
+    tags: [动词]
+
+  - char: 洗浴
+    mandarin: 洗澡
+    pengim: soi2 êg8
+    example: 我先去洗浴。
+    example_mandarin: 我先去洗澡。
+    tags: [动词]
+
+  - char: 睇
+    mandarin: 睡
+    pengim: uk8 / kung3
+    example: 我去睇了。
+    example_mandarin: 我去睡了。
+    tags: [动词]
+
+  - char: 来去
+    mandarin: 去（邀约式）
+    pengim: lai5 ke3
+    example: 来去食茶！
+    example_mandarin: 去喝茶吧！
+    tags: [动词, 潮汕特色, 基础]
+    note: 表邀约，"一起做某事"，含亲切感
+
+  - char: 挈
+    mandarin: 拿/取
+    pengim: kiêh8
+    example: 挈本书乞我。
+    example_mandarin: 拿本书给我。
+    tags: [动词]
+
+  - char: 放
+    mandarin: 放/放置
+    pengim: bang3
+    example: 书放床顶。
+    example_mandarin: 书放在桌上。
+    tags: [动词]
+
+  - char: 使
+    mandarin: 用/花费
+    pengim: sai2
+    example: 只个手机会使。
+    example_mandarin: 这个手机能用。
+    tags: [动词]
+
+  - char: 趁
+    mandarin: 赚（钱）
+    pengim: tang3
+    example: 伊一个月趁好多银。
+    example_mandarin: 他一个月赚很多钱。
+    tags: [动词, 潮汕特色]
+
+  - char: 爱
+    mandarin: 要/喜欢/爱
+    pengim: ain3
+    example: 我爱食牛肉丸。
+    example_mandarin: 我要吃牛肉丸。
+    tags: [动词, 基础]
+    note: '「爱」在潮汕话中主要为「要」和「喜欢」义，与普通话「爱」的情感强度不同'
+
+  - char: 欲
+    mandarin: 要（将来）
+    pengim: ain3
+    example: 天欲落雨了。
+    example_mandarin: 天要下雨了。
+    tags: [动词]
+
+  # ========================
+  # 6. 食物名称 (Food Names)
+  # ========================
+  - char: 糜
+    mandarin: 粥/稀饭
+    pengim: muê5
+    example: 早起食糜配咸菜。
+    example_mandarin: 早上喝粥配咸菜。
+    tags: [食物名称, 基础]
+
+  - char: 粿条
+    mandarin: 粿条（类似河粉的米制品）
+    pengim: guê2 diao5
+    example: 碗粿条汤过好食。
+    example_mandarin: 这碗粿条汤很好吃。
+    tags: [食物名称, 潮汕特色]
+    note: 潮汕标志性主食，比河粉更薄更滑
+
+  - char: 蚝烙
+    mandarin: 蚝烙/蚵仔煎（潮汕版）
+    pengim: o5 luah4
+    example: 潮州蚝烙上出名。
+    example_mandarin: 潮州蚝烙最出名。
+    tags: [食物名称, 潮汕特色, 文化]
+    note: 用薯粉和鲜蚝煎制，与台湾蚵仔煎不同
+
+  - char: 牛肉丸
+    mandarin: 牛肉丸
+    pengim: ghu5 nêg8 in5
+    example: 汕头牛肉丸过弹牙。
+    example_mandarin: 汕头牛肉丸很弹牙。
+    tags: [食物名称, 潮汕特色, 文化]
+
+  - char: 工夫茶
+    mandarin: 工夫茶
+    pengim: gang1 hu1 dê5
+    example: 潮汕侬尚食工夫茶。
+    example_mandarin: 潮汕人最爱喝工夫茶。
+    tags: [食物名称, 潮汕特色, 文化]
+    note: 潮汕茶文化核心，非"功夫茶"
+
+  - char: 鱼饭
+    mandarin: 鱼饭（冻鱼）
+    pengim: he5 bung7
+    example: 鱼饭配糜过好。
+    example_mandarin: 鱼饭配粥很棒。
+    tags: [食物名称, 潮汕特色]
+    note: 打冷的一种，鱼用海水煮熟后放凉
+
+  - char: 粿
+    mandarin: 粿（米制糕点）
+    pengim: guê2
+    example: 过年着做甜粿。
+    example_mandarin: 过年要做甜粿。
+    tags: [食物名称, 潮汕特色, 文化]
+
+  - char: 春饼
+    mandarin: 春卷
+    pengim: cung1 bian2
+    example: 街边卖春饼过好食。
+    example_mandarin: 街边卖的春饼很好吃。
+    tags: [食物名称, 潮汕特色]
+
+  - char: 鸭母捻
+    mandarin: 鸭母捻（潮汕汤圆）
+    pengim: ah4 bho2 liêm1
+    example: 一碗鸭母捻，甜到心内去。
+    example_mandarin: 一碗鸭母捻，甜到心里去。
+    tags: [食物名称, 潮汕特色]
+    note: 椭圆形汤圆，形似鸭蛋，故得名
+
+  - char: 菜脯
+    mandarin: 萝卜干
+    pengim: cai3 bou2
+    example: 菜脯卵过下饭。
+    example_mandarin: 菜脯煎蛋很下饭。
+    tags: [食物名称, 潮汕特色]
+
+  - char: 薄壳
+    mandarin: 薄壳/海瓜子
+    pengim: boh8 kag4
+    example: 炒薄壳落金不换。
+    example_mandarin: 炒薄壳要放九层塔。
+    tags: [食物名称, 潮汕特色]
+
+  - char: 卤鹅
+    mandarin: 卤鹅
+    pengim: lou2 gho5
+    example: 澄海卤鹅上盖好食。
+    example_mandarin: 澄海卤鹅最好吃。
+    tags: [食物名称, 潮汕特色]
+
+  - char: 砂锅糜
+    mandarin: 砂锅粥
+    pengim: sua1 uê1 muê5
+    example: 暗暝去食砂锅糜。
+    example_mandarin: 晚上去吃砂锅粥。
+    tags: [食物名称, 潮汕特色]
+
+  - char: 无米粿
+    mandarin: 无米粿（韭菜粿）
+    pengim: bho5 bhi2 guê2
+    example: 无米粿烙到酥酥。
+    example_mandarin: 无米粿煎得酥酥的。
+    tags: [食物名称, 潮汕特色]
+    note: 用薯粉做皮、韭菜做馅，不用米粉故名
+
+  - char: 糕烧番薯
+    mandarin: 糕烧番薯（糖渍红薯）
+    pengim: go1 siê1 huang1 ze5
+    example: 潮州糕烧番薯上好食。
+    example_mandarin: 潮州糕烧番薯最好吃。
+    tags: [食物名称, 潮汕特色]
+
+  # ========================
+  # 7. 潮汕特色词汇 (Teochew Signature Words)
+  # ========================
+  - char: 浪险
+    mandarin: 厉害/了不起/夸张
+    pengim: lang6 hiam2
+    example: 伊过浪险，一个月趁十万银。
+    example_mandarin: 他好厉害，一个月赚十万块。
+    tags: [潮汕特色, 形容词]
+    note: 潮汕标志性词汇，可褒可贬，"夸张"义时略带贬义
+
+  - char: 雅姿娘
+    mandarin: 美女/漂亮姑娘
+    pengim: ngia2 ze1 niê5
+    example: 汕头街头雅姿娘过㩼。
+    example_mandarin: 汕头街头美女很多。
+    tags: [潮汕特色, 人称]
+    note: 潮汕话标志性表达，"姿娘"是"女人/女性"
+
+  - char: 姿娘仔
+    mandarin: 女孩子/姑娘
+    pengim: ze1 niê5 gian2
+    example: 只个姿娘仔过雅。
+    example_mandarin: 这个女孩子很漂亮。
+    tags: [潮汕特色, 人称]
+
+  - char: 打捕
+    mandarin: 男人
+    pengim: da2 bou1
+    example: 伊是条好打捕。
+    example_mandarin: 他是个好男人。
+    tags: [潮汕特色, 人称]
+
+  - char: 后生仔
+    mandarin: 年轻人/小伙子
+    pengim: hao6 sên1 gian2
+    example: 许个后生仔过力落。
+    example_mandarin: 那个年轻人很勤快。
+    tags: [潮汕特色, 人称]
+
+  - char: 孥囝
+    mandarin: 小孩/孩子
+    pengim: nou1 gian2 / nao1 gian2
+    example: 孥囝在许块耍。
+    example_mandarin: 小孩在那里玩。
+    tags: [潮汕特色, 人称]
+
+  - char: 做尼
+    mandarin: 怎么/为什么
+    pengim: zo3 ni5
+    example: 汝做尼无来？
+    example_mandarin: 你怎么没来？
+    tags: [潮汕特色, 疑问词]
+
+  - char: 底个
+    mandarin: 什么/哪个
+    pengim: di7 gai5
+    example: 只个是底个？
+    example_mandarin: 这个是什么？
+    tags: [潮汕特色, 疑问词]
+
+  - char: 地块
+    mandarin: 哪里
+    pengim: di7 go3
+    example: 汝去地块？
+    example_mandarin: 你去哪里？
+    tags: [潮汕特色, 疑问词, 基础]
+
+  - char: 底时
+    mandarin: 什么时候
+    pengim: di7 si5 / diang1 si5
+    example: 汝底时来？
+    example_mandarin: 你什么时候来？
+    tags: [潮汕特色, 疑问词]
+
+  - char: 㩼
+    mandarin: 多
+    pengim: zoi7
+    example: 街路侬过㩼。
+    example_mandarin: 街上人很多。
+    tags: [潮汕特色, 形容词]
+
+  - char: 少
+    mandarin: 少
+    pengim: ziê2
+    example: 今年雨水过少。
+    example_mandarin: 今年雨水很少。
+    tags: [形容词, 基础]
+
+  - char: 好佧
+    mandarin: 好东西/好玩/有趣
+    pengim: ho2 kah4
+    example: 只个过好佧。
+    example_mandarin: 这个真好玩。
+    tags: [潮汕特色, 形容词]
+
+  - char: 堵笃
+    mandarin: 碰巧/刚好
+    pengim: du2 dog4
+    example: 堵笃遇着伊。
+    example_mandarin: 碰巧遇到他。
+    tags: [潮汕特色, 副词]
+
+  - char: 灵精
+    mandarin: 聪明/机灵
+    pengim: lêng5 zêng1
+    example: 只个孥囝过灵精。
+    example_mandarin: 这个孩子很机灵。
+    tags: [潮汕特色, 形容词]
+
+  - char: 下力
+    mandarin: 努力/用功
+    pengim: ê6 lag8
+    example: 伊读册过下力。
+    example_mandarin: 他读书很用功。
+    tags: [潮汕特色, 形容词]
+
+  - char: 咸涩
+    mandarin: 吝啬/小气
+    pengim: giam5 siab4
+    example: 伊过咸涩，一分银都唔甘出。
+    example_mandarin: 他很小气，一分钱都不愿意出。
+    tags: [潮汕特色, 形容词]
+
+  - char: 力落
+    mandarin: 勤快
+    pengim: lag8 loh8
+    example: 潮汕姿娘过力落。
+    example_mandarin: 潮汕女人很勤快。
+    tags: [潮汕特色, 形容词]
+
+  - char: 重繁
+    mandarin: 麻烦
+    pengim: dêng5 huang5
+    example: 只件事过重繁。
+    example_mandarin: 这件事很麻烦。
+    tags: [潮汕特色, 形容词]
+
+  - char: 晓市
+    mandarin: 懂行情/精明
+    pengim: hiao2 ci6
+    example: 伊过晓市，买物件𠀾乞侬骗。
+    example_mandarin: 他很懂行情，买东西不会被人骗。
+    tags: [潮汕特色, 形容词]
+
+  - char: 白直
+    mandarin: 直率/坦诚
+    pengim: bêh8 dig8
+    example: 伊人过白直，有话就呾。
+    example_mandarin: 他这人很直率，有话就说。
+    tags: [潮汕特色, 形容词]
+
+  - char: 衰疲
+    mandarin: 倒霉/晦气
+    pengim: suê1 pui5
+    example: 今日过衰疲，出门就落雨。
+    example_mandarin: 今天很倒霉，出门就下雨。
+    tags: [潮汕特色, 形容词]
+
+  - char: 领姨块鸡
+    mandarin: 你阿姨的逼（极其粗俗的骂人话）
+    pengim: nêng2 i5 go3 goi1
+    example: 汝勿呾领姨块鸡，过无礼。
+    example_mandarin: 你不要说你姨的逼，很没礼貌。
+    tags: [潮汕特色, 粗口, 脏话]
+    note: >
+      "领"是"恁"(你/你家的)的近音字。"鸡"在此处是粗俗隐语，
+      源自闽南语/潮汕话"鸡掰"(goi1 bai1=膣屄，女性生殖器)。
+      整句相当于"恁母鸡掰"(你妈的逼)，只是侮辱对象换成"阿姨"。
+      极其粗俗，日常应避免使用。
+
+  - char: 扑母
+    mandarin: 我靠/卧槽/妈的（多功能粗俗感叹词）
+    pengim: pah4 bho2
+    example: 个扑母照劲！真个是汝做个咩？
+    example_mandarin: 我靠这么厉害！真的是你做的吗？
+    tags: [潮汕特色, 粗口, 脏话, 感叹词]
+    note: >
+      潮汕话最核心的粗口词汇之一，用途极其广泛。字面义"扑=击打/性交"+"母=母亲"，
+      相当于普通话"操你妈"的缩略形式，但在实际使用中已高度语法化/语义漂白：
+      (1) 惊讶感叹："扑母！好劲！"=我靠！好厉害！
+      (2) 愤怒咒骂："扑母！内底乞贼偷去！"=妈的！家里被贼偷了！
+      (3) 熟人间口头禅：无实质恶意，仅作语气助词，类似"卧槽"
+      (4) 程度副词化：置于"到"之后表极端，"惨到扑母"=惨到极点、"好到扑母"=好得不得了
+      (5) 变体："扑母仔"(骂第三人的混蛋)、"扑领母"(直接辱骂对方母亲，冒犯性更强)、
+      "散扑母"(坑爹/乱来的)、"扑你母"(直接指向对方)。
+      注意：虽在熟人之间可作轻松口头禅，但在正式场合、长辈面前、陌生人面前严禁使用。
+
+  - char: 早死仔
+    mandarin: 短命鬼/短命的孩子（中度詈语，可作粗口感叹词或口头禅）
+    pengim: za2 si2 gian2
+    example: 早死仔，叫汝莫骂人汝怎又骂人！
+    example_mandarin: 短命鬼，叫你别骂人你怎么又骂人！
+    tags: [潮汕特色, 粗口, 詈语]
+    note: >
+      本字为"早死囝"(za2 si2 gian2)，俗写"早死仔"。"囝"在潮汕话中
+      本义为"孩子/儿子"，作名词后缀十分常用（孥囝=小孩、姿娘仔=女孩子、
+      后生仔=年轻人），但在骂詈词中强化贬义色彩。字面义为"早死的孩子"，
+      属潮汕"死病残"类骂詈语，相当于普通话"短命鬼"。
+      【语气轻重分级】
+      ① 轻度（熟人口头禅/调侃）：语义淡化，类似"你这家伙"或北方话"这孙子"。
+        例："早死仔，是汝上浪险！"=你这家伙，是你最厉害！
+      ② 中度（长辈训斥/责骂）：常见于父母训斥小孩，带责备但不一定是诅咒。
+        例："早死仔，叫汝莫骂人汝怎又骂人！"
+      ③ 重度（愤怒咒骂）：明显恶意，表达强烈愤怒和诅咒。
+        例："只个早死仔，乞我掠着拍死去！"=这个短命鬼，被逮到打死你！
+      ④ 程度补语（置于"到"之后）：表极端程度，已高度虚化。
+        例："畅到早死仔"=高兴得要命、"气到早死仔"=气得要死。
+      【同类词】短命仔、死父仔、无父仔、吐血仔、破家仔、讨债仔。
+      注意：属不文明用语，正式场合及对长辈/陌生人避免使用。网络上曾有
+      经典笑话：外地人把"早死仔"误当作"早上好"，见人就喊，闹出大笑话。
+
+  # ========================
+  # 8. 疑问词 (Question Words)
+  # ========================
+  - char: 乜个
+    mandarin: 什么
+    pengim: mih4 gai5
+    example: 汝呾乜个？
+    example_mandarin: 你说什么？
+    tags: [疑问词, 基础]
+
+  - char: 若㩼
+    mandarin: 多少
+    pengim: riêg8 zoi7
+    example: 只个若㩼银？
+    example_mandarin: 这个多少钱？
+    tags: [疑问词, 基础]
+
+  - char: 岂是
+    mandarin: 是不是/是否
+    pengim: ka2 si6
+    example: 汝岂是潮州人？
+    example_mandarin: 你是不是潮州人？
+    tags: [疑问词, 语法]
+    note: 潮汕话特色疑问句式，用"岂"构成正反问
+
+  - char: 欲𠀾
+    mandarin: 要不要
+    pengim: ain3 bhoi6
+    example: 汝欲𠀾来？
+    example_mandarin: 你要不要来？
+    tags: [疑问词, 语法]
+
+  - char: 岂会
+    mandarin: 会不会/能
+    pengim: ka2 oi6
+    example: 汝岂会呾潮州话？
+    example_mandarin: 你会不会说潮州话？
+    tags: [疑问词, 语法]
+
+  # ========================
+  # 9. 方位词 (Location Words)
+  # ========================
+  - char: 只块
+    mandarin: 这里
+    pengim: zi2 go3
+    example: 只块有侬无？
+    example_mandarin: 这里有人吗？
+    tags: [方位词, 基础]
+
+  - char: 许块
+    mandarin: 那里
+    pengim: he2 go3
+    example: 许块有间庙。
+    example_mandarin: 那里有间庙。
+    tags: [方位词, 基础]
+
+  - char: 内
+    mandarin: 家
+    pengim: lai6
+    example: 我来去内了。
+    example_mandarin: 我回家了。
+    tags: [方位词, 基础]
+
+  - char: 内底
+    mandarin: 里面
+    pengim: lai6 doi2
+    example: 厝内底有侬。
+    example_mandarin: 屋子里面有人。
+    tags: [方位词]
+
+  - char: 外口
+    mandarin: 外面
+    pengim: ghua7 kao2
+    example: 外口落雨了。
+    example_mandarin: 外面下雨了。
+    tags: [方位词]
+
+  - char: 顶畔
+    mandarin: 上面
+    pengim: dêng2 boin5
+    example: 书放床顶畔。
+    example_mandarin: 书放在桌子上面。
+    tags: [方位词]
+
+  - char: 下畔
+    mandarin: 下面
+    pengim: ê6 boin5
+    example: 猫在床下畔。
+    example_mandarin: 猫在桌子下面。
+    tags: [方位词]
+
+  - char: 头前
+    mandarin: 前面
+    pengim: tao5 zoin5
+    example: 邮局在头前。
+    example_mandarin: 邮局在前面。
+    tags: [方位词]
+
+  - char: 后爿
+    mandarin: 后面
+    pengim: ao6 boin5
+    example: 厕所在后爿。
+    example_mandarin: 厕所在后面。
+    tags: [方位词]
+
+  # ========================
+  # 10. 身体部位 (Body Parts)
+  # ========================
+  - char: 头壳
+    mandarin: 头
+    pengim: tao5 kag4
+    example: 我头壳疼。
+    example_mandarin: 我头疼。
+    tags: [身体部位]
+
+  - char: 目
+    mandarin: 眼睛
+    pengim: mag8
+    example: 伊目过大。
+    example_mandarin: 他眼睛很大。
+    tags: [身体部位, 基础]
+
+  - char: 喙
+    mandarin: 嘴
+    pengim: cui3
+    example: 喙焦，想食茶。
+    example_mandarin: 嘴渴，想喝茶。
+    tags: [身体部位]
+
+  - char: 耳
+    mandarin: 耳朵
+    pengim: hin6
+    example: 我听著耳内。
+    example_mandarin: 我听进耳朵里。
+    tags: [身体部位]
+
+  - char: 鼻
+    mandarin: 鼻子
+    pengim: pin7
+    example: 伊鼻红红。
+    example_mandarin: 他鼻子红红的。
+    tags: [身体部位]
+
+  - char: 骹
+    mandarin: 脚
+    pengim: ka1
+    example: 行路了，骹过痠。
+    example_mandarin: 走路了，脚很酸。
+    tags: [身体部位, 基础]
+
+  - char: 手
+    mandarin: 手
+    pengim: ciu2
+    example: 手挈好，莫掉落去。
+    example_mandarin: 手拿好，别掉下去。
+    tags: [身体部位, 基础]
+
+  - char: 面
+    mandarin: 脸
+    pengim: ming7
+    example: 伊面红红。
+    example_mandarin: 他脸红红的。
+    tags: [身体部位]
+
+  - char: 喉
+    mandarin: 喉咙
+    pengim: ao5
+    example: 我喉疼，𠀾呾话。
+    example_mandarin: 我喉咙疼，说不出话。
+    tags: [身体部位]
+
+  # ========================
+  # 11. 颜色 (Colors)
+  # ========================
+  - char: 红
+    mandarin: 红色
+    pengim: ang5
+    example: 伊穿红衫。
+    example_mandarin: 她穿红色衣服。
+    tags: [颜色, 基础]
+
+  - char: 乌
+    mandarin: 黑色
+    pengim: ou1
+    example: 乌天暗地。
+    example_mandarin: 天昏地暗。
+    tags: [颜色, 基础]
+
+  - char: 白
+    mandarin: 白色
+    pengim: bêh8
+    example: 白衫过清气。
+    example_mandarin: 白色衣服很干净。
+    tags: [颜色, 基础]
+
+  - char: 青
+    mandarin: 绿色/蓝色
+    pengim: cên1
+    example: 山过青。
+    example_mandarin: 山很绿。
+    tags: [颜色, 基础]
+    note: 潮汕话"青"可兼指绿和蓝
+
+  - char: 黄
+    mandarin: 黄色
+    pengim: ng5
+    example: 柑黄了就甜。
+    example_mandarin: 橘子黄了就甜。
+    tags: [颜色]
+
+  # ========================
+  # 12. 天气自然 (Weather & Nature)
+  # ========================
+  - char: 天时
+    mandarin: 天气
+    pengim: tin1 si5
+    example: 今日天时过好。
+    example_mandarin: 今天天气很好。
+    tags: [天气, 基础]
+
+  - char: 落雨
+    mandarin: 下雨
+    pengim: loh8 hou6
+    example: 外口落雨了。
+    example_mandarin: 外面下雨了。
+    tags: [天气, 基础]
+
+  - char: 出日
+    mandarin: 出太阳
+    pengim: cug4 rig8
+    example: 雨停了，出日了。
+    example_mandarin: 雨停了，出太阳了。
+    tags: [天气]
+
+  - char: 透风
+    mandarin: 刮风
+    pengim: tao3 huang1
+    example: 外口透大风。
+    example_mandarin: 外面刮大风。
+    tags: [天气]
+
+  - char: 雷公
+    mandarin: 雷
+    pengim: lui5 gong1
+    example: 雷公响了，着落大雨。
+    example_mandarin: 打雷了，要下大雨了。
+    tags: [天气]
+
+  - char: 月娘
+    mandarin: 月亮
+    pengim: ghuêh8 niê5
+    example: 今夜月娘过圆。
+    example_mandarin: 今晚月亮很圆。
+    tags: [天气]
+
+  # ========================
+  # 13. 情感 (Emotions)
+  # ========================
+  - char: 畅
+    mandarin: 高兴/快乐
+    pengim: diang3
+    example: 听着好消息，伊畅死去。
+    example_mandarin: 听到好消息，他高兴极了。
+    tags: [情感]
+
+  - char: 激心
+    mandarin: 烦心/郁闷
+    pengim: gêg4 sim1
+    example: 听着只件事，我过激心。
+    example_mandarin: 听到这件事，我很烦心。
+    tags: [情感, 潮汕特色]
+
+  - char: 惊
+    mandarin: 害怕
+    pengim: gian1
+    example: 暗暝一侬行路我会惊。
+    example_mandarin: 晚上一个人走路我会怕。
+    tags: [情感]
+
+  - char: 气
+    mandarin: 生气
+    pengim: ki3
+    example: 伊听着过气。
+    example_mandarin: 他听了很生气。
+    tags: [情感]
+
+  - char: 惜
+    mandarin: 疼/爱惜
+    pengim: siêh4 / sioh4
+    example: 阿公上惜只个孙。
+    example_mandarin: 爷爷最疼这个孙子。
+    tags: [情感]
+
+  # ========================
+  # 14. 职业身份 (Professions)
+  # ========================
+  - char: 先生
+    mandarin: 老师/先生
+    pengim: sing1 sên1
+    example: 伊是学堂个先生。
+    example_mandarin: 他是学校的老师。
+    tags: [职业]
+
+  - char: 医生
+    mandarin: 医生
+    pengim: ui1 sêng1
+    example: 我欲去䀢医生。
+    example_mandarin: 我要去看医生。
+    tags: [职业]
+
+  - char: 做生理
+    mandarin: 做生意
+    pengim: zo3 sêng1 li2
+    example: 潮汕侬尚做生理。
+    example_mandarin: 潮汕人最会做生意。
+    tags: [职业, 潮汕特色, 文化]

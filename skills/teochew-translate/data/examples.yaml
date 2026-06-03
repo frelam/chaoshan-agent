@@ -1,0 +1,370 @@
+# ============================================================
+# 潮汕话 ↔ 普通话 翻译例句对照 (Translation Examples)
+# ============================================================
+# 每个例句包含语法点标注，方便查阅对应的 grammar.yaml
+# ============================================================
+
+meta:
+  name: 翻译例句对照
+  version: “1.1.2”
+  total_examples: 38
+  categories:
+    - 日常对话
+    - 饮食文化
+    - 出行问路
+    - 购物讲价
+    - 情感表达
+    - 工作学习
+    - 家庭亲属
+    - 天气闲聊
+    - 粗口俗语
+
+examples:
+
+  # ========================
+  # 1. 日常对话 (Daily Conversation)
+  # ========================
+  - id: 1
+    category: 日常对话
+    teochew: 汝好，食饱未？
+    pengim: le2 ho2, ziah8 ba2 bhuê7?
+    mandarin: 你好，吃饭了吗？
+    grammar_points: [问候语, 未完成疑问]
+    notes: 潮汕最经典的问候语组合。“食饱未”字面是“吃饱了吗”但实际是问候，类似“How are you”。
+
+  - id: 2
+    category: 日常对话
+    teochew: 食饱了。汝呢？
+    pengim: ziah8 ba2 liao7. le2 nê7?
+    mandarin: 吃饱了。你呢？
+    grammar_points: [完成体“了”]
+    notes: '呢“(nê7)在句末表回问。'
+
+  - id: 3
+    category: 日常对话
+    teochew: 我来去内了。早头再见。
+    pengim: ua2 lai5 ke3 lai6 liao7. za2 tao5 zai3 giang3.
+    mandarin: 我回家了。明天见。
+    grammar_points: [来去邀约式, 完成体]
+    notes: '来去内”中“来去”不是“来+去”而是邀约/意欲结构。“早头”=早上。'
+
+  - id: 4
+    category: 日常对话
+    teochew: 歹势，我慢来，害汝等。
+    pengim: dai2 sê3, ua2 mang7 lai5, hai7 le2 dang2.
+    mandarin: 不好意思，我来晚了，让你等。
+    grammar_points: [道歉表达, 使动式]
+    notes: '歹势“是潮汕话最常用的道歉/不好意思。”害汝等“=害你等。'
+
+  - id: 5
+    category: 日常对话
+    teochew: 免用客气，胶己人！
+    pengim: miang2 êng7 kêh4 ki3, ga1 gi7 nang5!
+    mandarin: 不用客气，自己人！
+    grammar_points: [否定词”免“, 潮汕特色词]
+    notes: '免用”=不用，注意“免”不是“唔”。胶己人=自己人，有强烈乡谊色彩。'
+
+  # ========================
+  # 2. 饮食文化 (Food & Tea Culture)
+  # ========================
+  - id: 6
+    category: 饮食文化
+    teochew: 来去食茶！我有好茶。
+    pengim: lai5 ke3 ziah8 dê5! ua2 u6 ho2 dê5.
+    mandarin: 来喝茶吧！我有好茶。
+    grammar_points: [邀约式“来去”, “食”的广用]
+    notes: '食茶“而非”喝茶“——潮汕话”食“涵盖吃和喝。”来去“表邀约。'
+
+  - id: 7
+    category: 饮食文化
+    teochew: 碗粿条汤过好食！
+    pengim: uan2 guê2 diao5 teng1 guê3 ho2 ziah8!
+    mandarin: 这碗粿条汤很好吃！
+    grammar_points: [程度副词”过“, 特色食物]
+    notes: '粿条”保留原名。“过好食”=很好吃。'
+
+  - id: 8
+    category: 饮食文化
+    teochew: 日昼爱食乜个？
+    pengim: rig8 dao3 ain3 ziah8 mih4 gai5?
+    mandarin: 中午要吃什么？
+    grammar_points: [疑问词“乜个”, “爱”表意愿]
+    notes: '日昼“=中午。”爱“在潮汕话中主要表”要“。'
+
+  - id: 9
+    category: 饮食文化
+    teochew: 只个鱼饭配糜过好。
+    pengim: zi2 gai5 he5 bung7 puê3 muê5 guê3 ho2.
+    mandarin: 这个鱼饭配粥很棒。
+    grammar_points: [特色食物, 程度副词]
+    notes: '鱼饭”是潮汕特色打冷。“糜”=粥。“配”表搭配着吃。'
+
+  - id: 10
+    category: 饮食文化
+    teochew: 潮州菜上好食个是牛肉丸。
+    pengim: diê5 ziu1 cai3 siang6 ho2 ziah8 gai5 si6 ghu5 nêg8 in5.
+    mandarin: 潮州菜最好吃的是牛肉丸。
+    grammar_points: [最高级“上”, 领属标记“个”]
+    notes: '上“+形容词=最。”个“在此作领属标记=的。'
+
+  # ========================
+  # 3. 出行问路 (Travel & Directions)
+  # ========================
+  - id: 11
+    category: 出行问路
+    teochew: 汝去地块？
+    pengim: le2 ke3 di7 go3?
+    mandarin: 你去哪里？
+    grammar_points: [疑问词”地块“]
+    notes: '地块”=哪里，口语极常用。'
+
+  - id: 12
+    category: 出行问路
+    teochew: 我欲去汕头，汝来𠀾？
+    pengim: ua2 ain3 ke3 suan1 tao5, le2 lai5 bhoi6?
+    mandarin: 我要去汕头，你来不来？
+    grammar_points: [正反问“来𠀾", 意愿词”欲“]
+    notes: '欲”表将来意愿。“来𠀾”是“来不来”的简练说法。'
+
+  - id: 13
+    category: 出行问路
+    teochew: 只条路岂会通广场？
+    pengim: zi2 diao5 lou7 ka2 oi6 tong1 guang2 dion5?
+    mandarin: 这条路能通到广场吗？
+    grammar_points: [岂问句, 量词“条”]
+    notes: '岂会“=能不能/会不会。”条“可作为”路“的量词（与普通话相同）。'
+
+  - id: 14
+    category: 出行问路
+    teochew: 汝行先，我等等就来。
+    pengim: le2 gian5 soin1, ua2 dang2 dang2 ziu6 lai5.
+    mandarin: 你先走，我等会儿就来。
+    grammar_points: [状语后置”先“, 动词重叠]
+    notes: 经典语序差异——”行先“=先走。”等等“动词重叠=等一会儿。
+
+  # ========================
+  # 4. 购物讲价 (Shopping)
+  # ========================
+  - id: 15
+    category: 购物讲价
+    teochew: 只个若㩼银？
+    pengim: zi2 gai5 riêg8 zoi7 ngeng5?
+    mandarin: 这个多少钱？
+    grammar_points: [疑问词”若㩼“, ”银“=钱]
+    notes: '银”(ngeng5)在日常潮汕话中就是“钱”的意思。'
+
+  - id: 16
+    category: 购物讲价
+    teochew: 伤贵，会使减寡𠀾？
+    pengim: siên1 gui3, oi6 sai2 giam2 gua2 bhoi6?
+    mandarin: 太贵了，能便宜一点吗？
+    grammar_points: [程度副词“伤”, 正反问, 许可“会使”]
+    notes: '伤“=太（过度）。”会使“=可以/能。”减寡“=少一些/便宜一点。”寡“(gua2)在这里表”一些“。'
+
+  - id: 17
+    category: 购物讲价
+    teochew: 我爱买两斤牛肉丸。
+    pengim: ua2 ain3 bhoi2 no6 geng1 ghu5 nêg8 in5.
+    mandarin: 我要买两斤牛肉丸。
+    grammar_points: [”爱“表要, 数字白读]
+    notes: '两”用白读音 no6（量词前），不用文读 ri6。'
+
+  - id: 18
+    category: 购物讲价
+    teochew: 有便个无？我想买双鞋。
+    pengim: u6 bin1 gai5 bho5? ua2 siên6 bhoi2 sang1 oi5.
+    mandarin: 有便宜的吗？我想买双鞋。
+    grammar_points: [正反问“有……无”, 量词省略]
+    notes: '便“=便宜。”有便个无“=有没有便宜的？'
+
+  # ========================
+  # 5. 情感表达 (Emotions)
+  # ========================
+  - id: 19
+    category: 情感表达
+    teochew: 伊过浪险！一个月趁十万银。
+    pengim: i1 guê3 lang6 hiam2! zêg8 gai5 ghuêh8 tang3 zab8 bhuang7 ngeng5.
+    mandarin: 他好厉害！一个月赚十万块。
+    grammar_points: [程度副词”过“, 特色词”浪险“, 动词”趁“]
+    notes: '浪险”是潮汕标志性词汇。“趁”=赚（钱）。'
+
+  - id: 20
+    category: 情感表达
+    teochew: 只个姿娘仔过雅！
+    pengim: zi2 gai5 ze1 niê5 gian2 guê3 ngia2!
+    mandarin: 这个女孩子好漂亮！
+    grammar_points: [程度副词“过”, 特色词“姿娘仔”]
+    notes: '姿娘仔“=女孩子/姑娘（”姿娘“+”仔“小称）。'
+
+  - id: 21
+    category: 情感表达
+    teochew: 心事汝！若不是汝，我无办法。
+    pengim: sim1 se7 le2! ru6 m6 si6 le2, ua2 bho5 boin6 huab4.
+    mandarin: 谢谢你！如果不是你，我没办法。
+    grammar_points: [致谢表达, 否定词”唔是“/”无“]
+    notes: '心事”是较正式的道谢。“若不是”=如果不是。'
+
+  - id: 22
+    category: 情感表达
+    teochew: 我听着只个消息，畅死去。
+    pengim: ua2 tian1 dioh8 zi2 gai5 siao1 sêg4, diang3 si2 ke3.
+    mandarin: 我听到这个消息，高兴极了。
+    grammar_points: [结果补语“着”, 程度补语“死去”]
+    notes: '听着“=听到。”畅死去“=高兴极了，”死“后置表极度程度。'
+
+  - id: 23
+    category: 情感表达
+    teochew: 伊激心到𠀾食𠀾睇。
+    pengim: i1 gêg4 sim1 gao3 bhoi6 ziah8 bhoi6 kung3.
+    mandarin: 他烦心得吃不下睡不着。
+    grammar_points: [特色词”激心“, 能力否定”𠀾", 程度补语“到”]
+    notes: '激心“=烦心。”𠀾“连续否定两个动作，表示”不能……不能……“。'
+
+  # ========================
+  # 6. 工作学习 (Work & Study)
+  # ========================
+  - id: 24
+    category: 工作学习
+    teochew: 伊读册过下力，日日透早就起去。
+    pengim: i1 tag8 cêh4 guê3 ê6 lag8, rig8 rig8 tao3 za2 ziu6 ki2 ke3.
+    mandarin: 他读书很用功，天天一大早就起来。
+    grammar_points: [程度副词”过“, 特色词”下力“, 起始体”起去“]
+    notes: '下力”=努力/用功。“透早”=一大早。“起去”=起来（起始体）。'
+
+  - id: 25
+    category: 工作学习
+    teochew: 我𠀾呾潮州话，汝会教我俩句𠀾？
+    pengim: ua2 bhoi6 dan3 diê5 ziu1 uê7, le2 oi6 ga3 ua2 no6 gu3 bhoi6?
+    mandarin: 我不会说潮州话，你能教我几句吗？
+    grammar_points: [能力否定“𠀾", 正反问”会……𠀾"]
+    notes: '俩句“=几句（俩=几）。'
+
+  - id: 26
+    category: 工作学习
+    teochew: 只个字做尼读？
+    pengim: zi2 gai5 ri7 zo3 ni5 tag8?
+    mandarin: 这个字怎么读？
+    grammar_points: [疑问词”做尼“]
+    notes: '做尼”=怎么/怎样。'
+
+  - id: 27
+    category: 工作学习
+    teochew: 头先先生呾个，汝岂有听清楚？
+    pengim: tao5 soin1 sing1 sên1 dan3 gai5, le2 ka2 u6 tian1 cêng1 co2?
+    mandarin: 刚才老师说的，你听清楚了吗？
+    grammar_points: [时间词“头先”, 岂问句, 确认体“有”]
+    notes: '头先“=刚才。”先生“=老师。”岂有“构成正反问。'
+
+  # ========================
+  # 7. 家庭亲属 (Family)
+  # ========================
+  - id: 28
+    category: 家庭亲属
+    teochew: 阿伯，阿姆在内无？阿爸叫我来送甜粿。
+    pengim: a1 bêh4, a1 m2 do6 lai6 bho5? a1 ba1 giê3 ua2 lai5 sang3 diam5 guê2.
+    mandarin: 伯父，伯母在家吗？爸爸叫我来送甜粿。
+    grammar_points: [亲属称谓, 正反问”在……无“, 特色食物]
+    notes: '阿伯/阿姆”=伯父/伯母，也用于尊称非亲属的长辈。“甜粿”是潮汕年糕。'
+
+  - id: 29
+    category: 家庭亲属
+    teochew: 阮阿公旧年八十岁了，身体还过好。
+    pengim: uang2 a1 gong1 gu7 ni5 boih4 zab8 huê3 liao7, sing1 ti2 huan5 guê3 ho2.
+    mandarin: 我爷爷去年八十岁了，身体还很好。
+    grammar_points: [排除式“阮”, 时间词“旧年”, 程度副词“过”]
+    notes: '阮阿公“=我爷爷（”阮“在此作单数领属，=我的）。”旧年“=去年。'
+
+  - id: 30
+    category: 家庭亲属
+    teochew: 阿妈惜伊个孙过惜，逐日揽着唔放。
+    pengim: a1 ma2 siêh4 i1 gai5 sung1 guê3 siêh4, dag8 rig8 lam2 dioh8 m6 bang3.
+    mandarin: 奶奶疼她的孙子疼得不得了，天天抱着不放。
+    grammar_points: [亲属称谓, 情感词”惜“, 否定词”唔“]
+    notes: '惜”=疼爱。“揽着”=抱着。“孙”可指孙子也可指孙女。'
+
+  # ========================
+  # 8. 天气闲聊 (Weather & Small Talk)
+  # ========================
+  - id: 31
+    category: 天气闲聊
+    teochew: 今日天时过好，俺来去外口行行。
+    pengim: gim1 rig8 tin1 si5 guê3 ho2, nang2 lai5 ke3 ghua7 kao2 gian5 gian5.
+    mandarin: 今天天气很好，咱们去外面走走吧。
+    grammar_points: [时间词, 包括式“俺”, 邀约式“来去”, 动词重叠]
+    notes: '天时“=天气。”俺“(nang2)包括听话人。”行行“动词重叠表轻松。'
+
+  - id: 32
+    category: 天气闲聊
+    teochew: 听呾明起欲落大雨，着记得带雨遮。
+    pengim: tian1 dan3 mua3 ki2 ain3 loh8 dua7 hou6, dioh8 gi3 dig4 dua3 hou6 zia1.
+    mandarin: 听说明天要下大雨，要记得带雨伞。
+    grammar_points: [传信”听呾“, 将来”欲“, 义务”着“]
+    notes: '听呾”=听说。“着”在这里是“要/必须”义。“雨遮”=雨伞。'
+
+  # ========================
+  # 9. 粗口俗语 (Profanity & Slang)
+  # ========================
+  - id: 33
+    category: 粗口俗语
+    teochew: 个扑母照劲！真个是汝做个咩？
+    pengim: gai5 pah4 bho2 ziêh8 gên6! zing1 gai5 si6 le2 zo3 gai5 mêh4?
+    mandarin: 我靠这么厉害！真的是你做的吗？
+    grammar_points: [粗口感叹, 确认疑问“咩”]
+    notes: >
+      “扑母”在此处作惊讶感叹词，相当于“我靠”“卧槽”。“照”=这么/这样。“劲”=厉害。
+      “咩”(mêh4)句末语气词，表确认性疑问。这种用法在熟人之间很常见，无实际恶意。
+
+  - id: 34
+    category: 粗口俗语
+    teochew: 扑母！内底乞贼偷到散散去！
+    pengim: pah4 bho2! lai6 doi2 keh4 cag8 tao1 gao3 suan3 suan3 ke3!
+    mandarin: 妈的！家里被贼偷得乱七八糟！
+    grammar_points: [粗口咒骂, 被动式“乞”, 程度补语“到”]
+    notes: >
+      “扑母”在此处作愤怒咒骂词，相当于“妈的”。“乞”表被动=被。
+      “散散去”=乱七八糟/一塌糊涂。此用法语气强烈，表达愤怒和不满。
+
+  - id: 35
+    category: 粗口俗语
+    teochew: 只个扑母仔做尼照生？过想拍伊！
+    pengim: zi2 gai5 pah4 bho2 gian2 zo3 ni5 ziên3 sên1? guê3 siên6 pah4 i1!
+    mandarin: 这个混蛋怎么这样？真想打他！
+    grammar_points: [粗口“扑母仔”, 疑问词“做尼”]
+    notes: >
+      “扑母仔”用于骂第三方，“仔”(gian2)作名词后缀，相当于“家伙”。
+      “照生”=这样。“拍”=打。这个词冒犯性比单独的“扑母”更强，
+      不可在正式场合、长辈面前或与不熟的人使用。
+
+  - id: 36
+    category: 粗口俗语
+    teochew: 惨到扑母！只个月工资输到无无去。
+    pengim: cam2 gao3 pah4 bho2! zi2 gai5 ghuêh8 gang1 zeg4 su1 gao3 bho5 bho5 ke3.
+    mandarin: 惨到极点！这个月工资输得精光。
+    grammar_points: [程度补语“到扑母”, 结果补语“输到”]
+    notes: >
+      “扑母”在“形容词+到+扑母”结构中作程度补语，表极端程度，相当于“极了/得要命”。
+      “惨到扑母”=惨到极点。“无无去”=全没了/精光。这个用法中“扑母”已经高度
+      虚化，更接近一个程度标记，而非实际的辱骂。
+
+  - id: 37
+    category: 粗口俗语
+    teochew: 早死仔，是汝上浪险！汝做尼做个？
+    pengim: za2 si2 gian2, si6 le2 siang6 lang6 hiam2! le2 zo3 ni5 zo3 gai5?
+    mandarin: 你这家伙，是你最厉害！你怎么做到的？
+    grammar_points: [粗口/詈语作感叹, 最高级“上”, 特色词“浪险”]
+    notes: >
+      “早死仔”在此处作熟人口头禅/感叹词，无实质恶意，类似“你这家伙”“你小子”。
+      “上浪险”=最厉害。这种用法只见于熟人之间，带亲昵调侃色彩。“做尼做个”=
+      怎么做到的，“个”在此处是句末助词。
+
+  - id: 38
+    category: 粗口俗语
+    teochew: 早死仔！汝再毋听话我拍汝！
+    pengim: za2 si2 gian2! le2 zai3 m6 tian1 uê7 ua2 pah4 le2!
+    mandarin: 你这短命鬼！你再不听话我打你！
+    grammar_points: [粗口/詈语作责骂, 否定词“毋”, 假设语气]
+    notes: >
+      “早死仔”在此处作长辈训斥语，常见于父母管教小孩。虽字面带诅咒义，
+      但在这种语境下更多是表达不满和管教，而非真正的恶毒诅咒。
+      “毋听话”=不听话（“毋”是否定词）。“拍”=打。这种用法在中老年
+      潮汕人中尤为常见，有时甚至是不自觉的口头禅。
