@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.1.1"
+version: "1.2.0"
 description: "潮汕话 skill 自演进流程 — 每日搜索50个翻译对，自测验证，数据更新，同步源码，自动提交GitHub。由 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "50样本"]
 requires:
@@ -16,11 +16,12 @@ requires:
   │
   ├─ 1. 搜索发现: web_search × 6 种查询 → 提取约50个翻译对
   ├─ 2. 查重过滤: 检查 dictionary.yaml + slang.yaml 是否已存在
-  ├─ 3. 自测验证: 用 skill 翻译预测 → 对比搜索数据
-  │    ├─ 一致 → 标记可信
+  ├─ 3. **自测验证**: 用 skill 翻译预测 → 对比搜索数据
+  │    ├─ **先做借音推理（新！）**: 对新词先标出 Teochew 读音，念出来看看是否和已知口语词对得上
+  │    ├─ 预测一致 → 标记可信
   │    ├─ 不一致且搜索可靠 → 进入学习更新
   │    └─ 不一致且搜索不可靠 → 丢弃
-  ├─ 4. 学习更新:
+  ├─ 4. **学习更新**:
   │    ├─ standard → dictionary.yaml (对应分类末尾)
   │    ├─ phonic_only/slang → slang.yaml (phonic_only段末尾)
   │    └─ 不确定 → references/pending-vocab-merge.md
@@ -42,9 +43,10 @@ requires:
 
 提取标准：
 - 明确的潮汕话 ↔ 普通话对照
-- 优先有拼音（Peng'im）标注的
+- **优先有拼音（Peng'im）标注的** — 发音记录比字面更重要，无拼音的数据尽量不取
 - 优先高频日常用词
 - 排除过生僻或无可靠来源的
+- **排除无发音记录的字面翻译对**（如只有"𠀾=不会"但无拼音 bhoi6 的条目）— 这种数据合入后会污染音标库
 
 ## 数据更新规则
 
@@ -56,6 +58,13 @@ requires:
 ### slang.yaml 追加 (phonic_only)
 - 新 id 为下一个序号（当前最大 p6）
 - 字段: id → pronunciation → approximate_char → mandarin_meaning → usage → example_teochew → example_mandarin → tags → note
+
+### ⚠️ 借音字的特殊处理
+当发现一个词是**借音字**（标准汉字的潮汕读音与字面义完全无关）时：
+- 必须在 `note` 字段写明 "借音字，[标准汉字]读[潮汕音]表[实际义]，非字面义"
+- 必须保证 Peng'im 发音记录完整，这是借音推理的依据
+- 如果搜索到的数据有字面无音标，补上推测的 Peng'im 并在 note 注明
+- 例：妻疑 → note: "借音字，'妻疑'读 ci1 ghi5 表'脏'，非字面'妻子怀疑'意"
 
 ### version bump
 - dictionary.yaml: version 小版本+1, total_entries +N
@@ -94,6 +103,7 @@ git push
   预测一致（已可信）: A 个
   预测不一致 → 学习更新: B 个
   数据不可靠（丢弃）: C 个
+  **借音推理发现**: D 个（其中发音与字面义不同）
 
 【数据变更】
   dictionary.yaml: vX.Y.Z → vX.Y.Z' (+N 条)

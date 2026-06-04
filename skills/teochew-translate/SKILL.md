@@ -1,6 +1,6 @@
 ---
 name: teochew-translate
-version: "1.2.0"
+version: "1.3.3"
 description: "潮汕话↔普通话双向翻译，支持潮州拼音（Peng'im），涵盖语法转换、文化注释、俗语解释。支持不确定时自动搜索确认、从用户更正中学习"
 triggers: ["潮汕话", "翻译", "teochew", "潮语", "呾", "潮州话", "pengim", "潮汕方言", "潮州音", "潮汕"]
 requires:
@@ -24,7 +24,9 @@ You are a professional Teochew (潮汕话 / 潮州话) ↔ Mandarin Chinese (普
 4. **Identify and explain cultural nuances** in Teochew expressions (e.g., "食饱未" is a greeting, not a dietary inquiry)
 5. **Handle edge cases**: ambiguous words, code-switching, regional variants (潮州/汕头/揭阳/汕尾), 文白异读 (literary vs colloquial readings)
 6. **Flag 有音无字 words** — indicate when a Teochew word has no standard Chinese character and explain how it's represented
-7. **借音推理 (Phonetic Reading Heuristic)** — many Teochew written words borrow Chinese characters **for their Teochew pronunciation only, not their meaning**. When you hit an unknown word, try reading/sounding it out in Teochew (Peng'im) and guess meaning from the sound, not the character. This is often the only way to crack unfamiliar Teochew text.
+7. **借形推理 (Orthographic Pattern Matching Heuristic)** — many Teochew written words borrow Chinese characters **for their Teochew pronunciation only, not their meaning**. When you hit an unknown word, try assigning a plausible Peng'im to each character based on character knowledge, then look for matches against known Teochew word patterns. This is often the only way to crack unfamiliar Teochew text.
+
+   ⚠️ **Capability disclosure**: As a text-only LLM, I have NO phonetic/hearing capability. I cannot "read aloud", "sound out", or "listen to" pronunciations. My "借形推理" is purely visual/orthographic — I compare the Latin-letter spelling of a user's input against known Peng'im patterns from my training data. When a user writes a romanization like "xia", I may notice it resembles the standard Peng'im syllable "siah4" — but that's a **visual string match** on Latin characters, not an audio judgment. This is fundamentally different from "hearing the sound" and I must never claim or imply otherwise. Always state the confidence level explicitly when using this technique, and never present a visual match as a phonetic analysis.
 
 ## Translation Workflow
 
@@ -109,7 +111,7 @@ Always produce output in this format:
 
 ### Step 5: 不确定时搜索确认 (Search When Uncertain)
 
-当遇到不确定的潮汕话词汇、拼音、释义或例句时，**必须使用 `web_search` 工具搜索确认**，不得凭猜测给出不准确的翻译。
+当遇到不确定的潮汕话词汇、拼音、释义或例句时，**必须搜索确认**，不得凭猜测给出不准确的翻译。
 
 **重要：搜索前必须先确认本地数据文件是否已包含该条目。** 检查 `data/dictionary.yaml`（逐词匹配 + 短语匹配）和 `data/slang.yaml`（短语/俗语匹配），如果本地有则直接引用，不要搜索。
 
@@ -122,16 +124,24 @@ Always produce output in this format:
 - 需要确认某个词是否属于"有音无字"类别
 - 遇到疑似新造词或网络用语
 
-#### 🎯 搜索前的关键一步：念出音试试
+#### 🔍 搜索前的关键一步：用借形推理试试
 
-在搜索之前，**先尝试用潮汕话发音念出这个字/词**。因为潮汕话大量使用**借音字**（用标准汉字的潮汕音来表达完全不同的意思），所以：
-1. 给每个字标出可能的潮汕音（Peng'im）
-2. 把这些音**读出来**，听它像哪个潮汕话口语词
-3. 如果音让你想到了某个已知的潮汕话词汇→按那个意思翻译
-4. 如果音也猜不出→再走搜索流程
+在搜索之前，**先尝试对不确定的字/词做借形推理**。因为潮汕话大量使用**借音字**（用标准汉字的潮汕音来表达完全不同的意思），所以：
 
-例子："妻疑" → 念 ci1 ghi5 → 像"脏/恶心"的口语词 → 确定是"脏"的意思
-"ko着" → ko3 这个音 → 像"沾到"的动作 → 确定是"沾到/溅到"
+1. 给每个字标出可能的潮汕音（Peng'im）— 基于汉字知识和已知的读音对应规律
+2. 把拼音序列与已收录的词典条目做**文字层面（visual）的比较**，寻找模式匹配
+3. 如果拼音让你想到了某个已知的潮汕话词汇→可以合理推测
+4. 如果拼音也猜不出→走搜索流程
+
+**⚠️ 重要限制警告**：作为纯文本语言模型，
+- 这**不是**真的"念出音"或"听音辨义"，而是基于文字/字符形态的视觉匹配
+- 当用户用非标准拼音写一个词（如"xia"），你看到的只是拉丁字母的组合
+- 你觉得它"听起来像"某个标准拼写（如 siah4），其实只是**视觉上字母相似**，不是语音判断
+- 必须将匹配的不确定性明确告知用户
+
+例子：
+- "妻疑" → 推 peng'im ci1 ghi5 → 视觉上匹配词典中的"ci1 ghi5=脏"条目 → 确定是"脏"的意思 ✅
+- "xia衰" → 用户写 xia（非标准拼音）→ 视觉上接近 siah4 → 但 x 在潮州拼音中不是合法声母，这是**推测**不能充当确定性 → 必须标注 ❌
 
 #### 搜索策略
 按以下优先级依次搜索，上一级无结果时自动进入下一级。**优先使用 terminal + curl 快速查询，不要使用 browser 导航（太慢）。**
@@ -143,6 +153,33 @@ Always produce output in this format:
 | 3 | 社区讨论与语料 | `[词汇] 潮汕话 什么意思`、`[词汇] teochew`、`[词汇] 潮语 用法` |
 | 4 | 宽泛搜索 | `[词汇] 闽南语`、`[词汇] 潮州话 怎么说` |
 
+#### 🔁 备选数据源（当搜索引擎不可用时）
+
+部分服务器环境对搜索引擎（Bing/Google/DDG/Baidu）或百科站点（Wikipedia/Baidu Baike）有网络限制。当主要搜索策略全部超时或无结果时，尝试以下备选数据源：
+
+| 来源 | URL | 说明 |
+|------|-----|------|
+| **neoTeochew 语料库** | `https://raw.githubusercontent.com/neoTeochew/neoTeochew.github.io/master/data.json` | ~4307条语料，含汉字+拼音+普通话释义。⚠️ 拼音为 neoTeochew 自创拼音体系，**不是标准潮州拼音 (Peng'im)**，需转换 |
+| **learn-teochew (kbseah)** | `https://github.com/kbseah/learn-teochew/tree/master/pages/` | 标准 Peng'im（带声调数字）+ IPA，语法页面含大量词汇表。可作为 Peng'im 交叉验证来源 |
+| **GitHub API 搜索** | `curl -s 'https://api.github.com/search/repositories?q=teochew+language&sort=stars'` | 搜索公开的潮汕话 GitHub 仓库 |
+
+**访问方式**：所有备选源均通过 `curl -s --connect-timeout 10 --max-time 20 [URL]` 访问，无需认证（raw.githubusercontent.com 和 GitHub API 在大部分网络环境下可用）。
+
+**neoTeochew 拼音 → Peng'im 转换注意事项**：
+- neoTeochew 的 `p` = 不送气清音 [p] → 标准 Peng'im `b`
+- neoTeochew 的 `ph` = 送气清音 [pʰ] → 标准 Peng'im `p`
+- neoTeochew 的 `t` = 不送气清音 [t] → 标准 Peng'im `d`
+- neoTeochew 的 `th` = 送气清音 [tʰ] → 标准 Peng'im `t`
+- neoTeochew 的 `k` = 不送气清音 [k] → 标准 Peng'im `g`
+- neoTeochew 的 `kh` = 送气清音 [kʰ] → 标准 Peng'im `k`
+- neoTeochew 的 `ts`/`ch` = 不送气塞擦音 [ts] → 标准 Peng'im `z`
+- neoTeochew 的 `tsh`/`chh` = 送气塞擦音 [tsʰ] → 标准 Peng'im `c`
+- 入声韵尾已隐含在拼写中，需恢复为 Peng'im 入声字母 `-b`/`-g`/`-h`
+  - neoTeochew 的 `-k` 韵尾 → Peng'im `-g`（如 `pak` → `bag4`）
+  - neoTeochew 的 `-p` 韵尾 → Peng'im `-b`（如 `tsip` → `zib4`）
+  - neoTeochew 的 `-t` 韵尾 → Peng'im `-d`（如 `pat` → `bag4`，注意不是 `-d` 是 `-g`；因为潮州拼音入声韵尾按舌位：-b 唇、-g 软腭、-h 喉塞）
+- ⚠️ 此转换仅供参考，每个词需单独验证。**优先使用 learn-teochew 标准 Peng'im 来源进行交叉验证。**
+
 #### 搜索后的输出要求
 搜索确认后，在翻译结果的**语法说明**或**文化注释**中标注依据来源：
 
@@ -153,14 +190,30 @@ Always produce output in this format:
 - **据母语者口述**：从潮汕话母语者的讨论中确认
 
 #### 搜索后仍无法确认
-如果经过上述搜索策略后仍无法确认，在翻译结果中如实说明：
+如果经过上述搜索策略后仍无法确认：
+
+1. **严禁自行编造翻译** — 不得基于"上下文推断+拼音猜测"拼接出一个看似合理的释义。
+   例：将不认识的"xia衰"自行映射为"削衰(siah4 suê1)"并输出为"丢光"是错误行为。
+   即使100%确定了语境框架（如"面+无去"），也不能填补中间的未知词。
+2. **非标准拼音的处理**：如果用户输入的拼音/罗马字不属于潮州拼音(Peng'im)标准音节表
+   （如"xia"不是合法Peng'im音节——x不是潮州拼音的声母），必须声明该拼音不可读，
+   不能强行映射到最接近的标准音节。
+3. **时间词的全面排查**：遇到时间词时（尤其含"日"的），必须列出所有可能方向
+   （昨日/今日/明日/前日/后日），用语境逐一排除，不能默认选一个方向。
+
+在翻译结果中如实说明：
 ```
-⚠️ 不确定项：该词经搜索未在权威来源中找到确认。以下是基于语境的推测翻译，仅供参考。
+⚠️ 不确定项：该词经搜索未在权威来源中找到确认。发音/语义均无法验证，以下仅为
+语境猜测，仅供参考，需咨询母语者确认。
+
+- 发音：用户写作"xia"，不符合标准潮州拼音(Peng'im)的音节规范，无法确定正确读音
+- 词义：从语境推断[简要说明]，未经证实
 ```
 
-如果推测也无法做出，直接声明：
+如果完全无法确认，直接声明：
 ```
-⚠️ 无法翻译：该词/表达超出了当前知识范围，建议咨询潮汕话母语者。
+⚠️ 无法翻译：该词/表达超出了当前知识库范围，且搜索未找到可靠来源，
+建议咨询潮汕话母语者或提供更多上下文。
 ```
 
 ## Few-Shot 示例
@@ -328,6 +381,8 @@ The following files contain the core dictionary and reference data (loaded via `
 - **examples.yaml**: 30 annotated translation example pairs organized by context
 - **slang.yaml**: 45+ entries of unique dialect words, proverbs, kinship terms, particles, and phonic-only expressions
 - **references/pending-slang-entries.md**: New slang entries awaiting merge into slang.yaml — check and merge when editing data files
+- **references/pending-vocab-merge.md**: New vocabulary entries awaiting merge into dictionary.yaml — verified Peng'im, section placement specified
+- **references/teochew-asr-pipeline.md**: ASR model test results (Whisper, pending SenseVoice/Qwen3-Omni) and full speech→translation→TTS pipeline architecture
 
 When uncertain about a word, first consult these reference files. For words not found in the dictionary, apply general translation rules and note any uncertainty.
 
@@ -353,6 +408,8 @@ When uncertain about a word, first consult these reference files. For words not 
 - Don't drop cultural context — "食茶" is not just "喝茶", it implies the full 工夫茶 ceremony
 - Don't confuse 乞 as passive marker (被) vs 乞 as giving verb (给) — position determines meaning
 - Don't use Mandarin measure words in Teochew output — use 个 or Teochew-specific measure words
+- **Don't pretend to have phonetic/audio capabilities** — you are a text-only LLM. You cannot "read aloud", "hear", or "sound out" pronunciations. What you do is visual string matching on Latin characters, not audio analysis. Never say "念出音试试" or "听起来像" as if you performed an audio judgment. Always say "visual match" or "orthographic pattern match" instead.
+- **Don't fill unknown words from context alone** — a clear context frame (e.g. "面____无去" where the missing word means "ruined") does NOT license you to produce a translation for the unknown word. You must say "unverifiable" even when the context seems obvious. Only produce a translation if you can find the word in a dictionary or confirm it via search.
 
 ## Peng'im Tone Quick Guide
 
@@ -382,23 +439,91 @@ When uncertain about a word, first consult these reference files. For words not 
 
 ## TTS (Text-to-Speech) for Teochew
 
-When the user asks to convert Teochew text to speech:
+Three approaches are available. See `references/cosyvoice-tts-teochew.md` for detailed evaluation.
+
+### Approach A: CosyVoice 3.0 闽南话模式（推荐测试）
+
+**架构**：潮汕话 → [teochew-translate] → 普通话/音素输入 → [CosyVoice] → 语音
+
+CosyVoice 3.0 支持闽南话（漳州腔）作为方言选项。漳州腔闽南语与潮汕话同属闽南语分支，音系相近但不等同。
+
+**两种输入模式：**
+1. **Instruct 模式（推荐）** — 输入普通话文字，通过 `instruct_text='用闽南话说'` 指定方言
+2. **音素模式** — 使用括号 `[]` 包裹潮州拼音音节，精确控制每个音的发音
+   - 格式：`[声母][韵母+声调]`，零声母字用 `[整个音节]`
+   - 例：`[r][uah8][g][ao3][ionn5]...`（详见 `references/cosyvoice-tts-teochew.md` 音素格式章节）
+
+- 先通过 HF Space 在线 Demo 测试效果：https://huggingface.co/spaces/FunAudioLLM/Fun-CosyVoice3-0.5B
+- 模型约 4~5.5GB（300M~0.5B参数），CPU可用但慢（~6.5x实时率），建议 GPU
+- **⚠️ 必须使用 GitHub 源码，不能通过 modelscope.pipelines 加载（见参考文献部署陷阱）**
+- 所有部署细节、代码示例、常见坑见 `references/cosyvoice-tts-teochew.md`
+
+### Approach B: GPT-SoVITS（不适合潮汕话）
+
+GPT-SoVITS 克隆的是**音色**（谁在说），但发音靠内置音素表决定。潮汕话不在其支持的音素范围内，即使有潮汕话参考音频，也会读成"普通话腔的潮汕话"。不建议尝试。
+
+### Approach C: Peng'im → 通用TTS（现有备选方案）
+
+当用户要求将潮汕话转为语音时：
 
 1. **Use Peng'im romanization as TTS input** — TTS engines (Edge, OpenAI) don't natively support Teochew. Passing the Peng'im text with tone numbers produces a closer approximation to actual pronunciation than reading Chinese characters.
 
-2. **Format**: Strip Chinese characters entirely, keep only the romanization:
-   ```
-   Original: 条河过妻疑，唔知做尼，可能ko着屎。
-   TTS input: diao5 ho5 gue3 ci1 ghi5, m6 zai1 zo3 ni5, ko2 neng5 ko3 dioh8 sai2.
-   ```
+2. **Format**:
+   a. Strip Chinese characters entirely, keep only the romanization:
+      ```
+      Original: 条河过妻疑，唔知做尼，可能ko着屎。
+      TTS input: diao5 ho5 gue3 ci1 ghi5, m6 zai1 zo3 ni5, ko2 neng5 ko3 dioh8 sai2.
+      ```
+   b. **Prepend a pronunciation instruction** to help the TTS engine read it as phonetic text rather than random letters. Users prefer this approach (user said "在prompt写，用拼音的方式读出"):
+      ```
+      TTS input: 请用拼音方式朗读以下潮州话拼音内容：diao5 ho5 gue3 ci1 ghi5, ...
+      ```
+      Alternatively for Edge TTS (English-oriented), split syllables with spaces and use English-style cue:
+      ```
+      Read the following text in pinyin pronunciation style. DIAO 5 HO 5 GUE 3 CI 1 GHI 5.
+      ```
 
-3. **Pitfalls**:
+3. **TTS provider notes**:
+   - **Edge TTS** (default, free, no API key needed): Works without any setup. Best for quick tests. Needs the pronunciation prefix above for reasonable pinyin output. Handles English-like syllables okay but 入声字 (tone 4/8, -b/-g/-h endings) and tone numbers are poorly articulated.
+   - **OpenAI / ElevenLabs / Mistral / xAI**: Require corresponding API keys (`VOICE_TOOLS_OPENAI_KEY`, `ELEVENLABS_API_KEY`, etc.). Do NOT switch provider via `hermes config set tts.provider` without first confirming the key is set — `text_to_speech` will fail with a configuration error if the key is missing.
+   - **Whisper is ASR only** (speech recognition, not speech synthesis). If user asks to "用whisper试下" for TTS, explain it's the wrong tool: Whisper transcribes audio to text, not the reverse.
+   - Switch providers via: `hermes config set tts.provider <name>` then call `text_to_speech`. Switch back to `edge` after done to keep the default working for future calls.
+
+4. **Pitfalls**:
    - 入声字 (tone 4/8, ending in -b/-g/-h) are usually not pronounced correctly by TTS
    - 有音无字 words (like "ko3", "ci1 ghi5") may sound off since TTS guesses pronunciation from spelling
    - Some TTS engines (e.g., Edge) may reject content containing profanity or vulgar words (like 屎 sai2)
    - Always try Peng'im first; if that fails, fall back to the Mandarin translation
+   - The pronunciation prefix instruction helps significantly but won't fix fundamental issues (tone numbers read as digits, 入声 not clipped short). Manage user expectations: TTS output is an approximation, not native Teochew speech.
    
-4. **Output**: Use `text_to_speech` tool and deliver the resulting MEDIA: path to the user.
+5. **Output**: Use `text_to_speech` tool and deliver the resulting MEDIA: path to the user.
+
+## ASR (语音识别) Integration
+
+The full pipeline vision is:
+
+```
+潮汕话语音 → [ASR] → 潮汕话文字/Peng'im → [teochew-translate] → 普通话 → [TTS] → 语音
+```
+
+ASR is the **unsolved gap** in this pipeline. See `references/teochew-asr-pipeline.md` for detailed test results.
+
+### Current Status (2026-06-04)
+
+| ASR Model | Tested? | Result |
+|-----------|---------|--------|
+| Whisper tiny | ✅ Tested | ❌ Garbled output — no Teochew understanding |
+| Whisper large-v3 | ❌ Not tested | Expected to also fail |
+| SenseVoice (FunAudioLLM) | ❌ Not tested | ❓ Promising — supports 50+ langs + Chinese dialects |
+| Qwen3-Omni | ❌ Not tested | ❓ Unknown — likely not trained on Teochew |
+
+### User-Facing Guideline
+
+When a user asks about converting Teochew speech to text or Mandarin:
+1. State clearly: **there is currently no working Teochew ASR system available**
+2. If they have a recording, offer to try SenseVoice or Whisper (with realistic quality expectations)
+3. If they need a practical solution now, suggest manual transcription + teochew-translate translation as a workflow
+4. Document any testing results in `references/teochew-asr-pipeline.md`
 
 ## Quality Checklist
 
@@ -414,6 +539,7 @@ Before finalizing any translation, verify:
 8. ✅ **Inclusive vs exclusive** pronouns used correctly (俺 nang2 vs 阮 uang2/ng2)
 9. ✅ **文白异读** appropriate for context (colloquial for speech, literary for formal/written)
 10. ✅ **Aspect markers** match intended meaning (了 liao7/去 ke3 for completion, 在 do6 for progressive, 过 guê3 for experiential)
+11. ✅ **Time-word ambiguity** resolved correctly — words containing 日 (嘛日, 昨日, 今日, 前日, 后日) must be checked against ALL possible directions; do not default to one without verifying
 
 ## 用户更正学习机制 (Learning from User Corrections)
 

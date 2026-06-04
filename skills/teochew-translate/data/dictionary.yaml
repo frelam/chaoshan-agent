@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.1.5"
-  total_entries: 113+
+  version: "1.2.1"
+  total_entries: 157+
   categories:
     - 人称代词
     - 日常问候
@@ -22,6 +22,7 @@ meta:
     - 形容词
     - 动词
     - 食物名称
+    - 动物
     - 潮汕特色词汇
     - 疑问词
     - 方位词
@@ -30,6 +31,7 @@ meta:
     - 天气自然
     - 情感
     - 职业身份
+    - 亲属称谓
 
 entries:
 
@@ -206,6 +208,13 @@ entries:
     example_mandarin: 出门遇到人要打招呼。
     tags: [日常问候, 文化]
 
+  - char: 小姐
+    mandarin: 小姐/年轻女子
+    pengim: siê2 zê2
+    example: 只个小姐生来过雅。
+    example_mandarin: 这位小姐长得很漂亮。
+    tags: [日常问候]
+
   # ========================
   # 3. 数字/时间 (Numbers & Time)
   # ========================
@@ -259,6 +268,15 @@ entries:
     example: 明起阮休息。
     example_mandarin: 明天我们休息。
     tags: [数字时间, 基础]
+    note: 汕头话标准说法
+
+  - char: 嘛日
+    mandarin: 明天
+    pengim: ma1 rig8
+    example: 嘛日，个死父扑母资娘，爱去投伊阿妈担。
+    example_mandarin: 明天，这个该死的女人，要去跟她妈告状。
+    tags: [数字时间, 潮汕特色]
+    note: 潮阳/揭阳方言变体。"嘛"为"明"的借音写法（方言音ma1）。汕头话用"明起"(mua3 ki2)或"明日"(mua3 rig8/mêng5 rig8)
 
   - char: 昨日
     mandarin: 昨天
@@ -356,6 +374,62 @@ entries:
     pengim: gu7 ni5
     example: 旧年我去过汕头。
     example_mandarin: 去年我去过汕头。
+    tags: [数字时间]
+
+  - char: 六
+    mandarin: 六
+    pengim: lag8
+    example: 六个人来。
+    example_mandarin: 六个人来了。
+    tags: [数字时间, 基础]
+
+  - char: 七
+    mandarin: 七
+    pengim: cig4
+    example: 七个碟。
+    example_mandarin: 七个碟子。
+    tags: [数字时间, 基础]
+
+  - char: 八
+    mandarin: 八
+    pengim: boih4
+    example: 八个人做一下。
+    example_mandarin: 八个人一起做。
+    tags: [数字时间, 基础]
+
+  - char: 九
+    mandarin: 九
+    pengim: gao2
+    example: 九月开学。
+    example_mandarin: 九月开学。
+    tags: [数字时间, 基础]
+
+  - char: 十
+    mandarin: 十
+    pengim: zab8
+    example: 十个学生来。
+    example_mandarin: 十个学生来了。
+    tags: [数字时间, 基础]
+
+  - char: 百
+    mandarin: 百
+    pengim: bêh4
+    example: 百外侬来参加。
+    example_mandarin: 一百多人来参加。
+    tags: [数字时间]
+
+  - char: 千
+    mandarin: 千
+    pengim: coin1
+    example: 汕头有千万侬。
+    example_mandarin: 汕头有千万人。
+    tags: [数字时间]
+
+  - char: 万
+    mandarin: 万
+    pengim: bhuang7
+    example: 一只手机值万外银。
+    example_mandarin: 一台手机值一万多块。
     tags: [数字时间]
 
   # ========================
@@ -670,6 +744,62 @@ entries:
     example_mandarin: 天要下雨了。
     tags: [动词]
 
+  - char: 坐
+    mandarin: 坐
+    pengim: zo6
+    example: 请坐，来食茶。
+    example_mandarin: 请坐，来喝茶。
+    tags: [动词, 基础]
+
+  - char: 徛
+    mandarin: 站/站立
+    pengim: kia6
+    example: 徛起来，分我看。
+    example_mandarin: 站起来，让我看看。
+    tags: [动词]
+
+  - char: 买
+    mandarin: 买
+    pengim: bhoi2
+    example: 我来去街市买菜。
+    example_mandarin: 我去市场买菜。
+    tags: [动词, 基础]
+
+  - char: 卖
+    mandarin: 卖
+    pengim: bhoi7
+    example: 伊在卖牛肉丸。
+    example_mandarin: 他在卖牛肉丸。
+    tags: [动词, 基础]
+
+  - char: 笑
+    mandarin: 笑
+    pengim: cio3
+    example: 伊过好笑。
+    example_mandarin: 他很好笑。
+    tags: [动词]
+
+  - char: 哭
+    mandarin: 哭
+    pengim: kao3
+    example: 孥囝在哭。
+    example_mandarin: 小孩在哭。
+    tags: [动词]
+
+  - char: 开
+    mandarin: 开
+    pengim: kui1
+    example: 开门，分我入去。
+    example_mandarin: 开门，让我进去。
+    tags: [动词, 基础]
+
+  - char: 关
+    mandarin: 关
+    pengim: guên1
+    example: 关窗，外口过凝。
+    example_mandarin: 关窗，外面很冷。
+    tags: [动词, 基础]
+
   # ========================
   # 6. 食物名称 (Food Names)
   # ========================
@@ -783,6 +913,14 @@ entries:
     example: 潮州糕烧番薯上好食。
     example_mandarin: 潮州糕烧番薯最好吃。
     tags: [食物名称, 潮汕特色]
+
+  - char: 卵
+    mandarin: 蛋/鸡蛋
+    pengim: neng6
+    example: 菜脯卵过好食。
+    example_mandarin: 萝卜干煎蛋很好吃。
+    tags: [食物名称, 基础]
+    note: 潮汕话中\"卵\"指蛋类（不限于鸡蛋），菜脯卵是经典潮汕家常菜
 
   # ========================
   # 7. 潮汕特色词汇 (Teochew Signature Words)
@@ -943,6 +1081,14 @@ entries:
     example_mandarin: 今天很倒霉，出门就下雨。
     tags: [潮汕特色, 形容词]
 
+  - char: siah衰
+    mandarin: 丢光/败光（多指面子、名声、运气完全败坏殆尽）
+    pengim: siah4 suê1
+    example: 个面陇总乞伊siah衰无去。
+    example_mandarin: 脸面全让她给丢光了。
+    note: 有音无字词，siah4为借音写法。强调"彻底败坏到什么都不剩"的程度。
+    tags: [潮汕特色, 有音无字]
+
   - char: 领姨块鸡
     mandarin: 你阿姨的逼（极其粗俗的骂人话）
     pengim: nêng2 i5 go3 goi1
@@ -994,7 +1140,46 @@ entries:
         例："畅到早死仔"=高兴得要命、"气到早死仔"=气得要死。
       【同类词】短命仔、死父仔、无父仔、吐血仔、破家仔、讨债仔。
       注意：属不文明用语，正式场合及对长辈/陌生人避免使用。网络上曾有
-      经典笑话：外地人把"早死仔"误当作"早上好"，见人就喊，闹出大笑话。
+      经典笑话：外地人把「早死仔」误当作「早上好」，见人就喊，闹出大笑话。
+
+  - char: 头家
+    mandarin: 老板/老板娘
+    pengim: tao5 gê1
+    example: 头家，只个若㩼银？
+    example_mandarin: 老板，这个多少钱？
+    tags: [潮汕特色, 日常问候]
+
+  # ========================
+  # 16. 亲属称谓 (Kinship Terms)
+  # ========================
+  - char: 阿姨
+    mandarin: 伯母/姨妈/阿姨
+    pengim: a1 i5
+    example: 阿姨在内无？我来䀢伊。
+    example_mandarin: 伯母在家吗？我来看看她。
+    tags: [亲属称谓]
+    note: 潮汕话中「阿姨」可指伯母、姨妈或泛称年长女性，比普通话用法更广
+
+  - char: 阿姑
+    mandarin: 姑姑/姑妈
+    pengim: a1 gou1
+    example: 阿姑过年转内来。
+    example_mandarin: 姑姑过年回家来。
+    tags: [亲属称谓]
+
+  - char: 外公
+    mandarin: 外公/外祖父
+    pengim: ghua7 gong1
+    example: 外公过惜只个孙。
+    example_mandarin: 外公很疼这个孙子。
+    tags: [亲属称谓]
+
+  - char: 外妈
+    mandarin: 外婆/外祖母
+    pengim: ghua7 ma2
+    example: 外妈煮个糜上好食。
+    example_mandarin: 外婆煮的粥最好吃。
+    tags: [亲属称谓]
 
   # ========================
   # 8. 疑问词 (Question Words)
@@ -1205,6 +1390,93 @@ entries:
     example: 柑黄了就甜。
     example_mandarin: 橘子黄了就甜。
     tags: [颜色]
+
+  # ========================
+  # 15. 动物 (Animals)
+  # ========================
+  - char: 鸡
+    mandarin: 鸡
+    pengim: goi1
+    example: 鸡在许块啼。
+    example_mandarin: 鸡在那里叫。
+    tags: [动物, 基础]
+
+  - char: 鸭
+    mandarin: 鸭
+    pengim: ah4
+    example: 鸭在水里泅。
+    example_mandarin: 鸭在水里游。
+    tags: [动物, 基础]
+
+  - char: 鹅
+    mandarin: 鹅
+    pengim: gho5
+    example: 鹅过恶，会咬人。
+    example_mandarin: 鹅很凶，会咬人。
+    tags: [动物, 基础]
+
+  - char: 狗
+    mandarin: 狗
+    pengim: gao2
+    example: 狗在门口吠。
+    example_mandarin: 狗在门口叫。
+    tags: [动物, 基础]
+
+  - char: 猫
+    mandarin: 猫
+    pengim: ngiou1
+    example: 猫在许块睡。
+    example_mandarin: 猫在那里睡觉。
+    tags: [动物, 基础]
+
+  - char: 猪
+    mandarin: 猪
+    pengim: de1
+    example: 猪过肥。
+    example_mandarin: 猪很肥。
+    tags: [动物, 基础]
+
+  - char: 牛
+    mandarin: 牛
+    pengim: ghu5
+    example: 牛在田里拖犁。
+    example_mandarin: 牛在田里犁地。
+    tags: [动物, 基础]
+
+  - char: 羊
+    mandarin: 羊
+    pengim: iên5
+    example: 羊山内食草。
+    example_mandarin: 羊在山上吃草。
+    tags: [动物, 基础]
+
+  - char: 马
+    mandarin: 马
+    pengim: bhê2
+    example: 伊骑马去巡逻。
+    example_mandarin: 他骑马去巡逻。
+    tags: [动物, 基础]
+
+  - char: 鱼
+    mandarin: 鱼
+    pengim: he5
+    example: 只条鱼过鲜。
+    example_mandarin: 这条鱼很新鲜。
+    tags: [动物, 基础]
+
+  - char: 鸟
+    mandarin: 鸟
+    pengim: ziao2
+    example: 鸟在天顶飞。
+    example_mandarin: 鸟在天上飞。
+    tags: [动物, 基础]
+
+  - char: 蛇
+    mandarin: 蛇
+    pengim: zua5
+    example: 胶己人惊蛇。
+    example_mandarin: 有些人怕蛇。
+    tags: [动物]
 
   # ========================
   # 12. 天气自然 (Weather & Nature)
