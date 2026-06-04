@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.1.0"
+version: "1.1.1"
 description: "潮汕话 skill 自演进流程 — 每日搜索50个翻译对，自测验证，数据更新，同步源码，自动提交GitHub。由 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "50样本"]
 requires:
@@ -12,7 +12,7 @@ requires:
 ## 整体架构
 
 ```
-每日运行 (cron job: 0 10 * * *)
+每日运行 (cron job: 0 3 * * *)
   │
   ├─ 1. 搜索发现: web_search × 6 种查询 → 提取约50个翻译对
   ├─ 2. 查重过滤: 检查 dictionary.yaml + slang.yaml 是否已存在
@@ -115,5 +115,6 @@ git push
 - 只追加高度确信的数据（有可靠来源证据）
 - 不确定的写入 pending-merge 待人工审阅
 - 每次变更后运行 rsync 同步 + git push
-- Cron job ID: 56c9a120fa45 (每天10:00运行)
+- Cron job ID: 56c9a120fa45 (每天3:00运行)
+- Companion cron: 9caed8b7894a (每周一4:00 周度consolidation — 审视skill去碎片化)
 - repo: frelam/chaoshan-agent (GitHub, gh CLI auth)

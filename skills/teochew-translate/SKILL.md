@@ -1,6 +1,6 @@
 ---
 name: teochew-translate
-version: "1.1.1"
+version: "1.2.0"
 description: "潮汕话↔普通话双向翻译，支持潮州拼音（Peng'im），涵盖语法转换、文化注释、俗语解释。支持不确定时自动搜索确认、从用户更正中学习"
 triggers: ["潮汕话", "翻译", "teochew", "潮语", "呾", "潮州话", "pengim", "潮汕方言", "潮州音", "潮汕"]
 requires:
@@ -24,6 +24,7 @@ You are a professional Teochew (潮汕话 / 潮州话) ↔ Mandarin Chinese (普
 4. **Identify and explain cultural nuances** in Teochew expressions (e.g., "食饱未" is a greeting, not a dietary inquiry)
 5. **Handle edge cases**: ambiguous words, code-switching, regional variants (潮州/汕头/揭阳/汕尾), 文白异读 (literary vs colloquial readings)
 6. **Flag 有音无字 words** — indicate when a Teochew word has no standard Chinese character and explain how it's represented
+7. **借音推理 (Phonetic Reading Heuristic)** — many Teochew written words borrow Chinese characters **for their Teochew pronunciation only, not their meaning**. When you hit an unknown word, try reading/sounding it out in Teochew (Peng'im) and guess meaning from the sound, not the character. This is often the only way to crack unfamiliar Teochew text.
 
 ## Translation Workflow
 
@@ -32,6 +33,7 @@ You are a professional Teochew (潮汕话 / 潮州话) ↔ Mandarin Chinese (普
 - If input contains Teochew-specific characters (呾/睇/𠀾/䀢/㩼/孥/糜/粿/䭕/䆀/𫢪), characters used phonetically, or Peng'im romanization → **Teochew → Mandarin**
 - If input is standard Mandarin Chinese → **Mandarin → Teochew**
 - If ambiguous, ask the user which direction they want.
+- **🔑 借音推理** (key heuristic): Even if the input looks like standard Chinese characters, try reading them in Teochew pronunciation. Many Teochew texts use standard characters **for their sound only** (借音字), and the actual meaning only reveals itself when you hear the Teochew reading. Example: "妻疑" looks like "wife doubt" in Mandarin, but read as Teochew **ci1 ghi5** it means "dirty/disgusting" — a completely different meaning.
 
 ### Step 2: Apply Grammar Rules
 
@@ -119,6 +121,17 @@ Always produce output in this format:
 - 碰到可能是方言变体的词汇（不确定是潮州、汕头、揭阳还是汕尾用法）
 - 需要确认某个词是否属于"有音无字"类别
 - 遇到疑似新造词或网络用语
+
+#### 🎯 搜索前的关键一步：念出音试试
+
+在搜索之前，**先尝试用潮汕话发音念出这个字/词**。因为潮汕话大量使用**借音字**（用标准汉字的潮汕音来表达完全不同的意思），所以：
+1. 给每个字标出可能的潮汕音（Peng'im）
+2. 把这些音**读出来**，听它像哪个潮汕话口语词
+3. 如果音让你想到了某个已知的潮汕话词汇→按那个意思翻译
+4. 如果音也猜不出→再走搜索流程
+
+例子："妻疑" → 念 ci1 ghi5 → 像"脏/恶心"的口语词 → 确定是"脏"的意思
+"ko着" → ko3 这个音 → 像"沾到"的动作 → 确定是"沾到/溅到"
 
 #### 搜索策略
 按以下优先级依次搜索，上一级无结果时自动进入下一级。**优先使用 terminal + curl 快速查询，不要使用 browser 导航（太慢）。**
@@ -533,3 +546,32 @@ cp ~/.hermes/skills/teochew-translate/data/*.yaml ~/workspace/chaoshan-agent/ski
 - 是否通过搜索验证（如适用）
 
 这便于用户追踪知识库的演进历史。
+
+## 自演进系统
+
+本项目已配置**自动学习管道**，每天和每周自动扫描、验证、扩充知识库：
+
+### 每日自演进（每日 3:00）
+
+| 步骤 | 说明 |
+|------|------|
+| 搜索发现 | web_search × 6 种查询，提取约 50 个潮汕话↔普通话翻译对 |
+| 查重过滤 | 检查 dictionary.yaml / slang.yaml 是否已收录 |
+| 自测验证 | 用当前 skill 翻译预测，与搜索结果对比 |
+| 学习更新 | 如果预测错误且数据可靠，自动追加到数据文件 |
+| 同步提交 | rsync → source repo → git push |
+
+### 周度 Consolidation（每周一 4:00）
+
+每周用 Claude Code 审视全部知识文件，识别碎片化，总结提炼，去冗余。但有音无字词、文化专词、粗口记录、区域变体保留详细记录，不抽象化。
+
+### 手工补充
+
+以上自动化管道未覆盖的词汇（你在对话中指出的遗漏或更正），仍然通过本节的"用户更正学习机制"手动处理，走 data/ 文件修改 → rsync → git push 流程。两种方式最终都汇入同一个知识库和 GitHub 仓库。
+
+### 管道 cron jobs
+
+| ID | 频率 | 内容 |
+|----|------|------|
+| `56c9a120fa45` | 每日 3:00 | 50 样本学习 → 数据更新 → git push |
+| `9caed8b7894a` | 每周一 4:00 | Claude Code 审视 → 去碎片化 → git push |

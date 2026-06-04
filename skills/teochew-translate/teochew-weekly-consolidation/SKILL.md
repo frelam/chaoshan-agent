@@ -1,6 +1,6 @@
 ---
 name: teochew-weekly-consolidation
-version: "1.0.0"
+version: "1.0.1"
 description: "周度审视——总结提炼skill知识库，去碎片化。用Claude Code做重写，保留必要细节。每周一轮。"
 triggers: ["周度审视", "consolidation", "知识总结", "去碎片化"]
 requires:
@@ -40,7 +40,7 @@ teochew-translate/
 
 ### Step 2: 用 Claude Code 做总结提炼
 
-将分析结果 + 数据文件传给 Claude Code 做重写：
+将分析结果 + 数据文件传给 Claude Code 做重写。注意：Claude Code 已配置 DeepSeek v4 后端（ANTHROPIC_BASE_URL），`--print` 模式让它在非交互模式下输出结果，不加 `--print` 则会进入交互模式（不适合 cron）。
 
 ```bash
 cd ~/workspace/chaoshan-agent
@@ -115,6 +115,15 @@ git push
 - 文化专词（粿条、蚝烙、工夫茶等）— 不能简化为普通翻译
 - 粗口詈语记录 — 要保持学术性留档
 - 区域变体标注（潮州/汕头/揭阳/汕尾差异）
+
+## Cron Job
+
+```
+job_id: 9caed8b7894a
+schedule: 0 4 * * 1 (每周一 4:00)
+skills: [teochew-translate, teochew-weekly-consolidation]
+companion: 56c9a120fa45 (每日3:00 自演进学习 — 先学50条，周一再审视整理)
+```
 
 ## 输出报告格式
 
