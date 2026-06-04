@@ -1,9 +1,18 @@
 # 🏮 Chaoshan Agent — 潮汕文化 Agent（自演进）
 
-> 潮汕话 ↔ 普通话 双向翻译，带潮州拼音（Peng'im），涵盖语法转换、文化注释、俗语解释。  
+> 一个面向潮汕文化传承的 AI Agent 技能集合，以 **Hermes Agent Skill** 为载体，提供潮汕话翻译、潮汕美食、工夫茶、华侨寻亲等文化服务。  
 > **这是一个会自己长大的项目** — 白天有人用，凌晨自己学。
 
-一个面向潮汕文化传承的 AI Agent 项目，以 **Hermes Agent Skill** 为载体，提供高质量的潮汕话翻译与文化知识服务。
+当前已支持的技能：
+
+| 技能 | 状态 | 说明 |
+|------|------|------|
+| 🔄 潮汕话翻译 (`teochew-translate`) | ✅ 已发布 | 潮汕话 ↔ 普通话双向翻译，带潮州拼音（Peng'im），涵盖语法转换、文化注释、俗语解释 |
+| 🍜 潮汕美食 (`chaoshan-cuisine`) | 📋 规划中 | 菜品库、老店名录、风味评价 |
+| 🍵 工夫茶 (`gongfu-tea`) | 📋 规划中 | 茶种、茶礼、茶器知识 |
+| 🧭 华侨寻亲 (`overseas-reunion`) | 📋 规划中 | 村落登记、姓氏分布、寻亲模板 |
+
+未来将持续扩展更多潮汕文化相关技能，欢迎贡献。
 
 ## ♻️ 自演进设计
 
@@ -65,7 +74,7 @@ bash install.sh
 
 安装后重启 Hermes Agent 即可使用（或发送一条消息自动触发加载）。
 
-## ✨ 功能
+## ✨ 当前功能（teochew-translate）
 
 - 🔄 **双向翻译** — 潮汕话 ↔ 普通话，保留语气、语序、文化内涵
 - 🔊 **潮州拼音（Peng'im）** — 所有潮汕话输出带 1-8 调号标注
@@ -77,17 +86,18 @@ bash install.sh
 
 ```
 chaoshan-agent/
-├── skills/teochew-translate/     # 核心潮汕话翻译 Skill
-│   ├── SKILL.md                   # 技能定义（触发词、翻译流程、15个 Few-Shot 示例）
-│   ├── data/
-│   │   ├── dictionary.yaml        # 113+ 词汇（代词、问候、食物、情感等）
-│   │   ├── grammar.yaml           # 完整语法体系（语序、否定词、程度副词等）
-│   │   ├── examples.yaml          # 30组情景化翻译例句
-│   │   └── slang.yaml             # 38+ 俗语、粗口、亲属称谓、有音无字词
-│   ├── teochew-self-evolve/       # 自演进策略（每日50样本学习流程）
-│   ├── teochew-weekly-consolidation/  # 周度审视（去碎片化总结提炼）
-│   ├── references/                # 待审词汇、技术参考
-│   └── tests/cases.yaml           # 翻译测试用例
+├── skills/
+│   └── teochew-translate/         # ✅ 潮汕话翻译 Skill（当前首个技能）
+│       ├── SKILL.md               #   技能定义（触发词、翻译流程、15个 Few-Shot 示例）
+│       ├── data/
+│       │   ├── dictionary.yaml    #   113+ 词汇（代词、问候、食物、情感等）
+│       │   ├── grammar.yaml       #   完整语法体系（语序、否定词、程度副词等）
+│       │   ├── examples.yaml      #   30组情景化翻译例句
+│       │   └── slang.yaml         #   38+ 俗语、粗口、亲属称谓、有音无字词
+│       ├── teochew-self-evolve/   #   自演进策略（每日50样本学习流程）
+│       ├── teochew-weekly-consolidation/  # 周度审视（去碎片化总结提炼）
+│       ├── references/            #   待审词汇、技术参考
+│       └── tests/cases.yaml       #   翻译测试用例
 ├── teochew-prompt.txt             # 潮汕话专家系统提示词
 ├── update-skill-prompt.txt        # 知识更新提示词
 ├── fewshot-prompt.txt             # Few-Shot 聚合提示
@@ -117,7 +127,7 @@ Agent：我想去玩
 claude -p "$(cat teochew-prompt.txt)" -f "需要翻译的文本"
 ```
 
-## 🌐 覆盖内容
+## 🌐 当前覆盖（teochew-translate）
 
 - **日常对话**：问候、购物、吃饭、出行
 - **文化专词**：粿条、蚝烙、工夫茶、甜粿等
@@ -125,6 +135,17 @@ claude -p "$(cat teochew-prompt.txt)" -f "需要翻译的文本"
 - **俗语谚语**：平安当大赚、胶己人等 10+ 条
 - **粗口/詈语**：学术性记录，标注冒犯程度与使用场合
 - **有音无字词**：niam5、gog8、ziêg4、koi1 等
+
+## 🗺️ 未来规划
+
+更多潮汕文化技能正在规划中，包括：
+
+- 🍜 **潮汕美食** — 菜品库（做法、口味、典故）、老店名录、风味评价
+- 🍵 **工夫茶** — 茶种辨识、冲泡礼仪、茶器知识
+- 🧭 **华侨寻亲** — 村落登记、姓氏分布、寻亲模板
+- 🎭 **潮剧** — 剧目介绍、唱腔解析、行当知识
+
+欢迎贡献新技能！详见 [ARCHITECTURE.md](ARCHITECTURE.md) 的技能模板和贡献指南。
 
 ## 🧠 技术栈
 
