@@ -7,8 +7,8 @@
 
 meta:
   name: 潮汕特色方言词与俗语
-  version: "1.0.4"
-  total_entries: 37+
+  version: "1.0.5"
+  total_entries: 38+
   categories:
     - 有音无字
     - 俗语谚语
@@ -66,6 +66,16 @@ entries:
       example_teochew: 喙sah8开，乞我䀢。
       example_mandarin: 嘴张开，给我看。
       tags: [有音无字]
+
+    - id: p6
+      pronunciation: ko3 (第三声)
+      approximate_char: 扣
+      mandarin_meaning: 沾到、溅到（尤指脏物、液体）
+      usage: ~着屎。~着雨。~着泥。
+      example_teochew: 条河可能是乞屎ko着。
+      example_mandarin: 这条河可能是被屎沾到了。
+      tags: [有音无字]
+      note: 本字不明，"扣"为借音字。常用搭配"ko着"作为动结结构，类似"沾到/溅到"
 
   # ========================
   # 2. 潮汕俗语/谚语 (Proverbs & Idioms)

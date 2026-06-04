@@ -311,9 +311,10 @@ These examples demonstrate the translation patterns, grammar transformations, an
 The following files contain the core dictionary and reference data (loaded via `data:`):
 
 - **dictionary.yaml**: 100+ word mappings across 12 categories including pronouns, greetings, food, body parts, colors, weather, emotions, and Chaoshan-specific terms
-- **grammar.yaml**: Complete grammar reference covering word order, negation system, measure words, degree adverbs, sentence patterns, aspect markers, comparisons, possession, and 10 translation notes
-- **examples.yaml**: 30 annotated translation example pairs organized by context (daily conversation, dining, travel, shopping, emotions, work/study, family)
-- **slang.yaml**: 45+ entries of unique dialect words, proverbs, kinship terms, sentence-final particles, and phonic-only expressions
+- **grammar.yaml**: Complete grammar reference covering word order, negation system, measure words, degree adverbs, sentence patterns
+- **examples.yaml**: 30 annotated translation example pairs organized by context
+- **slang.yaml**: 45+ entries of unique dialect words, proverbs, kinship terms, particles, and phonic-only expressions
+- **references/pending-slang-entries.md**: New slang entries awaiting merge into slang.yaml — check and merge when editing data files
 
 When uncertain about a word, first consult these reference files. For words not found in the dictionary, apply general translation rules and note any uncertainty.
 
@@ -365,6 +366,26 @@ When uncertain about a word, first consult these reference files. For words not 
   - **汕尾/海陆丰音**: influenced by Hakka, more divergent vocabulary and tones
 - When a word differs significantly across regions, use the Shantou variant and note alternatives
 - **Teochew vs Hokkien**: Teochew (潮州话) and Hokkien (福建话/闽南话) are distinct branches of Southern Min. They share ~50% vocabulary but differ in pronunciation, tones, and some grammar. Don't substitute Hokkien for Teochew.
+
+## TTS (Text-to-Speech) for Teochew
+
+When the user asks to convert Teochew text to speech:
+
+1. **Use Peng'im romanization as TTS input** — TTS engines (Edge, OpenAI) don't natively support Teochew. Passing the Peng'im text with tone numbers produces a closer approximation to actual pronunciation than reading Chinese characters.
+
+2. **Format**: Strip Chinese characters entirely, keep only the romanization:
+   ```
+   Original: 条河过妻疑，唔知做尼，可能ko着屎。
+   TTS input: diao5 ho5 gue3 ci1 ghi5, m6 zai1 zo3 ni5, ko2 neng5 ko3 dioh8 sai2.
+   ```
+
+3. **Pitfalls**:
+   - 入声字 (tone 4/8, ending in -b/-g/-h) are usually not pronounced correctly by TTS
+   - 有音无字 words (like "ko3", "ci1 ghi5") may sound off since TTS guesses pronunciation from spelling
+   - Some TTS engines (e.g., Edge) may reject content containing profanity or vulgar words (like 屎 sai2)
+   - Always try Peng'im first; if that fails, fall back to the Mandarin translation
+   
+4. **Output**: Use `text_to_speech` tool and deliver the resulting MEDIA: path to the user.
 
 ## Quality Checklist
 
@@ -448,6 +469,21 @@ Before finalizing any translation, verify:
 修正前: version: "X.Y.Z"
 修正后: version: "X.Y.Z+1"
 ```
+
+### 修改后同步到源码目录
+
+每次修改 `data/` 下的 YAML 文件后，必须将变更同步到源码目录（Git 仓库所在的位置）。对于本用户（zzq），源码路径为：
+
+```bash
+cp ~/.hermes/skills/teochew-translate/data/*.yaml ~/workspace/chaoshan-agent/skills/teochew-translate/data/
+```
+
+如果仓库在其他位置（例如刚 `git clone` 到别处），请相应调整目标路径。两个目录必须始终保持一致：
+
+- **源码目录**（如 `~/workspace/chaoshan-agent/`）— Claude Code 管理，用于 PR 和版本控制
+- **Hermes 运行目录** `~/.hermes/skills/teochew-translate/` — Hermes 实际加载的路径
+
+从任何一端修改后，都要立即执行 `cp` 同步到另一端。如果漏掉同步，另一端的数据会过时，下次使用 Claude Code 或 Hermes 时就会出现不一致。
 
 ### 更正后告知用户
 

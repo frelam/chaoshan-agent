@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.1.4"
-  total_entries: 112+
+  version: "1.1.5"
+  total_entries: 113+
   categories:
     - 人称代词
     - 日常问候
@@ -514,6 +514,14 @@ entries:
     example: 伊做事过慢。
     example_mandarin: 他做事很慢。
     tags: [形容词]
+
+  - char: 妻疑
+    mandarin: 脏/邋遢/恶心（语气较强，带有嫌弃厌恶）
+    pengim: ci1 ghi5
+    example: 条河过妻疑，唔知ko着乜个。
+    example_mandarin: 这条河很脏，不知道沾到了什么。
+    tags: [形容词, 有音无字]
+    note: 有音无字词，"妻疑"为借音写法。比"垃杂"语气更强，侧重恶心感
 
   # ========================
   # 5. 动词 (Verbs)
