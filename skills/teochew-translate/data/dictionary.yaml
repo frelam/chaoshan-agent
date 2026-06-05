@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.3"
-  total_entries: 163+
+  version: "1.2.4"
+  total_entries: 168+
   categories:
     - 人称代词
     - 日常问候
@@ -124,6 +124,14 @@ entries:
     example: 逐个拢总来。
     example_mandarin: 大家都来。
     tags: [人称代词]
+
+  - char: 汝儂
+    mandarin: 你们（后置复数变体）
+    pengim: le2 nang5 / leu2 nang7
+    example: 汝儂有闲来阮内食茶。
+    example_mandarin: 你们有空来我家喝茶。
+    tags: [人称代词]
+    note: "恁(ning2)为标准说法；汝儂(le2 nang5)为后置复数变体，闽南语渗透影响，新加坡潮汕话中更常见"
 
   # ========================
   # 2. 日常问候 (Daily Greetings)
@@ -254,6 +262,22 @@ entries:
     example_mandarin: 我家在汕头老市区。
     tags: [日常问候]
     note: 潮汕话\"房屋/家\"的基本说法，对应闽南语的\"厝\"
+
+  - char: 太太
+    mandarin: 太太/夫人（尊称）
+    pengim: tai3 tai3
+    example: 太太，请坐，来食茶。
+    example_mandarin: 太太，请坐，来喝茶。
+    tags: [日常问候]
+    note: 潮汕话中\"太太\"用于尊称年长女性或已婚女士
+
+  - char: 姑娘
+    mandarin: 姑娘/年轻女子（旧称）
+    pengim: gou1 niên5
+    example: 只个姑娘生来过雅。
+    example_mandarin: 这位姑娘长得很漂亮。
+    tags: [日常问候]
+    note: \"姑娘\"在潮汕话中为旧式尊称，较\"小姐\"更传统，类似闽南语\"姑娘\"用法
 
   # ========================
   # 3. 数字/时间 (Numbers & Time)
@@ -471,6 +495,14 @@ entries:
     example: 一只手机值万外银。
     example_mandarin: 一台手机值一万多块。
     tags: [数字时间]
+
+  - char: 珍时
+    mandarin: 什么时候/何时
+    pengim: diang1 si5
+    example: 珍时来阮内食茶？
+    example_mandarin: 什么时候来我家喝茶？
+    tags: [数字时间, 基础]
+    note: "珍时(diang1 si5)是潮汕话\"什么时候\"的标准说法，相当于闽南语的\"当时\"。同义词：底时(di7 si5)"
 
   # ========================
   # 4. 形容词 (Adjectives)
@@ -1637,3 +1669,11 @@ entries:
     example: 潮汕侬尚做生理。
     example_mandarin: 潮汕人最会做生意。
     tags: [职业, 潮汕特色, 文化]
+
+  - char: 老师
+    mandarin: 老师/教师
+    pengim: lao2 se1
+    example: 阮老师教潮州话。
+    example_mandarin: 我老师教潮州话。
+    tags: [职业]
+    note: "潮汕话中\"先生\"(sing1 sên1)是更传统的\"老师\"说法，\"老师\"(lao2 se1)为后起的通用说法"
