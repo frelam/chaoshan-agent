@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.6"
-  total_entries: 180+
+  version: "1.2.7"
+  total_entries: 190+
   categories:
     - 人称代词
     - 日常问候
@@ -935,6 +935,14 @@ entries:
     tags: [动词, 潮汕特色]
     note: 常用口语词，表浪费、搞砸、破坏，如㩄钱、㩄物、㩄掉
 
+  - char: 褪衫
+    mandarin: 脱衣服
+    pengim: teng3 san1
+    example: 入门前着褪衫。
+    example_mandarin: 进门之前要脱衣服。
+    tags: [动词, 基础]
+    note: 褪(teng3)为潮汕话中脱衣服的专用动词，有别于"脱"(tug4)表逃脱义
+
   # ========================
   # 6. 食物名称 (Food Names)
   # ========================
@@ -1064,6 +1072,22 @@ entries:
     example_mandarin: 潮州芋泥最好吃，甜过蜜。
     tags: [食物名称, 潮汕特色]
     note: 潮汕传统甜点，用芋头蒸熟捣成泥加糖猪油制成，宴席常见
+
+  - char: 苦瓜
+    mandarin: 苦瓜
+    pengim: kou2 guê1
+    example: 苦瓜煮黄豆汤过好食。
+    example_mandarin: 苦瓜煮黄豆汤很好吃。
+    tags: [食物名称, 潮汕特色]
+    note: 潮汕苦瓜汤是夏日消暑经典菜
+
+  - char: 早頓
+    mandarin: 早饭/早餐
+    pengim: za2 deng3
+    example: 早頓食糜配咸菜。
+    example_mandarin: 早饭吃粥配咸菜。
+    tags: [食物名称, 基础]
+    note: 潮汕话"早頓"(za2 deng3)为"早饭"的传统说法，"頓"即"餐/顿"；也常说"早起"(za2 ki2)
 
   # ========================
   # 7. 潮汕特色词汇 (Teochew Signature Words)
@@ -1311,6 +1335,28 @@ entries:
     example: 汝个鞋拖放在门口。
     example_mandarin: 你的拖鞋放在门口。
     tags: [潮汕特色, 日常用語]
+
+  - char: 褲
+    mandarin: 裤子
+    pengim: kou3
+    example: 只条裤买有华。
+    example_mandarin: 这条裤子买得划算。
+    tags: [潮汕特色, 日常用語]
+
+  - char: 跤踏車
+    mandarin: 自行车
+    pengim: ka1 dah8 cia1
+    example: 阮骑跤踏车去街市。
+    example_mandarin: 我们骑自行车去市场。
+    tags: [潮汕特色, 日常用語]
+    note: 跤踏车(ka1 dah8 cia1)字面脚踩车，为潮汕话传统说法。也说脚车(ka1 cia1)为简省形式
+
+  - char: 物件
+    mandarin: 东西/物品
+    pengim: muêh8 gian6
+    example: 只个物件若㩼银？
+    example_mandarin: 这个东西多少钱？
+    tags: [潮汕特色, 日常用語, 基础]
 
   # ========================
   # 16. 亲属称谓 (Kinship Terms)
@@ -1692,6 +1738,14 @@ entries:
     example: 今日乌阴天，看来欲落雨。
     example_mandarin: 今天是阴天，看来要下雨。
     tags: [天气]
+
+  - char: 天頂
+    mandarin: 天上/天空
+    pengim: tin1 dêng2
+    example: 鸟在天顶飞。
+    example_mandarin: 鸟在天上飞。
+    tags: [天气, 基础]
+    note: 天頂(tin1 dêng2)为潮汕话天上/天空的口语说法，天(tin1)为白读音
 
   # ========================
   # 13. 情感 (Emotions)

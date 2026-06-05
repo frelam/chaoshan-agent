@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.1"
+version: "1.5.2"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日5次（07:00/10:00/13:00/16:00/20:00），自测验证，数据更新，同步源码，自动提交GitHub。由 5 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -66,16 +66,48 @@ requires:
      pages/verbal_complements.md — 动补结构
      pages/teochew_wiktionary_index/teochew_wiktionary_index_*.md — ⭐ 按首字母编排的词典索引，含 Peng'im + IPA + 汉字
      ```
-   - **用法**（必须用 GitHub Content API，raw.githubusercontent.com 返回 404）:
+   - **用法**（优先用 raw.githubusercontent.com，不行再回退到 GitHub Content API）:
      ```bash
-     # 获取文件内容（返回 base64 编码的 JSON）:
-     curl -sL "https://api.github.com/repos/kbseah/learn-teochew/contents/pages/address.md"
+     # ⭐ 优先尝试 raw.githubusercontent.com（最快，不需解析 base64）:
+     curl -sL --connect-timeout 10 --max-time 20 \
+       'https://raw.githubusercontent.com/kbseah/learn-teochew/master/pages/teochew_wiktionary_index/teochew_wiktionary_index_c.md'
+     
+     # 备选: GitHub Content API（返回 base64 编码的 JSON，无需认证）:
+     curl -sL "https://api.github.com/repos/kbseah/learn-teochew/contents/pages/teochew_wiktionary_index/teochew_wiktionary_index_c.md"
      
      # 获取完整目录结构（递归）:
      curl -sL "https://api.github.com/repos/kbseah/learn-teochew/git/trees/master?recursive=1"
      ```
    - 优势: **标准 Peng'im（声调数字）** + IPA 双标注，学术级准确
    - 提示: 内容为 Jekyll 格式 Markdown，表格行包含 Peng'im + IPA + 汉字三列对照
+
+   #### ⚠️ 实战：wiktionary 索引文件解析方法
+
+   索引文件采用**两行一条目**的表格格式（见下例），解析时需注意：
+   ```
+   |ghai7 | gǎi | | |
+   || | [礙](url) | ghai7 | gǎi|
+   ```
+   - 第1行: Peng'im + IPA（无汉字）
+   - 第2行: 汉字（wiki链接形式）+ Peng'im + IPA
+
+   **推荐用 Python regex 提取**（比逐行表格解析灵活可靠）:
+   ```python
+   import json, base64, re
+   with open('file.json') as f:
+       api_data = json.load(f)
+   decoded = base64.b64decode(api_data['content']).decode('utf-8')
+   # 一行 regex 提取所有 [汉字]+Peng'im 对:
+   matches = re.findall(
+       r'\[([^\]]+)\]\([^\)]+\)\s*\|\s*([^|]+)\s*\|',
+       decoded
+   )
+   for char, pengim in matches:
+       pengim_clean = pengim.strip().split('/')[0].strip()
+       # → (char, pengim_clean)
+   ```
+
+   ⚠️ `raw.githubusercontent.com` 可能超时（exit 28），API 方式更可靠但需解析 base64。
 
 2. **neoTeochew.org JSON 语料库**（注意：文件大、容易超时）
    - 地址: `https://raw.githubusercontent.com/neoTeochew/neoTeochew.github.io/master/data.json`
@@ -132,6 +164,14 @@ requires:
 ### 循环终止条件
 
 自测采样最多尝试 8 次（初始3条 + 最多5次重试），确保不会无限循环。5 次重试仍未找到盲区 → 说明当前知识覆盖好，跳过本轮自测学习部分。
+
+### ⚠️ 自测验证中的工具坑
+
+验证自测题时注意以下陷阱：
+
+- **search_files（ripgrep）对某些特殊 Unicode 汉字可能漏检**。如果用 `search_files` 搜索䆀/𠀾/粙/刣 等字得到 0 结果，再试 `grep -n -c` 在终端确认。ripgrep 对 CJK 扩展区汉字支持不如 grep 稳定。
+- **验证方法优先级**: 读 dictionary.yaml (grep) > 查 learn-teochew wiktionary > web_search。web_search 在网络受限环境不可靠，优先用本地数据文件。
+- **已知 vs 盲区的判定标准**: 如果你的翻译预测（汉字+Peng'im）完全正确，即使该词不在 dictionary.yaml 中也不算盲区 — 你只是尚未写入知识库，而非不知道这个词。
 
 ### 和搜索发现的汇合
 
