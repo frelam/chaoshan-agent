@@ -1,0 +1,144 @@
+# ============================================================
+# 潮汕美食技能 — 测试用例 (Test Cases)
+# ============================================================
+# 包含两类测试：
+# 1. 公平算法验证 — 给定输入评价，验证算法输出正确
+# 2. 牛肉知识查询 — 验证知识库可被正确检索
+# ============================================================
+
+meta:
+  name: 潮汕美食测试用例
+  version: "1.0.0"
+  total_cases: 10
+
+cases:
+
+  # ============================================================
+  # 公平算法验证
+  # ============================================================
+
+  - id: algo-01
+    test_type: algorithm_median
+    description: "中位数抗极值——大部分高分+1条极低分，median应不受影响"
+    input_ratings: [1, 4, 4, 4, 5, 5, 5, 5, 5, 5]
+    expected:
+      median: 5.0
+      mean: 4.3
+    focus: 验证 median 优于 mean 抵抗极值操控
+    note: "第一条1分可能是恶意差评，median=5反映真实水平，mean=4.3被拉低"
+
+  - id: algo-02
+    test_type: algorithm_minority_voice
+    description: "少数声音保留——3/10人觉得太咸，应出现在 diverse_opinions中"
+    input:
+      total_reviews: 10
+      opinion_keyword: "太咸"
+      opinion_count: 3
+    expected:
+      in_consensus: false       # 3/10=30% < 60%阈值
+      in_diverse_opinions: true # 3/10=30% ≥ 15%阈值
+    focus: 验证少数阈值 15%-60% 的判定
+    note: "30%的声音不应被吞噬"
+
+  - id: algo-03
+    test_type: algorithm_consensus
+    description: "共识判定——8/10人提到'牛肉新鲜'，应归入consensus"
+    input:
+      total_reviews: 10
+      opinion_keyword: "牛肉新鲜"
+      opinion_count: 8
+    expected:
+      in_consensus: true        # 8/10=80% ≥ 60%阈值
+      in_diverse_opinions: false
+    focus: 验证共识阈值 ≥60% 的判定
+
+  - id: algo-04
+    test_type: algorithm_controversy
+    description: "争议检测——评分方差>1.5应触发争议标记"
+    input_ratings: [1, 1, 2, 4, 5, 5, 5, 5]
+    expected:
+      variance: "> 1.5"    # 两极分化
+      is_controversial: true
+    focus: 验证争议检测逻辑
+    note: "爱的人超爱（5分），不喜欢的人完全不喜欢（1-2分），需要标注"
+
+  - id: algo-05
+    test_type: algorithm_suspicious_detection
+    description: "刷分检测——7天内3条高度相似评价应被标记"
+    input:
+      reviews:
+        - {date: "2026-06-01", rating: 5, text: "超级好吃，牛肉新鲜，汤底鲜美！"}
+        - {date: "2026-06-03", rating: 5, text: "超级好吃，牛肉很新鲜，汤底鲜美！"}
+        - {date: "2026-06-05", rating: 5, text: "超级好吃，牛肉新鲜，汤底真的鲜美！"}
+    expected:
+      is_suspicious: true
+      similarity: "> 0.60"
+      rating_variance: "< 0.3"
+    focus: 验证反操控检测的三个条件（时间窗口+评分方差+文本相似度）
+
+  # ============================================================
+  # 牛肉知识查询
+  # ============================================================
+
+  - id: beef-01
+    test_type: beef_knowledge_lookup
+    description: "查询脖仁的日本叫法"
+    input:
+      cut: 脖仁
+      query: regional_names.international.japan
+    expected: "ネック (nekku) / クラシタ (kurashita)"
+    focus: 验证国际命名对应关系的可检索性
+
+  - id: beef-02
+    test_type: beef_knowledge_lookup
+    description: "查询胸口朥的涮烫时间和特殊做法"
+    input:
+      cut: 胸口朥
+      query: cooking
+    expected:
+      time: 3-5分钟
+      note_contains: "涮不够是软的"
+    focus: 验证烹饪信息的完整性（胸口朥是唯一需要长涮的部位）
+
+  - id: beef-03
+    test_type: beef_knowledge_lookup
+    description: "查询嫩肉的偏好人群画像"
+    input:
+      cut: 嫩肉
+      query: preferred_by
+    expected:
+      age_group_contains: [15, 70]
+      taste_preference_contains: "健身"
+    focus: 验证人群画像字段的存在和准确性
+
+  - id: beef-04
+    test_type: beef_knowledge_lookup
+    description: "查询牛肉丸的真假辨别方法"
+    input:
+      cut: 牛肉丸
+      query: authenticity_check
+    expected:
+      must_have_fields: [color, texture, bounce, interior, ingredients]
+    focus: 验证加工品类有 authenticity_check 字段
+
+  - id: beef-05
+    test_type: beef_knowledge_count
+    description: "牛肉知识库应包含至少12个部位"
+    input:
+      file: data/beef-knowledge.yaml
+    expected:
+      min_entries: 12
+      required_cuts:
+        - 脖仁
+        - 吊龙
+        - 匙仁
+        - 匙柄
+        - 胸口朥
+        - 五花趾
+        - 三花趾
+        - 嫩肉
+        - 肥胼
+        - 牛舌
+        - 牛百叶
+        - 牛肉丸
+    focus: 验证知识库覆盖完整

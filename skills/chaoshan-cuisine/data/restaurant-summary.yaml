@@ -1,0 +1,76 @@
+# ============================================================
+# 潮汕美食店铺总览 — AI 聚合总结 (Aggregated Summaries)
+# ============================================================
+# 每条记录 = 一家店铺的综合画像
+# 数据来源：从 restaurants.yaml 通过公平算法自动聚合生成
+# 算法详情：见 docs/FAIRNESS-ALGORITHM.md
+#
+# ⚠️ 此文件不手动编辑 — 由 AI 从原始评价中生成
+# 如需更新，重新运行公平算法即可
+# ============================================================
+
+meta:
+  name: 潮汕美食店铺总览
+  version: "1.0.0"
+  total_restaurants: 0
+  last_updated: "2026-06-05"
+  algorithm_version: "1.0.0"
+  algorithm:
+    rating_method: median        # 中位数抗极值
+    minority_threshold: 0.15     # ≥15% 的观点独立保留
+    consensus_threshold: 0.60    # ≥60% 的观点归入共识
+    time_decay:
+      within_1y: 1.0
+      within_2y: 0.8
+      within_3y: 0.5
+      over_3y: 0.3
+    anti_manipulation:
+      suspicious_window_days: 7
+      suspicious_min_reviews: 3
+      suspicious_action: flag_not_delete
+
+# ============================================================
+# 店铺条目
+# ============================================================
+entries: []
+  # 空列表 — 等待第一批评价被聚合
+
+  # --- TEMPLATE: 聚合结果模板（由公平算法生成）---
+  # - id: rest-000
+  #   name: ""
+  #   address: ""
+  #   district: ""
+  #   cuisine_type: ""
+  #   overall:
+  #     rating_median: 0.0
+  #     rating_count: 0
+  #     rating_distribution: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+  #     rating_variance: 0.0
+  #     weighted_rating: 0.0    # 时间衰减加权后的评分
+  #   consensus:
+  #     must_try: []
+  #     pros: []
+  #     cons: []
+  #   diverse_opinions:
+  #     - opinion: ""
+  #       count: 0
+  #       ratio: 0.0
+  #       held_by: [local, tourist]   # 哪些人群持有这个观点
+  #   demographic_breakdown:
+  #     local:
+  #       count: 0
+  #       median_rating: 0.0
+  #     tourist:
+  #       count: 0
+  #       median_rating: 0.0
+  #     returning_visitor:
+  #       count: 0
+  #       median_rating: 0.0
+  #   controversy:
+  #     is_controversial: false       # rating_variance > 1.5 时为 true
+  #     note: ""                      # 如果争议大，说明原因
+  #   suspicious:
+  #     has_suspicious_clusters: false
+  #     suspicious_review_ids: []
+  #   summary: ""                     # AI 生成，≤200 字
+  #   last_updated: "2026-06-05"

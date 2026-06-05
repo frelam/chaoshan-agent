@@ -1,0 +1,198 @@
+# ============================================================
+# 潮汕美食评价库 — 食客原始评价 (Raw Reviews)
+# ============================================================
+# 每一条记录 = 一位贡献者的一次探店评价
+# 数据来源：GitHub 开源贡献，每条都有 contributor 字段溯源
+#
+# === 贡献指南 ===
+# 1. 复制下方 TEMPLATE 注释中的模板
+# 2. 填写你的真实评价（好吃就说好吃，不好吃就说不好吃）
+# 3. review_text 不少于 30 字，必须有具体口感/味道描述
+# 4. 提交 PR，维护者审核后合并
+#
+# === 评价质量要求 ===
+# - 必须是本人亲自去过、吃过的店
+# - 不接受"还行""可以""一般"等模糊评价
+# - 鼓励具体描述：什么菜好吃、为什么好吃、什么口感
+# - 环境和服务可以提，但不是评价重点
+# ============================================================
+
+meta:
+  name: 潮汕美食评价库
+  version: "1.0.0"
+  total_reviews: 0
+  total_restaurants: 0
+  last_updated: "2026-06-05"
+  districts:
+    # 汕头市
+    - 金平区
+    - 龙湖区
+    - 澄海区
+    - 濠江区
+    - 潮阳区
+    - 潮南区
+    - 南澳县
+    # 潮州市
+    - 湘桥区
+    - 潮安区
+    - 饶平县
+    # 揭阳市
+    - 榕城区
+    - 揭东区
+    - 普宁市
+    - 惠来县
+    - 揭西县
+    # 汕尾市
+    - 城区
+    - 海丰县
+    - 陆丰市
+    - 陆河县
+  food_categories:
+    - 牛肉火锅
+    - 粿条汤/面
+    - 蚝烙/蚝煎
+    - 肠粉
+    - 卤鹅/卤水
+    - 砂锅粥
+    - 鱼饭/海鲜
+    - 甜汤/糖水
+    - 工夫茶
+    - 粿品（甜粿/鼠壳粿/红桃粿）
+    - 街边小食
+    - 深夜食堂/夜粥
+    - 打冷
+    - 生腌
+    - 火锅（非牛肉）
+    - 其他
+
+# ============================================================
+# 评价条目
+# ============================================================
+entries: []
+  # 空列表 — 等待第一位贡献者
+
+  # --- TEMPLATE: 贡献者模板（复制此段并填写）---
+  # - id: rev-000
+  #   restaurant_name: ""
+  #   address: ""
+  #   district: ""           # 从 meta.districts 中选择
+  #   cuisine_type: ""       # 从 meta.food_categories 中选择
+  #   coordinates:           # 可选，经纬度（用于地图展示）
+  #     lat: 0.0
+  #     lng: 0.0
+  #   reviewer:
+  #     id: ""               # 你的 GitHub 用户名
+  #     type: local          # local | tourist | returning-visitor
+  #     hometown: ""         # 你来自哪里（游客填写）
+  #   visit_date: "YYYY-MM-DD"
+  #   visit_context: ""      # 可选：午餐/晚餐/宵夜、和谁一起等
+  #   dishes_ordered:
+  #     - name: ""
+  #       rating: 5          # 1-5 分（只评价这道菜）
+  #       price: 0           # 价格（元），如不清楚可写 approx
+  #       comment: ""        # 对这道菜的具体评价
+  #   overall_rating: 5      # 本次体验综合评分 1-5
+  #   review_text: ""        # 整体评价，不少于 30 字
+  #   would_revisit: true
+  #   tags: []               # 从 meta.food_categories 选择 + 自定义标签如 [老店, 性价比高, 深夜营业]
+  #   contributor: ""        # 你的 GitHub 用户名
+  #   date: "2026-06-05"
+
+  # --- EXAMPLE 1: 本地人评价 ---
+  # - id: rev-example-01
+  #   restaurant_name: "八合里海记牛肉店（总店）"
+  #   address: "汕头市金平区黄岗路坪东5座"
+  #   district: "金平区"
+  #   cuisine_type: "牛肉火锅"
+  #   reviewer:
+  #     id: "example-user-1"
+  #     type: local
+  #   visit_date: "2026-05-15"
+  #   visit_context: "周六午餐，带外地朋友体验"
+  #   dishes_ordered:
+  #     - name: "脖仁（雪花）"
+  #       rating: 5
+  #       price: 38
+  #       comment: "油脂分布均匀，入口即化，38元一盘值这个价"
+  #     - name: "吊龙"
+  #       rating: 4
+  #       price: 32
+  #       comment: "嫩滑，但今天的切工一般，有几片稍厚"
+  #     - name: "胸口朥"
+  #       rating: 5
+  #       price: 35
+  #       comment: "生的时候像肥油，烫3分钟后变脆爽，完全两个世界"
+  #     - name: "牛肉丸"
+  #       rating: 4
+  #       price: 28
+  #       comment: "弹牙够力，但比起以前感觉稍稍退步"
+  #     - name: "粿条"
+  #       rating: 5
+  #       price: 8
+  #       comment: "最后下粿条配芹菜粒加汤，全场最佳收尾"
+  #   overall_rating: 4.5
+  #   review_text: "汕头本地人，从小吃牛肉火锅。八合里总店的水平还是稳的，脖仁的雪花纹理漂亮，涮8秒刚好。人确实多，周六中午排队40分钟。服务员都是本地阿姨，手脚麻利但别指望微笑服务。外地朋友吃完说'以前吃的牛肉火锅都是假的'。"
+  #   would_revisit: true
+  #   tags: [牛肉火锅, 老店, 游客打卡, 排队]
+  #   contributor: "example-user-1"
+  #   date: "2026-05-20"
+
+  # --- EXAMPLE 2: 游客评价 ---
+  # - id: rev-example-02
+  #   restaurant_name: "八合里海记牛肉店（总店）"
+  #   address: "汕头市金平区黄岗路坪东5座"
+  #   district: "金平区"
+  #   cuisine_type: "牛肉火锅"
+  #   reviewer:
+  #     id: "example-user-2"
+  #     type: tourist
+  #     hometown: "北京"
+  #   visit_date: "2026-05-15"
+  #   visit_context: "第一次来汕头，专程打卡"
+  #   dishes_ordered:
+  #     - name: "脖仁（雪花）"
+  #       rating: 5
+  #       price: 38
+  #       comment: "第一次吃到这种口感的牛肉，像在吃生鱼片的嫩度"
+  #     - name: "胸口朥"
+  #       rating: 3
+  #       price: 35
+  #       comment: "说实话不太接受……吃了两片就腻了，但同伴很喜欢"
+  #     - name: "嫩肉"
+  #       rating: 4
+  #       price: 28
+  #       comment: "比较接近平时吃的牛肉，但比北方的嫩很多"
+  #   overall_rating: 4
+  #   review_text: "北京来的游客，被汕头朋友带来吃的。脖仁确实惊艳，那种入口即化的感觉没在北京任何一家店吃到过。胸口朥尝了两片，脆是脆但太油了不太适应。环境就是路边大排档水平，但味道对得起名气。唯一减分项是太吵了，说话要扯嗓子。"
+  #   would_revisit: true
+  #   tags: [牛肉火锅, 游客打卡, 环境一般]
+  #   contributor: "example-user-2"
+  #   date: "2026-05-25"
+
+  # --- EXAMPLE 3: 蚝烙小店 ---
+  # - id: rev-example-03
+  #   restaurant_name: "老姿娘蚝烙"
+  #   address: "汕头市金平区民权路与福平路交叉口"
+  #   district: "金平区"
+  #   cuisine_type: "蚝烙/蚝煎"
+  #   reviewer:
+  #     id: "example-user-3"
+  #     type: returning-visitor
+  #     hometown: "广州"
+  #   visit_date: "2026-04-20"
+  #   visit_context: "第三次来汕头，每次都要吃这家"
+  #   dishes_ordered:
+  #     - name: "蚝烙"
+  #       rating: 5
+  #       price: 25
+  #       comment: "蚝仔饱满，番薯粉比例刚好，外脆里嫩，蘸鱼露绝配"
+  #     - name: "牛肉丸汤"
+  #       rating: 3
+  #       price: 15
+  #       comment: "牛肉丸一般，不是主打可以跳过"
+  #   overall_rating: 4
+  #   review_text: "广州人，第三次来汕头出差，每次必吃这家蚝烙。蚝仔很大颗（对比厦门的蚵仔煎，这里蚝仔至少大一倍），番薯粉不厚不薄刚好挂住蚝仔，煎到表面金黄脆脆的。蘸鱼露是灵魂——别用酱油，用鱼露！缺点是路边摊没空调，夏天吃出一身汗。只推荐点蚝烙，其他菜不值得占肚子。"
+  #   would_revisit: true
+  #   tags: [蚝烙, 街边小食, 老店, 无空调]
+  #   contributor: "example-user-3"
+  #   date: "2026-04-28"

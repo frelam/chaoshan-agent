@@ -1,0 +1,564 @@
+# ============================================================
+# 潮汕牛肉部位知识库 (Chaoshan Beef Cut Knowledge Base)
+# ============================================================
+# 潮汕牛肉火锅的「精切文化」——一头牛细分为十几个部位，
+# 每个部位口感不同、涮法不同、偏好人群不同。
+#
+# 参考文献：
+#   - 《潮汕食话》（张新民）
+#   - 汕头牛肉火锅行业标准（汕头市饮食业协会）
+#   - 各地牛肉部位命名对照（USDA / 日本食肉格付協会 / 韩国畜产品品质评价院）
+# ============================================================
+
+meta:
+  name: 潮汕牛肉部位知识库
+  version: "1.0.0"
+  total_cuts: 12
+  last_updated: "2026-06-05"
+  categories:
+    - 高脂香嫩类
+    - 弹牙爽脆类
+    - 精瘦嫩滑类
+    - 内脏/加工类
+
+entries:
+
+  # ============================================================
+  # 1. 脖仁（雪花牛肉）
+  # ============================================================
+  - cut: 脖仁
+    mandarin: 雪花牛肉 / 牛颈肉
+    pengim: boh4 ring5
+    category: 高脂香嫩类
+    position: 牛颈部（第1-5颈椎周围），运动量大、脂肪沉积最好的部位
+    fat_content: 极高（雪花状分布，脂肪交错均匀）
+    texture: 嫩滑如丝
+    mouthfeel: |
+      入口即化，油脂在口中化开的瞬间释放浓郁牛油香气。
+      肉质极嫩，几乎不需要咀嚼。是潮汕牛肉火锅中最珍贵的部位，
+      一头千斤牛只有一两斤脖仁，来得早才有。
+    cooking:
+      method: 涮
+      time: 8-10秒
+      doneness: 五成熟（表面变色、中心微红）
+      tip: "筷子夹住，在滚汤中轻涮 8-10 秒即可，涮过头会失去入口即化的口感"
+    preferred_by:
+      age_group: [25, 55]
+      taste_preference: ["喜欢油香浓郁", "喜欢嫩滑口感", "追求顶级食材"]
+      eating_habit: ["资深牛肉火锅爱好者", "愿意为食材品质多付钱的食客"]
+      personality: ["注重食材品质，不在乎价格"]
+    regional_names:
+      chaoshan:
+        - 脖仁
+        - 雪花
+        - 牛颈肉
+      china_other:
+        beijing: 牛颈肉 / 上脑
+        shanghai: 雪花牛肉
+        guangzhou: 牛颈肉 / 雪花
+        chengdu: 牛颈肉
+      international:
+        japan: ネック (nekku) / クラシタ (kurashita)
+        japan_note: "日本烧肉中对应'クラシタ'（肩下部），属稀有部位"
+        korea: 목심 (moksim)
+        us: chuck eye roll / neck
+        australia: chuck / neck
+        france: collier
+        italy: collo
+    price_level: 高
+    rarity: 极高（一头牛仅出1-2斤）
+    order_timing: 早去才有，晚到基本卖完
+
+  # ============================================================
+  # 2. 吊龙（西冷/肋眼对应）
+  # ============================================================
+  - cut: 吊龙
+    mandarin: 牛里脊外沿 / 西冷对应部位
+    pengim: diao3 lêng5
+    category: 高脂香嫩类
+    position: 牛背部，脊柱两侧的长条形肌肉（背最长肌），从肩胛延伸到后腰
+    fat_content: 中等偏高（边缘带一层脂肪）
+    texture: 嫩滑，肉味浓郁
+    mouthfeel: |
+      比脖仁多一分肉感，比嫩肉多一分油香。"吊龙"是潮汕牛肉火锅的
+      绝对主力——每桌必点，肉味最浓的部位。边缘的脂肪条在涮后变得
+      半透明，咬下去肉汁和油脂同时释放。
+    cooking:
+      method: 涮
+      time: 8-10秒
+      doneness: 五成熟
+      tip: "带脂肪的那一面先下锅，让油脂先受热"
+    preferred_by:
+      age_group: [20, 60]
+      taste_preference: ["喜欢肉味浓郁", "喜欢嫩中带劲"]
+      eating_habit: ["几乎所有牛肉火锅爱好者"]
+      personality: ["务实派——点吊龙不会出错"]
+    regional_names:
+      chaoshan:
+        - 吊龙
+        - 吊龙伴（靠近肋骨的部分，更嫩）
+      china_other:
+        beijing: 西冷 / 外脊
+        shanghai: 西冷
+        guangzhou: 牛柳外沿
+        chengdu: 背柳
+      international:
+        japan: ロース (rōsu) / リブロース (riburōsu)
+        japan_note: "广义对应'ロース'部位群，油脂边类似'サーロイン'（西冷）"
+        korea: 등심 (deungsim)
+        us: ribeye / strip loin
+        australia: sirloin / ribeye
+        france: faux-filet / contre-filet
+        italy: controfiletto
+    price_level: 中高
+    rarity: 常见（每桌必点的主力部位）
+
+  # ============================================================
+  # 3. 匙仁（匙皮）
+  # ============================================================
+  - cut: 匙仁
+    mandarin: 肩胛肉 / 板腱对应部位
+    pengim: si5 ring5
+    category: 高脂香嫩类
+    position: 牛前腿上部，肩胛骨周围
+    fat_content: 中等（肉中夹细筋）
+    texture: 嫩中带韧，有细微嚼劲
+    mouthfeel: |
+      相比脖仁的"化"，匙仁多了一根细筋带来的轻微弹牙感。
+      肉味纯正，脂肪含量适中。是那种"第一口不惊艳，但越吃越想吃"的部位。
+    cooking:
+      method: 涮
+      time: 8-10秒
+      doneness: 五成熟
+      tip: "不要涮太久，细筋涮过头会变硬"
+    preferred_by:
+      age_group: [25, 50]
+      taste_preference: ["喜欢有嚼劲但不柴", "不喜欢太肥的"]
+      eating_habit: ["牛肉火锅常客"]
+      personality: ["喜欢平衡口感的人"]
+    regional_names:
+      chaoshan:
+        - 匙仁
+        - 匙皮
+      china_other:
+        beijing: 肩胛肉 / 板腱
+        shanghai: 板腱
+        guangzhou: 肩胛肉
+        chengdu: 前腿肉
+      international:
+        japan: ミスジ (misuji) / カタロース (katarōsu)
+        japan_note: "日本烧肉中属于'肩ロース'部位群，ミスジ是最精贵的肩肉"
+        korea: 갈비덧살 (galbi-deotsal) / 앞다리살
+        us: chuck / top blade
+        australia: chuck / blade
+        france: paleron / macreuse
+        italy: copertina
+    price_level: 中等
+    rarity: 常见
+
+  # ============================================================
+  # 4. 匙柄
+  # ============================================================
+  - cut: 匙柄
+    mandarin: 肩胛里脊 / 嫩肩对应部位
+    pengim: si5 bên3
+    category: 弹牙爽脆类
+    position: 牛肩胛骨内侧，匙仁的下方
+    fat_content: 低（精瘦）
+    texture: 弹牙，有明显的嚼劲
+    mouthfeel: |
+      匙柄最大的特点是一条明显的筋贯穿肉片中间，涮过后筋变透明、
+      口感脆弹。肉本身偏瘦但不会柴，筋和肉一起嚼的口感层次丰富。
+    cooking:
+      method: 涮
+      time: 10-12秒
+      doneness: 五至七成熟
+      tip: "中间的筋需要比肉多涮1-2秒，观察筋变透明即可"
+    preferred_by:
+      age_group: [20, 45]
+      taste_preference: ["喜欢弹牙口感", "不喜欢太肥", "喜欢有嚼劲"]
+      eating_habit: ["经常吃牛肉火锅", "关注口感层次"]
+      personality: ["愿意探索不同部位的食客"]
+    regional_names:
+      chaoshan:
+        - 匙柄
+      china_other:
+        beijing: 嫩肩 / 肩胛里脊
+        shanghai: 嫩肩肉
+        guangzhou: 肩胛内肉
+        chengdu: 前腿里脊
+      international:
+        japan: ザブトン (zabuton) / クラシタ (kurashita)
+        japan_note: "日本称'ザブトン'（坐垫），因其形状像坐垫。属稀有部位"
+        korea: 꾸리살 (kkurisal)
+        us: chuck tender / shoulder petite tender
+        australia: chuck tender
+        france: mouvant
+        italy: tenerone
+    price_level: 中等
+    rarity: 常见
+
+  # ============================================================
+  # 5. 胸口朥
+  # ============================================================
+  - cut: 胸口朥
+    mandarin: 牛胸油 / 胸口油
+    pengim: hêng1 kao2 la5
+    category: 弹牙爽脆类
+    position: 牛前胸，介于前腿和胸腔之间的软组织，呈白色薄膜状
+    fat_content: 极高（几乎全是脂肪和胶原蛋白）
+    texture: 生时柔软，熟后脆爽
+    mouthfeel: |
+      潮汕牛肉火锅最「反直觉」的部位。下锅前看起来像一片白花花的肥油，
+      让人心生抗拒；涮 3-5 分钟后变得**脆爽弹牙**，完全没有油腻感，
+      像在吃一种动物版的脆木耳。第一次吃的人通常会惊讶"这真的是脂肪？"
+    cooking:
+      method: 涮（久涮）
+      time: 3-5分钟
+      doneness: 全熟
+      tip: "必须涮够时间！涮不够是软的、腻的；涮够了是脆的、爽的。这是最需要耐心的部位。"
+    preferred_by:
+      age_group: [25, 50]
+      taste_preference: ["喜欢脆爽口感", "喜欢尝试新奇食材", "不怕肥肉"]
+      eating_habit: ["牛肉火锅深度爱好者", "回头客"]
+      personality: ["敢尝试、有好奇心的人", "对口感有追求"]
+    regional_names:
+      chaoshan:
+        - 胸口朥
+        - 胸口油
+        - 牛胸油
+      china_other:
+        beijing: 胸口油 / 牛胸口
+        shanghai: 胸口朥
+        guangzhou: 胸口油
+        chengdu: （较少见，无固定叫法）
+      international:
+        japan: カイノミ (kainomi) に近い / ハラミ脂肪部分
+        japan_note: "日本无完全对应的常见部位，近似胸口脂肪层"
+        korea: 양지머리 기름 부분 (yangji-meori fat)
+        korea_note: "韩国无标准对应，近似胸口脂肪"
+        us: brisket fat cap / deckle
+        australia: brisket fat
+        france: gras de poitrine
+        italy: grasso di petto
+    price_level: 中等
+    rarity: 较常见（不是每家都有，尤其非专门牛肉火锅店）
+
+  # ============================================================
+  # 6. 五花趾
+  # ============================================================
+  - cut: 五花趾
+    mandarin: 后腿腱子肉 / 后腿金钱腱
+    pengim: ngou6 huê1 zi2
+    category: 弹牙爽脆类
+    position: 牛后腿小腿部位，跟腱周围
+    fat_content: 低
+    texture: 爽脆弹牙，嚼劲十足
+    mouthfeel: |
+      五花趾是潮汕牛肉火锅中最爽脆的部位，没有之一。肌肉纤维间夹着
+      细密的筋腱，切出来断面呈现漂亮的五瓣花纹（像花朵），涮过后
+      筋腱透明、咬下去"咔哧"一声的爽脆感。牙口好的人的最爱。
+    cooking:
+      method: 涮
+      time: 8-10秒
+      doneness: 五成熟
+      tip: "切得极薄是关键，太厚嚼不动。涮时不要久煮，变色立即捞出。"
+    preferred_by:
+      age_group: [18, 45]
+      taste_preference: ["喜欢爽脆", "喜欢有嚼劲", "牙口好"]
+      eating_habit: ["牛肉火锅老饕"]
+      personality: ["追求极致口感的人", "年轻人居多"]
+    regional_names:
+      chaoshan:
+        - 五花趾
+        - 后腿腱
+        - 金钱腱（腱心）
+      china_other:
+        beijing: 后腿腱子 / 牛腱子
+        shanghai: 牛腱子
+        guangzhou: 后腿腱
+        chengdu: 后腿腱子
+      international:
+        japan: スネ肉 (sune-niku) / アキレス
+        japan_note: "日本的'スネ'（脛）部位，但日本不太单独涮食，多做炖煮"
+        korea: 사태 (satae)
+        us: hind shank / heel muscle
+        australia: shin / gravy beef
+        france: jarret arrière
+        italy: geretto posteriore
+    price_level: 高
+    rarity: 稀有（一头牛只有两条后腿，出肉量极少）
+
+  # ============================================================
+  # 7. 三花趾
+  # ============================================================
+  - cut: 三花趾
+    mandarin: 前腿腱子肉 / 前腿金钱腱
+    pengim: san1 huê1 zi2
+    category: 弹牙爽脆类
+    position: 牛前腿小腿部位，前跟腱周围
+    fat_content: 低
+    texture: 略有嚼劲，比五花趾稍软
+    mouthfeel: |
+      前腿版的"五花趾"，切面花纹为三瓣（相比五花趾的五瓣）。
+      口感比五花趾稍软一些，但依然有明显的弹牙感。如果五花趾卖完了
+      （通常都是），三花趾是不错的替代。
+    cooking:
+      method: 涮
+      time: 8-10秒
+      doneness: 五成熟
+      tip: "和五花趾一样，薄切快涮。比五花趾稍微更耐涮一两秒。"
+    preferred_by:
+      age_group: [18, 50]
+      taste_preference: ["喜欢嚼劲", "五花趾的平替选择"]
+      eating_habit: ["牛肉火锅常客"]
+      personality: ["知道五花趾和三花趾区别的人——已经算半个内行了"]
+    regional_names:
+      chaoshan:
+        - 三花趾
+        - 前腿腱
+      china_other:
+        beijing: 前腿腱子
+        shanghai: 前牛腱
+        guangzhou: 前腿腱
+        chengdu: 前腿腱子
+      international:
+        japan: マエスネ (mae-sune)
+        japan_note: "前脛肉，日本同样多做炖煮"
+        korea: 앞사태 (ap-satae)
+        us: front shank
+        australia: shin
+        france: jarret avant
+        italy: geretto anteriore
+    price_level: 中高
+    rarity: 较稀有
+
+  # ============================================================
+  # 8. 嫩肉
+  # ============================================================
+  - cut: 嫩肉
+    mandarin: 牛臀部瘦肉 / 牛霖对应部位
+    pengim: lung6 nêg8
+    category: 精瘦嫩滑类
+    position: 牛后腿上部（臀部和后腿大肌肉群）
+    fat_content: 极低
+    texture: 嫩滑、精瘦
+    mouthfeel: |
+      如其名，"嫩"就一个字。脂肪少、肉质细嫩，是健身爱好者和
+      怕油腻的人的首选。但代价是肉味不如吊龙浓郁，缺少油脂的香气。
+      可以理解为潮汕牛肉火锅里的"安全牌"——谁都能吃，谁都不会讨厌，
+      但也不会让人惊喜。
+    cooking:
+      method: 涮
+      time: 8-10秒
+      doneness: 五成熟
+      tip: "切得厚薄要均匀，涮过头容易柴（因为本身没有脂肪保护）"
+    preferred_by:
+      age_group: [15, 70]
+      taste_preference: ["喜欢精瘦", "怕油腻", "健身/减脂人群"]
+      eating_habit: ["老人和小孩", "第一次吃牛肉火锅的游客（安全选择）"]
+      personality: ["保守型食客", "健康饮食者"]
+    regional_names:
+      chaoshan:
+        - 嫩肉
+        - 臀肉
+      china_other:
+        beijing: 牛霖 / 臀肉
+        shanghai: 牛霖
+        guangzhou: 臀肉
+        chengdu: 后腿肉
+      international:
+        japan: モモ (momo) / ウチモモ (uchimomo)
+        japan_note: "日本烧肉中的'モモ'（腿肉）部位群"
+        korea: 우둔살 (udunsal) / 홍두깨살 (hongdukkae-sal)
+        us: knuckle / round
+        australia: topside / silverside
+        france: gîte / tende de tranche
+        italy: sottofesa / girello
+    price_level: 低
+    rarity: 普遍
+
+  # ============================================================
+  # 9. 肥胼
+  # ============================================================
+  - cut: 肥胼
+    mandarin: 牛腹肉 / 牛腩对应部位
+    pengim: bui5 piang5
+    category: 高脂香嫩类
+    position: 牛腹部，肋骨到后腿之间的腹壁肌肉
+    fat_content: 高（肥瘦相间，层次分明）
+    texture: 肥而不腻，肉香浓郁
+    mouthfeel: |
+      一层肥一层瘦的完美分层——这种结构在涮过后，脂肪层变得透明
+      柔软，瘦肉层保持嚼劲，一口咬下去同时有油脂的香和瘦肉的鲜。
+      可以说是"性价比之选"，价格不贵但口感丰富。
+    cooking:
+      method: 涮
+      time: 10-12秒
+      doneness: 五至七成熟
+      tip: "比纯瘦肉多涮 2-3 秒，让脂肪充分受热变透明"
+    preferred_by:
+      age_group: [25, 55]
+      taste_preference: ["喜欢肥瘦相间", "喜欢油香但不想要纯肥肉"]
+      eating_habit: ["牛肉火锅常客", "追求性价比的食客"]
+      personality: ["务实的美食家"]
+    regional_names:
+      chaoshan:
+        - 肥胼
+        - 肥牛（广义）
+      china_other:
+        beijing: 牛腩 / 腹肉
+        shanghai: 牛腩
+        guangzhou: 牛腩 / 坑腩
+        chengdu: 牛腩
+      international:
+        japan: カルビ (karubi) / サンカクバラ (sankaku-bara)
+        japan_note: "日本烧肉中最受欢迎的'カルビ'（五花）部位群，相当于肥胼+部分肋骨肉"
+        korea: 양지머리 (yangji-meori) / 차돌박이 (chadol-bagi)
+        us: brisket / flank / short plate
+        australia: brisket / flank
+        france: poitrine / bavette
+        italy: pancia
+    price_level: 中等
+    rarity: 常见
+
+  # ============================================================
+  # 10. 牛舌
+  # ============================================================
+  - cut: 牛舌
+    mandarin: 牛舌
+    pengim: ghu5 zih8
+    category: 内脏/加工类
+    position: 牛舌（前段、中段、后段各有不同口感）
+    fat_content: 中等
+    texture: 脆嫩，舌根部位尤其嫩
+    mouthfeel: |
+      舌根部位油脂丰富、入口即化；舌中段口感脆嫩；舌尖偏瘦偏韧。
+      好的牛肉火锅店只切舌根（最精华的部分），切得极薄，涮出来
+      脆中带嫩，有独特的"舌肌"纹理口感。
+    cooking:
+      method: 涮
+      time: 10-15秒
+      doneness: 五至七成熟
+      tip: "一定要薄切！厚切牛舌涮火锅会韧。如果店里有炭烤牛舌，也值得一试。"
+    preferred_by:
+      age_group: [20, 50]
+      taste_preference: ["喜欢内脏", "喜欢脆嫩口感", "喜欢独特风味"]
+      eating_habit: ["牛肉火锅进阶食客"]
+      personality: ["不是每桌都点的隐世美味，懂的人才点"]
+    regional_names:
+      chaoshan:
+        - 牛舌
+      china_other:
+        beijing: 牛舌
+        shanghai: 牛舌
+        guangzhou: 牛脷
+        chengdu: 牛舌
+      international:
+        japan: タン (tan) / タン元 (tan-moto, 舌根)
+        japan_note: "日本烧肉中的人气部位，仙台牛舌尤为出名"
+        korea: 우설 (useol)
+        us: beef tongue
+        australia: tongue
+        france: langue de boeuf
+        italy: lingua di manzo
+    price_level: 中等
+    rarity: 不是每家都有
+
+  # ============================================================
+  # 11. 牛百叶
+  # ============================================================
+  - cut: 牛百叶
+    mandarin: 牛百叶 / 牛重瓣胃
+    pengim: ghu5 bêh4 hiêh8
+    category: 内脏/加工类
+    position: 牛的第三个胃（重瓣胃），表面呈叶片状褶皱
+    fat_content: 极低
+    texture: 爽脆、弹牙
+    mouthfeel: |
+      叶片状结构让它能最大程度挂住汤汁，咬下去"咔嚓"作响。
+      完全没有内脏腥味（处理得当的话），纯吃口感和汤底的鲜。
+      潮汕牛肉火锅里的牛百叶通常是黑色的（未漂白），比火锅店
+      常见的白色牛百叶更天然。
+    cooking:
+      method: 涮
+      time: 15-20秒
+      doneness: 全熟
+      tip: "筷子夹住在滚汤中'七上八下'，叶片变硬挺即可。涮太久会缩水变韧。"
+    preferred_by:
+      age_group: [20, 55]
+      taste_preference: ["喜欢爽脆口感", "喜欢内脏"]
+      eating_habit: ["火锅爱好者", "喜欢尝试各种食材的人"]
+      personality: ["不排斥内脏的人——但牛百叶的接受度比大多数内脏高"]
+    regional_names:
+      chaoshan:
+        - 牛百叶
+        - 牛柏叶
+      china_other:
+        beijing: 牛百叶 / 毛肚（涮肚）
+        shanghai: 牛百叶
+        guangzhou: 牛百叶 / 牛草肚
+        chengdu: 毛肚 / 千层肚
+      international:
+        japan: センマイ (senmai)
+        japan_note: "日本烧肉和もつ鍋中常见，センマイ即重瓣胃"
+        korea: 처녑 (cheonnyeop) / 막창 (makchang)
+        us: omasum / bible tripe
+        australia: omasum / tripe
+        france: feuillet
+        italy: centopelle / foiolo
+    price_level: 低
+    rarity: 常见
+
+  # ============================================================
+  # 12. 牛肉丸
+  # ============================================================
+  - cut: 牛肉丸
+    mandarin: 潮汕牛肉丸
+    pengim: ghu5 nêg8 in5
+    category: 内脏/加工类
+    position: 加工品——用新鲜牛后腿肉手工捶打制成
+    fat_content: 低至中等（取决于是否加了牛油/胸口朥碎）
+    texture: 弹牙、爽脆、多汁
+    mouthfeel: |
+      真正的潮汕牛肉丸是用铁棒手工捶打新鲜牛后腿肉（不是绞肉机！），
+      破坏肌肉纤维后再捏成丸。咬下去有"弹牙"的阻力感，内部充满
+      汤汁（捶打时加入的冰水和牛油在加热后释放）。和外地火锅店里
+      那种软塌塌的"牛肉丸"完全不是一种东西。
+    cooking:
+      method: 煮
+      time: 5-8分钟（生丸），2-3分钟（熟丸）
+      doneness: 全熟（浮起即可）
+      tip: "判断真假的简单方法：能在地上弹起来的才是真正的潮汕牛肉丸（真事）。咬开应该有蜂窝状的孔洞（手打的痕迹）。"
+    preferred_by:
+      age_group: [5, 80]
+      taste_preference: ["几乎所有口味偏好的人"]
+      eating_habit: ["全年龄段", "潮汕牛肉火锅必点项", "每桌一盘起步"]
+      personality: ["全民食物，没有特定人群限制"]
+    regional_names:
+      chaoshan:
+        - 牛肉丸
+        - 牛丸
+      china_other:
+        beijing: 潮汕牛肉丸
+        shanghai: 潮汕牛肉丸
+        guangzhou: 牛肉丸
+        chengdu: 潮汕牛肉丸
+      international:
+        japan: "牛肉つみれ (gyūniku tsumire) / 潮州式牛肉団子"
+        japan_note: "日本无直接对应品，最接近的是 つみれ（鱼/肉丸），但做法不同"
+        korea: "소고기 완자 (sogogi wanja)"
+        korea_note: "韩国肉丸通常不追求弹牙口感，本质不同"
+        us: "Chaoshan beef ball"
+        australia: "beef ball (Chaoshan style)"
+        france: "boulette de boeuf (style Chaoshan)"
+        italy: "polpetta di manzo (stile Chaoshan)"
+        note: "潮汕牛肉丸是独特的加工技艺，国外无直接对应产品。弹牙口感在国际肉丸中极为罕见。"
+    price_level: 中等
+    rarity: 极普遍（每桌必点）
+    authenticity_check:
+      color: 灰白色（不是鲜红的——鲜红的是加了色素的）
+      texture: 表面粗糙、有肉纤维感（不是光滑的——光滑的是机器绞的）
+      bounce: 能弹起来
+      interior: 咬开有蜂窝孔洞
+      ingredients: 牛肉+盐+冰水+少量生粉。如果配料表有卡拉胶/大豆蛋白，不是正宗潮汕牛肉丸。
