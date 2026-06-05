@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.4"
-  total_entries: 168+
+  version: "1.2.5"
+  total_entries: 175+
   categories:
     - 人称代词
     - 日常问候
@@ -669,6 +669,21 @@ entries:
     tags: [形容词, 有音无字]
     note: 有音无字词，"妻疑"为借音写法。比"垃杂"语气更强，侧重恶心感
 
+  - char: 狭
+    mandarin: 狭窄
+    pengim: oih8
+    example: 只条巷过狭，车驶𠀾入去。
+    example_mandarin: 这条巷子很窄，车开不进去。
+    tags: [形容词]
+
+  - char: 閒
+    mandarin: 空闲/闲暇
+    pengim: oin5 / ain5
+    example: 汝有閒就来阮内食茶。
+    example_mandarin: 你有空就来我家喝茶。
+    tags: [形容词]
+    note: 閒(oin5/ain5)表示空闲，反义词为"无閒"(bho5 oin5)=没空
+
   # ========================
   # 5. 动词 (Verbs)
   # ========================
@@ -872,6 +887,14 @@ entries:
     example_mandarin: 关窗，外面很冷。
     tags: [动词, 基础]
 
+  - char: 呵咾
+    mandarin: 称赞/夸奖
+    pengim: o1 lo2
+    example: 伊呵咾我功课做好。
+    example_mandarin: 他夸奖我功课做得好。
+    tags: [动词, 潮汕特色]
+    note: 潮汕话最常用的\"称赞/夸奖\"说法，与闽南语\"呵咾\"同源
+
   # ========================
   # 6. 食物名称 (Food Names)
   # ========================
@@ -993,6 +1016,14 @@ entries:
     example_mandarin: 萝卜干煎蛋很好吃。
     tags: [食物名称, 基础]
     note: 潮汕话中\"卵\"指蛋类（不限于鸡蛋），菜脯卵是经典潮汕家常菜
+
+  - char: 芋泥
+    mandarin: 芋泥（潮汕传统甜品）
+    pengim: ou7 ni5
+    example: 潮州芋泥上好食，甜过蜜。
+    example_mandarin: 潮州芋泥最好吃，甜过蜜。
+    tags: [食物名称, 潮汕特色]
+    note: 潮汕传统甜点，用芋头蒸熟捣成泥加糖猪油制成，宴席常见
 
   # ========================
   # 7. 潮汕特色词汇 (Teochew Signature Words)
@@ -1233,6 +1264,13 @@ entries:
       整词直译即"有利可图/有得赚"，引申为"划算/值得"。
       常见于日常买东西、比较价格时使用。
       反义词为「无华」(bho5 hua5) = 不划算。
+
+  - char: 鞋拖
+    mandarin: 拖鞋
+    pengim: oi5 tua1
+    example: 汝个鞋拖放在门口。
+    example_mandarin: 你的拖鞋放在门口。
+    tags: [潮汕特色, 日常用語]
 
   # ========================
   # 16. 亲属称谓 (Kinship Terms)
@@ -1608,6 +1646,13 @@ entries:
     example_mandarin: 今晚月亮很圆。
     tags: [天气]
 
+  - char: 乌阴天
+    mandarin: 阴天
+    pengim: ou1 im1 tin1
+    example: 今日乌阴天，看来欲落雨。
+    example_mandarin: 今天是阴天，看来要下雨。
+    tags: [天气]
+
   # ========================
   # 13. 情感 (Emotions)
   # ========================
@@ -1677,3 +1722,11 @@ entries:
     example_mandarin: 我老师教潮州话。
     tags: [职业]
     note: "潮汕话中\"先生\"(sing1 sên1)是更传统的\"老师\"说法，\"老师\"(lao2 se1)为后起的通用说法"
+
+  - char: 学堂
+    mandarin: 学校
+    pengim: oh8 deng5
+    example: 学堂放学了，孥囝转来内。
+    example_mandarin: 学校放学了，孩子回家来。
+    tags: [职业, 教育]
+    note: 学堂(oh8 deng5)是潮汕话对学校的传统说法，多指中小学校

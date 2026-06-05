@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.0"
+version: "1.5.1"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日5次（07:00/10:00/13:00/16:00/20:00），自测验证，数据更新，同步源码，自动提交GitHub。由 5 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -28,9 +28,10 @@ requires:
   │    ├─ standard → dictionary.yaml (对应分类末尾)
   │    ├─ phonic_only/slang → slang.yaml (phonic_only段末尾)
   │    └─ 不确定 → references/pending-vocab-merge.md
-  ├─ 6. version bump: 小版本+1, total_entries 递增
-  ├─ 7. rsync 同步源码: → ~/workspace/chaoshan-agent/
-  └─ 8. GitHub: git add → commit → push
+  ├─ 6. **清理待合并**: 检查 `references/pending-vocab-merge.md` 是否有条目已存在于数据文件 → 标记已合并，不再重复追加
+  ├─ 7. version bump: 小版本+1, total_entries 递增
+  ├─ 8. rsync 同步源码: → ~/workspace/chaoshan-agent/
+  └─ 9. GitHub: git add → commit → push
 ```
 
 ## 搜索策略（6种查询 + 4个备选来源）
@@ -50,17 +51,40 @@ requires:
 
 当 web_search 因网络限制超时/返回空时，fallback 到以下可靠来源：
 
-1. **neoTeochew.org JSON 语料库**
-   - 地址: `https://neoTeochew.org/words`（含 4307 条语料，JSON 格式 ~4MB）
-   - 用法: `curl -sL 'https://neoTeochew.org/words' | jq '.[] | {char: .chinese, mandarin: .mandarin, pengim: .pronunciation}'`
-   - 优势: 结构化的潮汕话→普通话对照，有 Peng'im 标注
-   - 注意: JSON 可能较大，先 `head -c 10000` 预览结构
+1. **learn-teochew GitHub 仓库 (kbseah/learn-teochew) — ⭐ 首选备选**
+   - 地址: `https://github.com/kbseah/learn-teochew`
+   - 推荐文件（通过 GitHub Content API）:
+     ```
+     pages/address.md        — 称谓（太太/姑娘/老师/师父等）
+     pages/questions.md      — 疑问代词（珍时/是乜/乜事等）
+     pages/negatives.md      — 否定词详解
+     pages/classifiers.md    — 量词表
+     pages/numbers.md        — 数字词汇
+     pages/comparisons.md    — 比较句
+     pages/personal_pronouns.md — 人称代词
+     pages/particles.md      — 句末语气词
+     pages/verbal_complements.md — 动补结构
+     pages/teochew_wiktionary_index/teochew_wiktionary_index_*.md — ⭐ 按首字母编排的词典索引，含 Peng'im + IPA + 汉字
+     ```
+   - **用法**（必须用 GitHub Content API，raw.githubusercontent.com 返回 404）:
+     ```bash
+     # 获取文件内容（返回 base64 编码的 JSON）:
+     curl -sL "https://api.github.com/repos/kbseah/learn-teochew/contents/pages/address.md"
+     
+     # 获取完整目录结构（递归）:
+     curl -sL "https://api.github.com/repos/kbseah/learn-teochew/git/trees/master?recursive=1"
+     ```
+   - 优势: **标准 Peng'im（声调数字）** + IPA 双标注，学术级准确
+   - 提示: 内容为 Jekyll 格式 Markdown，表格行包含 Peng'im + IPA + 汉字三列对照
 
-2. **learn-teochew GitHub 仓库 (kbseah/learn-teochew)**
-   - 地址: `https://raw.githubusercontent.com/kbseah/learn-teochew/main/`
-   - 推荐文件: `numbers.md`（数字词汇）、`address.md`（称谓）、`grammar.md`（语法）
-   - 用法: `curl -sL 'https://raw.githubusercontent.com/kbseah/learn-teochew/main/numbers.md'`
-   - 优势: 标准 Peng'im 标注，学术级准确
+2. **neoTeochew.org JSON 语料库**（注意：文件大、容易超时）
+   - 地址: `https://raw.githubusercontent.com/neoTeochew/neoTeochew.github.io/master/data.json`
+   - ⚠️ **必须用 raw.githubusercontent.com 地址，不要用 neoTeochew.org/words（可能不可达）**
+   - ⚠️ **文件约 192KB+，curl --max-time 15 下经常超时**
+   - 用法: `curl -sL --max-time 20 'https://raw.githubusercontent.com/neoTeochew/neoTeochew.github.io/master/data.json'`
+   - 字段: `hanzi`（字符数组）、`definitions.putonghua`（普通话释义）、`pronunciation`（neoTeochew体系拼音，非标准 Peng'im）
+   - 优势: 约有数千条语料，含例句
+   - 局限: 拼音为 neoTeochew 自创体系，需按转换表转 Peng'im（见 teochew-translate SKILL.md），可靠性低于 learn-teochew
 
 3. **GitHub API 搜索相关仓库**
    - 查询: `curl -sL 'https://api.github.com/search/repositories?q=teochew&sort=stars&per_page=10'`
@@ -142,6 +166,17 @@ requires:
 - 必须保证 Peng'im 发音记录完整，这是借音推理的依据
 - 如果搜索到的数据有字面无音标，补上推测的 Peng'im 并在 note 注明
 - 例：妻疑 → note: "借音字，'妻疑'读 ci1 ghi5 表'脏'，非字面'妻子怀疑'意"
+
+### ⚠️ pending-vocab-merge.md 过时条目清理
+
+`references/pending-vocab-merge.md` 中的待合并条目**可能已经存在**于 dictionary.yaml / slang.yaml 中（如果上一个会话已经手动合并了但没有更新该文件）。
+
+每次追加数据前必须做的检查：
+1. 读取 `references/pending-vocab-merge.md` 中的待合并条目
+2. 对每条，在 dictionary.yaml 和 slang.yaml 中搜索该 `char` 是否已存在
+3. 已存在的 → 标记为 `<!-- 已存在 YYYY-MM-DD -->` 并删除待合并标记
+4. 确实不存在的 → 按规则追加
+5. 清理过的 pending 文件也要同步到源码（rsync 覆盖）
 
 ### version bump
 - dictionary.yaml: version 小版本+1, total_entries +N
