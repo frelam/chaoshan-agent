@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.2"
-  total_entries: 162+
+  version: "1.2.3"
+  total_entries: 163+
   categories:
     - 人称代词
     - 日常问候
@@ -1188,6 +1188,19 @@ entries:
     example: 头家，只个若㩼银？
     example_mandarin: 老板，这个多少钱？
     tags: [潮汕特色, 日常问候]
+
+  - char: 有华
+    mandarin: 划算/有得赚/值得
+    pengim: u6 hua5
+    example: 只件衫买五十银，过有华！
+    example_mandarin: 这件衣服买五十块，很划算！
+    tags: [潮汕特色, 形容词]
+    note: >-
+      "有华"(u6 hua5)是潮汕话表示"划算/有得赚/值得"的特色口语词。
+      "华"(hua5)在这里有「利益/盈利」之义，与「划算」的"划"(hua5)同音同义。
+      整词直译即"有利可图/有得赚"，引申为"划算/值得"。
+      常见于日常买东西、比较价格时使用。
+      反义词为「无华」(bho5 hua5) = 不划算。
 
   # ========================
   # 16. 亲属称谓 (Kinship Terms)
