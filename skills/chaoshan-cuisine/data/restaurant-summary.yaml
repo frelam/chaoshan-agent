@@ -1,29 +1,37 @@
 # ============================================================
-# 潮汕美食店铺总览 — AI 聚合总结 (Aggregated Summaries)
+# 潮汕美食店铺总览 — 多维聚合画像 (Aggregated Profiles)
 # ============================================================
 # 每条记录 = 一家店铺的综合画像
 # 数据来源：从 restaurants.yaml 通过公平算法自动聚合生成
-# 算法详情：见 docs/FAIRNESS-ALGORITHM.md
 #
-# ⚠️ 此文件不手动编辑 — 由 AI 从原始评价中生成
-# 如需更新，重新运行公平算法即可
+# 设计理念：
+#   - 不展示单一排名/排序。排序是针对用户的，因人而异。
+#   - 展示多维度数据，让用户自己判断。
+#   - 保留少数派声音（≥15%的观点独立展示）。
+#   - 反操控检测（短期大量集中打分标记不删除）。
+#   - 时间衰减加权（越近的评价权重越高）。
+#
+# 聚合算法：见 docs/FAIRNESS-ALGORITHM.md
+# 个性化推荐：见 docs/PERSONALIZATION-ALGORITHM.md
 # ============================================================
 
 meta:
   name: 潮汕美食店铺总览
-  version: "1.0.0"
+  version: "2.0.0"
   total_restaurants: 0
+  total_reviews_processed: 0
   last_updated: "2026-06-05"
-  algorithm_version: "1.0.0"
+  algorithm_version: "2.0.0"
   algorithm:
-    rating_method: median        # 中位数抗极值
-    minority_threshold: 0.15     # ≥15% 的观点独立保留
-    consensus_threshold: 0.60    # ≥60% 的观点归入共识
+    rating_method: median          # 中位数抗极值
     time_decay:
-      within_1y: 1.0
-      within_2y: 0.8
-      within_3y: 0.5
-      over_3y: 0.3
+      within_1y: 1.0              # 1年内权重1.0
+      within_2y: 0.8              # 1-2年权重0.8
+      within_3y: 0.5              # 2-3年权重0.5
+      over_3y: 0.3                # 超过3年权重0.3
+      old_shop_bonus: true        # 老店且评价稳定时 >3年评价权重 0.6
+    minority_threshold: 0.15       # ≥15%的观点独立保留
+    consensus_threshold: 0.60      # ≥60%的观点归入共识
     anti_manipulation:
       suspicious_window_days: 7
       suspicious_min_reviews: 3
@@ -33,44 +41,175 @@ meta:
 # 店铺条目
 # ============================================================
 entries: []
-  # 空列表 — 等待第一批评价被聚合
 
-  # --- TEMPLATE: 聚合结果模板（由公平算法生成）---
-  # - id: rest-000
+  # --- TEMPLATE: 店铺聚合画像 ---
+  # - id: rest-001
   #   name: ""
   #   address: ""
   #   district: ""
   #   cuisine_type: ""
-  #   overall:
-  #     rating_median: 0.0
-  #     rating_count: 0
-  #     rating_distribution: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
-  #     rating_variance: 0.0
-  #     weighted_rating: 0.0    # 时间衰减加权后的评分
+  #   coordinates:
+  #     lat: 0.0
+  #     lng: 0.0
+  #
+  #   # ========== 评分概览（不做排名） ==========
+  #   rating_overview:
+  #     median: 0.0               # 综合中位数
+  #     weighted_median: 0.0      # 时间衰减加权后的中位数
+  #     count: 0                  # 评价总数
+  #     distribution: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}  # 评分分布直方图
+  #     variance: 0.0             # 方差（>1.5标记争议）
+  #     last_review_date: "YYYY-MM-DD"  # 最新评价日期
+  #     last_verified: "YYYY-MM-DD"     # 最后核验日期
+  #
+  #   # ========== 人群细分评分 ==========
+  #   demographics:
+  #     by_type:
+  #       local:
+  #         count: 0
+  #         median_rating: 0.0
+  #         would_revisit_rate: 0.0   # 愿意回头的比例
+  #       tourist:
+  #         count: 0
+  #         median_rating: 0.0
+  #         would_revisit_rate: 0.0
+  #       returning_visitor:
+  #         count: 0
+  #         median_rating: 0.0
+  #         would_revisit_rate: 0.0
+  #     by_age:
+  #       "18-25":
+  #         count: 0
+  #         median_rating: 0.0
+  #       "26-35":
+  #         count: 0
+  #         median_rating: 0.0
+  #       "36-50":
+  #         count: 0
+  #         median_rating: 0.0
+  #       "50+":
+  #         count: 0
+  #         median_rating: 0.0
+  #     by_hometown:
+  #       - hometown: "汕头"
+  #         count: 0
+  #         median_rating: 0.0
+  #       - hometown: "广州"
+  #         count: 0
+  #         median_rating: 0.0
+  #       # ... 其他城市按数据量自动列出
+  #
+  #   # ========== 共识观点 ==========
   #   consensus:
-  #     must_try: []
-  #     pros: []
-  #     cons: []
+  #     must_try:
+  #       - dish: "菜名"
+  #         avg_rating: 0.0
+  #         mention_count: 0
+  #         price_range: "30-40元"
+  #         best_comment: "摘取最精彩的评价原文"
+  #     pros:
+  #       - "优点描述"
+  #     cons:
+  #       - "缺点描述"
+  #
+  #   # ========== 少数派声音 ==========
   #   diverse_opinions:
-  #     - opinion: ""
+  #     - opinion: "不一样的观点"
   #       count: 0
-  #       ratio: 0.0
-  #       held_by: [local, tourist]   # 哪些人群持有这个观点
-  #   demographic_breakdown:
-  #     local:
-  #       count: 0
-  #       median_rating: 0.0
-  #     tourist:
-  #       count: 0
-  #       median_rating: 0.0
-  #     returning_visitor:
-  #       count: 0
-  #       median_rating: 0.0
+  #       ratio: 0.0           # 占全部评价的比例
+  #       held_by:
+  #         types: [local]     # 主要哪些人群持有
+  #         note: "本地人觉得价格偏贵，游客觉得可以接受"
+  #
+  #   # ========== 争议标记 ==========
   #   controversy:
-  #     is_controversial: false       # rating_variance > 1.5 时为 true
-  #     note: ""                      # 如果争议大，说明原因
+  #     is_controversial: false    # variance > 1.5 时为 true
+  #     note: ""
+  #
+  #   # ========== 反操控 ==========
   #   suspicious:
   #     has_suspicious_clusters: false
   #     suspicious_review_ids: []
-  #   summary: ""                     # AI 生成，≤200 字
+  #
+  #   # ========== 营业状态 ==========
+  #   status: active             # active / needs_review / closed
+  #   status_note: ""            # "需要核验营业状态" / "已闭店" 等
+  #
+  #   # ========== AI摘要 ==========
+  #   summary: "≤200字，客观呈现"
+  #   last_updated: "YYYY-MM-DD"
+
+  # --- EXAMPLE: 八合里海记牛肉店（总店）---
+  # - id: rest-example-01
+  #   name: "八合里海记牛肉店（总店）"
+  #   address: "汕头市金平区黄岗路坪东5座"
+  #   district: "金平区"
+  #   cuisine_type: "牛肉火锅"
+  #   rating_overview:
+  #     median: 4.3
+  #     weighted_median: 4.5
+  #     count: 0                   # 等实际数据填入
+  #     distribution: {1: 0, 2: 0, 3: 1, 4: 3, 5: 2}
+  #     variance: 1.1
+  #     last_review_date: "2026-05-20"
+  #     last_verified: "2026-06-05"
+  #   demographics:
+  #     by_type:
+  #       local:
+  #         count: 0
+  #         median_rating: 4.5
+  #         would_revisit_rate: 1.0
+  #       tourist:
+  #         count: 0
+  #         median_rating: 4.0
+  #         would_revisit_rate: 1.0
+  #     by_age:
+  #       "26-35":
+  #         count: 0
+  #         median_rating: 4.5
+  #       "36-50":
+  #         count: 0
+  #         median_rating: 4.3
+  #     by_hometown:
+  #       - hometown: "汕头"
+  #         count: 0
+  #         median_rating: 4.5
+  #       - hometown: "北京"
+  #         count: 0
+  #         median_rating: 4.0
+  #   consensus:
+  #     must_try:
+  #       - dish: "脖仁（雪花）"
+  #         avg_rating: 5.0
+  #         mention_count: 0
+  #         price_range: "38元"
+  #         best_comment: "油脂分布均匀，入口即化"
+  #       - dish: "粿条"
+  #         avg_rating: 5.0
+  #         mention_count: 0
+  #         price_range: "8元"
+  #         best_comment: "最后下粿条配芹菜粒加汤，全场最佳收尾"
+  #     pros:
+  #       - "脖仁的雪花纹理漂亮，入口即化"
+  #       - "牛肉丸弹牙够力"
+  #       - "价格实惠，性价比高"
+  #     cons:
+  #       - "排队时间长（40分钟+）"
+  #       - "环境嘈杂，路边大排档水平"
+  #       - "服务员态度一般（本地阿姨风格）"
+  #   diverse_opinions:
+  #     - opinion: "胸口朥评价两极分化——本地人和重口味食客很爱，北方游客多数不太接受"
+  #       count: 0
+  #       ratio: 0.5
+  #       held_by:
+  #         types: [local, tourist]
+  #         note: "本地人觉得胸口朥是精髓，北京游客觉得太油"
+  #   controversy:
+  #     is_controversial: false
+  #     note: ""
+  #   suspicious:
+  #     has_suspicious_clusters: false
+  #   status: active
+  #   status_note: ""
+  #   summary: "汕头牛肉火锅的代表性老店。脖仁（雪花）是必点招牌，入口即化的口碑无人争议。本地人和游客都认可。缺点是排队久、环境一般。胸口朥口味存在人群差异。"
   #   last_updated: "2026-06-05"

@@ -2,24 +2,27 @@
 # 潮汕美食评价库 — 食客原始评价 (Raw Reviews)
 # ============================================================
 # 每一条记录 = 一位贡献者的一次探店评价
-# 数据来源：GitHub 开源贡献，每条都有 contributor 字段溯源
 #
-# === 贡献指南 ===
-# 1. 复制下方 TEMPLATE 注释中的模板
-# 2. 填写你的真实评价（好吃就说好吃，不好吃就说不好吃）
-# 3. review_text 不少于 30 字，必须有具体口感/味道描述
-# 4. 提交 PR，维护者审核后合并
+# 设计理念：
+#   - 不做榜单/排名。排序是针对具体用户的，因人而异。
+#   - 每条评价都包含评价者画像，支撑个性化推荐。
+#   - "好吃"可以有很多种定义，保留所有真实声音。
 #
-# === 评价质量要求 ===
-# - 必须是本人亲自去过、吃过的店
-# - 不接受"还行""可以""一般"等模糊评价
-# - 鼓励具体描述：什么菜好吃、为什么好吃、什么口感
-# - 环境和服务可以提，但不是评价重点
+# 数据来源：
+#   - self: 本系统自动收集（web search 提取）
+#   - community: GitHub 开源贡献
+#   - web: 用户通过网页/小程序提交
+#
+# 评价质量要求：
+#   - 必须是本人亲自去过、吃过的店
+#   - 不接受"还行""可以""一般"等模糊评价
+#   - 鼓励具体描述：什么菜好吃、为什么好吃、什么口感
+#   - 好评差评一样珍贵——多元声音是核心价值
 # ============================================================
 
 meta:
   name: 潮汕美食评价库
-  version: "1.0.0"
+  version: "2.0.0"
   total_reviews: 0
   total_restaurants: 0
   last_updated: "2026-06-05"
@@ -68,37 +71,79 @@ meta:
 # ============================================================
 # 评价条目
 # ============================================================
-entries: []
-  # 空列表 — 等待第一位贡献者
+# 每条评价的核心字段说明：
+#
+# restaurant_name  — 店名（尽量使用大众熟知的名称）
+# address          — 地址（精确到门牌号或地标）
+# district         — 所属区县（从 meta.districts 中选择）
+# cuisine_type     — 美食品类（从 meta.food_categories 中选择）
+#
+# reviewer:
+#   id              — 评价者唯一标识
+#   type            — local(本地人) / tourist(游客) / returning-visitor(回访客)
+#   hometown        — 精确到城市，如"汕头"、"广州"、"北京"、"上海"
+#   age_range       — 年龄段：18-25 / 26-35 / 36-50 / 50+
+#   taste_tags      — 口味偏好标签，如 ["喜欢油香", "喜欢弹牙", "怕油腻"]
+#                     （从评价文本中提取或用户自述）
+#
+# visit_date       — 到店日期（用于时间衰减）
+# submit_date      — 提交/录入日期（用于时间衰减）
+# visit_context    — 用餐场景（午餐/晚餐/宵夜、和谁一起、什么场合）
+#
+# dishes_ordered:
+#   每道菜独立评分和评价。包括：
+#   name       — 菜名
+#   rating     — 1-5分，对该菜品的独立评分
+#   price      — 价格（元），或 "approx"
+#   comment    — 具体口感描述
+#
+# overall_rating  — 本次综合评分 1-5
+# review_text     — 详细文字评价（不少于30字）
+# would_revisit   — true/false 是否愿意再吃
+# tags            — 自定义标签
+#
+# contributor     — 来源标识（GitHub用户名 / "cuisine-self-evolve" 等）
+# source_type     — self(自动收集) / community(社区贡献) / web(用户提交)
+# source_url      — 自动收集时的原始来源URL（如有）
+# ============================================================
 
-  # --- TEMPLATE: 贡献者模板（复制此段并填写）---
-  # - id: rev-000
+entries: []
+  # --- TEMPLATE: 贡献者模板 ---
+  # - id: rev-001
   #   restaurant_name: ""
   #   address: ""
-  #   district: ""           # 从 meta.districts 中选择
-  #   cuisine_type: ""       # 从 meta.food_categories 中选择
-  #   coordinates:           # 可选，经纬度（用于地图展示）
+  #   district: ""
+  #   cuisine_type: ""
+  #   coordinates:
   #     lat: 0.0
   #     lng: 0.0
   #   reviewer:
-  #     id: ""               # 你的 GitHub 用户名
-  #     type: local          # local | tourist | returning-visitor
-  #     hometown: ""         # 你来自哪里（游客填写）
-  #   visit_date: "YYYY-MM-DD"
-  #   visit_context: ""      # 可选：午餐/晚餐/宵夜、和谁一起等
+  #     id: ""
+  #     type: local                 # local / tourist / returning-visitor
+  #     hometown: "汕头"             # 精确到城市
+  #     age_range: "26-35"          # 18-25 / 26-35 / 36-50 / 50+
+  #     taste_tags: ["喜欢油香", "喜欢弹牙"]
+  #   visit_date: "2026-06-01"
+  #   submit_date: "2026-06-05"
+  #   visit_context: "周六午餐，带外地朋友体验"
   #   dishes_ordered:
-  #     - name: ""
-  #       rating: 5          # 1-5 分（只评价这道菜）
-  #       price: 0           # 价格（元），如不清楚可写 approx
-  #       comment: ""        # 对这道菜的具体评价
-  #   overall_rating: 5      # 本次体验综合评分 1-5
-  #   review_text: ""        # 整体评价，不少于 30 字
+  #     - name: "脖仁（雪花）"
+  #       rating: 5
+  #       price: 38
+  #       comment: "油脂分布均匀，入口即化"
+  #     - name: "吊龙"
+  #       rating: 4
+  #       price: 32
+  #       comment: "嫩滑，但今天的切工一般，有几片稍厚"
+  #   overall_rating: 4.5
+  #   review_text: "汕头本地人，从小吃牛肉火锅。脖仁的雪花纹理漂亮...（不少于30字）"
   #   would_revisit: true
-  #   tags: []               # 从 meta.food_categories 选择 + 自定义标签如 [老店, 性价比高, 深夜营业]
-  #   contributor: ""        # 你的 GitHub 用户名
-  #   date: "2026-06-05"
+  #   tags: [牛肉火锅, 老店, 排队]
+  #   contributor: "github-username"
+  #   source_type: community        # self / community / web
+  #   source_url: ""
 
-  # --- EXAMPLE 1: 本地人评价 ---
+  # --- EXAMPLE 1: 本地人评价（26-35岁，喜欢油香弹牙）---
   # - id: rev-example-01
   #   restaurant_name: "八合里海记牛肉店（总店）"
   #   address: "汕头市金平区黄岗路坪东5座"
@@ -107,7 +152,11 @@ entries: []
   #   reviewer:
   #     id: "example-user-1"
   #     type: local
+  #     hometown: "汕头"
+  #     age_range: "26-35"
+  #     taste_tags: ["喜欢油香", "喜欢弹牙", "追求性价比"]
   #   visit_date: "2026-05-15"
+  #   submit_date: "2026-05-20"
   #   visit_context: "周六午餐，带外地朋友体验"
   #   dishes_ordered:
   #     - name: "脖仁（雪花）"
@@ -135,9 +184,10 @@ entries: []
   #   would_revisit: true
   #   tags: [牛肉火锅, 老店, 游客打卡, 排队]
   #   contributor: "example-user-1"
-  #   date: "2026-05-20"
+  #   source_type: community
+  #   source_url: ""
 
-  # --- EXAMPLE 2: 游客评价 ---
+  # --- EXAMPLE 2: 游客评价（18-25岁，第一次来潮汕，怕油腻）---
   # - id: rev-example-02
   #   restaurant_name: "八合里海记牛肉店（总店）"
   #   address: "汕头市金平区黄岗路坪东5座"
@@ -147,7 +197,10 @@ entries: []
   #     id: "example-user-2"
   #     type: tourist
   #     hometown: "北京"
+  #     age_range: "18-25"
+  #     taste_tags: ["怕油腻", "喜欢尝鲜"]
   #   visit_date: "2026-05-15"
+  #   submit_date: "2026-05-25"
   #   visit_context: "第一次来汕头，专程打卡"
   #   dishes_ordered:
   #     - name: "脖仁（雪花）"
@@ -167,9 +220,10 @@ entries: []
   #   would_revisit: true
   #   tags: [牛肉火锅, 游客打卡, 环境一般]
   #   contributor: "example-user-2"
-  #   date: "2026-05-25"
+  #   source_type: community
+  #   source_url: ""
 
-  # --- EXAMPLE 3: 蚝烙小店 ---
+  # --- EXAMPLE 3: 回访客评价（36-50岁，广州人，追求食材品质）---
   # - id: rev-example-03
   #   restaurant_name: "老姿娘蚝烙"
   #   address: "汕头市金平区民权路与福平路交叉口"
@@ -179,8 +233,11 @@ entries: []
   #     id: "example-user-3"
   #     type: returning-visitor
   #     hometown: "广州"
+  #     age_range: "36-50"
+  #     taste_tags: ["追求食材品质", "喜欢脆爽口感"]
   #   visit_date: "2026-04-20"
-  #   visit_context: "第三次来汕头，每次都要吃这家"
+  #   submit_date: "2026-04-28"
+  #   visit_context: "第三次来汕头出差，每次都要吃这家"
   #   dishes_ordered:
   #     - name: "蚝烙"
   #       rating: 5
@@ -195,4 +252,5 @@ entries: []
   #   would_revisit: true
   #   tags: [蚝烙, 街边小食, 老店, 无空调]
   #   contributor: "example-user-3"
-  #   date: "2026-04-28"
+  #   source_type: community
+  #   source_url: ""

@@ -1,6 +1,6 @@
-# 潮汕美食 (Chaoshan Cuisine) Skill
+# 潮汕美食 (Chaoshan Cuisine) Skill — v2.0.0
 
-> 以好吃为准、去营销化的潮汕美食真实评价体系。
+> 不做榜单，不做排名。以好吃为准、去营销化的潮汕美食公平评价与个性化推荐体系。
 
 ## 这是什么
 
@@ -9,6 +9,8 @@
 - 🍲 **真实食客评价库** — 每一条评价来自真实贡献者，好吃说好吃，不好吃说不好吃
 - 📊 **公平聚合算法** — 用中位数抗极值、少数声音保留、反操控检测，确保总结不偏不倚
 - 🥩 **潮汕牛肉知识库** — 12 个经典部位：口感、涮法、人群画像、全球命名对照
+- 👤 **评价者画像系统** — 记录每位评价者的口味偏好、可信度和历史，支撑个性化推荐
+- 🎯 **个性化推荐** — 根据"你是谁"（家乡、年龄、口味）给出因人而异的建议
 - 🤖 **AI 美食导航** — 基于真实评价做推荐，不夹带营销私货
 
 ## 为什么我们的榜单是公平的
@@ -152,8 +154,9 @@ bash install.sh chaoshan-cuisine
 
 ```
 > 汕头哪家牛肉火锅好吃？
+> 推荐吃的 — 我是北京来的，第一次来汕头
+> 潮汕攻略 — 揭阳有哪些必吃美食？
 > 脖仁是什么部位？和吊龙有什么区别？
-> 帮我推荐一家粿条汤
 > 胸口朥在日本叫什么？
 ```
 
@@ -161,16 +164,24 @@ bash install.sh chaoshan-cuisine
 
 ```
 skills/chaoshan-cuisine/
-├── SKILL.md                    # 技能定义 + AI 导航员 prompt
-├── README.md                   # 本文件
+├── SKILL.md                         # 技能定义 + AI 导航员 prompt（v2.0.0）
+├── README.md                        # 本文件
 ├── data/
-│   ├── restaurants.yaml        # 食客原始评价（开源贡献）
-│   ├── restaurant-summary.yaml # AI 聚合总结（由公平算法生成）
-│   └── beef-knowledge.yaml     # 潮汕牛肉部位知识库
+│   ├── restaurants.yaml             # 食客原始评价库（v2.0.0）
+│   ├── restaurant-summary.yaml      # 店铺多维聚合画像（v2.0.0）
+│   ├── reviewer-profiles.yaml       # 评价者画像数据库（v2.0.0）
+│   └── beef-knowledge.yaml          # 潮汕牛肉部位知识库（v1.0.0）
 ├── docs/
-│   └── FAIRNESS-ALGORITHM.md   # 公平总结算法设计文档
+│   ├── FAIRNESS-ALGORITHM.md        # 公平总结算法文档（v2.0.0）
+│   ├── PERSONALIZATION-ALGORITHM.md # 个性化推荐算法文档（v2.0.0）
+│   └── CONTRIBUTION-GUIDE.md        # 用户贡献指南
+├── cuisine-self-evolve/
+│   ├── SKILL.md                     # 自演进策略（v2.0.0）
+│   └── data/
+│       ├── search-sources.md        # 搜索来源策略
+│       └── restaurant-check-template.md  # 店铺核验模板
 └── tests/
-    └── cases.yaml              # 测试用例
+    └── cases.yaml                   # 测试用例
 ```
 
 ## 如何贡献评价
@@ -226,6 +237,32 @@ skills/chaoshan-cuisine/
 | 争议透明 | 评分方差>1.5 时标注 | 评价两极分化本身值得注意 |
 
 详见 [`docs/FAIRNESS-ALGORITHM.md`](docs/FAIRNESS-ALGORITHM.md)
+
+## 个性化推荐
+
+v2.0.0 全新能力：不设固定排名，排序因人而异。
+
+```
+你的画像（家乡/年龄/口味）
+  → 匹配相似评价者
+  → 按相似度加权聚合
+  → 生成"适合你"的推荐
+  → 同时展示全貌（大众评分 + 各人群细分）
+```
+
+| 维度 | 权重 | 说明 |
+|------|------|------|
+| 家乡 | 0.3 | 同城=1.0，同省=0.5 |
+| 年龄段 | 0.2 | 完全匹配=1.0，相邻=0.5 |
+| 身份类型 | 0.2 | 本地人/游客/回访客 |
+| 口味标签 | 0.2 | 标签交集比例 |
+| 价格区间 | 0.1 | 区间重叠度 |
+
+详见 [`docs/PERSONALIZATION-ALGORITHM.md`](docs/PERSONALIZATION-ALGORITHM.md)
+
+## 贡献评价
+
+👉 请阅读 [`docs/CONTRIBUTION-GUIDE.md`](docs/CONTRIBUTION-GUIDE.md) 获取完整指南。
 
 ## 牛肉知识库速览
 

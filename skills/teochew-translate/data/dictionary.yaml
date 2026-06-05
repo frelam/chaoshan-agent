@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.5"
-  total_entries: 175+
+  version: "1.2.6"
+  total_entries: 180+
   categories:
     - 人称代词
     - 日常问候
@@ -894,6 +894,46 @@ entries:
     example_mandarin: 他夸奖我功课做得好。
     tags: [动词, 潮汕特色]
     note: 潮汕话最常用的\"称赞/夸奖\"说法，与闽南语\"呵咾\"同源
+
+  - char: 啉
+    mandarin: 喝/饮
+    pengim: lim1
+    example: 来阮内啉茶。
+    example_mandarin: 来我家喝茶。
+    tags: [动词, 基础]
+    note: 潮汕话\"喝\"的主要说法，如啉茶啉酒
+
+  - char: 睇
+    mandarin: 看
+    pengim: toin2
+    example: 来去睇戏。
+    example_mandarin: 去看戏。
+    tags: [动词, 基础]
+    note: 潮汕话\"看\"的通用说法，睇书=看书，睇医生=看医生
+
+  - char: 刣
+    mandarin: 杀/宰杀
+    pengim: tai5
+    example: 阿伯在刣鸡。
+    example_mandarin: 伯父在杀鸡。
+    tags: [动词]
+    note: 潮汕话\"杀\"的专用说法，如刣牛、刣猪、刣人
+
+  - char: 挲
+    mandarin: 揉/搓/按摩
+    pengim: sa1
+    example: 乞我挲散一下。
+    example_mandarin: 让我按摩/揉一下。
+    tags: [动词]
+    note: 表示用手揉搓的动作，如挲衫、挲骹
+
+  - char: 㩄
+    mandarin: 浪费/糟蹋/搞坏
+    pengim: sai1
+    example: 莫㩄掉只个机会。
+    example_mandarin: 别浪费/糟蹋这个机会。
+    tags: [动词, 潮汕特色]
+    note: 常用口语词，表浪费、搞砸、破坏，如㩄钱、㩄物、㩄掉
 
   # ========================
   # 6. 食物名称 (Food Names)

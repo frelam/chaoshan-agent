@@ -1,0 +1,148 @@
+# ============================================================
+# 潮汕美食 — 评价者画像数据库 (Reviewer Profiles)
+# ============================================================
+# 每条记录 = 一个评价者的综合画像
+# 数据来源：从 restaurants.yaml 中的评价者信息自动积累
+#
+# 用途：
+#   - 支撑个性化推荐（"和你画像相似的人觉得..."）
+#   - 评价可信度评估
+#   - 发现不同人群的口味差异
+# ============================================================
+
+meta:
+  name: 潮汕美食评价者画像库
+  version: "2.0.0"
+  total_profiles: 0
+  last_updated: "2026-06-05"
+
+# ============================================================
+# 口味偏好标签体系
+# ============================================================
+# 以下标签可以从评价文本中提取，或由用户自述
+# 分类仅作组织用途，每个标签独立存在
+taste_tag_taxonomy:
+  # 口味倾向
+  taste_profile:
+    - "喜欢油香"          # 偏好油脂丰富的部位/菜品
+    - "怕油腻"            # 偏好精瘦、清淡
+    - "喜欢清淡"          # 偏好原味、少调料
+    - "喜欢浓郁"          # 偏好味道重、调料多
+    - "喜欢辣"            # 偏好加辣
+    - "嗜甜"              # 偏好甜味
+
+  # 口感偏好
+  texture_preference:
+    - "喜欢弹牙"          # 偏好有嚼劲、Q弹的口感
+    - "喜欢软嫩"          # 偏好入口即化的口感
+    - "喜欢脆爽"          # 偏好爽脆口感（如胸口朥、牛百叶）
+    - "喜欢韧劲"          # 偏好有嚼头的质感
+
+  # 用餐偏好
+  dining_style:
+    - "追求性价比"        # 关注价格和分量
+    - "追求食材品质"      # 愿意为高质量食材多花钱
+    - "喜欢尝鲜"          # 喜欢尝试新奇菜品
+    - "保守型食客"        # 偏好稳妥、经典选择
+
+  # 场景偏好（从 visit_context 提取）
+  scene_preference:
+    - "适合聚餐"          # 适合多人用餐
+    - "适合打卡"          # 适合首次体验
+    - "适合日常"          # 日常随便吃吃
+    - "适合宵夜"          # 深夜觅食
+
+# ============================================================
+# 画像条目
+# ============================================================
+entries: []
+
+  # --- TEMPLATE ---
+  # - id: reviewer-001
+  #   # 基本信息
+  #   name: ""                    # 可选：昵称/用户名
+  #   type: local                 # local / tourist / returning-visitor
+  #   hometown: "汕头"             # 精确到城市
+  #   age_range: "26-35"          # 18-25 / 26-35 / 36-50 / 50+
+  #
+  #   # 口味偏好（从评价历史和自述中提取）
+  #   inferred_taste_tags:
+  #     - "喜欢弹牙"
+  #     - "追求性价比"
+  #   self_declared_taste_tags:
+  #     - "怕油腻"                 # 用户自己声明的偏好
+  #
+  #   # 评价统计
+  #   review_stats:
+  #     total_reviews: 0
+  #     avg_rating_given: 0.0     # 该用户平均打分数（偏高/偏低倾向）
+  #     avg_price_range: "30-50元" # 该用户常消费的价格区间
+  #     favorite_cuisines:
+  #       - cuisine: "牛肉火锅"
+  #         count: 0
+  #     favorite_districts:
+  #       - district: "金平区"
+  #         count: 0
+  #
+  #   # 可信度评估
+  #   credibility:
+  #     score: 1.0                 # 0.0-1.0
+  #     review_length_avg: 0       # 平均评价字数
+  #     detail_level: high         # high / medium / low（评价包含口感和价格细节）
+  #     consistency_score: 1.0     # 评分一致性（多次评价之间的逻辑一致性）
+  #     flagged_reviews: []        # 被标记的可疑评价ID
+  #
+  #   # 最后活跃
+  #   last_review_date: "YYYY-MM-DD"
+  #   date_added: "YYYY-MM-DD"
+
+  # --- EXAMPLE ---
+  # - id: reviewer-example-01
+  #   name: "example-user-1"
+  #   type: local
+  #   hometown: "汕头"
+  #   age_range: "26-35"
+  #   inferred_taste_tags: ["喜欢油香", "喜欢弹牙", "追求性价比"]
+  #   self_declared_taste_tags: []
+  #   review_stats:
+  #     total_reviews: 1
+  #     avg_rating_given: 4.5
+  #     avg_price_range: "28-38元"
+  #     favorite_cuisines:
+  #       - cuisine: "牛肉火锅"
+  #         count: 1
+  #     favorite_districts:
+  #       - district: "金平区"
+  #         count: 1
+  #   credibility:
+  #     score: 0.9
+  #     review_length_avg: 150
+  #     detail_level: high
+  #     consistency_score: 1.0
+  #   last_review_date: "2026-05-20"
+  #   date_added: "2026-05-20"
+
+  # - id: reviewer-example-02
+  #   name: "example-user-2"
+  #   type: tourist
+  #   hometown: "北京"
+  #   age_range: "18-25"
+  #   inferred_taste_tags: ["怕油腻", "喜欢尝鲜"]
+  #   self_declared_taste_tags: []
+  #   review_stats:
+  #     total_reviews: 1
+  #     avg_rating_given: 4.0
+  #     avg_price_range: "28-38元"
+  #     favorite_cuisines:
+  #       - cuisine: "牛肉火锅"
+  #         count: 1
+  #     favorite_districts:
+  #       - district: "金平区"
+  #         count: 1
+  #   credibility:
+  #     score: 0.85
+  #     review_length_avg: 120
+  #     detail_level: high
+  #     consistency_score: 1.0
+  #   last_review_date: "2026-05-25"
+  #   date_added: "2026-05-25"
