@@ -1,6 +1,6 @@
 ---
 name: teochew-translate
-version: "1.3.3"
+version: "1.3.4"
 description: "潮汕话↔普通话双向翻译，支持潮州拼音（Peng'im），涵盖语法转换、文化注释、俗语解释。支持不确定时自动搜索确认、从用户更正中学习"
 triggers: ["潮汕话", "翻译", "teochew", "潮语", "呾", "潮州话", "pengim", "潮汕方言", "潮州音", "潮汕"]
 requires:
@@ -383,6 +383,7 @@ The following files contain the core dictionary and reference data (loaded via `
 - **references/pending-slang-entries.md**: New slang entries awaiting merge into slang.yaml — check and merge when editing data files
 - **references/pending-vocab-merge.md**: New vocabulary entries awaiting merge into dictionary.yaml — verified Peng'im, section placement specified
 - **references/teochew-asr-pipeline.md**: ASR model test results (Whisper, pending SenseVoice/Qwen3-Omni) and full speech→translation→TTS pipeline architecture
+- **references/deployment-interfaces.md**: 公开部署方案 — 如何让其他人通过 Web 页面、微信公众号、企业微信等渠道使用本翻译能力。含 iLink 群聊限制说明（`@im.bot` 不能拉群）
 
 When uncertain about a word, first consult these reference files. For words not found in the dictionary, apply general translation rules and note any uncertainty.
 

@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.1"
-  total_entries: 157+
+  version: "1.2.2"
+  total_entries: 162+
   categories:
     - 人称代词
     - 日常问候
@@ -214,6 +214,46 @@ entries:
     example: 只个小姐生来过雅。
     example_mandarin: 这位小姐长得很漂亮。
     tags: [日常问候]
+
+  - char: 对唔住
+    mandarin: 对不起
+    pengim: dui3 m6 zu6
+    example: 对唔住，我来迟了。
+    example_mandarin: 对不起，我来晚了。
+    tags: [日常问候]
+    note: 用于较正式的道歉，比\"歹势\"更正式
+
+  - char: 㩼谢
+    mandarin: 多谢
+    pengim: zoi7 sia7
+    example: 㩼谢汝个帮忙。
+    example_mandarin: 多谢你的帮忙。
+    tags: [日常问候]
+    note: 较正式的道谢语，\"㩼\"同\"多\"，比\"心事\"语气更重
+
+  - char: 请问
+    mandarin: 请问
+    pengim: cian2 mung7
+    example: 请问，汕头车站做尼行？
+    example_mandarin: 请问，汕头车站怎么走？
+    tags: [日常问候]
+    note: 与普通话\"请问\"用法相同，礼貌用语
+
+  - char: 免客气
+    mandarin: 别客气/不客气
+    pengim: miang2 kêh4 ki3
+    example: 免客气，胶己人。
+    example_mandarin: 不客气，自己人。
+    tags: [日常问候]
+    note: ＂免客气\"是\"免用客气\"的简省形式，更口语化
+
+  - char: 厝
+    mandarin: 房子/家
+    pengim: cu3
+    example: 阮厝在汕头老市区。
+    example_mandarin: 我家在汕头老市区。
+    tags: [日常问候]
+    note: 潮汕话\"房屋/家\"的基本说法，对应闽南语的\"厝\"
 
   # ========================
   # 3. 数字/时间 (Numbers & Time)

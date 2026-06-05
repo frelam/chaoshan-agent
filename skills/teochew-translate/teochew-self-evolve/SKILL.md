@@ -1,8 +1,8 @@
 ---
 name: teochew-self-evolve
-version: "1.2.0"
-description: "潮汕话 skill 自演进流程 — 每日搜索50个翻译对，自测验证，数据更新，同步源码，自动提交GitHub。由 cron job 驱动。"
-triggers: ["自演进", "自我学习", "每日学习", "50样本"]
+version: "1.4.0"
+description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对，每日5次（07:00/10:00/13:00/16:00/20:00），自测验证，数据更新，同步源码，自动提交GitHub。由 5 个 cron job 驱动。"
+triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
   min_context: 16384
 ---
@@ -12,12 +12,12 @@ requires:
 ## 整体架构
 
 ```
-每日运行 (cron job: 0 3 * * *)
+每日5次 (cron jobs: 07:00 / 10:00 / 13:00 / 16:00 / 20:00)
   │
-  ├─ 1. 搜索发现: web_search × 6 种查询 → 提取约50个翻译对
+  ├─ 1. 搜索发现: web_search × 2-3 种查询 → 提取约5个翻译对
   ├─ 2. 查重过滤: 检查 dictionary.yaml + slang.yaml 是否已存在
   ├─ 3. **自测验证**: 用 skill 翻译预测 → 对比搜索数据
-  │    ├─ **先做借音推理（新！）**: 对新词先标出 Teochew 读音，念出来看看是否和已知口语词对得上
+  │    ├─ **先做借音推理**: 对新词先标出 Teochew 读音，念出来看看是否和已知口语词对得上
   │    ├─ 预测一致 → 标记可信
   │    ├─ 不一致且搜索可靠 → 进入学习更新
   │    └─ 不一致且搜索不可靠 → 丢弃
@@ -30,9 +30,11 @@ requires:
   └─ 7. GitHub: git add → commit → push
 ```
 
-## 搜索策略（6种查询）
+## 搜索策略（6种查询 + 4个备选来源）
 
-依次执行，每轮提取 5-15 对：
+### 主策略（web_search，按序执行）
+
+每轮提取 5-15 对：
 
 1. `web_search("潮汕话 常用词汇 100个 普通话对照")`
 2. `web_search("潮汕方言日常用语 普通话翻译")`
@@ -41,12 +43,48 @@ requires:
 5. `web_search("潮汕话 怎么说 普通话 对照")`
 6. `web_search("潮汕方言特色词 释义")`
 
+### ⚠️ 备选来源（web_search 不可用时）
+
+当 web_search 因网络限制超时/返回空时，fallback 到以下可靠来源：
+
+1. **neoTeochew.org JSON 语料库**
+   - 地址: `https://neoTeochew.org/words`（含 4307 条语料，JSON 格式 ~4MB）
+   - 用法: `curl -sL 'https://neoTeochew.org/words' | jq '.[] | {char: .chinese, mandarin: .mandarin, pengim: .pronunciation}'`
+   - 优势: 结构化的潮汕话→普通话对照，有 Peng'im 标注
+   - 注意: JSON 可能较大，先 `head -c 10000` 预览结构
+
+2. **learn-teochew GitHub 仓库 (kbseah/learn-teochew)**
+   - 地址: `https://raw.githubusercontent.com/kbseah/learn-teochew/main/`
+   - 推荐文件: `numbers.md`（数字词汇）、`address.md`（称谓）、`grammar.md`（语法）
+   - 用法: `curl -sL 'https://raw.githubusercontent.com/kbseah/learn-teochew/main/numbers.md'`
+   - 优势: 标准 Peng'im 标注，学术级准确
+
+3. **GitHub API 搜索相关仓库**
+   - 查询: `curl -sL 'https://api.github.com/search/repositories?q=teochew&sort=stars&per_page=10'`
+   - 提取有实际语料的仓库 URL 再逐一下载
+   - 注意: API 有速率限制（未认证 60 req/h），慎用
+
+4. **mogher.com 潮汕在线词典**
+   - 查词: `curl -sL 'https://www.mogher.com/query?utf8=✓&q=[词汇]'`
+   - 优势: 逐词查询，反向验证已提取的数据
+
 提取标准：
 - 明确的潮汕话 ↔ 普通话对照
 - **优先有拼音（Peng'im）标注的** — 发音记录比字面更重要，无拼音的数据尽量不取
 - 优先高频日常用词
 - 排除过生僻或无可靠来源的
 - **排除无发音记录的字面翻译对**（如只有"𠀾=不会"但无拼音 bhoi6 的条目）— 这种数据合入后会污染音标库
+
+## 工具调用限制管理
+
+⚠️ **重要：每次运行的可用工具调用有限（约 50 次），但每次只处理 ~5 条新词，所以完全够用。**
+
+| 阶段 | 估计调用次数 | 建议 |
+|------|-------------|------|
+| 搜索发现 | 3-5 | 用 1-2 个备选来源获取数据即可 |
+| 查重过滤 | 2-3 | 批量读取数据文件做内存校验 |
+| 验证&写入 | 5-10 | 每次只处理 ~5 条新词 |
+| 同步&提交 | 3-4 | rsync + git 操作 |
 
 ## 数据更新规则
 
@@ -125,6 +163,6 @@ git push
 - 只追加高度确信的数据（有可靠来源证据）
 - 不确定的写入 pending-merge 待人工审阅
 - 每次变更后运行 rsync 同步 + git push
-- Cron job ID: 56c9a120fa45 (每天3:00运行)
+- Cron jobs: 56c9a120fa46~56c9a120fa50 (每日07:00/10:00/13:00/16:00/20:00运行，每批5条)
 - Companion cron: 9caed8b7894a (每周一4:00 周度consolidation — 审视skill去碎片化)
 - repo: frelam/chaoshan-agent (GitHub, gh CLI auth)
