@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.9"
-  total_entries: 201+
+  version: "1.3.0"
+  total_entries: 206+
   categories:
     - 人称代词
     - 日常问候
@@ -1477,6 +1477,36 @@ entries:
       厝边字面屋檐旁边等于邻居。
       常组成厝边头尾(cu3 bin1 tao5 bhuê2)表左邻右舍
 
+  - char: 阿兄
+    mandarin: 哥哥
+    pengim: a1 hian1
+    example: 阿兄在内无？
+    example_mandarin: 哥哥在家吗？
+    tags: [亲属称谓, 基础]
+    note: 也用于称呼同龄稍长男性的虚拟亲属用法
+
+  - char: 阿姐
+    mandarin: 姐姐
+    pengim: a1 zê2
+    example: 阿姐共我买本书。
+    example_mandarin: 姐姐帮我买了本书。
+    tags: [亲属称谓, 基础]
+
+  - char: 阿弟
+    mandarin: 弟弟
+    pengim: a1 di6
+    example: 阿弟去学堂读书。
+    example_mandarin: 弟弟去学校读书。
+    tags: [亲属称谓, 基础]
+    note: 也用于称呼同龄稍幼男性的虚拟亲属用法
+
+  - char: 阿妹
+    mandarin: 妹妹
+    pengim: a1 muê6 / a1 muê7
+    example: 阿妹在许块踢毽子。
+    example_mandarin: 妹妹在那里踢毽子。
+    tags: [亲属称谓, 基础]
+
   # ========================
   # 8. 疑问词 (Question Words)
   # ========================
@@ -1911,3 +1941,11 @@ entries:
     example_mandarin: 学校放学了，孩子回家来。
     tags: [职业, 教育]
     note: 学堂(oh8 deng5)是潮汕话对学校的传统说法，多指中小学校
+
+  - char: 师父
+    mandarin: 师傅/师父
+    pengim: sai1 bê2
+    example: 师父在教徒弟。
+    example_mandarin: 师傅在教徒弟。
+    tags: [职业]
+    note: 潮汕话中师父(sai1 bê2)用于称呼手工艺人、技师等，区别于先生(sing1 sên1)指教师/医生

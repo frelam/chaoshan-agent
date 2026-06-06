@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.4"
+version: "1.5.5"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日5次（07:00/10:00/13:00/16:00/20:00），自测验证，数据更新，同步源码，自动提交GitHub。由 5 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -44,7 +44,30 @@ requires:
 
 ### 主来源（learn-teochew — ⭐ 首选，每次运行直接使用）
 
-直接从 kbseah/learn-teochew 仓库的 Wiktionary Index 提取：
+从 kbseah/learn-teochew 仓库的两个主要文件类别中提取：
+
+#### A) 语法/短语页面（⭐ 最新发现：多词词汇的主要来源）
+
+Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词词汇**（亲属称谓、日常短语、疑问词等），必须使用以下语法/短语页面。这些页面包含完整的 Jekyll Markdown 表格，含 Peng'im + IPA + 汉字 + 定义四列对照。
+
+| 文件 | 内容 | 候选词汇丰富度 |
+|------|------|--------------|
+| `pages/address.md` | 亲属称谓表（走仔、逗子、丈姆、丈人等）| ⭐⭐⭐ 极高 — 单次可提取 38+ 候选 |
+| `pages/questions.md` | 疑问代词表（是乜、哋個、做呢等）| ⭐⭐⭐ 高 |
+| `pages/classifiers.md` | 量词表 | ⭐⭐ 中 |
+| `pages/numbers.md` | 数字词汇 | ⭐⭐ 中 |
+| `pages/negatives.md` | 否定词详解 | ⭐⭐ 中 |
+| `pages/comparisons.md` | 比较句 | ⭐ 低 |
+| `pages/personal_pronouns.md` | 人称代词 | ⭐⭐ 中 |
+| `pages/particles.md` | 句末语气词 | ⭐ 低 |
+| `pages/verbal_complements.md` | 动补结构 | ⭐ 低 |
+
+**地址页面（address.md）表格解析要点**：表格格式为 `| 定义 | IPA | Peng'im | 汉字 |`，逐行提取即可。但也需要注意：
+- Peng'im 列可能包含括号音变标注如 `tai3(2)tai3` — 提取时用 `re.sub(r'\([^)]*\)', '', p)` 去掉括号
+- 有些行用 `\|` 替代 `|` 或包含 Jekyll 格式控制符，需要跳过分隔线
+- 建议用 Python 逐行解析（检查 `stripped.startswith('|')` + `stripped.count('|') >= 4`）
+
+#### B) Wiktionary 索引文件（含 Peng'im + IPA + 汉字）
 
 当 web_search 因网络限制超时/返回空时，fallback 到以下可靠来源：
 
@@ -52,7 +75,7 @@ requires:
    - 地址: `https://github.com/kbseah/learn-teochew`
    - 推荐文件（通过 GitHub Content API）:
      ```
-     pages/address.md        — 称谓（太太/姑娘/老师/师父等）
+     pages/address.md        — 称谓（太太/姑娘/老师/师父等）— ⭐ 多词来源
      pages/questions.md      — 疑问代词（珍时/是乜/乜事等）
      pages/negatives.md      — 否定词详解
      pages/classifiers.md    — 量词表
@@ -63,20 +86,24 @@ requires:
      pages/verbal_complements.md — 动补结构
      pages/teochew_wiktionary_index/teochew_wiktionary_index_*.md — ⭐ 按首字母编排的词典索引，含 Peng'im + IPA + 汉字
      ```
-   - **用法**（优先用 raw.githubusercontent.com，不行再回退到 GitHub Content API）:
+   - **⚠️ 用法优先级**（实战经验：GitHub Content API 比 raw.githubusercontent.com 更可靠）:
      ```bash
-     # ⭐ 优先尝试 raw.githubusercontent.com（最快，不需解析 base64）:
+     # GitHub Content API（推荐首选—免认证，始终可达）:
+     curl -sL --connect-timeout 15 --max-time 30 \
+       -o /tmp/learn_page.json \
+       "https://api.github.com/repos/kbseah/learn-teochew/contents/pages/address.md"
+     python3 -c "import json,base64; d=json.load(open('/tmp/learn_page.json')); print(base64.b64decode(d['content']).decode())"
+     
+     # raw.githubusercontent.com（更快但约34%请求超时 exit 28）:
      curl -sL --connect-timeout 10 --max-time 20 \
-       'https://raw.githubusercontent.com/kbseah/learn-teochew/master/pages/teochew_wiktionary_index/teochew_wiktionary_index_c.md'
+       'https://raw.githubusercontent.com/kbseah/learn-teochew/master/pages/teochew_wiktionary_index/teochew_wiktionary_index_c.md' \
+       -o /tmp/wiktionary_c.md
+     # 如果 exit 28（超时），fallback 到 API
      
-     # 备选: GitHub Content API（返回 base64 编码的 JSON，无需认证）:
-     curl -sL "https://api.github.com/repos/kbseah/learn-teochew/contents/pages/teochew_wiktionary_index/teochew_wiktionary_index_c.md"
-     
-     # 获取完整目录结构（递归）:
+     # 获取完整目录结构（递归）— 用此找到所有文件:
      curl -sL "https://api.github.com/repos/kbseah/learn-teochew/git/trees/master?recursive=1"
      ```
    - 优势: **标准 Peng'im（声调数字）** + IPA 双标注，学术级准确
-   - 提示: 内容为 Jekyll 格式 Markdown，表格行包含 Peng'im + IPA + 汉字三列对照
 
    #### ⚠️ 实战：wiktionary 索引文件解析方法
 
@@ -87,6 +114,8 @@ requires:
    ```
    - 第1行: Peng'im + IPA（无汉字）
    - 第2行: 汉字（wiki链接形式）+ Peng'im + IPA
+
+   **⚠️ 重点：wiktionary 索引只含单个汉字，不含多词词组。** 想找多词词汇（如"走仔"、"厝边头尾"、"无米粿"）必须使用 A 类的语法/短语页面（address.md 等）。
 
    推荐用 Python regex 提取（比逐行表格解析灵活可靠）:
    ```bash
@@ -110,7 +139,7 @@ requires:
        # → (char, pengim_clean)
    ```
 
-   ⚠️ `raw.githubusercontent.com` 可能超时（exit 28），API 方式更可靠但需解析 base64。
+   ⚠️ `raw.githubusercontent.com` 可能超时（exit 28），GitHub Content API 更稳定。
    
    #### ⚠️ 安全扫描器阻止管道命令（实战陷阱）
    
@@ -161,6 +190,9 @@ requires:
 1. **高频近义词试探**: 选一个已知的潮汕话词汇，换一种近义表达问自己（如已知 "食"→"吃"，问自己 "吃早饭" 的潮汕话怎么说 → 答案是 "食早餐" 或 "食糜"？）
 2. **反义/否定拓展**: 选一个已知词，出它的反义词或否定形式（如已知 "有"→"有"，问 "没有" 怎么说 → "无" bho5）
 3. **场景串联**: 取一个日常场景，问自己几个涉及的动作或物品（如 "下雨了要带伞"，逐个问 "雨""伞""打伞" 怎么说）
+4. **例子/注释中的词 → 独立词条（新发现的自测角度）**: 检查 dictionary.yaml 的例子和注释中是否包含了应该作为独立词条的常用词汇。很多高频词（如煮 ze2=烹、厝边 cu3 bin1=邻居）仅在例句或注释中出现，但没有独立词条。检查方法：
+   - grep 字典中的 `example:` 和 `note:` 字段，找高频但未列在 `char:` 中的词汇
+   - 特别关注：日常动词（煮/炒/洗/切）、高频名词（邻居/朋友/同学/老师）、日常短语
 
 具体每条题目的出题方式：用普通话描述一个概念，让你的 Teochew 知识来翻译。
 
@@ -269,6 +301,20 @@ git push
 ```
 
 无变更则跳过。GitHub 已通过 gh CLI 认证（frelam 账号，HTTPS 协议），可直接 push。
+
+### ⚠️ Push 失败处理（实战经验）
+
+push 可能因以下原因失败：
+- **TLS 连接错误** (GnuTLS recv error -110) — 主机网络环境问题，非认证问题
+- **超时** (exit 124 超过 120s) — GitHub 网络延迟不稳定
+- **DNS 解析失败** — 容器内网络间歇性问题
+
+处理规则：
+1. 无论何种错误，**本地 commit 已保存，不要硬重置或删除**
+2. 不要重试超过 2 次（会浪费工具调用配额）
+3. 失败后，在报告中如实记录 `提交: ✅ 本地 (推送失败: 具体错误)`
+4. **下次 cron 运行时，git pull + git push 会自动重试未推送的 commit**
+5. 不需要单独处理 pending commits — 标准 git push 会推送所有未推送的祖先 commit
 
 ## 输出报告格式
 

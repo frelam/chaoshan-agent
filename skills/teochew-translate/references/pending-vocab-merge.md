@@ -9,4 +9,16 @@
 
 ## 待合并词汇
 
-当前没有待合并条目。
+以下为 2026-06-06 自测发现的盲区词汇，来源于 learn-teochew address.md，建议加入 dictionary.yaml 亲属称谓分类：
+
+1. **先生娘** (sing1 sên1 niên5) — 师母/夫人（旧式尊称）
+   - 来源: learn-teochew address.md (Terms of address — "mrs" dated)
+   - 待确认分类: [亲属称谓, 职业]
+
+2. **担家** (dan1 gê1) — 婆婆（丈夫的母亲）
+   - 来源: learn-teochew address.md (Children, grandchildren, and in-laws)
+   - 待确认分类: [亲属称谓]
+
+3. **担管** (dan1 guan1) — 公公（丈夫的父亲）
+   - 来源: learn-teochew address.md (Children, grandchildren, and in-laws)
+   - 待确认分类: [亲属称谓]
