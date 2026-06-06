@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.8"
-  total_entries: 195+
+  version: "1.2.9"
+  total_entries: 201+
   categories:
     - 人称代词
     - 日常问候
@@ -951,6 +951,14 @@ entries:
     tags: [动词, 潮汕特色]
     note: 潮汕话"浇"的专用说法，如沃水=浇水、沃花=浇花、沃肥=施肥，也可用于沃雨=淋雨
 
+  - char: 煮
+    mandarin: 煮/烹饪（食物）
+    pengim: ze2
+    example: 阿妈在煮糜。
+    example_mandarin: 奶奶在煮粥。
+    tags: [动词, 基础]
+    note: 潮汕话"煮"(ze2)是烹饪的主要说法，煮糜=煮粥、煮饭、煮菜
+
   # ========================
   # 6. 食物名称 (Food Names)
   # ========================
@@ -1429,6 +1437,45 @@ entries:
     example: 外妈煮个糜上好食。
     example_mandarin: 外婆煮的粥最好吃。
     tags: [亲属称谓]
+
+  - char: 走仔
+    mandarin: 女儿
+    pengim: zao2 gian2
+    example: 伊个走仔过雅。
+    example_mandarin: 他的女儿很漂亮。
+    tags: [亲属称谓]
+
+  - char: 逗子
+    mandarin: 儿子
+    pengim: dao1 gian2
+    example: 伊个逗子过灵精。
+    example_mandarin: 他的儿子很聪明。
+    tags: [亲属称谓]
+
+  - char: 丈姆
+    mandarin: 岳母/丈母娘（妻子的母亲）
+    pengim: diên1 m2
+    example: 丈姆对我过好。
+    example_mandarin: 岳母对我很好。
+    tags: [亲属称谓]
+
+  - char: 丈人
+    mandarin: 岳父（妻子的父亲）
+    pengim: diên1 nang5
+    example: 丈人过惜只个女婿。
+    example_mandarin: 岳父很疼这个女婿。
+    tags: [亲属称谓]
+
+  - char: 厝边
+    mandarin: 邻居
+    pengim: cu3 bin1
+    example: 厝边头尾着相照顾。
+    example_mandarin: 邻居之间要互相照顾。
+    tags: [潮汕特色, 日常用語, 亲属称谓]
+    note: >
+      厝边(cu3 bin1)即邻居，厝为房屋义，
+      厝边字面屋檐旁边等于邻居。
+      常组成厝边头尾(cu3 bin1 tao5 bhuê2)表左邻右舍
 
   # ========================
   # 8. 疑问词 (Question Words)
