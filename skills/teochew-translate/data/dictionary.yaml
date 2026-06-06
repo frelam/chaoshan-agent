@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.2.7"
-  total_entries: 190+
+  version: "1.2.8"
+  total_entries: 195+
   categories:
     - 人称代词
     - 日常问候
@@ -943,6 +943,14 @@ entries:
     tags: [动词, 基础]
     note: 褪(teng3)为潮汕话中脱衣服的专用动词，有别于"脱"(tug4)表逃脱义
 
+  - char: 沃
+    mandarin: 浇（水/淋）
+    pengim: ag4
+    example: 花着沃水正会生。
+    example_mandarin: 花要浇水才会生长。
+    tags: [动词, 潮汕特色]
+    note: 潮汕话"浇"的专用说法，如沃水=浇水、沃花=浇花、沃肥=施肥，也可用于沃雨=淋雨
+
   # ========================
   # 6. 食物名称 (Food Names)
   # ========================
@@ -1088,6 +1096,38 @@ entries:
     example_mandarin: 早饭吃粥配咸菜。
     tags: [食物名称, 基础]
     note: 潮汕话"早頓"(za2 deng3)为"早饭"的传统说法，"頓"即"餐/顿"；也常说"早起"(za2 ki2)
+
+  - char: 菜脯
+    mandarin: 萝卜干/腌萝卜
+    pengim: cai3 bou2
+    example: 菜脯卵过好食，是潮汕人家常菜。
+    example_mandarin: 萝卜干煎蛋很好吃，是潮汕人的家常菜。
+    tags: [食物名称, 潮汕特色]
+    note: 潮汕传统腌菜，用白萝卜晒干腌制，是\"菜脯卵\"（萝卜干煎蛋）的原料
+
+  - char: 臭柿
+    mandarin: 番茄/西红柿
+    pengim: cao3 sai6
+    example: 臭柿炒卵过好食。
+    example_mandarin: 番茄炒蛋很好吃。
+    tags: [食物名称, 潮汕特色]
+    note: 潮汕话对番茄的俗称，字面"臭柿"（臭+柿），因番茄有特殊气味
+
+  - char: 赤肉
+    mandarin: 瘦肉
+    pengim: ciah4 nêg8
+    example: 赤肉较贵过肥肉。
+    example_mandarin: 瘦肉比肥肉贵。
+    tags: [食物名称]
+    note: 赤(ciah4)在潮汕话中表瘦(肉)义，如赤肉=瘦肉
+
+  - char: 凊水
+    mandarin: 凉水/冷水
+    pengim: cing3 zui2
+    example: 热天食凊水过爽。
+    example_mandarin: 夏天喝凉水很爽。
+    tags: [食物名称, 日常]
+    note: 凊(cing3)是潮汕话对液体凉的专用形容词，有别于凝(ngang5)寒(guan5)表气温冷
 
   # ========================
   # 7. 潮汕特色词汇 (Teochew Signature Words)

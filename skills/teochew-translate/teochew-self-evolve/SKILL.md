@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.2"
+version: "1.5.3"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日5次（07:00/10:00/13:00/16:00/20:00），自测验证，数据更新，同步源码，自动提交GitHub。由 5 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -195,6 +195,14 @@ requires:
 - 找对应 tags 分类末尾
 - 保持 YAML 字段顺序: char → mandarin → pengim → example → example_mandarin → tags → note
 - 缩进 2 空格
+- ⚠️ **YAML note 字段引号陷阱**: `note:` 字段中不要使用转义双引号（如 `\"text\"`），否则 patch 工具的 YAML lint 会报错。改用下列方式之一：
+  - **纯文本不加引号**: `note: 这个词是借音字，读ci1 ghi5表脏`
+  - **YAML 多行块标量（推荐长文本）**: 使用 `|`（保留换行）或 `>`（折叠换行），缩进2空格：
+    ```yaml
+    note: >
+      褪(teng3)为潮汕话中脱衣服的专用动词，
+      有别于脱(tug4)表逃脱义
+    ```
 
 ### slang.yaml 追加 (phonic_only)
 - 新 id 为下一个序号（当前最大 p6）
