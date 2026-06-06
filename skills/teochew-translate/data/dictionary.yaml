@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.1"
-  total_entries: 213+
+  version: "1.3.2"
+  total_entries: 218+
   categories:
     - 人称代词
     - 日常问候
@@ -960,6 +960,14 @@ entries:
     tags: [动词, 基础]
     note: 潮汕话"煮"(ze2)是烹饪的主要说法，煮糜=煮粥、煮饭、煮菜
 
+  - char: 𠀾使
+    mandarin: 不可以/不能用
+    pengim: bhoi6 sai2
+    example: 只块𠀾使食烟。
+    example_mandarin: 这里不可以抽烟。
+    tags: [动词, 潮汕特色]
+    note: 𠀾使(bhoi6 sai2)来自𠀾(不会)+使(用/可以)，表"不可以/不能(允许)"
+
   # ========================
   # 6. 食物名称 (Food Names)
   # ========================
@@ -1594,6 +1602,20 @@ entries:
     example_mandarin: 你会不会说潮州话？
     tags: [疑问词, 语法]
 
+  - char: 是乜
+    mandarin: 是什么
+    pengim: si6 mih4
+    example: 只个是乜物件？
+    example_mandarin: 这是什么？
+    tags: [疑问词]
+
+  - char: 幾
+    mandarin: 几（问小数量）
+    pengim: gui2
+    example: 汝有幾个孥囝？
+    example_mandarin: 你有几个孩子？
+    tags: [疑问词, 数字时间]
+
   # ========================
   # 9. 方位词 (Location Words)
   # ========================
@@ -1998,6 +2020,13 @@ entries:
     tags: [职业]
     note: 潮汕话中师父(sai1 bê2)用于称呼手工艺人、技师等，区别于先生(sing1 sên1)指教师/医生
 
+  - char: 律師
+    mandarin: 律师
+    pengim: lug8 se1
+    example: 伊是名律師，帮侬打官司。
+    example_mandarin: 他是有名律师，帮人打官司。
+    tags: [职业身份]
+
   # ========================
   # 15. 日常用品 (Household Items)
   # ========================
@@ -2007,4 +2036,11 @@ entries:
     pengim: sao3 siu2
     example: 用扫帚扫下只内。
     example_mandarin: 用扫帚扫一下这屋子。
+    tags: [日常用品]
+
+  - char: 雨遮
+    mandarin: 雨伞
+    pengim: hou6 zia1
+    example: 外口落雨，着带雨遮。
+    example_mandarin: 外面下雨，要带雨伞。
     tags: [日常用品]
