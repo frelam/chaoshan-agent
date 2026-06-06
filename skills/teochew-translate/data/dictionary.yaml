@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.0"
-  total_entries: 206+
+  version: "1.3.1"
+  total_entries: 213+
   categories:
     - 人称代词
     - 日常问候
@@ -32,6 +32,7 @@ meta:
     - 情感
     - 职业身份
     - 亲属称谓
+    - 日常用品
 
 entries:
 
@@ -1507,6 +1508,53 @@ entries:
     example_mandarin: 妹妹在那里踢毽子。
     tags: [亲属称谓, 基础]
 
+  - char: 先生娘
+    mandarin: 师母/夫人（旧式尊称）
+    pengim: sing1 sên1 niên5
+    example: 先生娘在内无？
+    example_mandarin: 师母在家吗？
+    tags: [亲属称谓, 职业]
+    note: >
+      先生娘(sing1 sên1 niên5)是旧式对老师/医生妻子的尊称，
+      相当于普通话的"师母"，今已较少用
+
+  - char: 担家
+    mandarin: 婆婆（丈夫的母亲）
+    pengim: dan1 gê1
+    example: 担家对我犹好。
+    example_mandarin: 婆婆对我很好。
+    tags: [亲属称谓]
+    note: 担家(dan1 gê1)为旧称，指丈夫的母亲，即婆婆
+
+  - char: 担管
+    mandarin: 公公（丈夫的父亲）
+    pengim: dan1 guan1
+    example: 担管在内食茶。
+    example_mandarin: 公公在家喝茶。
+    tags: [亲属称谓]
+    note: 担管(dan1 guan1)为旧称，指丈夫的父亲，即公公
+
+  - char: 阿嫂
+    mandarin: 嫂子（哥哥的妻子）
+    pengim: a1 so2
+    example: 阿嫂煮个饭过好食。
+    example_mandarin: 嫂子做的饭很好吃。
+    tags: [亲属称谓]
+
+  - char: 堂姐
+    mandarin: 堂姐（同宗同姓的姐姐）
+    pengim: tang5 zê2
+    example: 堂姐在上海做事。
+    example_mandarin: 堂姐在上海工作。
+    tags: [亲属称谓]
+
+  - char: 外孙
+    mandarin: 外孙（女儿的儿子）
+    pengim: ghua7 sung1
+    example: 外孙每礼拜来䀢外公外婆。
+    example_mandarin: 外孙每个礼拜来看外公外婆。
+    tags: [亲属称谓]
+
   # ========================
   # 8. 疑问词 (Question Words)
   # ========================
@@ -1949,3 +1997,14 @@ entries:
     example_mandarin: 师傅在教徒弟。
     tags: [职业]
     note: 潮汕话中师父(sai1 bê2)用于称呼手工艺人、技师等，区别于先生(sing1 sên1)指教师/医生
+
+  # ========================
+  # 15. 日常用品 (Household Items)
+  # ========================
+
+  - char: 扫帚
+    mandarin: 扫帚/扫把
+    pengim: sao3 siu2
+    example: 用扫帚扫下只内。
+    example_mandarin: 用扫帚扫一下这屋子。
+    tags: [日常用品]

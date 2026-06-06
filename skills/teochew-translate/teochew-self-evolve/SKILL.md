@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.5"
+version: "1.5.6"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日5次（07:00/10:00/13:00/16:00/20:00），自测验证，数据更新，同步源码，自动提交GitHub。由 5 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -201,10 +201,29 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 对每条自测题：
 
 1. **先用自己的知识翻译** → 得出 Teochew 答案（汉字 + Peng'im）
-2. **自查验证**：
-   - 查 dictionary.yaml 中是否有对应条目
-   - 用 learn-teochew 备选来源搜索确认（scripts/extract-wiktionary.py 提取）
-   - 若已有下载的 wiktionary 索引文件，直接 Python 脚本查询
+2. **自查验证**（按优先级）：
+   - **查 dictionary.yaml**：用 `grep -n "  - char: 某字"` 在终端确认（不要用 search_files/ripgrep — 它对 CJK 扩展区汉字如䆀/𠀾/粙/刣会漏检）。如果词是别的源的（address.md 的多词词汇），也 grep 检查内容中是否已有
+   - **查 learn-teochew wiktionary 索引**（⭐ 推荐—快速确认单字符发音）：找到对应声母的索引文件（如查 拭 cig4 → 下载 c-index），下载后用 grep 搜索该字符
+     ```bash
+     # 高效查找单字符 Peng'im 的完整流程：
+     # 1) 找到正确的声母索引（c=tsh, z=ts, s=s, h=h, g=k, gh=g, b=p, p=ph, d=t, t=th, l=l, m=m, n=n, ng=ng, r=dz, i=i）
+     # 2) 下载该索引文件
+     curl -sL --connect-timeout 15 --max-time 30 \
+       -o /tmp/wiktionary_c.json \
+       "https://api.github.com/repos/kbseah/learn-teochew/contents/pages/teochew_wiktionary_index/teochew_wiktionary_index_c.md"
+     # 3) 搜索目标字符
+     python3 -c "
+     import json, base64
+     with open('/tmp/wiktionary_c.json') as f:
+         d = json.load(f)
+     content = base64.b64decode(d['content']).decode('utf-8')
+     for line in content.split('\n'):
+         if '炊' in line:
+             print(line.strip())
+     "
+     ```
+     **Why this is efficient**: 比跑 extract-wiktionary.py 快得多。extract-wiktionary.py 适合批量提取大量翻译对，但自测只需确认 1-2 个单字符读音，下载一个索引（1 个 curl 调用）后 grep 即可。注意拼音声母与索引文件的对应关系（c=tsh-, z=ts-, s=s-, h=h-, g=k-, gh=g- 等）
+   - **无需重复下载**：如果这一步已经为了搜索发现下载了某个 wiktionary 索引文件，直接复用
 3. **判定**：
    - ✅ **翻译正确**（自己的预测与搜索确认一致）→ **已掌握，不计数**。重新从不同角度出一道新题，继续探索
    - ❌ **翻译错误**（预测错了，搜索确认了正确答案）→ **找到知识盲区，计数为有效样本**，加入学习管道
@@ -217,9 +236,10 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 
 验证自测题时注意以下陷阱：
 
-- **search_files（ripgrep）对某些特殊 Unicode 汉字可能漏检**。如果用 `search_files` 搜索䆀/𠀾/粙/刣 等字得到 0 结果，再试 `grep -n -c` 在终端确认。ripgrep 对 CJK 扩展区汉字支持不如 grep 稳定。
-- **验证方法优先级**: 读 dictionary.yaml (grep) > 查 learn-teochew wiktionary > web_search。web_search 在网络受限环境不可靠，优先用本地数据文件。
+- **search_files（ripgrep）对某些特殊 Unicode 汉字可能漏检**。如果用 `search_files` 搜索䆀/𠀾/粙/刣/阿公/阿妈 等字得到 0 结果，再试 `grep -n -c` 在终端确认。ripgrep 对 CJK 扩展区汉字和常用亲属称谓字的支持不如 grep 稳定。
+- **验证方法优先级**: 读 dictionary.yaml 用 `grep "  - char:"` 查字典 > 下载 learn-teochew wiktionary 索引 grep 字符读音（见上方"自查验证"的完整流程）> ws。ws 在网络受限环境不可靠，优先用本地数据文件和 wiktionary 索引。
 - **已知 vs 盲区的判定标准**: 如果你的翻译预测（汉字+Peng'im）完全正确，即使该词不在 dictionary.yaml 中也不算盲区 — 你只是尚未写入知识库，而非不知道这个词。
+- **单字符读音验证用小索引文件**：不要为查一个字的读音去下载整个 neoTeochew.json（192KB+经常超时）或跑完整 extract-wiktionary.py。只需找到对应声母的 wiktionary 索引文件（如查 炊 cuê1 → c-index），下载后 grep 即可。拼音声母 → 索引文件对应表：c=tsh, z=ts, s=s, h=h, g=k, gh=g, b=p, p=ph, d=t, t=th, l=l, m=m, n=n, ng=ng, r=dz, i=i, u/u, ê=e, o=o
 
 ### 和搜索发现的汇合
 
@@ -232,7 +252,7 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 | 阶段 | 估计调用次数 | 建议 |
 |------|-------------|------|
 | 搜索发现 | 3-5 | 用 1-2 个备选来源获取数据即可 |
-| 主动自测采样 | 3-5 | 自测3条 + 最多5次重试，每次调web_search或读字典 |
+| 主动自测采样 | 3-6 | 自测3条 + 最多5次重试。验证优先 grep 读字典，次选 curl 下载 learn-teochew wiktionary 索引文件查字符读音。每次重试约需 1-2 次调研 |
 | 查重过滤 | 2-3 | 批量读取数据文件做内存校验 |
 | 验证&写入 | 5-10 | 每次只处理 ~5-8 条新词 |
 | 同步&提交 | 3-4 | rsync + git 操作 |
