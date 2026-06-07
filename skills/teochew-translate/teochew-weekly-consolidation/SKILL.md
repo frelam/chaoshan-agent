@@ -1,6 +1,6 @@
 ---
 name: teochew-weekly-consolidation
-version: "1.0.1"
+version: "1.1.0"
 description: "周度审视——总结提炼skill知识库，去碎片化。用Claude Code做重写，保留必要细节。每周一轮。"
 triggers: ["周度审视", "consolidation", "知识总结", "去碎片化"]
 requires:
@@ -9,7 +9,9 @@ requires:
 
 # 潮汕话 Skill 周度 Consolidated 流程
 
-每周执行一次，审视整个 teochew-translate skill 的知识库，总结提炼，去碎片化。
+每周一 4:00 执行一次，审视整个 teochew-translate skill 的知识库，总结提炼，去碎片化。
+
+**如果全景分析后确定没有任何可操作的变更（无重复、无编号错误、无不合理归类），直接输出 "本周无 consolidation 必要，已跳过" 并结束，不要强行修改。**
 
 ## 审视范围
 
@@ -38,9 +40,9 @@ teochew-translate/
 | examples.yaml | 例句是否重复/过时？能否更有代表性？ |
 | SKILL.md | Few-Shot 是否臃肿？能否替换为更精炼的示例？整体提示词是否太长了？ |
 
-### Step 2: 用 Claude Code 做总结提炼
+### Step 2: 用 Claude Code 做总结提炼（可选 — 若不可用则跳到 Step 3）
 
-将分析结果 + 数据文件传给 Claude Code 做重写。注意：Claude Code 已配置 DeepSeek v4 后端（ANTHROPIC_BASE_URL），`--print` 模式让它在非交互模式下输出结果，不加 `--print` 则会进入交互模式（不适合 cron）。
+将分析结果 + 数据文件传给 Claude Code 做重写。注意：Claude Code 已配置 DeepSeek v4 后端（ANTHROPIC_BASE_URL），`--print` 模式让它在非交互模式下输出结果。
 
 ```bash
 cd ~/workspace/chaoshan-agent
@@ -52,52 +54,64 @@ claude --print -p "
 ## 我的分析
 [将 Step 1 的分析总结写在这里]
 
-## 数据文件内容
-[附上各文件的摘要/关键内容]
-
 ## 原则
 1. 可泛化的→提炼为语法规则，删掉冗余条目
 2. 有音无字词、特色文化词、特殊用法保留详细记录
 3. 相近条目合并，同一知识点不分散记录
-4. Few-Shot 精简替换重复的、增加更多样化的
-5. 不可破坏 tests/cases.yaml 的15个用例覆盖
+4. 不可破坏 tests/cases.yaml 的15个用例覆盖
+5. Peng'im 发音记录任何时候不得丢弃或简化声调标注
 
 ## 输出格式
-请给出具体变更建议，格式：
-### dictionary.yaml
-- 合并/删除/移动: ...
-
-### slang.yaml
-- 合并/升级/删除: ...
-
-### grammar.yaml  
-- 新增/简化/修改: ...
-
-### SKILL.md
-- 精简/替换/重组: ...
-
-### examples.yaml
-- 替换/合并: ...
-" --model deepseek-v4-pro -f skills/teochew-translate/SKILL.md -f skills/teochew-translate/data/dictionary.yaml -f skills/teochew-translate/data/slang.yaml -f skills/teochew-translate/data/grammar.yaml -f skills/teochew-translate/data/examples.yaml -f skills/teochew-translate/tests/cases.yaml
+请给出具体变更建议，每个文件一个节。
+" --model deepseek-v4-pro --add-dir skills/teochew-translate
 ```
 
-### Step 3: 评估变更建议
+**⚠️ 已知问题 — 退路策略**：
+- **Claude Code 可能未登录**：cron 环境下 `claude --print` 会报 "Not logged in" 错误（Claude Code 需要 OAuth 登录，即使后端是 DeepSeek）。此时不要阻塞流程——**直接跳到 Step 3，用自身的分析能力做判断和执行**。
+- **`-f` 参数不可用**：某些版本的 claude CLI 不支持 `-f` 传文件。使用 `--add-dir` 代替（让 claude 能看到文件目录）或在 prompt 中嵌入文件摘要。
+- 当 Claude Code 不可用时，你的分析能力（Step 1）就是主要的判断依据。碎片化问题通常很明显（重复条目、编号错误等），直接修复即可，不需要外部 AI 确认。
 
-对 Claude Code 的输出逐一判断：
-- ✅ **明显正确的合并/精简** → 用 patch 或 write_file 执行
-- ⚠️ **有风险的变更** → 先跑 tests/cases.yaml 确认不破坏
+### Step 3: 评估变更建议并执行
+
+对 Step 1 的分析结果（或 Claude Code 的输出，如可用）逐一判断：
+- ✅ **明显正确的合并/精简** → 用 patch 或 terminal + sed/Python 执行
+- ⚠️ **有风险的变更** → 先确认不破坏 tests/cases.yaml
 - ❌ **可能丢失细节的** → 跳过，保留原样
 
-### Step 4: 回归测试
+**⚠️ patch 工具的重要陷阱**：当文件被 `read_file` 仅部分读取（使用 offset/limit 参数）后，patch 工具会**静默失败**——返回 "success" 但不写入任何内容，报 warning "was last read with offset/limit pagination (partial view)"。为避免此问题：
+- 策略 A：用 `read_file` 无 offset/limit 读取整个文件后，再用 patch（适合小文件）
+- **策略 B（推荐）**：直接用 `terminal` + `sed`/`Python` 做文本替换，跳过 patch 工具。对大文件（如 dictionary.yaml 2200+行）这更可靠。
+- 策略 C：用 `write_file` 重写整个文件（风险高，容易丢失数据）
 
-每次变更后手动验证关键测试点。最后整体检查 tests/cases.yaml 全部 15 个用例是否仍能通过。
+### Step 4: YAML 验证 + 回归测试
+
+每次变更后，验证 YAML 格式正确性并确认测试用例仍有效：
+
+```bash
+# YAML 格式验证
+cd ~/workspace/chaoshan-agent
+python3 -c "import yaml; [exit(1) for f in ['dictionary.yaml','slang.yaml','grammar.yaml','examples.yaml'] if not yaml.safe_load(open(f'skills/teochew-translate/data/{f}'))]"
+
+# 测试用例验证（手动检查 15 个用例的 key 要素）
+# 重点确认：人称代词映射、语序转换、否定词选择
+```
 
 ### Step 5: 同步 + 提交
 
 ```bash
+# ⚠️ 注意 rsync 方向：
+# 如果你直接在 ~/workspace/chaoshan-agent/（源码目录）编辑文件，方向是 source → hermes：
+rsync -av ~/workspace/chaoshan-agent/skills/teochew-translate/ ~/.hermes/skills/teochew-translate/
+
+# 如果你在 ~/.hermes/skills/（运行目录）编辑文件，方向是 hermes → source：
 rsync -av ~/.hermes/skills/teochew-translate/ ~/workspace/chaoshan-agent/skills/teochew-translate/
+
+# 两个目录必须始终保持一致。分不清方向时，先检查哪边有新修改：
+diff -q ~/.hermes/skills/teochew-translate/data/dictionary.yaml ~/workspace/chaoshan-agent/skills/teochew-translate/data/dictionary.yaml
+
 cd ~/workspace/chaoshan-agent
 git add -A
+git diff --cached --stat  # 确认变更内容后再提交
 git commit -m "weekly: 潮汕话skill周度consolidation — $(date +%Y-%m-%d)"
 git push
 ```
