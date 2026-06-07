@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.3"
-  total_entries: 223+
+  version: "1.3.4"
+  total_entries: 228+
   categories:
     - 人称代词
     - 日常问候
@@ -1591,6 +1591,43 @@ entries:
     example: 表妹在学堂读册。
     example_mandarin: 表妹在学校读书。
     tags: [亲属称谓]
+
+  - char: 阿嬸
+    mandarin: 婶婶（叔父的妻子）
+    pengim: a1 sim2
+    example: 阿嬸在内煮食。
+    example_mandarin: 婶婶在家做饭。
+    tags: [亲属称谓]
+    note: 阿嬸(a1 sim2)指父亲的弟弟的妻子，即婶婶
+
+  - char: 孫女
+    mandarin: 孙女（儿子的女儿）
+    pengim: sung1 neng2
+    example: 阿公过惜只个孫女。
+    example_mandarin: 爷爷很疼这个孙女。
+    tags: [亲属称谓]
+
+  - char: 外孫女
+    mandarin: 外孙女（女儿的女儿）
+    pengim: ghua7 sung1 neng2
+    example: 外孫女每礼拜来𥆢外公外妈。
+    example_mandarin: 外孙女每个星期来看外公外婆。
+    tags: [亲属称谓]
+
+  - char: 親家
+    mandarin: 亲家（子女的配偶的父母）
+    pengim: cing1 gê1
+    example: 親家在内食茶。
+    example_mandarin: 亲家在家喝茶。
+    tags: [亲属称谓]
+
+  - char: 新妇
+    mandarin: 儿媳妇
+    pengim: sing1 bu6 / sim1 bu6
+    example: 新妇对翁姑过好。
+    example_mandarin: 儿媳妇对公婆很好。
+    tags: [亲属称谓]
+    note: 新妇(sing1 bu6/sim1 bu6)为"儿媳"义，字面义"新娘子"。潮汕俗写亦作"新𡜵"
 
   # ========================
   # 8. 疑问词 (Question Words)
