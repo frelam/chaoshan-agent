@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.8"
+version: "1.5.9"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日5次（07:00/10:00/13:00/16:00/20:00），自测验证，数据更新，同步源码，自动提交GitHub。由 5 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -28,10 +28,11 @@ requires:
   │    ├─ standard → dictionary.yaml (对应分类末尾)
   │    ├─ phonic_only/slang → slang.yaml (phonic_only段末尾)
   │    └─ 不确定 → references/pending-vocab-merge.md
-  ├─ 6. **清理待合并**: 检查 `references/pending-vocab-merge.md` 是否有条目已存在于数据文件 → 标记已合并，不再重复追加
-  ├─ 7. version bump: 小版本+1, total_entries 递增
-  ├─ 8. rsync 同步源码: → ~/workspace/chaoshan-agent/
-  └─ 9. GitHub: git add → commit → push
+  ├─ 6. **更新提取日志**: 如果从 address.md 或 questions.md 等来源取了条目，更新对应的 `references/*-extraction-log.md`，将已取条目从"可用但未取"移至"已提取"（注明日期和批号）
+  ├─ 7. **清理待合并**: 检查 `references/pending-vocab-merge.md` 是否有条目已存在于数据文件 → 标记已合并，不再重复追加
+  ├─ 8. version bump: 小版本+1, total_entries 递增
+  ├─ 9. rsync 同步源码: → ~/workspace/chaoshan-agent/
+  └─ 10. GitHub: git add → commit → push
 ```
 
 ## 搜索策略（6种查询 + 4个备选来源）
@@ -66,6 +67,8 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 - Peng'im 列可能包含括号音变标注如 `tai3(2)tai3` — 提取时用 `re.sub(r'\([^)]*\)', '', p)` 去掉括号
 - 有些行用 `\\|` 替代 `|` 或包含 Jekyll 格式控制符，需要跳过分隔线
 - 建议用 Python 逐行解析（检查 `stripped.startswith('|')` + `stripped.count('|') >= 4`）
+
+**⚠️ 提取后查 references/address-md-extraction-log.md** — 该日志记录了 address.md 全部 11 个表格的提取状态（已取/未取/跳过）。每次运行完成后更新该日志，避免后续轮次重复扫描已提取的条目。优先从"可用但未取"列表中选取候选。当日志显示 address.md 已采集完毕后，转向 questions.md / classifiers.md / negatives.md 等其他文件。
 
 #### ⚠️ 实战：address.md 表格提取完整示例
 
@@ -240,6 +243,13 @@ grep -c "阿舅" dictionary.yaml slang.yaml
 4. **例子/注释中的词 → 独立词条（新发现的自测角度）**: 检查 dictionary.yaml 的例子和注释中是否包含了应该作为独立词条的常用词汇。很多高频词（如煮 ze2=烹、厝边 cu3 bin1=邻居）仅在例句或注释中出现，但没有独立词条。检查方法：
    - grep 字典中的 `example:` 和 `note:` 字段，找高频但未列在 `char:` 中的词汇
    - 特别关注：日常动词（煮/炒/洗/切）、高频名词（邻居/朋友/同学/老师）、日常短语
+
+5. **文白异读盲区探测（新角度）**: 选一个日常复合词，尝试用"感觉对的"文读音读它，然后查证是否实际读白读。很多潮汕话口语词汇的白读与字面推导的文读不同，是高频盲区类型。检查方法：
+   - 选一个日常复合词（如冰箱、学堂、电话、电视）
+   - 先用自己的音感写出文读 Peng'im（如冰箱→bêng1 siên1）
+   - 查 learn-teochew wiktionary 索引确认实际读音
+   - 文白不同 → 盲区 ✅；文白一致 → 已掌握
+   - ⚠️ 注意：单字一般都有文白两读，关键是确认**复合词在口语中的实际读音**用的是哪一读
 
 具体每条题目的出题方式：用普通话描述一个概念，让你的 Teochew 知识来翻译。
 
