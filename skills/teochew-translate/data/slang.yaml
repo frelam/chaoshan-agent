@@ -1,19 +1,17 @@
 # ============================================================
 # 潮汕特色方言词 & 俗语 (Teochew Slang & Proverbs)
 # ============================================================
-# 收录潮汕话独有的特色表达、俗语谚语、语气词、亲属称谓
+# 收录潮汕话独有的特色表达、俗语谚语
 # 包括有音无字的词、文化内涵丰富的成语式表达
 # ============================================================
 
 meta:
   name: 潮汕特色方言词与俗语
-  version: "1.0.5"
-  total_entries: 38+
+  version: "1.1.0"
+  total_entries: 26+
   categories:
     - 有音无字
     - 俗语谚语
-    - 语气词
-    - 亲属称谓
     - 特色表达
 
 entries:
@@ -154,162 +152,7 @@ entries:
       tags: [俗语]
 
   # ========================
-  # 3. 语气词 (Sentence-final Particles)
-  # ========================
-  particles:
-    - id: fp1
-      char: 啊
-      pengim: a7
-      usage: 表示疑问、确认
-      example_teochew: 汝岂去啊？
-      example_mandarin: 你去不去啊？
-
-    - id: fp2
-      char: 啦
-      pengim: la7
-      usage: 表示肯定、强调
-      example_teochew: 好啊啦!
-      example_mandarin: 当然好啊！
-
-    - id: fp3
-      char: 咯
-      pengim: lo7
-      usage: 表示建议、回应（轻柔肯定）
-      example_teochew: 好咯，俺去咯。
-      example_mandarin: 好吧，咱们去吧。
-
-    - id: fp4
-      char: 呢
-      pengim: nê7
-      usage: 表示疑问（相当于"嗯？"）
-      example_teochew: 做尼呢？
-      example_mandarin: 怎么啦？/怎么回事？
-
-    - id: fp5
-      char: 嗷
-      pengim: ngiao5
-      usage: 表示惊叹、赞美
-      example_teochew: 过雅嗷！
-      example_mandarin: 好漂亮啊！
-
-    - id: fp6
-      char: 喏
-      pengim: na7
-      usage: 表示疑问、反问，略带责问语气
-      example_teochew: 汝岂知喏？
-      example_mandarin: 你到底知不知道？
-
-    - id: fp7
-      char: 矣
-      pengim: a1
-      usage: 表示完成、变化或强调
-      example_teochew: 落雨矣！
-      example_mandarin: 下雨了！
-
-    - id: fp8
-      char: 噢
-      pengim: o6
-      usage: 表示理解、醒悟
-      example_teochew: 噢，是只样！
-      example_mandarin: 哦，是这样！
-
-  # ========================
-  # 4. 亲属称谓 (Kinship Terms)
-  # ========================
-  kinship:
-    - id: k1
-      teochew: 阿公
-      pengim: a1 gong1
-      mandarin: 爷爷/外公
-      note: 可指祖父也可指外祖父，通过语境区分
-
-    - id: k2
-      teochew: 阿妈
-      pengim: a1 ma2
-      mandarin: 奶奶/外婆
-      note: 可指祖母也可指外祖母
-
-    - id: k3
-      teochew: 阿爸/爹
-      pengim: a1 ba1 / dia1
-      mandarin: 爸爸
-
-    - id: k4
-      teochew: 阿母/阿娘/姨
-      pengim: a1 bho2 / a1 niê5 / a1 i5
-      mandarin: 妈妈
-      note: 不同地区称呼不同
-
-    - id: k5
-      teochew: 阿兄
-      pengim: a1 hian1
-      mandarin: 哥哥
-      note: 也用于称呼同龄稍长男性
-
-    - id: k6
-      teochew: 阿弟
-      pengim: a1 di6
-      mandarin: 弟弟
-      note: 也用于称呼同龄稍幼男性
-
-    - id: k7
-      teochew: 阿姐
-      pengim: a1 zê2
-      mandarin: 姐姐
-
-    - id: k8
-      teochew: 阿妹
-      pengim: a1 muê6
-      mandarin: 妹妹
-
-    - id: k9
-      teochew: 阿伯
-      pengim: a1 bêh4
-      mandarin: 伯伯/伯父
-      note: 也用于尊称年长男性
-
-    - id: k10
-      teochew: 阿姆
-      pengim: a1 m2
-      mandarin: 伯母
-
-    - id: k11
-      teochew: 阿叔
-      pengim: a1 zêg4
-      mandarin: 叔叔
-
-    - id: k12
-      teochew: 阿婶
-      pengim: a1 sim2
-      mandarin: 婶婶
-
-    - id: k13
-      teochew: 阿舅
-      pengim: a1 gu6
-      mandarin: 舅舅
-
-    - id: k14
-      teochew: 阿妗
-      pengim: a1 gim6
-      mandarin: 舅妈
-
-    - id: k15
-      teochew: 阿丈
-      pengim: a1 diên6
-      mandarin: 姑丈/姨丈
-
-    - id: k16
-      teochew: 安
-      pengim: ang1
-      mandarin: 丈夫
-
-    - id: k17
-      teochew: 嬷
-      pengim: bhou2
-      mandarin: 妻子
-
-  # ========================
-  # 5. 特色表达 (Unique Expressions)
+  # 3. 特色表达 (Unique Expressions)
   # ========================
   expressions:
     - id: e1
@@ -319,26 +162,12 @@ entries:
       example: 只件事我无变帮你。
       tags: [特色表达]
 
-    - id: e2
-      teochew: 激心
-      pengim: gêg4 sim1
-      mandarin: 烦心/郁闷
-      example: 听着只件事，我过激心。
-      tags: [特色表达]
-
     - id: e3
       teochew: 跌掉
       pengim: dig4 diao7
       mandarin: 丢掉/遗失/忘记
       example: 本书我跌掉去。
       tags: [特色表达]
-
-    - id: e4
-      teochew: 相借问
-      pengim: siê1 zioh4 mung7
-      mandarin: 打招呼
-      example: 出门遇着侬着相借问。
-      tags: [特色表达, 文化]
 
     - id: e5
       teochew: 铺
@@ -348,24 +177,11 @@ entries:
       note: 潮汕传统长度单位
       tags: [特色表达, 文化]
 
-    - id: e6
-      teochew: 趁食
-      pengim: tang3 ziah8
-      mandarin: 谋生/赚钱糊口
-      example: 伊去广州趁食。
-      tags: [特色表达]
-
     - id: e7
       teochew: 甜过蜜
       pengim: diam5 guê3 bhig8
       mandarin: 比蜜还甜；形容甜到极致或得意忘形
       tags: [特色表达, 俗语]
-
-    - id: e8
-      teochew: 孥囝
-      pengim: nou1 gian2 / nao1 gian2
-      mandarin: 小孩/孩子
-      tags: [特色表达, 人称]
 
     - id: e9
       teochew: 姿娘
@@ -373,44 +189,11 @@ entries:
       mandarin: 女人/女性
       tags: [特色表达, 人称]
 
-    - id: e10
-      teochew: 打捕
-      pengim: da2 bou1
-      mandarin: 男人
-      tags: [特色表达, 人称]
-
-    - id: e11
-      teochew: 后生仔
-      pengim: hao6 sên1 gian2
-      mandarin: 年轻人/小伙子
-      tags: [特色表达, 人称]
-
     - id: e12
       teochew: 老伙
       pengim: lao6 huê2
       mandarin: 老人/老家伙（可轻蔑可亲昵）
       tags: [特色表达, 人称]
-
-    - id: e13
-      teochew: 晓市
-      pengim: hiao2 ci6
-      mandarin: 懂行情/懂世面
-      example: 伊过晓市，买物件𠀾乞侬骗。
-      tags: [特色表达]
-
-    - id: e14
-      teochew: 白直
-      pengim: bêh8 dig8
-      mandarin: 直率/坦诚（略带不懂人情世故）
-      example: 伊人过白直，有话就呾。
-      tags: [特色表达]
-
-    - id: e15
-      teochew: 衰疲
-      pengim: suê1 pui5
-      mandarin: 倒霉/晦气
-      example: 今日过衰疲，出门就落雨。
-      tags: [特色表达]
 
     - id: e16
       teochew: 踢桃
