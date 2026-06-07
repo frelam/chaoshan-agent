@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.4"
-  total_entries: 228+
+  version: "1.3.5"
+  total_entries: 234+
   categories:
     - 人称代词
     - 日常问候
@@ -1629,6 +1629,41 @@ entries:
     tags: [亲属称谓]
     note: 新妇(sing1 bu6/sim1 bu6)为"儿媳"义，字面义"新娘子"。潮汕俗写亦作"新𡜵"
 
+  - char: 堂兄
+    mandarin: 堂兄（同宗同姓、比自己年长的男性）
+    pengim: tang5 hian1
+    example: 堂兄在广州做事。
+    example_mandarin: 堂兄在广州工作。
+    tags: [亲属称谓]
+
+  - char: 堂弟
+    mandarin: 堂弟（同宗同姓、比自己年幼的男性）
+    pengim: tang5 di6
+    example: 堂弟今年考大学。
+    example_mandarin: 堂弟今年考大学。
+    tags: [亲属称谓]
+
+  - char: 堂妹
+    mandarin: 堂妹（同宗同姓、比自己年幼的女性）
+    pengim: tang5 muê7
+    example: 堂妹还在读册。
+    example_mandarin: 堂妹还在读书。
+    tags: [亲属称谓]
+
+  - char: 表兄
+    mandarin: 表兄（堂表亲中比自己年长的男性）
+    pengim: biou2 hian1
+    example: 表兄在深圳做生理。
+    example_mandarin: 表兄在深圳做生意。
+    tags: [亲属称谓]
+
+  - char: 表弟
+    mandarin: 表弟（堂表亲中比自己年幼的男性）
+    pengim: biou2 di6
+    example: 表弟来阮内𥆢我。
+    example_mandarin: 表弟来我家看我。
+    tags: [亲属称谓]
+
   # ========================
   # 8. 疑问词 (Question Words)
   # ========================
@@ -2118,3 +2153,11 @@ entries:
     example_mandarin: 抽烟对身体不好。
     tags: [日常用品]
     note: 薰(hun1)为潮汕话对香烟/烟草的说法，食薰(ziah8 hun1)=抽烟。也读作hng1
+
+  - char: 冰箱
+    mandarin: 冰箱/冰柜
+    pengim: bian1 siên1 / bian1 sion1
+    example: 冰箱内有食个物。
+    example_mandarin: 冰箱里有吃的东西。
+    tags: [日常用品]
+    note: 冰读bian1为白读，文读为bêng1。冰箱在日常口语用白读bian1 siên1
