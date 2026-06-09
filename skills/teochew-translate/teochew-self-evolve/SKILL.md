@@ -1,7 +1,7 @@
 ---
 name: teochew-self-evolve
-version: "1.5.9"
-description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日5次（07:00/10:00/13:00/16:00/20:00），自测验证，数据更新，同步源码，自动提交GitHub。由 5 个 cron job 驱动。"
+version: "1.5.11"
+description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
   min_context: 16384
@@ -11,8 +11,9 @@ requires:
 
 ## 整体架构
 
+
 ```
-每日5次 (cron jobs: 07:00 / 10:00 / 13:00 / 16:00 / 20:00)
+每日1次 (cron job: 07:00)
   │
   ├─ 1. 搜索发现: web_search × 2-3 种查询 → 提取约5个翻译对
   ├─ 2. **主动自测采样**: 自己给自己出3条题 → 用当前知识翻译 → 验证
@@ -69,6 +70,12 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 - 建议用 Python 逐行解析（检查 `stripped.startswith('|')` + `stripped.count('|') >= 4`）
 
 **⚠️ 提取后查 references/address-md-extraction-log.md** — 该日志记录了 address.md 全部 11 个表格的提取状态（已取/未取/跳过）。每次运行完成后更新该日志，避免后续轮次重复扫描已提取的条目。优先从"可用但未取"列表中选取候选。当日志显示 address.md 已采集完毕后，转向 questions.md / classifiers.md / negatives.md 等其他文件。
+
+**🆘 日志文件丢失恢复流程**: 如果 address-md-extraction-log.md 不存在或为空，不要随便下载整个 address.md 重新全量解析。按以下步骤重建：
+1. 用 GitHub Content API 下载 address.md: `curl -sL --connect-timeout 15 --max-time 30 -o /tmp/learn_address.json "https://api.github.com/repos/kbseah/learn-teochew/contents/pages/address.md"`
+2. 用 Python 解析全部表格（基于 `|` 分隔 + 表头各行，按空行分表），列出每个表格的概括（表1-N 对应的主题范围），并记录各表行数分布
+3. 按表顺序将所有"尚未提取"的条目写入一个新的 extraction log，格式：`| 表格X: [主题] | 候选数: N | 已提取: 0 | 批号: - | 状态: 可用但未取 |`
+4. 不做全量提取 — 只重建日志结构。新词从日志中"可用但未取"列表选取，每次运行只提取 5-10 条
 
 #### ⚠️ 实战：address.md 表格提取完整示例
 
@@ -299,7 +306,11 @@ grep -c "阿舅" dictionary.yaml slang.yaml
 
 ### 循环终止条件
 
-最多尝试 8 次（初始3条 + 最多5次重试），确保不会无限循环。5 次重试仍未找到盲区 → 说明当前知识覆盖好，跳过本轮自测学习部分。
+最多尝试 8 次（初始3条 + 最多5次重试），确保不会无限循环。5 次重试仍未找到盲区 → 有以下两种可能：
+- **模型知识 + 字典覆盖均完备**（你预测的每个词字典中已有）→ 跳过本轮自测学习，直接进入搜索发现
+- **模型知道但字典缺失**（你预测正确，但字典中 grep 不到该 char）→ 这些条目是**字典空隙**而非盲区。不占用盲区计数，但仍应通过 gap-scanning 发现的条目进入学习管道。只要字典空隙 ≥ 1，就不要跳过学习更新步骤
+
+判定方法：对每条 gap-scanning 发现的候选词，grep `dictionary.yaml` 确认是否作为独立 `- char:` 存在。不存在 → 字典空隙，直接进学习管道。存在且预测正确 → 已掌握。
 
 ### ⚠️ 自测计数常见误区
 
@@ -333,6 +344,17 @@ grep -c "阿舅" dictionary.yaml slang.yaml
 | 查重过滤 | 2-3 | 批量读取数据文件做内存校验 |
 | 验证&写入 | 5-10 | 每次只处理 ~5-8 条新词 |
 | 同步&提交 | 3-4 | rsync + git 操作 |
+
+### ⚠️ 调用配额耗尽时的优先级
+
+如果运行到步骤 5-6 时已明显不够完成后续步骤（剩余 < 10 次调用），按以下优先级放弃低价值步骤：
+
+1. **必须完成**: Step 5 (学习更新 — 追加到 YAML 文件) — 数据变更的基石
+2. **必须完成**: Step 8 (version bump) + Step 9 (rsync) + Step 10 (git commit) — 同步和持久化，防止数据丢失
+3. **可以放弃**: Step 6 (更新提取日志) — 日志可下次运行时重建
+4. **可以放弃**: Step 7 (清理 pending-merge) — pending 文件可下次清理
+
+实战建议：在 Step 5 结束后检查剩余调用数。≤ 6 次 → 跳过 Step 6-7，直接做 Step 8-10。
 
 ## 数据更新规则
 
@@ -454,6 +476,6 @@ push 可能因以下原因失败：
 - 只追加高度确信的数据（有可靠来源证据）
 - 不确定的写入 pending-merge 待人工审阅
 - 每次变更后运行 rsync 同步 + git push
-- Cron jobs: 33f05bb05d1c / ec5005e81c68 / f99b25251c2b / 3e9ee095dd2b / 640096f5774f (每日07:00/10:00/13:00/16:00/20:00运行，每批5条+自测3条)
+- Cron job: 33f05bb05d1c (每日07:00运行，每批5条+自测3条)
 - Companion cron: 9caed8b7894a (每周一4:00 周度consolidation — 审视skill去碎片化)
 - repo: frelam/chaoshan-agent (GitHub, gh CLI auth)

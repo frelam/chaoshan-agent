@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.8"
-  total_entries: 241+
+  version: "1.3.9"
+  total_entries: 249+
   categories:
     - 人称代词
     - 日常问候
@@ -694,6 +694,34 @@ entries:
     tags: [形容词]
     note: 閒(oin5/ain5)表示空闲，反义词为"无閒"(bho5 oin5)=没空
 
+  - char: 冷
+    mandarin: 冷
+    pengim: nên2
+    example: 今日过冷，穿加件衫。
+    example_mandarin: 今天很冷，多穿件衣服。
+    tags: [形容词, 天气]
+
+  - char: 矮
+    mandarin: 矮
+    pengim: oi2
+    example: 伊比阿兄矮。
+    example_mandarin: 他比哥哥矮。
+    tags: [形容词]
+
+  - char: 远
+    mandarin: 远
+    pengim: heng6
+    example: 学堂离阮内过远。
+    example_mandarin: 学校离我家很远。
+    tags: [形容词]
+
+  - char: 近
+    mandarin: 近
+    pengim: geng6
+    example: 市场离只块过近。
+    example_mandarin: 市场离这里很近。
+    tags: [形容词]
+
   # ========================
   # 5. 动词 (Verbs)
   # ========================
@@ -976,6 +1004,14 @@ entries:
     example_mandarin: 这里不可以抽烟。
     tags: [动词, 潮汕特色]
     note: 𠀾使(bhoi6 sai2)来自𠀾(不会)+使(用/可以)，表"不可以/不能(允许)"
+
+  - char: 无
+    mandarin: 没有/没
+    pengim: bho5
+    example: 我无银，买𠀾起只个物件。
+    example_mandarin: 我没钱，买不起这个东西。
+    tags: [动词, 基础]
+    note: 无(bho5)是潮汕话"没有"的说法，与闽南语同源。表领有/存在的否定，区别于"唔"(m6)表意愿否定
 
   # ========================
   # 6. 食物名称 (Food Names)
@@ -1620,6 +1656,64 @@ entries:
     example_mandarin: 表弟来我家看我。
     tags: [亲属称谓]
 
+  - char: 阿郎
+    mandarin: 丈夫/新郎/女婿
+    pengim: a1 neng5
+    example: 伊个阿郎在学堂做先生。
+    example_mandarin: 她的丈夫在学校当老师。
+    tags: [亲属称谓]
+    note: 阿郎(a1 neng5)指丈夫、新郎或女婿，为潮汕话亲属称谓。也写作"翁"(ang1)指丈夫
+
+  - char: 阿舅
+    mandarin: 舅舅（母亲的兄弟）
+    pengim: a1 gu6
+    example: 阿舅从汕头来阮内𥆢阮。
+    example_mandarin: 舅舅从汕头来我们家看我们。
+    tags: [亲属称谓]
+
+  - char: 阿妗
+    mandarin: 舅妈（母亲的兄弟的妻子）
+    pengim: a1 gim6
+    example: 阿妗煮个菜过好食。
+    example_mandarin: 舅妈做的菜很好吃。
+    tags: [亲属称谓]
+
+  - char: 姨丈
+    mandarin: 姨父/姨丈（母亲的姐妹的丈夫）
+    pengim: i5 dion6
+    example: 姨丈在内食茶。
+    example_mandarin: 姨丈在家喝茶。
+    tags: [亲属称谓]
+
+  - char: 姑丈
+    mandarin: 姑父/姑丈（父亲的姐妹的丈夫）
+    pengim: gou1 dion6
+    example: 姑丈在铺头做生理。
+    example_mandarin: 姑丈在店里做生意。
+    tags: [亲属称谓]
+
+  - char: 阿奴
+    mandarin: 孩子/儿女
+    pengim: a1 nou5
+    example: 伊个阿奴过灵精。
+    example_mandarin: 他的孩子很聪明。
+    tags: [亲属称谓]
+
+  - char: 𡚸
+    mandarin: 妻子/老婆
+    pengim: bhou2
+    example: 伊个𡚸在街市买菜。
+    example_mandarin: 他的妻子在菜市场买菜。
+    tags: [亲属称谓]
+    note: 𡚸(bhou2)是潮汕话对"妻子"的口语说法。也写作"嬷"。标准说法"𡚸"为闽南语/潮汕话特色用字，区别于"新妇"(儿媳)
+
+  - char: 翁
+    mandarin: 丈夫/老公
+    pengim: ang1
+    example: 伊个翁在广州趁食。
+    example_mandarin: 她的丈夫在广州谋生。
+    tags: [亲属称谓]
+
   # ========================
   # 9. 疑问词 (Question Words)
   # ========================
@@ -1998,6 +2092,20 @@ entries:
     tags: [天气, 基础]
     note: 天頂(tin1 dêng2)为潮汕话天上/天空的口语说法，天(tin1)为白读音
 
+  - char: 云
+    mandarin: 云
+    pengim: hung5
+    example: 天顶有云，会落雨。
+    example_mandarin: 天上有云，会下雨。
+    tags: [天气, 基础]
+
+  - char: 雪
+    mandarin: 雪
+    pengim: soh4
+    example: 北方落雪。
+    example_mandarin: 北方下雪。
+    tags: [天气]
+
   # ========================
   # 15. 情感 (Emotions)
   # ========================
@@ -2091,6 +2199,20 @@ entries:
     example_mandarin: 他是有名律师，帮人打官司。
     tags: [职业身份]
 
+  - char: 女士
+    mandarin: 女士/小姐（尊称）
+    pengim: ni2 se3
+    example: 这位女士是老师。
+    example_mandarin: 这位女士是老师。
+    tags: [职业身份, 日常问候]
+
+  - char: 博士
+    mandarin: 博士
+    pengim: pag4 se6
+    example: 伊在学堂读博士。
+    example_mandarin: 他在大学读博士。
+    tags: [职业身份]
+
   # ========================
   # 17. 日常用品 (Household Items)
   # ========================
@@ -2124,6 +2246,42 @@ entries:
     example_mandarin: 冰箱里有吃的东西。
     tags: [日常用品]
     note: 冰读bian1为白读，文读为bêng1。冰箱在日常口语用白读bian1 siên1
+
+  - char: 锁匙
+    mandarin: 钥匙
+    pengim: so2 si5
+    example: 我个锁匙囥在衫袋内。
+    example_mandarin: 我的钥匙放在衣服口袋里。
+    tags: [日常用品]
+
+  - char: 碗
+    mandarin: 碗
+    pengim: uan2
+    example: 洗碗水勿放过㩼。
+    example_mandarin: 洗碗水不要放太多。
+    tags: [日常用品]
+
+  - char: 窗
+    mandarin: 窗户/窗子
+    pengim: têng1
+    example: 开窗透气。
+    example_mandarin: 开窗通风。
+    tags: [日常用品]
+
+  - char: 箸
+    mandarin: 筷子
+    pengim: de7
+    example: 用箸食饭。
+    example_mandarin: 用筷子吃饭。
+    tags: [日常用品]
+
+  - char: 电话
+    mandarin: 电话
+    pengim: diang6 uê7
+    example: 乞我打个电话转内。
+    example_mandarin: 让我打个电话回家。
+    tags: [日常用品]
+    note: 电话(diang6 uê7)为潮汕话标准说法，电读diang6为白读，文读为diêng6。电话在日常生活中用白读
 
   # ========================
   # 18. 量词 (Measure Words / Classifiers)
