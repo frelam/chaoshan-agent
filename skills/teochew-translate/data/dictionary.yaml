@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.9"
-  total_entries: 249+
+  version: "1.3.10"
+  total_entries: 257+
   categories:
     - 人称代词
     - 日常问候
@@ -1714,6 +1714,34 @@ entries:
     example_mandarin: 她的丈夫在广州谋生。
     tags: [亲属称谓]
 
+  - char: 小姆
+    mandarin: 弟媳（弟弟的妻子）
+    pengim: siê2 m2
+    example: 小姆在内煮食。
+    example_mandarin: 弟媳在家做饭。
+    tags: [亲属称谓]
+
+  - char: 小郎
+    mandarin: 小叔（丈夫的弟弟）
+    pengim: siê2 neng1
+    example: 小郎在许口做工。
+    example_mandarin: 小叔在外面工作。
+    tags: [亲属称谓]
+
+  - char: 走孫
+    mandarin: 侄女（兄弟的女儿）
+    pengim: zao2 sung1
+    example: 伊个走孫过雅。
+    example_mandarin: 他的侄女很漂亮。
+    tags: [亲属称谓]
+
+  - char: 逗孫
+    mandarin: 侄儿（兄弟的儿子）
+    pengim: dao1 sung1
+    example: 逗孫在读书。
+    example_mandarin: 侄儿在上学。
+    tags: [亲属称谓]
+
   # ========================
   # 9. 疑问词 (Question Words)
   # ========================
@@ -1772,6 +1800,27 @@ entries:
     pengim: mih4 se7
     example: 汝面带愁容，有乜事？
     example_mandarin: 你面带愁容，有什么事？
+    tags: [疑问词]
+
+  - char: 乜生樣
+    mandarin: 什么样/什么样子
+    pengim: mih4 sên1 iên7
+    example: 伊生做乜生樣？
+    example_mandarin: 他长得什么样子？
+    tags: [疑问词]
+
+  - char: 哋一個
+    mandarin: 哪一个
+    pengim: di7 zêg8 gai5
+    example: 汝欲哋一個？
+    example_mandarin: 你要哪一个？
+    tags: [疑问词]
+
+  - char: 哋㐱
+    mandarin: 谁/谁的
+    pengim: di7 diang1
+    example: 哋㐱在许口呾话？
+    example_mandarin: 谁在外面说话？
     tags: [疑问词]
 
   # ========================
@@ -2282,6 +2331,14 @@ entries:
     example_mandarin: 让我打个电话回家。
     tags: [日常用品]
     note: 电话(diang6 uê7)为潮汕话标准说法，电读diang6为白读，文读为diêng6。电话在日常生活中用白读
+
+  - char: 雪文
+    mandarin: 肥皂
+    pengim: soh4 bhung5
+    example: 挈块雪文来洗衫。
+    example_mandarin: 拿块肥皂来洗衣服。
+    tags: [日常用品]
+    note: 雪文(soh4 bhung5)借自马来语sabun，是潮汕话中对肥皂的日常说法
 
   # ========================
   # 18. 量词 (Measure Words / Classifiers)
