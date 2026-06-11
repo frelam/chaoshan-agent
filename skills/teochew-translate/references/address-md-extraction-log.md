@@ -69,7 +69,21 @@
 ## 第二优先（常用但稍不紧急）
 | 词 | Peng'im | 释义 | 来源表 | 提取批次 |
 |---|---------|------|-------|---------|
-| 小姆 | siê2 m2 | 弟媳（弟弟的妻子） | 表7 | 2026-06-11 |
-| 小郎 | siê2 neng1 | 小叔（丈夫的弟弟） | 表7 | 2026-06-11 |
-| 走孫 | zao2 sung1 | 侄女（兄弟的女儿） | 表7 | 2026-06-11 |
-| 逗孫 | dao1 sung1 | 侄儿（兄弟的儿子） | 表7 | 2026-06-11 |
+| 小姆 | siê2 m2 | 弟媳（弟弟的妻子） | 表7 | 2026-06-12 （已存在字典中） |
+| 小郎 | siê2 neng1 | 小叔（丈夫的弟弟） | 表7 | 2026-06-12 （已存在字典中） |
+| 走孫 | zao2 sung1 | 侄女（兄弟的女儿） | 表7 | 2026-06-12 （已存在字典中） |
+| 逗孫 | dao1 sung1 | 侄儿（兄弟的儿子） | 表7 | 2026-06-12 （已存在字典中） |
+
+## 本轮添加（非 address.md 来源）
+
+| 词 | Peng'im | 释义 | 来源 | 提取批次 |
+|---|---------|------|-----|---------|
+| 风 | huang1 | 风 | learn-teochew wiktionary H-index | 2026-06-12 |
+| 水 | zui2 | 水 | learn-teochew wiktionary Z-index | 2026-06-12 |
+| 火 | huê2 | 火 | learn-teochew wiktionary H-index | 2026-06-12 |
+| 山 | suan1 | 山 | learn-teochew wiktionary S-index | 2026-06-12 |
+| 海 | hai2 | 海 | learn-teochew wiktionary H-index | 2026-06-12 |
+
+## address.md 已全部提取完成
+
+✅ address.md 所有高频条目均已提取完毕。后续自演进转向 wiktionary 索引和 classifiers.md/negatives.md 等文件。

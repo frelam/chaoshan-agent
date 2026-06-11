@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.10"
-  total_entries: 257+
+  version: "1.3.11"
+  total_entries: 262+
   categories:
     - 人称代词
     - 日常问候
@@ -2154,6 +2154,46 @@ entries:
     example: 北方落雪。
     example_mandarin: 北方下雪。
     tags: [天气]
+
+  - char: 风
+    mandarin: 风
+    pengim: huang1
+    example: 今日透大风，出门着穿加件衫。
+    example_mandarin: 今天刮大风，出门要多穿件衣服。
+    tags: [天气, 基础]
+    note: 风(huang1)是潮汕话对风的基本说法，如透风(tao3 huang1)=刮风、海风(hai2 huang1)=海风
+
+  - char: 水
+    mandarin: 水
+    pengim: zui2
+    example: 天时过热，爱食加杯水。
+    example_mandarin: 天气太热，要多喝杯水。
+    tags: [天气, 基础]
+    note: 水(zui2)为潮汕话对水的基本说法，凊水(cing3 zui2)=凉水、烧水(siê1 zui2)=热水
+
+  - char: 火
+    mandarin: 火
+    pengim: huê2
+    example: 火过烧，莫倚过去。
+    example_mandarin: 火很烫，别靠过去。
+    tags: [天气, 基础]
+    note: 火(huê2)在潮汕话中也是火灾义，如火舌(huê2 zih8)=火焰、火船(huê2 zung5)=汽船
+
+  - char: 山
+    mandarin: 山
+    pengim: suan1
+    example: 山过悬，爬起去过艰苦。
+    example_mandarin: 山很高，爬上去很辛苦。
+    tags: [天气, 基础]
+    note: 山(suan1)是潮汕话对山的基本说法，如山坡(suan1 bo1)=山坡、山水(suan1 zui2)=山泉水
+
+  - char: 海
+    mandarin: 海
+    pengim: hai2
+    example: 汕头在海墘，海产过丰富。
+    example_mandarin: 汕头在海边，海产很丰富。
+    tags: [天气, 基础]
+    note: 海(hai2)为潮汕话对海的基本说法，海墘(hai2 gin5)=海边、海水(hai2 zui2)=海水
 
   # ========================
   # 15. 情感 (Emotions)

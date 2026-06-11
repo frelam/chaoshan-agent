@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.12"
+version: "1.5.13"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -145,6 +145,8 @@ grep -c "阿舅" dictionary.yaml slang.yaml
      pages/teochew_wiktionary_index/teochew_wiktionary_index_*.md — ⭐ 按首字母编排的词典索引，含 Peng'im + IPA + 汉字
      ```
    - **⚠️ 用法优先级**（实战经验：GitHub Content API 比 raw.githubusercontent.com 更可靠）:
+
+   **⚠️ 已知字符变体陷阱**: learn-teochew questions.md 使用与 dictionary.yaml 不同的字符约定（如 做呢/做尼、哋塊/地块、珍時/底时、若濟/若㩼），这些是同一词汇的正字变体，不是新词。提取后先查 `references/known-variant-pairs.md` 跳过已知变体，节省 grep 轮次。
      ```bash
      # GitHub Content API（推荐首选—免认证，始终可达）:
      curl -sL --connect-timeout 15 --max-time 30 \
