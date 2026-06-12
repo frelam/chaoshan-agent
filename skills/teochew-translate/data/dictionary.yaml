@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.11"
-  total_entries: 262+
+  version: "1.3.12"
+  total_entries: 271+
   categories:
     - 人称代词
     - 日常问候
@@ -1955,6 +1955,38 @@ entries:
     example_mandarin: 我喉咙疼，说不出话。
     tags: [身体部位]
 
+  - char: 舌
+    mandarin: 舌头
+    pengim: zih8
+    example: 伊舌花花，呾话𠀾清楚。
+    example_mandarin: 他舌头打结，说话不清楚。
+    tags: [身体部位, 基础]
+    note: 舌(zih8)为潮汕话舌头的说法，如火舌(huê2 zih8)=火焰
+
+  - char: 齿
+    mandarin: 牙齿
+    pengim: ki2
+    example: 齿疼，着去找牙医。
+    example_mandarin: 牙疼，要去看牙医。
+    tags: [身体部位, 基础]
+    note: 齿(ki2)是潮汕话对牙齿的说法，如刷牙(soi2 ki2)=刷牙、齿膏(ki2 go1)=牙膏
+
+  - char: 肚
+    mandarin: 肚子/腹部
+    pengim: dou2
+    example: 肚困了，爱去食饭。
+    example_mandarin: 肚子饿了，要去吃饭。
+    tags: [身体部位, 基础]
+    note: 肚(dou2)为潮汕话肚子的说法，如肚困(dou2 kung3)=肚子饿、肚疼(dou2 tian3)=肚子痛、肚脐(dou2 zai5)=肚脐
+
+  - char: 颔
+    mandarin: 脖子/下巴（视语境）
+    pengim: am6
+    example: 颔酸，做呢会按呢？
+    example_mandarin: 脖子酸，怎么会这样？
+    tags: [身体部位]
+    note: 颔(am6)在潮汕话中既可指脖子（颔管am6 geng2=脖子），也可指下巴，视语境而定
+
   # ========================
   # 13. 颜色 (Colors)
   # ========================
@@ -2449,3 +2481,43 @@ entries:
     example_mandarin: 一对手镯，一双鞋。
     tags: [量词]
     note: 對(dui1)与雙(sang1)同义，可互换使用
+
+  - char: 撮
+    mandarin: 撮（复数量词，相当于"些"）
+    pengim: coh4
+    example: 一撮侬在许块等车。
+    example_mandarin: 一些人在那里等车。
+    tags: [量词]
+    note: 撮(coh4)是潮汕话的复数量词，相当于普通话的"些"，可用于人和物，如撮侬(coh4 nang5)=一些人、撮物(coh4 muêh8)=一些东西
+
+  - char: 枝
+    mandarin: 枝（细长物的量词，如笔/刀/针）
+    pengim: gi1
+    example: 一枝笔，两枝针。
+    example_mandarin: 一支笔，两根针。
+    tags: [量词, 基础]
+    note: 枝(gi1)用于细长且坚硬之物，如笔(pik4=笔)、刀(to1=刀)、针(tsam1=针)、竹竿(têg4go1=竹竿)
+
+  - char: 欉
+    mandarin: 欉（树木/植物的量词）
+    pengim: cang5
+    example: 一欉树，两欉花。
+    example_mandarin: 一棵树，两株花。
+    tags: [量词]
+    note: 欉(cang5)为潮汕话中树木/花草/植物的专用量词，对应普通话的"棵/株"，是闽南语特色量词
+
+  - char: 領
+    mandarin: 领（衣物/被褥的量词）
+    pengim: nian2
+    example: 一领衫，两领裤。
+    example_mandarin: 一件衣服，两条裤子。
+    tags: [量词]
+    note: 領(nian2)是潮汕话中衣物、被褥、网类的量词，对应普通话的"件/条"。例句：一领衫(一件衣服)、一领网(一张网)
+
+  - char: 塊
+    mandarin: 块（片状物/土地/地方的量词）
+    pengim: go3
+    example: 一块肉，两块地。
+    example_mandarin: 一块肉，两块地。
+    tags: [量词]
+    note: 塊(go3)用于片状物、土地、地方，也用于抽象地点如只块(zi2 go3)=这里、许块(he2 go3)=那里

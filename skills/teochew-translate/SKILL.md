@@ -1,6 +1,6 @@
 ---
 name: teochew-translate
-version: "1.4.10"
+version: "1.4.11"
 description: "潮汕话↔普通话双向翻译，支持潮州拼音（Peng'im），涵盖语法转换、文化注释、俗语解释。支持不确定时自动搜索确认、从用户更正中学习"
 triggers: ["潮汕话", "翻译", "teochew", "潮语", "呾", "潮州话", "pengim", "潮汕方言", "潮州音", "潮汕"]
 requires:
