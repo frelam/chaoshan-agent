@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.12"
-  total_entries: 271+
+  version: "1.3.13"
+  total_entries: 278+
   categories:
     - 人称代词
     - 日常问候
@@ -1191,6 +1191,22 @@ entries:
     tags: [食物名称, 日常]
     note: 凊(cing3)是潮汕话对液体凉的专用形容词，有别于凝(ngang5)寒(guan5)表气温冷
 
+  - char: 糖
+    mandarin: 糖
+    pengim: teng5
+    example: 咖啡内加滴糖过好食。
+    example_mandarin: 咖啡里加一点糖更好喝。
+    tags: [食物名称, 基础]
+    note: 糖(teng5)为潮汕话对糖的基本说法，如白糖(bêh8 teng5)=白糖、冰糖(bing1 teng5)=冰糖
+
+  - char: 盐
+    mandarin: 盐
+    pengim: iam5
+    example: 只碗汤伤咸，盐加过㩼了。
+    example_mandarin: 这碗汤太咸了，盐加太多了。
+    tags: [食物名称, 基础]
+    note: 盐(iam5)为潮汕话对盐的基本说法，写为鹽或盐
+
   # ========================
   # 7. 潮汕特色词汇 (Teochew Signature Words)
   # ========================
@@ -2227,6 +2243,22 @@ entries:
     tags: [天气, 基础]
     note: 海(hai2)为潮汕话对海的基本说法，海墘(hai2 gin5)=海边、海水(hai2 zui2)=海水
 
+  - char: 花
+    mandarin: 花
+    pengim: huê1
+    example: 公园内个花开过雅。
+    example_mandarin: 公园里的花开得很漂亮。
+    tags: [天气, 基础]
+    note: 花(huê1)为潮汕话对花的基本口语说法，如花园(huê1 hng5)=花园、花瓶(huê1 ping5)=花瓶
+
+  - char: 草
+    mandarin: 草
+    pengim: cao2
+    example: 草生来过茂，着爱修剪。
+    example_mandarin: 草长得很茂盛，需要修剪。
+    tags: [天气, 基础]
+    note: 草(cao2)为潮汕话对草的基本说法，如草埔(cao2 bou1)=草地、草鞋(cao2 oi5)=草鞋
+
   # ========================
   # 15. 情感 (Emotions)
   # ========================
@@ -2521,3 +2553,27 @@ entries:
     example_mandarin: 一块肉，两块地。
     tags: [量词]
     note: 塊(go3)用于片状物、土地、地方，也用于抽象地点如只块(zi2 go3)=这里、许块(he2 go3)=那里
+
+  - char: 群
+    mandarin: 群（人群/动物群的量词）
+    pengim: kung5
+    example: 一群侬在许块排队，一群羊在山顶食草。
+    example_mandarin: 一群人在那里排队，一群羊在山上吃草。
+    tags: [量词]
+    note: 群(kung5)用于人群和动物群，如一群侬(zêg8 kung5 nang5)=一群人、一群羊(zêg8 kung5 iên5)=一群羊
+
+  - char: 點
+    mandarin: 点（液滴的量词）
+    pengim: diam2
+    example: 落几点雨，天时变凊了。
+    example_mandarin: 下了几点雨，天气变凉了。
+    tags: [量词]
+    note: 點(diam2)用于滴状液体，如几点雨(guê3 diam2 hou6)=几滴雨、一点血(zêg8 diam2 huêh4)=一滴血
+
+  - char: 包
+    mandarin: 包（包装/束的量词）
+    pengim: bao1
+    example: 一包烟，两包糖，三包茶叶。
+    example_mandarin: 一包烟，两包糖，三包茶叶。
+    tags: [量词]
+    note: 包(bao1)用于捆扎或包装好的一束、一捆、一包物品
