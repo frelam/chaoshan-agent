@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.14"
-  total_entries: 277+
+  version: "1.3.15"
+  total_entries: 288+
   categories:
     - 人称代词
     - 日常问候
@@ -2570,3 +2570,103 @@ entries:
     example_mandarin: 一包烟，两包糖，三包茶叶。
     tags: [量词]
     note: 包(bao1)用于捆扎或包装好的一束、一捆、一包物品
+
+  # ========================
+  # 新增：2026-06-15 自演进 — 量词 (来自 classifiers.md)
+  # ========================
+  - char: 杯
+    mandarin: 杯（杯状容器/茶/水/酒的量词）
+    pengim: buê1
+    example: 一杯茶，两杯水，三杯酒。
+    example_mandarin: 一杯茶，两杯水，三杯酒。
+    tags: [量词]
+    note: 杯(buê1)用于杯状容器的量词，如一杯茶(zêg8 buê1 dê5)、一杯水(zêg8 buê1 zui2)
+
+  - char: 班
+    mandarin: 班（人群/班组/班次的量词）
+    pengim: bang1
+    example: 一班学生去踢桃，下一班车等阵就来。
+    example_mandarin: 一班学生去玩，下一班车等会儿就来。
+    tags: [量词]
+    note: 班(bang1)用于人群/学生班级或班次车辆，如一班学生(zêg8 bang1 hag8 sên1)=一班学生
+
+  - char: 副
+    mandarin: 副（成双成对物品的量词，如筷子/手镯/眼镜）
+    pengim: hu3
+    example: 一副箸，两副手环，三副目镜。
+    example_mandarin: 一双筷子，两对手镯，三副眼镜。
+    tags: [量词]
+    note: 副(hu3)用于成双成对的物品，如一副箸(zêg8 hu3 de7)=一双筷子
+
+  - char: 把
+    mandarin: 把（成捆/成束物品的量词，如柴/菜/花）
+    pengim: bê2
+    example: 一把柴，两把菜，三把花。
+    example_mandarin: 一捆柴，两把菜，三束花。
+    tags: [量词]
+    note: 把(bê2)用于成捆成束的物品，如一把柴(zêg8 bê2 ca5)=一捆柴、一把花(zêg8 bê2 huê1)=一束花
+
+  - char: 列
+    mandarin: 列（排/行列的量词，如人/房屋/树木）
+    pengim: lêg4 / liag8
+    example: 一列侬在排队，几列树在路边。
+    example_mandarin: 一列人在排队，几列树在路边。
+    tags: [量词]
+    note: 列(lêg4/liag8)用于排列成行的物品或人群，如一列侬(zêg8 lêg4 nang5)=一列人
+
+  # ========================
+  # 新增：2026-06-15 自演进 — 日常用品 (来自自测/扫描)
+  # ========================
+  - char: 目鏡
+    mandarin: 眼镜/spectacles
+    pengim: mag8 gian3
+    example: 伊戴一副目镜，看起来过有学识。
+    example_mandarin: 他戴一副眼镜，看起来很有学识。
+    tags: [日常用品]
+    note: 目鏡(mag8 gian3)即眼镜。目(mag8)=眼睛，鏡(gian3)=镜。粤东闽语通用说法
+
+  - char: 刀
+    mandarin: 刀/刀子
+    pengim: do1
+    example: 把刀过利，莫分孥囝耍。
+    example_mandarin: 这把刀很锋利，别给小孩玩。
+    tags: [日常用品]
+    note: 刀(do1)在潮汕话中读do1（非文读），与闽南语同音
+
+  - char: 纸
+    mandarin: 纸
+    pengim: zua2
+    example: 用一张纸写字，莫㩄纸。
+    example_mandarin: 用一张纸写字，别浪费纸。
+    tags: [日常用品]
+    note: 纸(zua2)为潮汕话纸的基本说法，如报纸(bo3 zua2)=报纸、纸字(zua2 ri7)=纸币
+
+  - char: 衫
+    mandarin: 衣服/衣裳
+    pengim: san1
+    example: 今日过冷，着穿加领衫。
+    example_mandarin: 今天很冷，要多穿件衣服。
+    tags: [日常用品]
+    note: 衫(san1)泛指衣服。潮汕话中穿衫=穿衣服，洗衫=洗衣服，领衫=件衣服
+
+  # ========================
+  # 新增：2026-06-15 自演进 — 食物名称
+  # ========================
+  - char: 豉油
+    mandarin: 酱油/生抽
+    pengim: si7 iu5
+    example: 碟粿条着落滴豉油正好食。
+    example_mandarin: 这碟粿条要加点酱油才好吃。
+    tags: [食物名称]
+    note: 豉油(si7 iu5)即酱油。潮汕/粤语通用说法。也写作"豉油"
+
+  # ========================
+  # 新增：2026-06-15 自演进 — 动词
+  # ========================
+  - char: 剪头毛
+    mandarin: 剪头发/理发
+    pengim: ziang2 tao5 mo5
+    example: 我个头毛过长了，爱去剪头毛。
+    example_mandarin: 我的头发太长了，要去剪头发。
+    tags: [动词, 日常]
+    note: 剪头毛(ziang2 tao5 mo5)即理发/剪头发。头毛(tao5 mo5)=头发，剪(ziang2)=剪。潮汕话不说"理发"

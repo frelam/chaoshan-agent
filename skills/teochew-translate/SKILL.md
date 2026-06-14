@@ -387,6 +387,21 @@ The following files contain the core dictionary and reference data (loaded via `
 
 When uncertain about a word, first consult these reference files. For words not found in the dictionary, apply general translation rules and note any uncertainty.
 
+### ⚠️ YAML 格式陷阱（数据文件维护者注意）
+
+数据文件中的 YAML 双引号字符串不能包含未转义的中文引号（" "「」），否则 `yaml.safe_load()` 会解析失败。如果需要在 YAML 值中包含中文引号，**必须使用 literal block scalar（`|` 或 `|-`）**，而非双引号字符串：
+
+```yaml
+# ❌ 错误：中文引号在双引号字符串内
+description: "再+V+数量" 结构，普通话说"再吃一碗"
+
+# ✅ 正确：使用 literal block scalar
+description: |-
+  "再+V+数量" 结构，普通话说"再吃一碗"
+```
+
+这条规则影响 `description`、`usage`、`name`、`title`、`focus`、`notes` 等字段。
+
 ## Essential Do's and Don'ts
 
 ### ✅ Do
