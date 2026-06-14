@@ -6,7 +6,7 @@
 
 meta:
   name: 翻译例句对照
-  version: “1.1.2”
+  version: "1.1.2"
   total_examples: 38
   categories:
     - 日常对话

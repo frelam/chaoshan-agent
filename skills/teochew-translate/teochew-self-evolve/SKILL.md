@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.15"
+version: "1.5.16"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -60,7 +60,7 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 |------|------|---------|
 | `pages/address.md` | 亲属称谓表（走仔、逗子、丈姆、丈人等）| 🔴 已全部提取完成 |
 | `pages/questions.md` | 疑问代词表（是乜、哋個、做呢等）| ⚪ 全部已存在（含已知变体）|
-| `pages/classifiers.md` | 量词表 | 🟢 已提取量词5条（枝/撮/欉/領/塊）— 剩余可提取 |
+| `pages/classifiers.md` | 量词表 | 🟢 已提取量词8条（枝/撮/欉/領/塊/群/點/包）— 仍有剩余可提取（副/班/杯/儎/籃/列） |
 | `pages/numbers.md` | 数字词汇 | ⚪ 大部分已在字典中 |
 | `pages/negatives.md` | 否定词详解 | 🟢 未系统提取 — 候选来源 |
 | `pages/comparisons.md` | 比较句 | ⚪ 语法信息已录 |
@@ -298,6 +298,14 @@ grep -c "阿舅" dictionary.yaml slang.yaml
      "
      ```
      **Why this is efficient**: 比跑 extract-wiktionary.py 快得多。extract-wiktionary.py 适合批量提取大量翻译对，但自测只需确认 1-2 个单字符读音，下载一个索引（1 个 curl 调用）后 grep 即可。注意拼音声母与索引文件的对应关系（c=tsh-, z=ts-, s=s-, h=h-, g=k-, gh=g- 等）
+     
+     **⚡ 批量下载技巧**: 当需要确认多个不同声母的字符时，可在一次 terminal 调用中用 `&&` 或 `;` 连接多个 curl 并行下载，每个写入不同临时文件，最后用一个 python3 调用统一 grep 全部索引。例如：
+     ```bash
+     curl -sL -o /tmp/wiktionary_b.json "https://..." && \
+     curl -sL -o /tmp/wiktionary_d.json "https://..." && \
+     curl -sL -o /tmp/wiktionary_k.json "https://..."
+     ```
+     这样一次 terminal 调用完成所有下载，比逐个 curl 节省 ~3 次工具调用。
    - **无需重复下载**：如果这一步已经为了搜索发现下载了某个 wiktionary 索引文件，直接复用
 3. **判定**：
    - ✅ **翻译正确**（自己的预测与搜索确认一致）→ **已掌握，不计数**。重新从不同角度出一道新题，继续探索
@@ -448,7 +456,7 @@ push 可能因以下原因失败：
 
 处理规则：
 1. 无论何种错误，**本地 commit 已保存，不要硬重置或删除**
-2. 不要重试超过 2 次（会浪费工具调用配额）
+2. 不要重试超过 2 次（会浪费工具调用配额）。若首次失败，sleep 3-5 秒后重试一次——短时网络抖动常在此时恢复
 3. 失败后，在报告中如实记录 `提交: ✅ 本地 (推送失败: 具体错误)`
 4. **下次 cron 运行时，git pull + git push 会自动重试未推送的 commit**
 5. 不需要单独处理 pending commits — 标准 git push 会推送所有未推送的祖先 commit

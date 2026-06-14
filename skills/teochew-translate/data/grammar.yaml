@@ -12,7 +12,7 @@
 
 meta:
   name: 潮汕话语法特点
-  version: "1.1.0"
+  version: "1.1.1"
   sections:
     - 语序差异
     - 否定词系统
@@ -56,7 +56,8 @@ grammar:
             pengim: i1 kung3 soin1
 
       - name: 数量补语后置
-        description: "再+V+数量" 结构，普通话说"再吃一碗"，潮汕话说"食加一碗"。"加"(gê1)表"增加/再"。
+        description: |-
+          "再+V+数量" 结构，普通话说"再吃一碗"，潮汕话说"食加一碗"。"加"(gê1)表"增加/再"。
         pattern: 动词 + 加/减 + 数量
         mandarin_pattern: 再 + 动词 + 数量
         examples:
@@ -71,7 +72,8 @@ grammar:
             pengim: sia2 gê1 no6 hang5
 
       - name: 形容词程度补语后置
-        description: "形容词+过+比较对象" 相当于普通话的 "比+比较对象+形容词"。这是潮汕话比较句的核心特征。
+        description: |-
+          "形容词+过+比较对象" 相当于普通话的 "比+比较对象+形容词"。这是潮汕话比较句的核心特征。
         pattern: A + 形容词 + 过 + B
         mandarin_pattern: A + 比 + B + 形容词
         examples:
@@ -210,7 +212,8 @@ grammar:
       - char: 未曾
         pengim: bhuê7 zêng1
         mandarin_equivalent: 还没/从未
-        usage: "未"的强调形式，强调"到目前为止还没有"
+        usage: |-
+          "未"的强调形式，强调"到目前为止还没有"
         examples:
           - teochew: 我未曾去过汕头。
             mandarin: 我还没去过汕头。
@@ -242,8 +245,10 @@ grammar:
       几乎可以替代大部分量词。同时潮汕话也保留了一些独特的量词。
 
     rules:
-      - name: "个"的泛化使用
-        description: 潮汕话中"个"(gai5)几乎可以替代大部分量词，使用频率远高于普通话。在口语翻译中可大量使用。
+      - name: |
+          个的泛化使用
+        description: |
+          潮汕话中"个"(gai5)几乎可以替代大部分量词，使用频率远高于普通话。在口语翻译中可大量使用。
         examples:
           - teochew: 一个侬
             mandarin: 一个人
@@ -817,7 +822,8 @@ grammar:
         普→潮：可简化量词为"个"（自然口语），也可用特色量词（更地道）
 
     - id: 4
-      title: "个"的双重身份
+      title: |
+        个的双重身份
       detail: |
         潮汕话"个"既是领属标记（=的）也是泛用量词
         翻译时要根据句法位置判断："我个册"=我的书（领属），"一个侬"=一个人（量词）
@@ -857,7 +863,8 @@ grammar:
         普→潮：选择"过+形"（日常）或"形+死去"（强调），注意程度等级
 
     - id: 10
-      title: "食"的语义范围
+      title: |
+        食的语义范围
       detail: |
         潮汕话"食"兼表"吃"和"喝"：食饭=吃饭，食茶=喝茶，食酒=喝酒，食烟=抽烟
         翻译时要根据宾语选择普通话的"吃"还是"喝"

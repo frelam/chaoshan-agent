@@ -8,7 +8,7 @@
 
 meta:
   name: 翻译测试用例
-  version: "1.0.0"
+  version: "1.0.1"
   total_cases: 15
 
 cases:
@@ -40,7 +40,8 @@ cases:
     expected_pengim: nang2 zo3 zêg8 ê7 lai5 ke3
     focus: 包括式"俺"的使用
     tags: [人称代词, 语序]
-    notes: "我们"区分排除式(阮)和包括式(俺)，此处为邀约场景，用"俺"
+    notes: |
+      "我们"区分排除式(阮)和包括式(俺)，此处为邀约场景，用"俺"
 
   # === 语序差异 ===
   - id: 4
@@ -77,7 +78,8 @@ cases:
     input: 我未食，汝食饱未？
     input_pengim: ua2 bhuê7 ziah8, le2 ziah8 ba2 bhuê7?
     expected_output: 我还没吃，你吃饱了吗？
-    focus: "未"的两种用法（否定副词 vs 疑问助词）
+    focus: |
+      "未"的两种用法（否定副词 vs 疑问助词）
     tags: [否定词, 语法]
 
   - id: 8
@@ -124,7 +126,8 @@ cases:
     input: 汝有食牛肉丸无？
     input_pengim: le2 u6 ziah8 ghu5 nêg8 in5 bho5?
     expected_output: 你有没有吃牛肉丸？
-    focus: "有V无"正反问结构
+    focus: |
+      "有V无"正反问结构
     tags: [疑问句, 语法]
 
   - id: 13
