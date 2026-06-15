@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.15"
-  total_entries: 288+
+  version: "1.3.16"
+  total_entries: 299+
   categories:
     - 人称代词
     - 日常问候
@@ -2670,3 +2670,95 @@ entries:
     example_mandarin: 我的头发太长了，要去剪头发。
     tags: [动词, 日常]
     note: 剪头毛(ziang2 tao5 mo5)即理发/剪头发。头毛(tao5 mo5)=头发，剪(ziang2)=剪。潮汕话不说"理发"
+
+  # ========================
+  # 新增：2026-06-16 自演进 — 日常高频基础词汇 (learn-teochew wiktionary 索引 + 自测)
+  # ========================
+
+  - char: 年
+    mandarin: 年/年份
+    pengim: ni5
+    example: 新年快乐，万事如意！
+    example_mandarin: 新年快乐，万事如意！
+    tags: [数字时间, 基础]
+    note: 年(ni5)为潮汕话对年和年份的基本说法，新年(sing1 ni5)=新年、今年(gim1 ni5)=今年、旧年(gu7 ni5)=去年
+
+  - char: 路
+    mandarin: 路/道路
+    pengim: lou7
+    example: 行大路免惊。
+    example_mandarin: 走大路别怕。
+    tags: [方位词, 基础]
+    note: 路(lou7)为潮汕话对道路的基本说法，行路(gian5 lou7)=走路、路墘(lou7 gin5)=路边
+
+  - char: 酒
+    mandarin: 酒
+    pengim: ziu2
+    example: 伊过好啉酒，一摆啉三杯。
+    example_mandarin: 他很好喝酒，一次喝三杯。
+    tags: [食物名称, 基础]
+    note: 酒(ziu2)为潮汕话对酒的基本说法，食酒(ziah8 ziu2)=喝酒、白(bêh8)酒=白酒
+
+  - char: 皮
+    mandarin: 皮肤/皮
+    pengim: puê5
+    example: 伊个皮肤过白。
+    example_mandarin: 她的皮肤很白。
+    tags: [身体部位, 基础]
+    note: 皮(puê5)为潮汕话对皮肤/皮的基本说法，面皮(ming7 puê5)=脸皮/面子、树皮(ciu7 puê5)=树皮
+
+  - char: 拍
+    mandarin: 拍/打
+    pengim: pah4
+    example: 拍球着在操场拍。
+    example_mandarin: 拍球要在操场拍。
+    tags: [动词, 基础]
+    note: 拍(pah4)为潮汕话拍/打的基本说法，拍球(pah4 giu5)=打球、拍电话(pah4 diêng6 uê7)=打电话、拍算(pah4 seng3)=打算
+
+  - char: 借
+    mandarin: 借
+    pengim: ziêh4
+    example: 借本书乞我读。
+    example_mandarin: 借本书给我读。
+    tags: [动词, 基础]
+    note: 借(ziêh4)为潮汕话对借的基本说法，借钱(ziêh4 zin5)=借钱、借书(ziêh4 ze1)=借书
+
+  - char: 毛
+    mandarin: 毛/毛发
+    pengim: mo5
+    example: 只猫个毛过滑。
+    example_mandarin: 这只猫的毛很滑。
+    tags: [身体部位, 基础]
+    note: 毛(mo5)为潮汕话对毛/头发的基本说法，头毛(tao5 mo5)=头发、鼻空毛(pin7 kang1 mo5)=鼻毛
+
+  - char: 船
+    mandarin: 船
+    pengim: zung5
+    example: 船在码头等客。
+    example_mandarin: 船在码头等客人。
+    tags: [日常用品, 基础]
+    note: 船(zung5)为潮汕话对船的基本说法，火船(huê2 zung5)=汽船、龙(lêng5)船=龙舟、扒龙船(bê5 lêng5 zung5)=划龙舟
+
+  - char: 床
+    mandarin: 床/台/桌子
+    pengim: ceng5
+    example: 书放床顶。
+    example_mandarin: 书放在桌上。
+    tags: [日常用品, 基础]
+    note: 床(ceng5)在潮汕话中兼指桌子(桌面/书桌)和睡床(bed)，如眠床(ming5 ceng5)=睡床、饭床(bung7 ceng5)=饭桌
+
+  - char: 田
+    mandarin: 田/田地
+    pengim: cang5
+    example: 田内在种水稻。
+    example_mandarin: 田地里在种水稻。
+    tags: [天气自然, 基础]
+    note: 田(cang5)为潮汕话对田地的说法，种田(zêng3 cang5)=种田、田庄(cang5 zeng1)=田庄/农村
+
+  - char: 街
+    mandarin: 街/街道
+    pengim: goi1
+    example: 街路侬过㩼，过闹热。
+    example_mandarin: 街道上人很多，很热闹。
+    tags: [方位词, 基础]
+    note: 街(goi1)为潮汕话对街道的基本说法，街路(goi1 lou7)=街道/马路、行街(gian5 goi1)=逛街

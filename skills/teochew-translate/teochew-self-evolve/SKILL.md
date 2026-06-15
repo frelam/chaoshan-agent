@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.17"
+version: "1.5.18"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -60,7 +60,7 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 |------|------|---------|
 | `pages/address.md` | 亲属称谓表（走仔、逗子、丈姆、丈人等）| 🔴 已全部提取完成 |
 | `pages/questions.md` | 疑问代词表（是乜、哋個、做呢等）| ⚪ 全部已存在（含已知变体）|
-| `pages/classifiers.md` | 量词表 | 🟢 已提取量词8条（枝/撮/欉/領/塊/群/點/包）— 仍有剩余可提取（副/班/杯/儎/籃/列） |
+| `pages/classifiers.md` | 量词表 | 🟢 已提取量词13条（枝/撮/欉/領/塊/群/點/包/杯/班/副/把/列）— 仍有剩余可提取（儎/籃） |
 | `pages/numbers.md` | 数字词汇 | ⚪ 大部分已在字典中 |
 | `pages/negatives.md` | 否定词详解 | 🟢 未系统提取 — 候选来源 |
 | `pages/comparisons.md` | 比较句 | ⚪ 语法信息已录 |
@@ -401,6 +401,13 @@ grep -c "阿舅" dictionary.yaml slang.yaml
       有别于脱(tug4)表逃脱义
     ```
   - ✅ 使用 `|` 块标量（保留换行）：
+
+  ⚠️ **patch 工具 multiline 陷阱（2026-06-15 实战发现）**: 当用 patch 工具向 YAML 追加包含 `\n`（反斜杠+n）的多行文本时，这些 `\n` 不会被解析为换行，而是作为**字面量转义序列**嵌入到 YAML note 字段中。例如：
+  ```yaml
+  # old_string: "note: 豉油(si7 iu5)即酱油。
+  # new_string: "note: 酱...\"\\n\\n  # 新增: 动词\n  - char: 剪头毛"
+  ```
+  会导致 YAML 文件出现 `"note: 豉油(si7 iu5)即酱油。\\n\\n # 新增: 动词\\n  - char: 剪头..."` 的一行式乱码。**正确做法**: patch 的 old_string 和 new_string 使用**纯文本格式**（包含实际换行），不要在字符串内部嵌入 `\n` 字面量。将新增条目作为独立的 patch 操作，不要与前面的条目 note 字段拼接到同一个 new_string 中。
 
 ### slang.yaml 追加 (phonic_only)
 - 新 id 为下一个序号（当前最大 p6）
