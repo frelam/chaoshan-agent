@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.18"
+version: "1.5.20"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -306,6 +306,28 @@ grep -c "阿舅" dictionary.yaml slang.yaml
      curl -sL -o /tmp/wiktionary_k.json "https://..."
      ```
      这样一次 terminal 调用完成所有下载，比逐个 curl 节省 ~3 次工具调用。
+     
+     **⚡ 批量验证工作流**（下载后）：用 execute_code 内联 Python 一次性加载所有已下载的索引，用函数查找每个候选字的 Peng'im 并对比预期值：
+     ```python
+     import json, base64, re
+     def search_wiktionary(char, filepath):
+         with open(filepath) as f:
+             data = json.load(f)
+         content = base64.b64decode(data['content']).decode('utf-8')
+         for line in content.split('\\n'):
+             if f'[{char}]' in line:
+                 m = re.search(r'\\|\\s*([^|]+)\\s*\\|', line.split(')')[1] if ')' in line else line)
+                 if m:
+                     return m.group(1).strip().split('/')[0].strip()
+         return None
+     candidates = {"路": "lou7", "田": "cang5", "皮": "puê5"}
+     index_map = {"路": '/tmp/wiktionary_l.json', "田": '/tmp/wiktionary_c.json'}
+     for char, expected in candidates.items():
+         actual = search_wiktionary(char, index_map[char])
+         status = "✅" if actual and expected in actual else "⚠️"
+         print(f"{char}: expected={expected} actual={actual} {status}")
+     ```
+     比逐个下载+逐行 grep 节省 5-10 次工具调用。
    - **无需重复下载**：如果这一步已经为了搜索发现下载了某个 wiktionary 索引文件，直接复用
 3. **判定**：
    - ✅ **翻译正确**（自己的预测与搜索确认一致）→ **已掌握，不计数**。重新从不同角度出一道新题，继续探索
@@ -351,7 +373,23 @@ grep -c "阿舅" dictionary.yaml slang.yaml
 验证自测题时注意以下陷阱：
 
 - **search_files（ripgrep）对某些特殊 Unicode 汉字可能漏检**。如果用 `search_files` 搜索䆀/𠀾/粙/刣/阿公/阿妈 等字得到 0 结果，再试 `grep -n -c` 在终端确认。ripgrep 对 CJK 扩展区汉字和常用亲属称谓字的支持不如 grep 稳定。
-- **验证方法优先级**: 读 dictionary.yaml 用 `grep "  - char:"` 查字典 > 下载 learn-teochew wiktionary 索引 grep 字符读音（见上方"自查验证"的完整流程）> ws。ws 在网络受限环境不可靠，优先用本地数据文件和 wiktionary 索引。
+- **验证方法优先级**: 读 dictionary.yaml 用 `grep "  - char:"` 查字典 > 下载 learn-teochew wiktionary 索引 grep 字符读音（见上方"自查验证"的完整流程）> ws。ws 在网络受限环境不可用，优先用本地数据文件和 wiktionary 索引。
+
+- **⚠️ grep exit code 陷阱（2026-06-16 实战发现）**: 当用 shell for 循环或 `&&` 链批量验证字典是否存在时，`grep -c` 在没找到匹配时返回 exit code 1，**会立即终止 `&&` 链**并导致后续命令不再执行。例如：
+  ```bash
+  # ❌ 错误：遇到0会中断
+  for w in 路 田 皮; do grep -c "  - char: $w" dictionary.yaml; done
+  
+  # ❌ 错误：同上
+  grep -c "路" dictionary.yaml && echo "继续"
+  
+  # ✅ 正确：用 || echo 0 捕获 exit code 1
+  for w in 路 田 皮 酒 拍; do
+    c=$(grep -c "  - char: $w" dictionary.yaml 2>/dev/null || echo 0)
+    echo "$w: $c"
+  done
+  ```
+  **最佳实践**: 批量验证字典空缺时，在 execute_code 中用 Python 写字典读取 + 集合查询，避免 shell exit code 耦合。如需用 shell，给每个 grep 加 `|| true` 或 `|| echo 0` 兜底。
 - **已知 vs 盲区的判定标准**: 如果你的翻译预测（汉字+Peng'im）完全正确，即使该词不在 dictionary.yaml 中也不算盲区 — 你只是尚未写入知识库，而非不知道这个词。
 - **单字符读音验证用小索引文件**：不要为查一个字的读音去下载整个 neoTeochew.json（192KB+经常超时）或跑完整 extract-wiktionary.py。只需找到对应声母的 wiktionary 索引文件（如查 炊 cuê1 → c-index），下载后 grep 即可。拼音声母 → 索引文件对应表：c=tsh, z=ts, s=s, h=h, g=k, gh=g, b=p, p=ph, d=t, t=th, l=l, m=m, n=n, ng=ng, r=dz, i=i, u/u, ê=e, o=o
 

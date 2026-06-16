@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.16"
-  total_entries: 299+
+  version: "1.3.17"
+  total_entries: 304+
   categories:
     - 人称代词
     - 日常问候
@@ -2252,6 +2252,24 @@ entries:
     tags: [天气, 基础]
     note: 草(cao2)为潮汕话对草的基本说法，如草埔(cao2 bou1)=草地、草鞋(cao2 oi5)=草鞋
 
+  - char: 热
+    mandarin: 热/天气热
+    pengim: ruah8
+    example: 今日天时过热。
+    example_mandarin: 今天天气很热。
+    tags: [天气, 形容词]
+    note: >
+      热(ruah8)为潮汕话对天气炎热的白读说法，如热天(ruah8 tin1)=夏天、
+      烧热(siê1 ruah8)=炎热。文读riêg8用于书面语如热带(riêg8 dai3)。
+
+  - char: 雷
+    mandarin: 雷/雷声
+    pengim: lui5
+    example: 雷公响过大声，通城骇着。
+    example_mandarin: 雷打得很响，大家都被吓到了。
+    tags: [天气]
+    note: 雷(lui5)为潮汕话对雷电的基本说法，雷公(lui5 gong1)=雷公/雷、响雷(hiang2 lui5)=打雷
+
   # ========================
   # 15. 情感 (Emotions)
   # ========================
@@ -2723,6 +2741,14 @@ entries:
     tags: [动词, 基础]
     note: 借(ziêh4)为潮汕话对借的基本说法，借钱(ziêh4 zin5)=借钱、借书(ziêh4 ze1)=借书
 
+  - char: 炒
+    mandarin: 炒/炒菜
+    pengim: ca2
+    example: 伊在厨房内炒菜。
+    example_mandarin: 她在厨房里炒菜。
+    tags: [动词, 食物名称]
+    note: 炒(ca2)为潮汕话对炒的基本说法，炒菜(ca2 cai3)=炒菜、炒粿(ca2 guê2)=炒糕/炒粿
+
   - char: 毛
     mandarin: 毛/毛发
     pengim: mo5
@@ -2746,6 +2772,22 @@ entries:
     example_mandarin: 书放在桌上。
     tags: [日常用品, 基础]
     note: 床(ceng5)在潮汕话中兼指桌子(桌面/书桌)和睡床(bed)，如眠床(ming5 ceng5)=睡床、饭床(bung7 ceng5)=饭桌
+
+  - char: 伞
+    mandarin: 伞/雨伞
+    pengim: suan3
+    example: 出门记得带伞，天时欲落雨。
+    example_mandarin: 出门记得带伞，天要下雨了。
+    tags: [日常用品, 基础]
+    note: 伞(suan3)为潮汕话对伞的基本说法，雨遮(hou6 zia1)也为同义词，遮日(zia1 rig8)=遮阳伞
+
+  - char: 椅
+    mandarin: 椅子/凳子
+    pengim: i1
+    example: 坐椅顶休息一下。
+    example_mandarin: 坐在椅子上休息一下。
+    tags: [日常用品]
+    note: 椅(i1)为潮汕话对椅子的基本说法，椅条(i1 diou5)=长凳、交椅(gao1 i1)=有靠背的椅子
 
   - char: 田
     mandarin: 田/田地
