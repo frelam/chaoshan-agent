@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.17"
-  total_entries: 304+
+  version: "1.3.18"
+  total_entries: 312+
   categories:
     - 人称代词
     - 日常问候
@@ -2633,6 +2633,49 @@ entries:
     note: 列(lêg4/liag8)用于排列成行的物品或人群，如一列侬(zêg8 lêg4 nang5)=一列人
 
   # ========================
+  # 新增：2026-06-18 自演进 — 量词 (来自 classifiers.md)
+  # ========================
+  - char: 位
+    mandarin: 位（人的量词，表尊敬，如医生/老师/客人）
+    pengim: ui7
+    example: 一位医生在许块看病，一位老师在教书。
+    example_mandarin: 一位医生在那里看病，一位老师在教书。
+    tags: [量词]
+    note: 位(ui7)用于称人的量词，带尊敬色彩。如一位医生(zêg8 ui7 ui1 sêng1)=一位医生、一位客人(zêg8 ui7 kêh4 nang5)=一位客人
+
+  - char: 件
+    mandarin: 件（事情/事务的量词）
+    pengim: gian1
+    example: 汝做了三件好事。上一件事还未解决。
+    example_mandarin: 你做了三件好事。上一件事还没解决。
+    tags: [量词]
+    note: 件(gian1)用于事情、事务、案件等的量词，如一件事(zêg8 gian1 dai7)=一件事、案件(uan3 gian1)=案件
+
+  - char: 頂
+    mandarin: 顶（帽子/头饰的量词）
+    pengim: dêng2
+    example: 一顶帽，两顶斗笠。
+    example_mandarin: 一顶帽子，两顶斗笠。
+    tags: [量词]
+    note: 頂(dêng2)用于帽子和头饰的量词，如帽(bho7)=帽子、斗笠(dao2 loih8)=斗笠
+
+  - char: 身
+    mandarin: 身（身体/全身衣物的量词）
+    pengim: sêng1
+    example: 伊穿一身新衫裤，精神过好。
+    example_mandarin: 他穿一身新衣服，精神很好。
+    tags: [量词]
+    note: 身(sêng1)用于身体及全身衣物的量词，如一身汗(zêg8 sêng1 guan7)=一身汗、一身新衫(zêg8 sêng1 sing1 san1)=一身新衣服
+
+  - char: 座
+    mandarin: 座（建筑物/大房屋的量词）
+    pengim: zo3
+    example: 一座大厝，一座庙，一座山。
+    example_mandarin: 一栋大房子，一座庙，一座山。
+    tags: [量词]
+    note: 座(zo3)用于建筑物和大房屋的量词，如一座大厝(zêg8 zo3 dua7 cu3)=一栋大房子、一座山(zêg8 zo3 suan1)=一座山
+
+  # ========================
   # 新增：2026-06-15 自演进 — 日常用品 (来自自测/扫描)
   # ========================
   - char: 目鏡
@@ -2804,3 +2847,30 @@ entries:
     example_mandarin: 街道上人很多，很热闹。
     tags: [方位词, 基础]
     note: 街(goi1)为潮汕话对街道的基本说法，街路(goi1 lou7)=街道/马路、行街(gian5 goi1)=逛街
+
+  # ========================
+  # 新增：2026-06-18 自演进 — 高频日常词汇 (来自自测)
+  # ========================
+  - char: 攑
+    mandarin: 拿/举/拾起
+    pengim: gia5
+    example: 攑一支笔来写字。
+    example_mandarin: 拿一支笔来写字。
+    tags: [动词, 基础]
+    note: 攑(gia5)为潮汕话对拿/举/拾的基本说法，如攑箸(gia5 de7)=拿筷子、攑椅(gia5 i1)=搬椅子、攑旗(gia5 gi5)=举旗
+
+  - char: 铁
+    mandarin: 铁
+    pengim: tih4
+    example: 铁鼎炒菜较好食。
+    example_mandarin: 铁锅炒菜更好吃。
+    tags: [日常用品, 基础]
+    note: 铁(tih4)为潮汕话对铁的基本说法，铁鼎(tih4 dian2)=铁锅、铁线(tih4 suan3)=铁丝、拍铁(pah4 tih4)=打铁
+
+  - char: 写
+    mandarin: 写/书写
+    pengim: sia2
+    example: 用毛笔写字最好看。
+    example_mandarin: 用毛笔写字最好看。
+    tags: [动词, 基础]
+    note: 写(sia2)为潮汕话对写/书写的基本说法，写字(sia2 ri7)=写字、写批(sia2 poi1)=写信、写文章(sia2 bhung5 ziên1)=写文章
