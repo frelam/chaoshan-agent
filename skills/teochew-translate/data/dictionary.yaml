@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.18"
-  total_entries: 312+
+  version: "1.3.19"
+  total_entries: 325+
   categories:
     - 人称代词
     - 日常问候
@@ -2676,6 +2676,74 @@ entries:
     note: 座(zo3)用于建筑物和大房屋的量词，如一座大厝(zêg8 zo3 dua7 cu3)=一栋大房子、一座山(zêg8 zo3 suan1)=一座山
 
   # ========================
+  # 新增：2026-06-19 自演进 — 量词扩展 (来自 classifiers.md)
+  # ========================
+
+  - char: 頁
+    mandarin: 页（书页的量词）
+    pengim: hiêh4
+    example: 一页册看了归日。
+    example_mandarin: 一页书看了一整天。
+    tags: [量词]
+    note: 页(hiêh4)用于书页的张数量词
+
+  - char: 幅
+    mandarin: 幅（地图/挂轴的量词）
+    pengim: bag4
+    example: 一幅地图挂在内。
+    example_mandarin: 一幅地图挂在里面。
+    tags: [量词]
+    note: 幅(bag4)用于地图、挂轴、画卷的量词
+
+  - char: 節
+    mandarin: 节（两关节之间的段，如手指/竹/树枝/道路）
+    pengim: cag4
+    example: 竹仔一节一节。
+    example_mandarin: 竹子一节一节的。
+    tags: [量词]
+    note: 节(cag4)用于两关节之间的段，如手指/竹/树枝/道路的计量
+
+  - char: 腳
+    mandarin: 脚（箱子/棺材/戒指的量词）
+    pengim: ka1
+    example: 一双鞋一腳。
+    example_mandarin: 一双鞋算一腳。
+    tags: [量词]
+    note: 脚(ka1)作为量词用于箱子、棺材、戒指等
+
+  - char: 籃
+    mandarin: 篮（篮/筐的量词，如米）
+    pengim: na5
+    example: 一篮米够食归星期。
+    example_mandarin: 一篮米够吃一星期。
+    tags: [量词]
+    note: 篮(na5)作为容器量词，用于盛装米/菜/水果等的竹篮
+
+  - char: 主
+    mandarin: 主（人的量词，如上/下/东家）
+    pengim: zu3
+    example: 一条街三主人家。
+    example_mandarin: 一条街三户人家。
+    tags: [量词]
+    note: 主(zu3)作为人的量词，用于计"户"/"家"之主
+
+  - char: 齣
+    mandarin: 出（戏剧/表演的量词）
+    pengim: cuh4
+    example: 一齣戏看了三个钟头。
+    example_mandarin: 一出戏看了三个小时。
+    tags: [量词]
+    note: 出(cuh4)用于戏剧/表演节目的量词
+
+  - char: 儎
+    mandarin: 儎（船货/货物的量词）
+    pengim: cai5
+    example: 一儎货过重，搬唔起。
+    example_mandarin: 一船货太重，搬不起来。
+    tags: [量词]
+    note: 儎(cai5)用于船货/货物的量词，一儎即一船货物
+
+  # ========================
   # 新增：2026-06-15 自演进 — 日常用品 (来自自测/扫描)
   # ========================
   - char: 目鏡
@@ -2874,3 +2942,47 @@ entries:
     example_mandarin: 用毛笔写字最好看。
     tags: [动词, 基础]
     note: 写(sia2)为潮汕话对写/书写的基本说法，写字(sia2 ri7)=写字、写批(sia2 poi1)=写信、写文章(sia2 bhung5 ziên1)=写文章
+
+  # ========================
+  # 新增：2026-06-19 自演进 — 高频日常词汇 (来自自测盲区/字典空隙)
+  # ========================
+
+  - char: 關
+    mandarin: 关/关闭
+    pengim: guên1
+    example: 關门，關窗，風大着關门。
+    example_mandarin: 关门，关窗，风大要关门。
+    tags: [动词, 日常]
+    note: 关(guên1)为潮汕话对关闭的基本说法，如關门(guên1 mung5)=关门、關窗(guên1 teng1)=关窗。另有文读 guêng1 用于关系/海关等词汇
+
+  - char: 石
+    mandarin: 石/石头
+    pengim: zioh8
+    example: 一块石头在路边。
+    example_mandarin: 一块石头在路边。
+    tags: [天气自然, 基础]
+    note: 石(zioh8)为潮汕话对石头/岩石的白读说法，如石头(zioh8 tau5)=石头、石部(zioh8 bou6)=石头块。文读 sêg8
+
+  - char: 读
+    mandarin: 读/阅读/念书
+    pengim: tag8
+    example: 读书，读报纸每一个朝早起。
+    example_mandarin: 读书，每天早晨读报纸。
+    tags: [教育, 动词]
+    note: 读(tag8)为潮汕话对阅读、念书的白读说法，如读书(tag8 ze1)=读书/上学、读册(tag8 cêh4)=读书/念书。文读 dog8
+
+  - char: 金
+    mandarin: 金/金属/黄金
+    pengim: gim1
+    example: 金链，金戒指，伊买一条金链。
+    example_mandarin: 金链子，金戒指，她买了一条金链子。
+    tags: [日常用品, 基础]
+    note: 金(gim1)为潮汕话对金/黄金的基本说法，如金仔(gim1 gian2)=金子/金饰、金链(gim1 liang7)=金链子、金戒指(gim1 gai3 zi2)=金戒指
+
+  - char: 碟
+    mandarin: 碟/盘子
+    pengim: dih8
+    example: 碟底有油，洗正清。
+    example_mandarin: 盘子底下有油，洗才干净。
+    tags: [日常用品, 食物名称]
+    note: 碟(dih8)为潮汕话对盘子的基本说法

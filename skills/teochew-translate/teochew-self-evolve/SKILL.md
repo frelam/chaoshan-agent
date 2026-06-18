@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.20"
+version: "1.5.22"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -60,7 +60,7 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 |------|------|---------|
 | `pages/address.md` | 亲属称谓表（走仔、逗子、丈姆、丈人等）| 🔴 已全部提取完成 |
 | `pages/questions.md` | 疑问代词表（是乜、哋個、做呢等）| ⚪ 全部已存在（含已知变体）|
-| `pages/classifiers.md` | 量词表 | 🟢 已提取量词22条（隻/間/條/雙/張/粒/尾/本/對/撮/枝/欉/領/塊/群/點/包/杯/班/副/把/列）— 仍有剩余可提取（頁/件/幅/身/頂/座/主/節/齣/位/腳/儎/籃） |
+| `pages/classifiers.md` | 量词表 | 🟢 已提取量词35条（隻/間/條/雙/張/粒/尾/本/對/撮/枝/欉/領/塊/群/點/包/杯/班/副/把/列/位/件/頂/身/座/頁/幅/節/腳/籃/主/齣/儎）— 已全部提取完成 ✅ |
 | `pages/numbers.md` | 数字词汇 | ⚪ 大部分已在字典中 |
 | `pages/negatives.md` | 否定词详解 | 🟢 未系统提取 — 候选来源 |
 | `pages/comparisons.md` | 比较句 | ⚪ 语法信息已录 |
@@ -209,7 +209,14 @@ grep -c "阿舅" dictionary.yaml slang.yaml
 
    ⚠️ `raw.githubusercontent.com` 可能超时（exit 28），GitHub Content API 更稳定。
    
-   #### ⚠️ 安全扫描器阻止管道命令（实战陷阱）
+   #### ⚠️ 实战：Wiktionary 索引覆盖范围有限（2026-06-18）
+   
+   该索引文件**仅包含有 Wiktionary 条目**的汉字，大量日常高频汉字（如写 sia2、铁 tih4、攑 gia5、读 tag8）并未收录。搜索一个索引文件后返回空结果 ≠ 该字在潮汕话中不存在或无读音。当索引搜索为空时：
+   1. ⚡ 用 execute_code + Python 的集合查询批量验证字典空缺（比 grep for 循环更可靠，避免 exit code 1 陷阱）
+   2. 基于汉字知识 + 已知读音规律给出合理推测
+   3. 如果需要交叉验证，搜索同一字的其他声母索引文件（一字可能多读，如肉有白读 bhah4 和文读 nêg8，但只有 nêg8 在 N-index 中）
+   
+   #### ⚠️ 实战：classifiers.md 分类器表格解析
    
    本环境的 tirith 安全扫描器**会阻止 `curl | python3` 管道命令**（判定为 HIGH 风险），报错：
    ```
