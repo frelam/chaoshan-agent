@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.19"
-  total_entries: 325+
+  version: "1.3.20"
+  total_entries: 331+
   categories:
     - 人称代词
     - 日常问候
@@ -2986,3 +2986,71 @@ entries:
     example_mandarin: 盘子底下有油，洗才干净。
     tags: [日常用品, 食物名称]
     note: 碟(dih8)为潮汕话对盘子的基本说法
+
+  # ========================
+  # 新增：2026-06-20 自演进 — 否定词/动词 (来自 negatives.md + 自测盲区)
+  # ========================
+
+  - char: 無變
+    mandarin: 没办法/无法（因情况不允许而不能）
+    pengim: bho5 biang3
+    example: 我破病，無變出門。
+    example_mandarin: 我生病了，没办法出门。
+    tags: [动词, 潮汕特色]
+    note: >-
+      無變(bho5 biang3)为潮汕话否定词，意为"没办法/因情况所限而不能"，
+      来自无(bho5)+变(biang3=可变/可办)。肯定形式为有變(u6 biang3)。
+      常用于表达客观条件不允许，如無變去(没办法去)、無變做(没办法做)。
+
+  - char: 孬
+    mandarin: 不好/坏；别/不要（表禁止）
+    pengim: mo2
+    example: 汝孬入来，我只阵无闲。
+    example_mandarin: 你别进来，我现在没空。
+    tags: [形容词, 动词, 潮汕特色]
+    note: >-
+      孬(mo2)来自唔好(m6 ho2)的合音，有双重功能：
+      1) 形容词义"不好/坏"，如袂孬(bhoi6 mo2)=不坏/不错、相孬(siang1 mo2)=绝交
+      2) 动词义"别/不要"，表禁止，语气比莫(mai3)更强烈
+      反义词为好 ho2，也可作形容词表质量差
+
+  - char: 袂曉
+    mandarin: 不会（因缺乏知识或技能而不会）
+    pengim: bhoi6 hiao2
+    example: 我袂曉呾潮州话，因是𫢪学。
+    example_mandarin: 我不会说潮州话，因为还在学。
+    tags: [动词, 潮汕特色]
+    note: >-
+      袂曉(bhoi6 hiao2)为𠀾(不会)+曉(知道/会)，表因缺乏知识或技能而不会，
+      有别于𠀾得(bhoi6 dêg8)表体力上不能。袂也可写作𠀾
+
+  - char: 袂得
+    mandarin: 不能/不得（因体力或能力所限而不能）
+    pengim: bhoi6 dêg8
+    example: 脚疼，袂得行路。
+    example_mandarin: 脚痛，不能走路。
+    tags: [动词, 潮汕特色]
+    note: >-
+      袂得(bhoi6 dêg8)为𠀾(不会)+得(能)，表因体力或能力所限而不能，
+      有别于袂曉(bhoi6 hiao2)表知识技能不足。袂也可写作𠀾
+
+  - char: 唔好
+    mandarin: 不愿意/不肯
+    pengim: m6 haon3
+    example: 伊唔好来阮内食茶，做呢劝都无效。
+    example_mandarin: 他不肯来我家喝茶，怎么劝都没用。
+    tags: [动词, 潮汕特色]
+    note: >-
+      唔好(m6 haon3)为唔(m6=否定前缀)+好(haon3=愿意/肯)，
+      表主观上不愿意、不肯做某事。好(haon3)在此读haon3而非ho2，
+      为表"愿意"义的特有读音。肯定形式为好(haon3)=愿意
+
+  - char: 切
+    mandarin: 切/切割
+    pengim: ciag4
+    example: 菜脯卵着将菜脯切到碎碎。
+    example_mandarin: 萝卜干煎蛋要把萝卜干切得碎碎的。
+    tags: [动词, 食物名称]
+    note: >-
+      切(ciag4)为潮汕话对切割的基本说法，读ciag4(入声-g)而非cioh4。
+      如切菜(ciag4 cai3)=切菜、切肉(ciag4 nêg8)=切肉、切碎(ciag4 cui3)=切碎。

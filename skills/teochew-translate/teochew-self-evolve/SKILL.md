@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.22"
+version: "1.5.24"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -50,6 +50,8 @@ requires:
 
 **⚠️ 来源优先级更新（2026-06-12）**：address.md 的所有高频条目已提取完毕。后续运行应优先使用 **B) Wiktionary 索引文件**（单字符基础词汇）和 **A) classifiers.md / negatives.md**（新主来源），address.md 只保留作日志恢复备用。
 
+**⚠️ 来源优先级更新（2026-06-19）**：classifiers.md 所有量词条目（35条）已全部提取完成。后续运行将 **negatives.md 作为主来源之一**，配合 wiktionary 索引文件使用。classifiers.md 保留供日志恢复和交叉验证。
+
 #### A) 语法/短语页面（⭐ 旧主来源 — 🔴 address.md 已全部提取完毕）
 
 Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词词汇**（亲属称谓、日常短语、疑问词等），曾经需要语法/短语页面。但这些页面包含完整的 Jekyll Markdown 表格，含 Peng'im + IPA + 汉字 + 定义四列对照。
@@ -62,7 +64,7 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 | `pages/questions.md` | 疑问代词表（是乜、哋個、做呢等）| ⚪ 全部已存在（含已知变体）|
 | `pages/classifiers.md` | 量词表 | 🟢 已提取量词35条（隻/間/條/雙/張/粒/尾/本/對/撮/枝/欉/領/塊/群/點/包/杯/班/副/把/列/位/件/頂/身/座/頁/幅/節/腳/籃/主/齣/儎）— 已全部提取完成 ✅ |
 | `pages/numbers.md` | 数字词汇 | ⚪ 大部分已在字典中 |
-| `pages/negatives.md` | 否定词详解 | 🟢 未系统提取 — 候选来源 |
+| `pages/negatives.md` | 否定词详解 | 🟢 已系统提取 — 無變/孬/袂曉/袂得/唔好 共5条（2026-06-20）|
 | `pages/comparisons.md` | 比较句 | ⚪ 语法信息已录 |
 | `pages/personal_pronouns.md` | 人称代词 | ⚪ 全部已在字典中 |
 | `pages/particles.md` | 句末语气词 | ⚪ 已在语法参考中 |
@@ -363,6 +365,14 @@ grep -c "阿舅" dictionary.yaml slang.yaml
    - 先预测其入声韵尾，再查 learn-teochew wiktionary 索引确认
    - 例：热 → 白读 ruah8（入声-h），非 ruag8（常见混淆方向）
    - 注意区分：-b(唇入声)、-g(软腭入声)、-h(喉塞入声) 三类
+
+8. **韵母混淆探测（新角度 — 2026-06-19）**: 选一个日常用字，尝试写出其韵母（主元音），查 wiktionary 索引验证。韵母混淆是另一种高频盲区类型——模型倾向于用更熟悉的韵母替代实际读音，特别是涉及潮汕话特有元音 ê/io/oi/ue 等。检查方法：
+   - 选几个含易混韵母的日常字（如關/京/香/月/关/县）
+   - 先预测其韵母（如關的韵母 ui vs uê, 香的韵母 iên vs ion, 月的韵母 uê vs ueh vs iag）
+   - 查 learn-teochew wiktionary 索引确认实际读音
+   - 例：關(关闭) → 预测 guin1 → 实际 guên1（韵母 ui → uê 混淆）
+   - 例：石(石头) → 预测 ziêh8 → 实际 zioh8（韵母 iê → io 混淆）
+   - **高频易混韵母对**：ui↔uê, iê↔io, i↔ê, u↔o, ai↔oi
 
 每次重试只扫一个类别（扫描约 1-2 条），避免同一角度反复尝试。5次重试应覆盖 3-5 个不同类别。
 
