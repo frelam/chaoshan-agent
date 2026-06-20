@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.24"
+version: "1.5.26"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -64,7 +64,7 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 | `pages/questions.md` | 疑问代词表（是乜、哋個、做呢等）| ⚪ 全部已存在（含已知变体）|
 | `pages/classifiers.md` | 量词表 | 🟢 已提取量词35条（隻/間/條/雙/張/粒/尾/本/對/撮/枝/欉/領/塊/群/點/包/杯/班/副/把/列/位/件/頂/身/座/頁/幅/節/腳/籃/主/齣/儎）— 已全部提取完成 ✅ |
 | `pages/numbers.md` | 数字词汇 | ⚪ 大部分已在字典中 |
-| `pages/negatives.md` | 否定词详解 | 🟢 已系统提取 — 無變/孬/袂曉/袂得/唔好 共5条（2026-06-20）|
+| `pages/negatives.md` | 否定词详解 | 🟢 已系统提取 — 無變/孬/袂曉/袂得/唔好 共5条（2026-06-20），见 `references/negatives-md-extraction-log.md` |
 | `pages/comparisons.md` | 比较句 | ⚪ 语法信息已录 |
 | `pages/personal_pronouns.md` | 人称代词 | ⚪ 全部已在字典中 |
 | `pages/particles.md` | 句末语气词 | ⚪ 已在语法参考中 |
@@ -218,7 +218,54 @@ grep -c "阿舅" dictionary.yaml slang.yaml
    2. 基于汉字知识 + 已知读音规律给出合理推测
    3. 如果需要交叉验证，搜索同一字的其他声母索引文件（一字可能多读，如肉有白读 bhah4 和文读 nêg8，但只有 nêg8 在 N-index 中）
    
-   #### ⚠️ 实战：classifiers.md 分类器表格解析
+   #### ⚠️ 实战：negatives.md 散文式页面提取（新增 — 2026-06-20）
+
+与 address.md / classifiers.md 的表格结构不同，**negatives.md 是教育性散文（prose）**，词汇条目嵌入在正文中而非表格行。每条词汇的格式为：
+
+```
+*Peng'im* • 汉字 • "English meaning"
+```
+
+内含 IPA 标注和详细说明。提取方法：
+
+```python
+import json, base64, re
+
+with open('/tmp/negatives.json') as f:
+    data = json.load(f)
+content = base64.b64decode(data['content']).decode('utf-8')
+
+# 提取所有形如 *xxx* • 汉字 • "定义" 的行
+for line in content.split('\n'):
+    m = re.search(r'\*([^*]+)\*\s*•\s*([^•]+)•\s*"([^"]+)"', line)
+    if m:
+        pengim = m.group(1).strip()
+        chars = m.group(2).strip()
+        meaning = m.group(3).strip()
+        # → (chars, pengim, meaning)
+```
+
+**可用但未取的候选条目**（截至 2026-06-20，已有 5 条提取）：
+
+| 条目 | 含义 | 来源 |
+|------|------|------|
+| 無變 (bho5 biang3) | 没办法(因情况所限) | ✅ 已提取 |
+| 孬 (mo2) | 不好/别(禁止) | ✅ 已提取 |
+| 袂曉 (bhoi6 hiao2) | 不会(知识技能不足) | ✅ 已提取 |
+| 袂得 (bhoi6 dêg8) | 不能(体力不济) | ✅ 已提取 |
+| 唔好 (m6 haon3) | 不愿意 | ✅ 已提取 |
+| 唔記得 (m6 gi1dêg4) | 不记得 | ✅ 已提取 |
+| 唔自量 (m6 ze6liang6) | 不自量力 | ✅ 已提取 |
+| 唔甘願 (m6 gam1nguang6) | 不甘心/不情愿 | ❌ 未取 |
+| 免客氣 (mêng2 kêh4ki3) | 别客气 | ✅ 已提取 |
+| 無孬 (bho5(7)mo2) | 不坏 | ❌ 未取 |
+| 袂孬 (bhoi6(7)mo2) | 不坏/不错 | ✅ 已提取 |
+| 相孬 (siang1 mo2) | 绝交 | ✅ 已提取 |
+| 有變 (u6 biang3) | 有办法(無變的肯定形式) | ❌ 未取 |
+
+每次从 **③ 未取** 列表中选取 5 条目提取，提取后更新此日志。
+
+#### ⚠️ 实战：classifiers.md 分类器表格解析
    
    本环境的 tirith 安全扫描器**会阻止 `curl | python3` 管道命令**（判定为 HIGH 风险），报错：
    ```
