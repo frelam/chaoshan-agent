@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.21"
-  total_entries: 336+
+  version: "1.3.22"
+  total_entries: 344+
   categories:
     - 人称代词
     - 日常问候
@@ -3109,4 +3109,89 @@ entries:
     note: >-
       相孬(siang1 mo2)来自相(互相)+孬(mo2=坏)，表友情破裂、翻脸绝交。
       为相好(siang1 ho2=关系好/交好)的反义词。
-      常用于"伊人相孬去(他俩翻脸了)"等表达。
+      常用于「伊人相孬去(他俩翻脸了)」等表达。
+  # ========================
+  # 新增：2026-06-22 自演进 — 否定词/日常词汇 (来自 negatives.md + 自测)
+  # ========================
+
+  - char: 有變
+    mandarin: 有办法（因情况允许而能够）
+    pengim: u6 biang3
+    example: 伊有變出門，我無變。
+    example_mandarin: 他有办法出门，我没办法。
+    tags: [动词, 潮汕特色]
+    note: >-
+      有變(u6 biang3)为潮汕话肯定否定对子的肯定形式，有(u6=有)+变(biang3=可办)，
+      表因客观条件允许而能够做某事。否定形式为無變(bho5 biang3)。
+
+  - char: 唔是
+    mandarin: 不是
+    pengim: m6 si6
+    example: 我唔是日本人。
+    example_mandarin: 我不是日本人。
+    tags: [动词, 潮汕特色]
+    note: >-
+      唔是(m6 si6)为唔(m6=否定前缀)+是(si6=系词)的组合否定，对应普通话不是。
+      肯定形式为是(si6)。
+
+  - char: 唔識
+    mandarin: 不认识/不知道
+    pengim: m6 bag8
+    example: 我唔識伊，伊是哋個？
+    example_mandarin: 我不认识他，他是谁？
+    tags: [动词, 潮汕特色]
+    note: >-
+      唔識(m6 bag8)为唔(m6=否定前缀)+識(bag8=认识/知道)的组合否定，
+      表不认识某人或不知道某事。肯定形式为識(bag8)。
+
+  - char: 無在
+    mandarin: 不在（位置/进行态否定）
+    pengim: bho5 do6
+    example: 伊無在厝內，出去买物。
+    example_mandarin: 他不在家，出去买东西了。
+    tags: [动词, 潮汕特色]
+    note: >-
+      無在(bho5 do6)为無(否定前缀)+在(do6=在)的组合，否定位置存在或进行态。
+      肯定形式为在(do6)。「無在厝內」=不在家。也可用于进行态否定，
+      如「我無在踢球」=我没在踢球。
+
+  - char: 莫
+    mandarin: 别/不要（否定意愿/义务）
+    pengim: mai3
+    example: 莫呾乞别侬听。
+    example_mandarin: 别告诉别人听。
+    tags: [动词, 潮汕特色]
+    note: >-
+      莫(mai3)为唔+爱(m6+ai3)的合音，表否定意愿和义务，对应别/不要。
+      语气比孬(mo2)更温和，常用于劝阻。对比：免(mêng2)=不用/不必表必要性否定。
+
+  - char: 贵
+    mandarin: 贵/昂贵
+    pengim: guin3
+    example: 只个过贵，我买唔起。
+    example_mandarin: 这个太贵了，我买不起。
+    tags: [形容词, 日常用品]
+    note: >-
+      贵(guin3)为潮汕话表价格高的基本形容词，白读guin3(韵母uin)。
+      文读gui3见于贵州等专名。反义词为便(biang6=便宜)。
+
+  - char: 便
+    mandarin: 便宜/廉价
+    pengim: biang6
+    example: 只件衫过便，买来穿。
+    example_mandarin: 这件衣服很便宜，买来穿。
+    tags: [形容词, 日常用品]
+    note: >-
+      便(biang6)为潮汕话表价格低/廉价的形容词，也称便直(biang6 dig8)。
+      反义词为贵(guin3)。另有文读biêng6见于方便等词。
+
+  - char: 遮
+    mandarin: 伞/雨伞
+    pengim: zia1
+    example: 落雨着挈遮。
+    example_mandarin: 下雨要带伞。
+    tags: [日常用品]
+    note: >-
+      遮(zia1)为潮汕话对伞的日常说法，包括雨伞和太阳伞。
+      潮汕话通常不用伞字（文读suan3用于雨伞等少场合）。
+
