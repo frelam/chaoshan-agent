@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.26"
+version: "1.5.27"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -218,15 +218,17 @@ grep -c "阿舅" dictionary.yaml slang.yaml
    2. 基于汉字知识 + 已知读音规律给出合理推测
    3. 如果需要交叉验证，搜索同一字的其他声母索引文件（一字可能多读，如肉有白读 bhah4 和文读 nêg8，但只有 nêg8 在 N-index 中）
    
-   #### ⚠️ 实战：negatives.md 散文式页面提取（新增 — 2026-06-20）
+   #### ⚠️ 实战：negatives.md 散文式页面提取（更新 — 2026-06-21）
 
-与 address.md / classifiers.md 的表格结构不同，**negatives.md 是教育性散文（prose）**，词汇条目嵌入在正文中而非表格行。每条词汇的格式为：
+与 address.md / classifiers.md 的表格结构不同，**negatives.md 是教育性散文（prose）**，词汇条目嵌入在正文的 blockquote 中。每条词汇的实际格式为：
 
 ```
-*Peng'im* • 汉字 • "English meaning"
+> *IPA* • *Peng'im* • 汉字 • "English meaning"
 ```
 
-内含 IPA 标注和详细说明。提取方法：
+**⚠️ 注意：实际格式与初版描述不同！** 实际格式包含**两个** `*...*` 组（先 IPA、再 Peng'im），而初版描述误写为只有一个 `*Peng'im*`。汉字不在星号中，英语释义可能带引号也可能不带。
+
+之前的错误 regex `r'\*([^*]+)\*\s*•\s*([^•]+)•\s*"([^"]+)"'` 匹配不到任何条目。正确的提取方法：
 
 ```python
 import json, base64, re
@@ -235,14 +237,27 @@ with open('/tmp/negatives.json') as f:
     data = json.load(f)
 content = base64.b64decode(data['content']).decode('utf-8')
 
-# 提取所有形如 *xxx* • 汉字 • "定义" 的行
+# 正确格式：> *IPA* • *Peng'im* • 汉字 • "定义" (或 汉字 • 定义)
+# 注意有两个 *...* 组：第一个是 IPA，第二个才是 Peng'im
+entries = []
 for line in content.split('\n'):
-    m = re.search(r'\*([^*]+)\*\s*•\s*([^•]+)•\s*"([^"]+)"', line)
+    # 格式1: *IPA* • *Peng'im* • 汉字 • "定义"
+    m = re.search(r'\*([^*]+)\*\s*•\s*\*([^*]+)\*\s*•\s*([^•"]+?)\s*•\s*"?([^"]+?)"?', line)
     if m:
-        pengim = m.group(1).strip()
-        chars = m.group(2).strip()
-        meaning = m.group(3).strip()
-        # → (chars, pengim, meaning)
+        ipa = m.group(1).strip()
+        pengim = m.group(2).strip()
+        chars = m.group(3).strip()
+        meaning = m.group(4).strip()
+        entries.append((chars, pengim, meaning))
+    else:
+        # 格式2（简写，无 IPA blockquote）：*Peng'im* • 汉字
+        m2 = re.search(r'\*([^*]+)\*\s*•\s*([^•\n]+)', line)
+        if m2 and '|' not in line and not line.strip().startswith('---'):
+            text = m2.group(1).strip()
+            chars_or_meaning = m2.group(2).strip()
+            # 如果看似是汉字（含 CJK），可能是 *名称* • 汉字
+            if re.search(r'[\u4e00-\u9fff]', chars_or_meaning):
+                entries.append((chars_or_meaning, text, ''))
 ```
 
 **可用但未取的候选条目**（截至 2026-06-20，已有 5 条提取）：
@@ -262,8 +277,22 @@ for line in content.split('\n'):
 | 袂孬 (bhoi6(7)mo2) | 不坏/不错 | ✅ 已提取 |
 | 相孬 (siang1 mo2) | 绝交 | ✅ 已提取 |
 | 有變 (u6 biang3) | 有办法(無變的肯定形式) | ❌ 未取 |
+| 唔是 (m6 si6) | 不是（唔+是, 否定系词） | ❌ 未取 |
+| 唔識 (m6 bag8) | 不认识/不知道 | ❌ 未取 |
+| 唔知死 (m6 zai1 si2) | 不知死活 | ❌ 未取 |
+| 袂使 (bhoi6 sai2) | 不能(许可/能力，来自闽南语) | ❌ 未取 |
+| 莫 (mai3) | 别(否定意愿/义务) | ❌ 未取 |
+| 無在 (bho5 do6) | 不在(位置/进行态否定) | ❌ 未取 |
+| 免 (mêng2) | 不用/不必(单独使用) | ❌ 未取 |
 
 每次从 **③ 未取** 列表中选取 5 条目提取，提取后更新此日志。
+
+#### ⚠️ 实战：提取 negatives.md 后创建/更新提取日志
+
+negatives.md 的提取日志 `references/negatives-md-extraction-log.md` 不存在或为空时，手动创建。日志格式使用此文件中的表格结构（见 references/negatives-md-extraction-log.md）。注意：
+- 将已提取条目从"可用但未取"移至"已提取"（注明日期和批号）
+- 从全文扫描中发现的新条目也要补充到"可用但未取"列表中
+- 日志本身在每次提取后更新并同步到源码
 
 #### ⚠️ 实战：classifiers.md 分类器表格解析
    

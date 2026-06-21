@@ -1,6 +1,6 @@
 ---
 name: teochew-translate
-version: "1.4.17"
+version: "1.4.18"
 description: "潮汕话↔普通话双向翻译，支持潮州拼音（Peng'im），涵盖语法转换、文化注释、俗语解释。支持不确定时自动搜索确认、从用户更正中学习"
 triggers: ["潮汕话", "翻译", "teochew", "潮语", "呾", "潮州话", "pengim", "潮汕方言", "潮州音", "潮汕"]
 requires:
@@ -376,10 +376,10 @@ These examples demonstrate the translation patterns, grammar transformations, an
 
 The following files contain the core dictionary and reference data (loaded via `data:`):
 
-- **dictionary.yaml**: 100+ word mappings across 12 categories including pronouns, greetings, food, body parts, colors, weather, emotions, and Chaoshan-specific terms
+- **dictionary.yaml**: 336+ word mappings across 18 categories including pronouns, greetings, numbers/time, adjectives, verbs, food, animals, Chaoshan-specific terms, question words, direction words, body parts, colors, weather, emotions, occupations, kinship, daily items, and measure words
 - **grammar.yaml**: Complete grammar reference covering word order, negation system, measure words, degree adverbs, sentence patterns
-- **examples.yaml**: 30 annotated translation example pairs organized by context
-- **slang.yaml**: 45+ entries of unique dialect words, proverbs, kinship terms, particles, and phonic-only expressions
+- **examples.yaml**: 38 annotated translation example pairs organized by context
+- **slang.yaml**: 26+ entries of unique dialect words, proverbs, phonic-only expressions, and swear words
 - **references/pending-slang-entries.md**: New slang entries awaiting merge into slang.yaml — check and merge when editing data files
 - **references/pending-vocab-merge.md**: New vocabulary entries awaiting merge into dictionary.yaml — verified Peng'im, section placement specified
 - **references/teochew-asr-pipeline.md**: ASR model test results (Whisper, pending SenseVoice/Qwen3-Omni) and full speech→translation→TTS pipeline architecture
