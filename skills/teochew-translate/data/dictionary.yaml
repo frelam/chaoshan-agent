@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.22"
-  total_entries: 344+
+  version: "1.3.23"
+  total_entries: 350+
   categories:
     - 人称代词
     - 日常问候
@@ -3194,4 +3194,72 @@ entries:
     note: >-
       遮(zia1)为潮汕话对伞的日常说法，包括雨伞和太阳伞。
       潮汕话通常不用伞字（文读suan3用于雨伞等少场合）。
+
+  # ========================
+  # 新增：2026-06-23 自演进 — 否定词/日常词汇 (来自 negatives.md + wiktionary 索引 + 自测)
+  # ========================
+
+  - char: 唔知死
+    mandarin: 不知死活/不知天高地厚（不顾危险/冒失）
+    pengim: m6 zai1 si2
+    example: 只条仔过唔知死，摩托驶到过猛。
+    example_mandarin: 这小子真不知死活，摩托车开得太快了。
+    tags: [形容词, 潮汕特色]
+    note: >-
+      唔知死(m6 zai1 si2)为唔(m6=否定)+知死(zai1 si2=知道危险)的组合否定，
+      表不知死活、冒失不顾危险。反义为知死(zai1 si2)=知道危险/知险。
+      知死在此为不可分级形容词(ungradeable adjective)。
+
+  - char: 袂使
+    mandarin: 不能/不可以（表许可或能力不足）
+    pengim: bhoi6 sai2
+    example: 只件事袂使这样做，着换方式。
+    example_mandarin: 这件事不能这样做，要换方式。
+    tags: [动词, 潮汕特色]
+    note: >-
+      袂使(bhoi6 sai2)来自袂(𠀾/不会)+使(sai2=可以/容许)，
+      为闽南语借词，在海外潮汕社群（东南亚）中较常使用。
+      本地潮汕话对等词为孬(mo2)。
+
+  - char: 免
+    mandarin: 不用/不必（表必要性否定）
+    pengim: mêng2
+    example: 汝免惊，只件事我来处理。
+    example_mandarin: 你不用怕，这件事我来处理。
+    tags: [动词, 潮汕特色]
+    note: >-
+      免(mêng2)为着(diêh8=必须/该)的否定，表不需要/没必要，
+      语气比孬(mo2=别/不要)更温和，常用于劝阻和安慰。
+      肯定形式为着(diêh8=必须)。也见于免客气(别客气)等客套语。
+
+  - char: 油
+    mandarin: 油/食用油
+    pengim: iu5
+    example: 炒菜着落油正会好食。
+    example_mandarin: 炒菜要放油才会好吃。
+    tags: [食物名称, 基础]
+    note: >-
+      油(iu5)为潮汕话对食用油的基本说法。豉油(si7 iu5)=酱油、
+      猪油(de1 iu5)=猪油、加油(ga1 iu5)=加油（鼓励语）。
+
+  - char: 灯
+    mandarin: 灯/灯光
+    pengim: dêng1
+    example: 门楼灯，黄昏时着开灯。
+    example_mandarin: 门口的路灯，黄昏时要开灯。
+    tags: [日常用品, 基础]
+    note: >-
+      灯(dêng1)为潮汕话对灯的基本说法，如电灯(diang6 dêng1)=电灯、
+      路灯(lou7 dêng1)=路灯、开灯(kui1 dêng1)=开灯、
+      关灯(guên1 dêng1)=关灯。灯也常写作傳統字燈。
+
+  - char: 醋
+    mandarin: 醋/调味品
+    pengim: cou3
+    example: 食水饺着蘸醋正好食。
+    example_mandarin: 吃水饺要蘸醋才好吃。
+    tags: [食物名称, 基础]
+    note: >-
+      醋(cou3)为潮汕话对醋的基本说法，酸醋(seng1 cou3)=酸醋、
+      白醋(bêh8 cou3)=白醋。潮汕菜中常用醋做蘸料。
 
