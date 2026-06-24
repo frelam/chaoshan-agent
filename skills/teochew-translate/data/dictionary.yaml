@@ -13,7 +13,7 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.23"
+  version: "1.3.24"
   total_entries: 350+
   categories:
     - 人称代词
@@ -722,6 +722,27 @@ entries:
     example_mandarin: 市场离这里很近。
     tags: [形容词]
 
+  - char: 無孬
+    mandarin: 不坏/不错（無+孬=没有坏的）
+    pengim: bho5 mo2
+    example: 伊个人無孬，对侬过好。
+    example_mandarin: 他人不错，对人很好。
+    tags: [形容词, 潮汕特色]
+    note: >-
+      無孬(bho5 mo2)为存在否定词無(bho5)+孬(mo2=坏)的组合，
+      表不坏/不错。同义词袂孬(bhoi6 mo2)使用情态否定前缀袂，
+      两者可互换使用。反义为孬(mo2)=坏。
+
+  - char: 熟
+    mandarin: 熟/煮熟/成熟
+    pengim: sêg8
+    example: 糜煮熟了正好食。
+    example_mandarin: 粥煮熟了才好吃。
+    tags: [形容词, 食物名称]
+    note: >-
+      熟(sêg8)为潮汕话对煮熟/成熟的形容词，如煮熟(ze2 sêg8)=煮熟、
+      熟食(sêg8 ziah8)=熟食。反义词为生(cên1)=生/未熟。
+
   # ========================
   # 5. 动词 (Verbs)
   # ========================
@@ -1415,6 +1436,49 @@ entries:
     example: 只个物件若㩼银？
     example_mandarin: 这个东西多少钱？
     tags: [潮汕特色, 日常用語, 基础]
+
+  - char: 番畔
+    mandarin: 海外/外国/南洋
+    pengim: huang1 boin5
+    example: 伊番畔趁食，趁有钱。
+    example_mandarin: 他在海外谋生，赚了钱。
+    tags: [潮汕特色, 地名]
+    note: >-
+      番畔(huang1 boin5)为潮汕话对海外/外国的传统说法。
+      番(huang1)指外国/外族，畔(boin5)指边/侧。
+      相关词：過番(guê3 huang1)=出国谋生、番仔(huang1 gian2)=外国人(略带贬义)。
+
+  - char: 過番
+    mandarin: 过番/出国谋生（特指早年潮汕人下南洋）
+    pengim: guê3 huang1
+    example: 旧时好多潮汕侬過番去暹罗趁食。
+    example_mandarin: 以前很多潮汕人过番去泰国谋生。
+    tags: [潮汕特色, 历史]
+    note: >-
+      過番(guê3 huang1)为潮汕历史文化核心词汇，指早年潮汕人
+      下南洋出国谋生。過(guê3)=过/前往，番(huang1)=外国。
+      新马泰潮汕侨胞常用此词描述祖辈移民史。
+
+  - char: 食風
+    mandarin: 兜风/出游/乘车游玩
+    pengim: ziah8 huang1
+    example: 礼拜日来去食風，坐车去海边。
+    example_mandarin: 星期天去兜风，坐车去海边。
+    tags: [潮汕特色, 动词]
+    note: >-
+      食風(ziah8 huang1)字面吃风，意译自马来语makan angin，
+      在东南亚潮汕社群中意为兜风/出游，如坐车食風=坐车兜风。
+
+  - char: 唐山
+    mandarin: 唐山/中国（海外华人视角）
+    pengim: deng5 suan1
+    example: 伊个阿公对唐山过来暹罗。
+    example_mandarin: 他的爷爷从唐山来到泰国。
+    tags: [潮汕特色, 历史]
+    note: >-
+      唐山(deng5 suan1)是海外潮汕侨胞对中国的传统称呼，
+      源起于唐代，寓意故土。唐人(deng5 nang5)=华人/中国人、
+      唐人街(deng5 nang5 goi1)=唐人街。今海外潮汕社群仍常用。
 
   # ========================
   # 8. 亲属称谓 (Kinship Terms)
@@ -2454,6 +2518,28 @@ entries:
     example_mandarin: 拿块肥皂来洗衣服。
     tags: [日常用品]
     note: 雪文(soh4 bhung5)借自马来语sabun，是潮汕话中对肥皂的日常说法
+
+  - char: 桌
+    mandarin: 桌子/书桌
+    pengim: doh4
+    example: 坐桌顶食饭。
+    example_mandarin: 坐在桌子上吃饭。
+    tags: [日常用品]
+    note: >-
+      桌(doh4)为潮汕话对桌子的基本说法，如饭桌(bung7 doh4)=饭桌、
+      写字桌(sia2 ri7 doh4)=书桌、坐桌(zo6 doh4)=坐桌(入席)。
+      床(ceng5)在潮汕话中也可兼指桌子(桌面)，但桌(doh4)更具体。
+
+  - char: 药
+    mandarin: 药/药物/药品
+    pengim: iêh8 / ioh8
+    example: 身体无舒服，着去食药。
+    example_mandarin: 身体不舒服，要去吃药。
+    tags: [日常用品]
+    note: >-
+      药(iêh8/ioh8)为潮汕话对药的基本说法，白读iêh8或ioh8，
+      文读iag8。如药房(iêh8 bang5)=药铺、汤药(teng1 iêh8)=汤药、
+      药方(iêh8 hng1)=药方。
 
   # ========================
   # 18. 量词 (Measure Words / Classifiers)

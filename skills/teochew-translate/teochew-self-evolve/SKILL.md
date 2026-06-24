@@ -1,6 +1,6 @@
 ---
 name: teochew-self-evolve
-version: "1.5.27"
+version: "1.5.28"
 description: "潮汕话 skill 自演进流程 — 每次搜索5个翻译对 + 主动自测3条，每日1次（07:00），自测验证，数据更新，同步源码，自动提交GitHub。由 1 个 cron job 驱动。"
 triggers: ["自演进", "自我学习", "每日学习", "5样本"]
 requires:
@@ -64,11 +64,18 @@ Wiktionary 索引文件**只包含单个汉字**（非词组）。对于**多词
 | `pages/questions.md` | 疑问代词表（是乜、哋個、做呢等）| ⚪ 全部已存在（含已知变体）|
 | `pages/classifiers.md` | 量词表 | 🟢 已提取量词35条（隻/間/條/雙/張/粒/尾/本/對/撮/枝/欉/領/塊/群/點/包/杯/班/副/把/列/位/件/頂/身/座/頁/幅/節/腳/籃/主/齣/儎）— 已全部提取完成 ✅ |
 | `pages/numbers.md` | 数字词汇 | ⚪ 大部分已在字典中 |
-| `pages/negatives.md` | 否定词详解 | 🟢 已系统提取 — 無變/孬/袂曉/袂得/唔好 共5条（2026-06-20），见 `references/negatives-md-extraction-log.md` |
+| `pages/negatives.md` | 否定词详解 | 🟢 已系统提取 — 18条（共20条候选），仅剩無孬(bho5 mo2)待取，见 `references/negatives-md-extraction-log.md` |
 | `pages/comparisons.md` | 比较句 | ⚪ 语法信息已录 |
 | `pages/personal_pronouns.md` | 人称代词 | ⚪ 全部已在字典中 |
 | `pages/particles.md` | 句末语气词 | ⚪ 已在语法参考中 |
 | `pages/verbal_complements.md` | 动补结构 | ⚪ 语法信息已录 |
+| `pages/overseas.md` | 海外潮汕话/借词 | 🆕 未启用 — 含闽南/马来/英语借词，后备来源 |
+| `pages/politeness.md` | 礼貌用语/敬语 | 🆕 未启用 — 含敬词/谦辞，后备来源 |
+| `pages/auxiliary_verbs.md` | 助动词 | 🆕 未启用 — 含会/爱/敢/好等，后备来源 |
+| `pages/aspect.md` | 体标记 | 🆕 未启用 — 含了/过/在/去等，后备来源 |
+| `pages/demonstrative_pronouns.md` | 指示代词 | 🆕 未启用 — 含只/许等，后备来源 |
+| `pages/coordination.md` | 并列结构/连词 | 🆕 未启用 — 含和/共/及等，后备来源 |
+| `pages/passives.md` | 被动句 | 🆕 未启用 — 含乞/分等，后备来源 |
 
 **🟡 地址页面（address.md）表格解析要点 — 保留供日志恢复使用**
 
@@ -260,7 +267,7 @@ for line in content.split('\n'):
                 entries.append((chars_or_meaning, text, ''))
 ```
 
-**可用但未取的候选条目**（截至 2026-06-20，已有 5 条提取）：
+**可用但未取的候选条目**（截至 2026-06-23，18/20 条已提取）：
 
 | 条目 | 含义 | 来源 |
 |------|------|------|
@@ -273,19 +280,30 @@ for line in content.split('\n'):
 | 唔自量 (m6 ze6liang6) | 不自量力 | ✅ 已提取 |
 | 唔甘願 (m6 gam1nguang6) | 不甘心/不情愿 | ❌ 未取 |
 | 免客氣 (mêng2 kêh4ki3) | 别客气 | ✅ 已提取 |
-| 無孬 (bho5(7)mo2) | 不坏 | ❌ 未取 |
+| 無孬 (bho5(7)mo2) | 不坏 | ❌ 未取 — ⭐ 唯一剩余 |
 | 袂孬 (bhoi6(7)mo2) | 不坏/不错 | ✅ 已提取 |
 | 相孬 (siang1 mo2) | 绝交 | ✅ 已提取 |
-| 有變 (u6 biang3) | 有办法(無變的肯定形式) | ❌ 未取 |
-| 唔是 (m6 si6) | 不是（唔+是, 否定系词） | ❌ 未取 |
-| 唔識 (m6 bag8) | 不认识/不知道 | ❌ 未取 |
-| 唔知死 (m6 zai1 si2) | 不知死活 | ❌ 未取 |
-| 袂使 (bhoi6 sai2) | 不能(许可/能力，来自闽南语) | ❌ 未取 |
-| 莫 (mai3) | 别(否定意愿/义务) | ❌ 未取 |
-| 無在 (bho5 do6) | 不在(位置/进行态否定) | ❌ 未取 |
-| 免 (mêng2) | 不用/不必(单独使用) | ❌ 未取 |
+| 有變 (u6 biang3) | 有办法(無變的肯定形式) | ✅ 已提取 |
+| 唔是 (m6 si6) | 不是（唔+是, 否定系词）| ✅ 已提取 |
+| 唔識 (m6 bag8) | 不认识/不知道 | ✅ 已提取 |
+| 唔知死 (m6 zai1 si2) | 不知死活 | ✅ 已提取 |
+| 袂使 (bhoi6 sai2) | 不能(许可/能力，来自闽南语) | ✅ 已提取 |
+| 莫 (mai3) | 别(否定意愿/义务) | ✅ 已提取 |
+| 無在 (bho5 do6) | 不在(位置/进行态否定) | ✅ 已提取 |
+| 免 (mêng2) | 不用/不必(单独使用) | ✅ 已提取 |
 
 每次从 **③ 未取** 列表中选取 5 条目提取，提取后更新此日志。
+
+**⚠️ 后续来源规划（2026-06-23）**：negatives.md 仅剩無孬 1 条候选，预计下次运行即耗尽。耗尽后，以下 learn-teochew 页面可作为新来源：
+- `pages/overseas.md` — 海外潮汕话/借词（闽南语、英语、马来语借词）
+- `pages/politeness.md` — 礼貌用语/敬语
+- `pages/auxiliary_verbs.md` — 助动词（会/爱/敢/好等）
+- `pages/aspect.md` — 体标记（了/过/在/去等）
+- `pages/demonstrative_pronouns.md` — 指示代词（只/许等）
+- `pages/coordination.md` — 并列结构/连词
+- `pages/passives.md` — 被动句结构词
+
+选择优先级：优先含双音词/短语的页面（overseas.md > politeness.md > auxiliary_verbs.md），单音节语法词含量高的页面（aspect.md > passives.md）次之。Wiktionary 索引文件（B 节）保留为常备来源。
 
 #### ⚠️ 实战：提取 negatives.md 后创建/更新提取日志
 
