@@ -1,6 +1,6 @@
 ---
 name: cuisine-self-evolve
-version: "3.0.0"
+version: "3.1.0"
 description: "潮汕美食自演进策略 v3 — 数据收集 + 公平算法多Agent挑战赛。每周一收集评价，每周四6个Agent从不同视角挑战公平算法，辩论后优化。"
 triggers:
   - "美食自演进"
@@ -541,8 +541,16 @@ prompt: |
 
   ## 第2步：创建6个子Agent
 
-  使用 `delegate_task` 工具，同时创建6个子Agent（以下 prompt 直接用于每个子Agent的 task 参数）。
+  使用 `delegate_task` 工具，分两批创建6个子Agent（每批3个，因为 `max_concurrent_children=3`）。
   每个子Agent必须独立加载 `docs/FAIRNESS-ALGORITHM.md` 和 `data/restaurant-summary.yaml`。
+
+  > ⚠️ **并发限制**：`delegate_task` 的 `tasks` 数组一次最多接受 `max_concurrent_children` 个并行任务
+  > （当前配置为3）。**不要尝试一次性提交6个任务**——会收到 `"Too many tasks: 6 provided,
+  > but max_concurrent_children is 3"` 错误。正确做法是分两批：
+  > 1. 第一批：Agent 1-3（本地老饕、外地游客、数据科学家）
+  > 2. 第二批：Agent 4-6（营销号操盘手、文化研究者、公平性审计员）
+  > 3. 等待第一批结果返回后再提交第二批
+  > 如果 `max_concurrent_children` 未来被调高，可相应增加单批数量。
 
   ---
 
@@ -1014,6 +1022,9 @@ prompt: |
   - 如果计算轮次编号的 bash 命令执行失败 → 手动检查 `data/challenge-logs/` 目录下的文件手动编号，回退策略：`ROUND=001`
 
   ### 子Agent异常
+  - 如果 `delegate_task(tasks=[...])` 报错 `"Too many tasks: N provided, but max_concurrent_children is M"` → 
+    **这是并发限制，不是工具不可用**。不要降级为主持人模式。改为分多批执行，每批不超过 M 个任务。
+    当前配置 M=3，所以分两批（每批3个Agent），等待第一批返回后再提交第二批。
   - 如果某个子Agent创建失败（delegate_task 返回错误）→ 重试1次（间隔5秒），仍失败则用剩余Agent继续（在报告中注明缺少哪个Agent，该Agent在第5步投票中视为"永久弃权"）
   - 如果所有6个子Agent均失败且 delegate_task 工具可用 → 中止本次挑战赛，报告"全部子Agent创建失败，已中止"
   - 如果某个子Agent输出格式不规范 → 尝试从其输出中提取关键信息：
