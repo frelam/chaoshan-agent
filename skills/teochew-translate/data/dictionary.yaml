@@ -13,8 +13,8 @@
 
 meta:
   name: 潮汕话-普通话词典
-  version: "1.3.24"
-  total_entries: 350+
+  version: "1.3.25"
+  total_entries: 355+
   categories:
     - 人称代词
     - 日常问候
@@ -3339,4 +3339,63 @@ entries:
     note: >-
       醋(cou3)为潮汕话对醋的基本说法，酸醋(seng1 cou3)=酸醋、
       白醋(bêh8 cou3)=白醋。潮汕菜中常用醋做蘸料。
+
+  # ========================
+  # 新增：2026-06-29 自演进 — 基础词汇/海外借词 (来自 overseas.md + 自测字典空隙)
+  # ========================
+
+  - char: 歌
+    mandarin: 歌曲/唱歌
+    pengim: gua1 / go1
+    example: 伊唱歌好听死。
+    example_mandarin: 她唱歌非常好听。
+    tags: [动词, 基础]
+    note: >-
+      歌在潮汕话有文白异读——白读gua1用于唱歌等口语，
+      文读go1用于歌曲(go1 kiog4)/国歌(gog4 go1)等书面语。
+      反义词：曲(kiog4)。
+
+  - char: 竹
+    mandarin: 竹子
+    pengim: dêg4
+    example: 竹仔一节一节。
+    example_mandarin: 竹子一节一节的。
+    tags: [基础, 植物]
+    note: >-
+      竹(dêg4)为潮汕话对竹子的基本说法（入声-g韵尾）。
+      潮汕地区多竹，竹笋(dêg4 sung2)=竹笋为常见食材，
+      竹竿(dêg4 go1)=竹竿。俗语有「竹篙掠了正刣笋」。
+
+  - char: 鼎
+    mandarin: 锅/铁锅
+    pengim: dian2
+    example: 铁鼎炒菜较好食。
+    example_mandarin: 铁锅炒菜更好吃。
+    tags: [日常用品, 基础]
+    note: >-
+      鼎(dian2)为潮汕话对传统铁锅的称呼，对应普通话的锅。
+      铁鼎(tih4 dian2)=铁锅。鼎在潮汕话中保留古汉语用法，
+      与鼎字原义(古炊器)一致，而普通话已改用锅替代。
+
+  - char: 歹勢
+    mandarin: 不好意思/抱歉/难为情
+    pengim: pai2 sê3
+    example: 歹勢，我来迟了。
+    example_mandarin: 不好意思，我来晚了。
+    tags: [日常问候, 潮汕特色]
+    note: >-
+      歹勢(pai2 sê3)为潮汕话/闽南语的常用客套语，表不好意思/
+      抱歉/难为情。在东南亚海外潮汕社区尤其常用。本土潮汕
+      更常说孬意识(mo2 i3 se7)。可写作派势，来源于闽南语。
+
+  - char: 鐳
+    mandarin: 钱/金钱
+    pengim: lui1
+    example: 汝有无鐳？借我淡薄。
+    example_mandarin: 你有没有钱？借我一点。
+    tags: [日常用品, 潮汕特色]
+    note: >-
+      鐳(lui1)为马来语借词(源自马来语duit，再溯源至荷兰语duit)，
+      在东南亚潮汕社区中广泛使用表钱。潮汕本土更常用银(ngeng5)。
+      鐳经「荷兰语duit→马来语duit→潮汕话」借词链演变而来。
 
