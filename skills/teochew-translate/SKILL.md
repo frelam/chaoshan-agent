@@ -376,10 +376,10 @@ These examples demonstrate the translation patterns, grammar transformations, an
 
 The following files contain the core dictionary and reference data (loaded via `data:`):
 
-- **dictionary.yaml**: 336+ word mappings across 18 categories including pronouns, greetings, numbers/time, adjectives, verbs, food, animals, Chaoshan-specific terms, question words, direction words, body parts, colors, weather, emotions, occupations, kinship, daily items, and measure words
+- **dictionary.yaml**: 350+ word mappings across 18 categories including pronouns, greetings, numbers/time, adjectives, verbs, food, animals, Chaoshan-specific terms, question words, direction words, body parts, colors, weather, emotions, occupations, kinship, daily items, and measure words
 - **grammar.yaml**: Complete grammar reference covering word order, negation system, measure words, degree adverbs, sentence patterns
 - **examples.yaml**: 38 annotated translation example pairs organized by context
-- **slang.yaml**: 26+ entries of unique dialect words, proverbs, phonic-only expressions, and swear words
+- **slang.yaml**: 25+ entries of unique dialect words, proverbs, phonic-only expressions, and swear words
 - **references/pending-slang-entries.md**: New slang entries awaiting merge into slang.yaml — check and merge when editing data files
 - **references/pending-vocab-merge.md**: New vocabulary entries awaiting merge into dictionary.yaml — verified Peng'im, section placement specified
 - **references/teochew-asr-pipeline.md**: ASR model test results (Whisper, pending SenseVoice/Qwen3-Omni) and full speech→translation→TTS pipeline architecture

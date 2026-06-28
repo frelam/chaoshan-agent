@@ -7,8 +7,8 @@
 
 meta:
   name: 潮汕特色方言词与俗语
-  version: "1.1.0"
-  total_entries: 26+
+  version: "1.1.1"
+  total_entries: 25+
   categories:
     - 有音无字
     - 俗语谚语
@@ -155,13 +155,6 @@ entries:
   # 3. 特色表达 (Unique Expressions)
   # ========================
   expressions:
-    - id: e1
-      teochew: 无变
-      pengim: bho5 biang3
-      mandarin: 没办法/做不到
-      example: 只件事我无变帮你。
-      tags: [特色表达]
-
     - id: e3
       teochew: 跌掉
       pengim: dig4 diao7
