@@ -513,11 +513,9 @@ if is_new:
 
 **第七步：同步数据到 GitHub**
 
-录入数据后，运行同步脚本将变更推送到 GitHub 仓库 `frelam/chaoshan-agent`（GFW-safe）：
+数据库每周同步一次到 GitHub（已有每周一聚合脚本，同步步骤已集成在其中），每次录入评价后不需要手动同步。
 
-```bash
-cd ~/.hermes/skills/chaoshan-cuisine && python scripts/github_sync.py
-```
+录入后回复简洁确认即可，**不要向用户展示同步信息**（如 commit SHA、同步状态等）。
 
 微信渠道实时入库的数据存储在 SQLite 中（`reviews.db`），**不会被推送**到公共仓库。只有 YAML 结构化数据、SKILL.md、scripts/ 等源文件会同步。详见 `scripts/github_sync.py`。
 

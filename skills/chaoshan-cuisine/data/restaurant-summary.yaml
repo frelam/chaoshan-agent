@@ -20,8 +20,8 @@ meta:
   version: 2.0.0
   total_restaurants: 3
   total_reviews_processed: 3
-  last_updated: '2026-07-01'
-  algorithm_version: 2.0.0
+  last_updated: '2026-07-02'
+  algorithm_version: 2.3.0
   algorithm:
     rating_method: median
     time_decay:

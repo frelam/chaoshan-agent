@@ -2,6 +2,12 @@
 """
 潮汕美食评价聚合脚本 — 公平算法引擎
 
+[!] 重要警告 - 文档-代码对齐情况 [!]
+本文档对应的公平算法版本为 docs/FAIRNESS-ALGORITHM.md v2.3.0。
+当前代码仅实现了 v2.0 基础功能（离散时间衰减 + 简单反操控）。
+v2.2.0/v2.3.0 新增的 25+ 个参数和机制尚未在代码中实现。
+详见 docs/FAIRNESS-ALGORITHM.md 参数可调表和 data/challenge-logs/。
+
 从 SQLite reviews.db 读取评价数据，按公平算法聚合后写入 restaurant-summary.yaml。
 支持 --dry-run 参数预览输出而不写文件。
 

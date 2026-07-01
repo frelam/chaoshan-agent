@@ -33,7 +33,7 @@ data:
 ## 整体架构
 
 ```
-每周1次 (cron: 每周一 06:00)   ← 常规更新轮（收集数据）
+每周1次 (cron: 每周一 06:00)   ← 常规更新轮（收集数据+统一同步）
   │
   ├─ 1. 批量搜索: web_search × 4-6 种查询 → 提取店铺/评价/状态信息
   ├─ 2. 去重归类: 按店铺名+地区去重，标记已知店 vs 新店
@@ -45,7 +45,7 @@ data:
   │    ├─ 新店铺初稿 → references/pending-restaurants.md（待人工审）
   │    └─ 确认闭店 → data/closed-restaurants.yaml
   ├─ 7. 版本管理: 小版本+1, total_reviews/total_restaurants 递增
-  └─ 8. GitHub 同步: python scripts/github_sync.py（GFW-safe，仅推送变更文件）
+  └─ 8. GitHub 同步: python scripts/github_sync.py（仅周一流程执行，其他流程跳过）
 
 每周1次 (cron: 每周四 06:00)   ← 公平算法挑战赛（优化算法）
   │
@@ -64,7 +64,7 @@ data:
   │    └─ 🟢 Not Valid → 驳回
   ├─ 5. 算法更新: FAIRNESS-ALGORITHM.md 版本 bump
   ├─ 6. 生成挑战报告
-  └─ 7. GitHub 同步: python scripts/github_sync.py
+  └─ 7. （GitHub同步由周一流程统一执行）
 
 月初 (每月1日 06:00)           ← 深度核验轮
   │
@@ -74,7 +74,7 @@ data:
   ├─ 4. 已闭店 → 移入 data/closed-restaurants.yaml + 从 summary 移除
   ├─ 5. 正常营业 → 更新 last_verified 时间戳
   ├─ 6. 发现新评价 → 追加、更新 summary
-  └─ 7. 版本管理 + GitHub 同步: python scripts/github_sync.py
+  └─ 7. 版本管理（GitHub同步由周一流程统一执行）
 
 季度 (每季度初 06:00)          ← 全面整合轮
   │
@@ -83,7 +83,7 @@ data:
   ├─ 3. 合并 duplicate 店铺条目
   ├─ 4. 更新分类标签一致性
   ├─ 5. 输出季度报告
-  └─ 6. 版本管理 + GitHub 同步: python scripts/github_sync.py
+  └─ 6. 版本管理（GitHub同步由周一流程统一执行）
 ```
 
 ## 数据文件
@@ -347,33 +347,11 @@ meta.total_closed: +N
 meta.last_updated: 更新日期
 ```
 
-## GitHub 同步（GFW-safe）
+## GitHub 同步
 
-### 标准方式（推荐）
+同步策略：**仅周一常规更新流程执行** `python scripts/github_sync.py`，其他流程（周四挑战赛、月初核验、季度整合）不单独同步。
 
-所有数据变更后，运行：
-
-```bash
-cd ~/.hermes/skills/chaoshan-cuisine
-python scripts/github_sync.py
-```
-
-`scripts/github_sync.py` 使用 `gh api` 绕过 GFW 传输层封锁，自动：
-- 检测变更文件（与 GitHub 远程 SHA 对比）
-- 只推送有变化的文件（SKILL.md、data/*.yaml、scripts/、docs/ 等）
-- **排除** `data/reviews.db`（含微信用户 ID，不公开）
-- 创建合并 commit 并更新分支
-
-### 备选方式（git push 可用时）
-
-```bash
-cd ~/workspace/chaoshan-agent
-git add -A
-git commit -m "auto: 潮汕美食自演进 $(date +%Y-%m-%d) — +N条新评价，X家店铺核验"
-git push
-```
-
-> ⚠️ GFW 会干扰 `git push` 的 HTTPS/SSH 传输层（报错 `GnuTLS recv error (-110)`）。此时用 `python scripts/github_sync.py` 替代。详见 `references/github-push-workaround.md`。
+> 详见 `scripts/github_sync.py`。`data/reviews.db`（含微信用户 ID）始终不推送。
 
 ## 输出报告格式
 
@@ -411,10 +389,6 @@ git push
   ⏰ 以下店铺 > 6 个月未更新，建议核验：
   - 店铺名（区县，最后更新: YYYY-MM-DD）
   - ...
-
-【GitHub】
-  提交: 是/否
-  提交信息: auto: 潮汕美食自演进 YYYY-MM-DD — +X条
 ```
 
 ### 月初深度核验报告
@@ -490,9 +464,8 @@ prompt: |
   3. 提取新评价/新店铺/状态变更信息
   4. 查重、去营销推广
   5. 追加到 restaurants.yaml / pending / closed
-  6. 版本号 bump
-  ├─ 7. GitHub 同步: python scripts/github_sync.py
-  ├─ 8. 输出完整报告
+  ├─ 7. 版本号 bump
+  └─ 8. 输出完整报告
 skills:
   - chaoshan-cuisine
   - cuisine-self-evolve
@@ -957,23 +930,9 @@ prompt: |
   - 实际算法变更（如有）
   - 未解决问题
 
-  ## 第9步：GitHub 同步
+  ## 第9步：记录变更并完成
 
-  运行 GitHub 同步脚本（GFW-safe）：
-
-  ```bash
-  cd ~/.hermes/skills/chaoshan-cuisine
-  python scripts/github_sync.py
-  ```
-
-  此脚本自动检测变更文件并通过 `gh api` 推送到 `frelam/chaoshan-agent`。如果失败，尝试备选方案：
-
-  ```bash
-  cd ~/workspace/chaoshan-agent
-  git add -A
-  git commit -m "auto: 多Agent挑战赛 第{N}轮 $(date +%Y-%m-%d) — {总结：如 '确认2个Valid Bug，1个Edge Case'}"
-  git push
-  ```
+  本轮变更写入挑战日志后完成——**不执行 GitHub 同步**（由周一流程统一处理）。
 
   ## 第11步：输出挑战报告
 
@@ -1007,9 +966,6 @@ prompt: |
 
   【算法变更】
     详见 challenge-{NNN}-{日期}.md
-
-  【GitHub】
-    已提交: auto: 多Agent挑战赛 第{N}轮 YYYY-MM-DD
 
   【下轮挑战】
     YYYY-MM-DD（下周四）
@@ -1097,7 +1053,6 @@ prompt: |
   4. 合并重复店铺
   5. 更新分类标签
   6. 输出季度报告
-  7. GitHub 同步: python scripts/github_sync.py
 skills:
   - chaoshan-cuisine
   - cuisine-self-evolve
@@ -1118,7 +1073,7 @@ skills:
 - 只追加高度确信的数据（有可靠来源证据）
 - 不确定的新店 → 写入 pending-restaurants 待人工审阅
 - 营销推广类信息 → 直接丢弃
-- 每次变更后运行 `python scripts/github_sync.py`（GFW-safe 推送到 GitHub）
+- GitHub 同步由周一流程统一执行，其他流程不做单独同步
 - 不做大幅删除——闭店店铺标记 closed 而非删除，保留历史记录
 - 不满意的评价也值得保留——多元声音是核心价值
 
