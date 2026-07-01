@@ -511,6 +511,16 @@ if is_new:
   · 老姿娘炒糕粿 — 国平路124号（360地图+抖音，40年老店）
 ```
 
+**第七步：同步数据到 GitHub**
+
+录入数据后，运行同步脚本将变更推送到 GitHub 仓库 `frelam/chaoshan-agent`（GFW-safe）：
+
+```bash
+cd ~/.hermes/skills/chaoshan-cuisine && python scripts/github_sync.py
+```
+
+微信渠道实时入库的数据存储在 SQLite 中（`reviews.db`），**不会被推送**到公共仓库。只有 YAML 结构化数据、SKILL.md、scripts/ 等源文件会同步。详见 `scripts/github_sync.py`。
+
 > ⚠️ **核心原则**：宁缺毋滥，不经过严格核验和精炼的信息绝不录入。宁可数据库空着，也不放半信半疑的数据。每条信息必须经过≥2个独立来源交叉验证才能入库。
 
 ## 查询与推荐（通用流程）
