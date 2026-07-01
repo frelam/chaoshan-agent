@@ -99,6 +99,9 @@ data:
 | `data/closed-restaurants.yaml` | 已闭店记录 |
 | `data/search-sources.md` | 搜索策略参考 |
 | `references/pending-restaurants.md` | 待人工审核的新店铺初稿 |
+| `references/debate-grouping-strategies.md` | 挑战辩论分组策略与投票模式（第2轮实操提炼） |
+| `references/agent-personas.md` | 6个Agent角色的详细人设手册 |
+| `references/fairness-challenge-methodology.md` | 多Agent公平算法挑战通用方法论 |
 
 ## 搜索策略（6种方向 + 2个轮换策略）
 
@@ -810,8 +813,9 @@ prompt: |
   为避免辩论过程过度膨胀（6-12个挑战 × 3轮 × 多人发言），使用以下策略：
   1. **先按严重程度排序**：P0 挑战优先辩论，P1 次之，P2 最后
   2. **合并相似挑战**：如果多个 Agent 提出指向同一问题的挑战（如 Agent1 和 Agent2 都质疑时间衰减），在辩论中合并讨论
-  3. **每轮辩论摘要化**：每轮辩论不逐字模拟对话，而是记录各角色的核心论点和态度变化
-  4. **时间上限**：整体辩论阶段不应超过本轮挑战赛总执行时间的 50%
+  3. **辩论分组**：将指向同一算法机制/同一受影响群体的挑战合并为"辩论组"，组内按中心挑战→外围挑战顺序讨论。详见 `references/debate-grouping-strategies.md`
+  4. **每轮辩论摘要化**：每轮辩论不逐字模拟对话，而是记录各角色的核心论点和态度变化
+  5. **时间上限**：整体辩论阶段不应超过本轮挑战赛总执行时间的 50%
 
   ### 第1轮：交叉质疑
 

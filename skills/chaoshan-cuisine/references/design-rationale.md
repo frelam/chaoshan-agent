@@ -61,9 +61,29 @@ The self-evolve cron job focuses on:
 
 It does NOT produce rankings or summaries — those are derived at query time.
 
-### Current State (June 2026)
+### v2.1 — Real-time Review Database (July 2026)
 
-- Data files have structure but no real data yet (entries: [])
-- First real data is expected from the self-evolve cron job
+Added a SQLite database layer (`data/reviews.db`) alongside the YAML system:
+
+**Why SQLite, not more YAML?**
+- WeChat messages arrive one at a time — no "batch" opportunity
+- Need FTS5 full-text search across review text
+- Need aggregate queries (AVG/COUNT/GROUP BY) without loading everything into memory
+- Reviewer profiles need to accumulate incrementally across sessions
+
+**Dual-storage architecture:**
+- `reviews.db` (SQLite) — real-time chat reviews, instant struct + store
+- `restaurants.yaml` (YAML) — batch self-evolved data with versioning & cross-validation
+
+Query priority: SQLite > YAML. Merge outputs when both have data.
+
+See `references/database-design.md` for full schema rationale and query patterns.
+
+### Current State (July 2026)
+
+- SQLite database created and operational (7 tables + FTS5 + views)
+- YAML data files still empty (entries: []) — first data expected from self-evolve cron
+- `db_helper.py` provides full CRUD layer: add_review / get_recommendations / search_reviews_text / etc.
+- `模式五` in SKILL.md defines the incoming-review processing workflow (recognize → structure → store → confirm)
 - Claude Code was used to do cross-file consistency checks in initial setup
 - The teochew-self-evolve skill was the reference pattern for the cron-driven architecture
