@@ -1,10 +1,11 @@
 # Runtime SQLite database (generated per-installation from WeChat reviews)
-skills/chaoshan-cuisine/data/reviews.db
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
 
-# Python cache
+# OS artifacts
+Thumbs.db
+.DS_Store
 __pycache__/
 *.pyc
-
-# OS files
-.DS_Store
-Thumbs.db
