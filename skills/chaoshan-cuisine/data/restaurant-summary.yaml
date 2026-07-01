@@ -2,7 +2,7 @@
 # 潮汕美食店铺总览 — 多维聚合画像 (Aggregated Profiles)
 # ============================================================
 # 每条记录 = 一家店铺的综合画像
-# 数据来源：从 restaurants.yaml 通过公平算法自动聚合生成
+# 数据来源：从 reviews.db 通过公平算法自动聚合生成
 #
 # 设计理念：
 #   - 不展示单一排名/排序。排序是针对用户的，因人而异。
@@ -17,199 +17,248 @@
 
 meta:
   name: 潮汕美食店铺总览
-  version: "2.0.0"
-  total_restaurants: 0
-  total_reviews_processed: 0
-  last_updated: "2026-06-05"
-  algorithm_version: "2.0.0"
+  version: 2.0.0
+  total_restaurants: 3
+  total_reviews_processed: 3
+  last_updated: '2026-07-01'
+  algorithm_version: 2.0.0
   algorithm:
-    rating_method: median          # 中位数抗极值
+    rating_method: median
     time_decay:
-      within_1y: 1.0              # 1年内权重1.0
-      within_2y: 0.8              # 1-2年权重0.8
-      within_3y: 0.5              # 2-3年权重0.5
-      over_3y: 0.3                # 超过3年权重0.3
-      old_shop_bonus: true        # 老店且评价稳定时 >3年评价权重 0.6
-    minority_threshold: 0.15       # ≥15%的观点独立保留
-    consensus_threshold: 0.60      # ≥60%的观点归入共识
+      within_1y: 1.0
+      within_2y: 0.8
+      within_3y: 0.5
+      over_3y: 0.3
+    old_shop_bonus: true
+    minority_threshold: 0.15
+    consensus_threshold: 0.6
     anti_manipulation:
       suspicious_window_days: 7
       suspicious_min_reviews: 3
       suspicious_action: flag_not_delete
+entries:
+- id: rest-001
+  name: 八合里海记牛肉店（总店）
+  address: 汕头市金平区黄岗路坪东5座
+  district: 金平区
+  cuisine_type: 牛肉火锅
+  rating_overview:
+    median: 4.5
+    weighted_median: 4.5
+    count: 1
+    distribution:
+      1: 0
+      2: 0
+      3: 0
+      4: 1
+      5: 0
+    variance: 0.0
+    last_review_date: '2026-07-01'
+    last_verified: '2026-07-01'
+  trends:
+    monthly:
+    - month: 2026-07
+      avg_rating: 4.5
+      review_count: 1
+      would_revisit_rate: 1.0
+    quarterly:
+    - quarter: 2026-Q3
+      avg_rating: 4.5
+      review_count: 1
+      would_revisit_rate: 1.0
+    direction: insufficient_data
+    volatility: low
+  demographics:
+    by_type:
+      tourist:
+        count: 1
+        median_rating: 4.5
+        would_revisit_rate: 1.0
+    by_age:
+      unknown:
+        count: 1
+        median_rating: 4.5
+    by_hometown:
+    - hometown: 未知
+      count: 1
+      median_rating: 4.5
+  tags:
+  - 牛肉火锅
+  - 老店
+  - 排队
+  consensus:
+    must_try:
+    - dish: 脖仁
+      avg_rating: 5.0
+      mention_count: 1
+      price_range: 38.0元
+      best_comment: 油脂分布均匀，入口即化
+    - dish: 吊龙
+      avg_rating: 4.0
+      mention_count: 1
+      price_range: 32.0元
+      best_comment: 嫩滑，切工不错
+    pros: []
+    cons: []
+  diverse_opinions: []
+  controversy:
+    is_controversial: false
+    note: ''
+  suspicious:
+    has_suspicious_clusters: false
+    suspicious_review_ids: []
+  status: active
+  status_note: ''
+  summary: 1人评价，加权中位评分4.5/5。推荐菜：脖仁/吊龙。人群差异：tourist评分4.5。
+  last_updated: '2026-07-01'
+- id: rest-002
+  name: 梅园肠粉（龙眼南路店）
+  address: 汕头市金平区龙眼南路
+  district: 金平区
+  cuisine_type: 肠粉
+  rating_overview:
+    median: 3.5
+    weighted_median: 3.5
+    count: 1
+    distribution:
+      1: 0
+      2: 0
+      3: 0
+      4: 1
+      5: 0
+    variance: 0.0
+    last_review_date: '2026-07-01'
+    last_verified: '2026-07-01'
+  trends:
+    monthly:
+    - month: 2026-07
+      avg_rating: 3.5
+      review_count: 1
+      would_revisit_rate: 1.0
+    quarterly:
+    - quarter: 2026-Q3
+      avg_rating: 3.5
+      review_count: 1
+      would_revisit_rate: 1.0
+    direction: insufficient_data
+    volatility: low
+  demographics:
+    by_type:
+      local:
+        count: 1
+        median_rating: 3.5
+        would_revisit_rate: 1.0
+    by_age:
+      unknown:
+        count: 1
+        median_rating: 3.5
+    by_hometown:
+    - hometown: 汕头
+      count: 1
+      median_rating: 3.5
+  tags:
+  - 肠粉
+  - 老店
+  - 街边小食
+  consensus:
+    must_try:
+    - dish: 招牌肠粉
+      avg_rating: 3.5
+      mention_count: 1
+      price_range: ''
+      best_comment: 皮偏厚，葱油酱料是特色，肉感觉是猪牛混合但标猪肉，整体很香
+    pros:
+    - 葱油酱料香
+    - 味道整体很香
+    cons:
+    - 皮偏厚
+    - 肉馅标注与实际可能不符
+  diverse_opinions: []
+  controversy:
+    is_controversial: false
+    note: ''
+  suspicious:
+    has_suspicious_clusters: false
+    suspicious_review_ids: []
+  status: active
+  status_note: ''
+  summary: 1人评价，加权中位评分3.5/5。推荐菜：招牌肠粉。人群差异：local评分3.5。
+  last_updated: '2026-07-01'
+- id: rest-003
+  name: 艾食
+  address: 金砂西路与沿江南路交叉口往内50米
+  district: 金平区
+  cuisine_type: 潮汕小吃
+  rating_overview:
+    median: 4.0
+    weighted_median: 4.0
+    count: 1
+    distribution:
+      1: 0
+      2: 0
+      3: 0
+      4: 1
+      5: 0
+    variance: 0.0
+    last_review_date: '2026-07-01'
+    last_verified: '2026-07-01'
+  trends:
+    monthly:
+    - month: 2026-07
+      avg_rating: 4.0
+      review_count: 1
+      would_revisit_rate: 1.0
+    quarterly:
+    - quarter: 2026-Q3
+      avg_rating: 4.0
+      review_count: 1
+      would_revisit_rate: 1.0
+    direction: insufficient_data
+    volatility: low
+  demographics:
+    by_type:
+      local:
+        count: 1
+        median_rating: 4.0
+        would_revisit_rate: 1.0
+    by_age:
+      unknown:
+        count: 1
+        median_rating: 4.0
+    by_hometown:
+    - hometown: 汕头
+      count: 1
+      median_rating: 4.0
+  tags:
+  - 潮汕小吃
+  - 粿品
+  - 金平区
+  consensus:
+    must_try:
+    - dish: 鱼杂糕粿
+      avg_rating: 5.0
+      mention_count: 1
+      price_range: ''
+      best_comment: 好吃
+    - dish: 苹果烙
+      avg_rating: 4.0
+      mention_count: 1
+      price_range: ''
+      best_comment: 好吃，就是有点贵
+    pros:
+    - 鱼杂糕粿好吃
+    - 苹果烙好吃
+    cons:
+    - 价格偏贵
+  diverse_opinions: []
+  controversy:
+    is_controversial: false
+    note: ''
+  suspicious:
+    has_suspicious_clusters: false
+    suspicious_review_ids: []
+  status: active
+  status_note: ''
+  summary: 1人评价，加权中位评分4.0/5。推荐菜：鱼杂糕粿/苹果烙。人群差异：local评分4.0。
+  last_updated: '2026-07-01'
 
-# ============================================================
-# 店铺条目
-# ============================================================
-entries: []
-
-  # --- TEMPLATE: 店铺聚合画像 ---
-  # - id: rest-001
-  #   name: ""
-  #   address: ""
-  #   district: ""
-  #   cuisine_type: ""
-  #   coordinates:
-  #     lat: 0.0
-  #     lng: 0.0
-  #
-  #   # ========== 评分概览（不做排名） ==========
-  #   rating_overview:
-  #     median: 0.0               # 综合中位数
-  #     weighted_median: 0.0      # 时间衰减加权后的中位数
-  #     count: 0                  # 评价总数
-  #     distribution: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}  # 评分分布直方图
-  #     variance: 0.0             # 方差（>1.5标记争议）
-  #     last_review_date: "YYYY-MM-DD"  # 最新评价日期
-  #     last_verified: "YYYY-MM-DD"     # 最后核验日期
-  #
-  #   # ========== 人群细分评分 ==========
-  #   demographics:
-  #     by_type:
-  #       local:
-  #         count: 0
-  #         median_rating: 0.0
-  #         would_revisit_rate: 0.0   # 愿意回头的比例
-  #       tourist:
-  #         count: 0
-  #         median_rating: 0.0
-  #         would_revisit_rate: 0.0
-  #       returning_visitor:
-  #         count: 0
-  #         median_rating: 0.0
-  #         would_revisit_rate: 0.0
-  #     by_age:
-  #       "18-25":
-  #         count: 0
-  #         median_rating: 0.0
-  #       "26-35":
-  #         count: 0
-  #         median_rating: 0.0
-  #       "36-50":
-  #         count: 0
-  #         median_rating: 0.0
-  #       "50+":
-  #         count: 0
-  #         median_rating: 0.0
-  #     by_hometown:
-  #       - hometown: "汕头"
-  #         count: 0
-  #         median_rating: 0.0
-  #       - hometown: "广州"
-  #         count: 0
-  #         median_rating: 0.0
-  #       # ... 其他城市按数据量自动列出
-  #
-  #   # ========== 共识观点 ==========
-  #   consensus:
-  #     must_try:
-  #       - dish: "菜名"
-  #         avg_rating: 0.0
-  #         mention_count: 0
-  #         price_range: "30-40元"
-  #         best_comment: "摘取最精彩的评价原文"
-  #     pros:
-  #       - "优点描述"
-  #     cons:
-  #       - "缺点描述"
-  #
-  #   # ========== 少数派声音 ==========
-  #   diverse_opinions:
-  #     - opinion: "不一样的观点"
-  #       count: 0
-  #       ratio: 0.0           # 占全部评价的比例
-  #       held_by:
-  #         types: [local]     # 主要哪些人群持有
-  #         note: "本地人觉得价格偏贵，游客觉得可以接受"
-  #
-  #   # ========== 争议标记 ==========
-  #   controversy:
-  #     is_controversial: false    # variance > 1.5 时为 true
-  #     note: ""
-  #
-  #   # ========== 反操控 ==========
-  #   suspicious:
-  #     has_suspicious_clusters: false
-  #     suspicious_review_ids: []
-  #
-  #   # ========== 营业状态 ==========
-  #   status: active             # active / needs_review / closed
-  #   status_note: ""            # "需要核验营业状态" / "已闭店" 等
-  #
-  #   # ========== AI摘要 ==========
-  #   summary: "≤200字，客观呈现"
-  #   last_updated: "YYYY-MM-DD"
-
-  # --- EXAMPLE: 八合里海记牛肉店（总店）---
-  # - id: rest-example-01
-  #   name: "八合里海记牛肉店（总店）"
-  #   address: "汕头市金平区黄岗路坪东5座"
-  #   district: "金平区"
-  #   cuisine_type: "牛肉火锅"
-  #   rating_overview:
-  #     median: 4.3
-  #     weighted_median: 4.5
-  #     count: 0                   # 等实际数据填入
-  #     distribution: {1: 0, 2: 0, 3: 1, 4: 3, 5: 2}
-  #     variance: 1.1
-  #     last_review_date: "2026-05-20"
-  #     last_verified: "2026-06-05"
-  #   demographics:
-  #     by_type:
-  #       local:
-  #         count: 0
-  #         median_rating: 4.5
-  #         would_revisit_rate: 1.0
-  #       tourist:
-  #         count: 0
-  #         median_rating: 4.0
-  #         would_revisit_rate: 1.0
-  #     by_age:
-  #       "26-35":
-  #         count: 0
-  #         median_rating: 4.5
-  #       "36-50":
-  #         count: 0
-  #         median_rating: 4.3
-  #     by_hometown:
-  #       - hometown: "汕头"
-  #         count: 0
-  #         median_rating: 4.5
-  #       - hometown: "北京"
-  #         count: 0
-  #         median_rating: 4.0
-  #   consensus:
-  #     must_try:
-  #       - dish: "脖仁（雪花）"
-  #         avg_rating: 5.0
-  #         mention_count: 0
-  #         price_range: "38元"
-  #         best_comment: "油脂分布均匀，入口即化"
-  #       - dish: "粿条"
-  #         avg_rating: 5.0
-  #         mention_count: 0
-  #         price_range: "8元"
-  #         best_comment: "最后下粿条配芹菜粒加汤，全场最佳收尾"
-  #     pros:
-  #       - "脖仁的雪花纹理漂亮，入口即化"
-  #       - "牛肉丸弹牙够力"
-  #       - "价格实惠，性价比高"
-  #     cons:
-  #       - "排队时间长（40分钟+）"
-  #       - "环境嘈杂，路边大排档水平"
-  #       - "服务员态度一般（本地阿姨风格）"
-  #   diverse_opinions:
-  #     - opinion: "胸口朥评价两极分化——本地人和重口味食客很爱，北方游客多数不太接受"
-  #       count: 0
-  #       ratio: 0.5
-  #       held_by:
-  #         types: [local, tourist]
-  #         note: "本地人觉得胸口朥是精髓，北京游客觉得太油"
-  #   controversy:
-  #     is_controversial: false
-  #     note: ""
-  #   suspicious:
-  #     has_suspicious_clusters: false
-  #   status: active
-  #   status_note: ""
-  #   summary: "汕头牛肉火锅的代表性老店。脖仁（雪花）是必点招牌，入口即化的口碑无人争议。本地人和游客都认可。缺点是排队久、环境一般。胸口朥口味存在人群差异。"
-  #   last_updated: "2026-06-05"

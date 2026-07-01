@@ -411,6 +411,265 @@ def get_restaurant_card(restaurant_id):
     return rest
 
 
+# ============================================================
+# 趋势追踪操作
+# ============================================================
+
+import statistics
+from collections import Counter
+
+
+def record_trend(restaurant_id, period, period_type='monthly'):
+    """计算并记录某家店在指定周期的聚合趋势数据。
+    
+    Args:
+        restaurant_id: 店铺 ID
+        period: 周期标识，如 '2026-07'（月度）或 '2026-W27'（周度）
+        period_type: 'weekly' 或 'monthly'
+    
+    Returns:
+        dict — 写入 trend_tracking 的记录；若已存在则返回 None
+    """
+    conn = get_conn()
+
+    # 检查是否已有该周期记录
+    existing = conn.execute(
+        "SELECT id FROM trend_tracking WHERE restaurant_id = ? AND period = ?",
+        (restaurant_id, period)
+    ).fetchone()
+    if existing:
+        conn.close()
+        return None
+
+    # 解析周期边界
+    if period_type == 'monthly':
+        # period = '2026-07'
+        year, month = period.split('-')
+        start_date = f"{year}-{month}-01"
+        if month == '12':
+            end_date = f"{int(year)+1}-01-01"
+        else:
+            end_date = f"{year}-{int(month)+1:02d}-01"
+    elif period_type == 'weekly':
+        # period = '2026-W27' — 用 ISO 周推算起止
+        from datetime import date, timedelta
+        iso_year = int(period[:4])
+        iso_week = int(period.split('W')[1])
+        # 该周周一的日期
+        jan4 = date(iso_year, 1, 4)
+        start_of_jan4_week = jan4 - timedelta(days=jan4.isoweekday() - 1)
+        monday = start_of_jan4_week + timedelta(weeks=iso_week - 1)
+        start_date = monday.isoformat()
+        end_date = (monday + timedelta(days=7)).isoformat()
+    else:
+        conn.close()
+        raise ValueError(f"Unsupported period_type: {period_type}")
+
+    # 1. 拉该周期的评价
+    reviews_cursor = conn.execute("""
+        SELECT overall_rating, would_revisit, pros, cons, id
+        FROM reviews
+        WHERE restaurant_id = ?
+          AND visit_date >= ?
+          AND visit_date < ?
+    """, (restaurant_id, start_date, end_date))
+    period_reviews = [dict(r) for r in reviews_cursor.fetchall()]
+
+    if not period_reviews:
+        conn.close()
+        return None
+
+    # 2. 计算聚合指标
+    ratings = [r['overall_rating'] for r in period_reviews if r['overall_rating'] is not None]
+    review_count = len(ratings)
+    avg_rating = round(sum(ratings) / len(ratings), 2) if ratings else None
+    median_rating = round(statistics.median(ratings), 2) if ratings else None
+
+    revisit_vals = [r['would_revisit'] for r in period_reviews if r['would_revisit'] is not None]
+    would_revisit_rate = round(sum(revisit_vals) / len(revisit_vals), 2) if revisit_vals else None
+
+    # 3. 菜品 TOP3
+    dish_cursor = conn.execute("""
+        SELECT d.name, COUNT(*) AS cnt, AVG(d.rating) AS avg_rating
+        FROM dishes d
+        JOIN reviews rev ON d.review_id = rev.id
+        WHERE rev.restaurant_id = ?
+          AND rev.visit_date >= ?
+          AND rev.visit_date < ?
+          AND d.recommended = 1
+        GROUP BY d.name
+        ORDER BY cnt DESC, avg_rating DESC
+        LIMIT 3
+    """, (restaurant_id, start_date, end_date))
+    top_dishes_rows = [dict(r) for r in dish_cursor.fetchall()]
+    top_dishes = json.dumps([
+        {"name": d['name'], "count": d['cnt'], "avg_rating": round(d['avg_rating'], 2) if d['avg_rating'] else None}
+        for d in top_dishes_rows
+    ], ensure_ascii=False)
+
+    # 菜品平均分（该周期内所有菜品）
+    dish_avg_cursor = conn.execute("""
+        SELECT AVG(d.rating) AS avg_dish_rating
+        FROM dishes d
+        JOIN reviews rev ON d.review_id = rev.id
+        WHERE rev.restaurant_id = ?
+          AND rev.visit_date >= ?
+          AND rev.visit_date < ?
+    """, (restaurant_id, start_date, end_date))
+    avg_dish_rating_row = dish_avg_cursor.fetchone()
+    avg_dish_rating = round(avg_dish_rating_row['avg_dish_rating'], 2) if avg_dish_rating_row and avg_dish_rating_row['avg_dish_rating'] else None
+
+    # 4. 提取高频好评/差评词
+    all_pros = []
+    all_cons = []
+    for r in period_reviews:
+        if r['pros']:
+            try:
+                pros_list = json.loads(r['pros']) if isinstance(r['pros'], str) else r['pros']
+                if isinstance(pros_list, list):
+                    all_pros.extend(pros_list)
+            except (json.JSONDecodeError, TypeError):
+                pass
+        if r['cons']:
+            try:
+                cons_list = json.loads(r['cons']) if isinstance(r['cons'], str) else r['cons']
+                if isinstance(cons_list, list):
+                    all_cons.extend(cons_list)
+            except (json.JSONDecodeError, TypeError):
+                pass
+
+    def _top_keywords(items, top_n=5):
+        """从词列表中提取出现最多的 TOP N"""
+        if not items:
+            return []
+        counts = Counter(items)
+        return [{"keyword": k, "count": v} for k, v in counts.most_common(top_n)]
+
+    common_pros = json.dumps(_top_keywords(all_pros), ensure_ascii=False)
+    common_cons = json.dumps(_top_keywords(all_cons), ensure_ascii=False)
+
+    # 5. 写入
+    conn.execute("""
+        INSERT INTO trend_tracking
+            (restaurant_id, period, period_type, review_count, avg_rating,
+             median_rating, would_revisit_rate, avg_dish_rating,
+             top_dishes, common_pros, common_cons)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (restaurant_id, period, period_type, review_count, avg_rating,
+          median_rating, would_revisit_rate, avg_dish_rating,
+          top_dishes, common_pros, common_cons))
+    conn.commit()
+    conn.close()
+
+    return {
+        "restaurant_id": restaurant_id,
+        "period": period,
+        "period_type": period_type,
+        "review_count": review_count,
+        "avg_rating": avg_rating,
+        "median_rating": median_rating,
+        "would_revisit_rate": would_revisit_rate,
+        "avg_dish_rating": avg_dish_rating,
+        "top_dishes": top_dishes,
+        "common_pros": common_pros,
+        "common_cons": common_cons
+    }
+
+
+def get_trend(restaurant_id, period_type='monthly', limit=12):
+    """获取某家店的历史趋势数据（最近 N 个周期），按时间排序。
+    
+    Args:
+        restaurant_id: 店铺 ID
+        period_type: 'weekly' 或 'monthly'
+        limit: 返回最近多少个周期
+    
+    Returns:
+        list[dict] — 按 period 升序排列的趋势记录
+    """
+    conn = get_conn()
+    cursor = conn.execute("""
+        SELECT *
+        FROM trend_tracking
+        WHERE restaurant_id = ? AND period_type = ?
+        ORDER BY period DESC
+        LIMIT ?
+    """, (restaurant_id, period_type, limit))
+    rows = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    # 按时间升序
+    rows.reverse()
+    return rows
+
+
+def get_hot_restaurants(limit=10):
+    """获取当前最热门的店铺（最近 30 天评价数最多）。
+    
+    Args:
+        limit: 返回店铺数量
+    
+    Returns:
+        list[dict] — 包含店铺信息和近期评价数
+    """
+    conn = get_conn()
+    cursor = conn.execute("""
+        SELECT r.id, r.name, r.district, r.cuisine_type,
+               COUNT(rev.id) AS recent_review_count,
+               ROUND(AVG(rev.overall_rating), 2) AS recent_avg_rating
+        FROM restaurants r
+        JOIN reviews rev ON rev.restaurant_id = r.id
+        WHERE rev.created_at >= datetime('now', '-30 days')
+        GROUP BY r.id
+        ORDER BY recent_review_count DESC
+        LIMIT ?
+    """, (limit,))
+    rows = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return rows
+
+
+def get_declining_restaurants(limit=5):
+    """检测评分下滑的店（最近 90 天 vs 前 90 天，下降 > 0.3 分的标记）。
+    
+    Args:
+        limit: 返回店铺数量
+    
+    Returns:
+        list[dict] — 下滑店铺列表，含前后评分和下降幅度
+    """
+    conn = get_conn()
+    cursor = conn.execute("""
+        SELECT r.id, r.name, r.district, r.cuisine_type,
+               ROUND(AVG(CASE 
+                   WHEN rev.created_at >= datetime('now', '-90 days') 
+                   THEN rev.overall_rating 
+                   ELSE NULL END), 2) AS recent_90d_avg,
+               ROUND(AVG(CASE 
+                   WHEN rev.created_at < datetime('now', '-90 days') 
+                    AND rev.created_at >= datetime('now', '-180 days')
+                   THEN rev.overall_rating 
+                   ELSE NULL END), 2) AS prior_90d_avg,
+               COUNT(CASE 
+                   WHEN rev.created_at >= datetime('now', '-90 days') 
+                   THEN 1 END) AS recent_count
+        FROM restaurants r
+        JOIN reviews rev ON rev.restaurant_id = r.id
+        GROUP BY r.id
+        HAVING recent_90d_avg IS NOT NULL
+           AND prior_90d_avg IS NOT NULL
+           AND (prior_90d_avg - recent_90d_avg) > 0.3
+           AND recent_count >= 3
+        ORDER BY (prior_90d_avg - recent_90d_avg) DESC
+        LIMIT ?
+    """, (limit,))
+    rows = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    # 附加下降幅度
+    for row in rows:
+        row["decline"] = round(row["prior_90d_avg"] - row["recent_90d_avg"], 2)
+    return rows
+
+
 if __name__ == "__main__":
     # 初始化检查
     assert init_db(), "DB init failed"

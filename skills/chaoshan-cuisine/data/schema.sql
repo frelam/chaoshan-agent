@@ -172,3 +172,50 @@ FROM restaurants r
 LEFT JOIN reviews rev ON rev.restaurant_id = r.id
 GROUP BY r.id
 ORDER BY review_count DESC;
+
+-- ============================================================
+-- 趋势追踪表：按周/月聚合每家店的热度、品质变化
+-- ============================================================
+CREATE TABLE IF NOT EXISTS trend_tracking (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    restaurant_id INTEGER NOT NULL,
+    period TEXT NOT NULL,            -- '2026-W27' (ISO周) 或 '2026-07' (月度)
+    period_type TEXT NOT NULL,       -- 'weekly' 或 'monthly'
+    review_count INTEGER DEFAULT 0,  -- 该周期内评价数
+    avg_rating REAL,                 -- 该周期内平均分
+    median_rating REAL,              -- 该周期内中位数
+    would_revisit_rate REAL,         -- 该周期内愿意回头率
+    avg_dish_rating REAL,            -- 该周期内菜品平均分
+    top_dishes TEXT,                 -- 该周期内最推荐菜品 TOP3（JSON）
+    common_pros TEXT,                -- 该周期内常见好评（JSON）
+    common_cons TEXT,                -- 该周期内常见差评（JSON）
+    created_at TEXT DEFAULT (datetime('now', 'localtime')),
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_trend_restaurant_period ON trend_tracking(restaurant_id, period);
+
+-- 趋势分析视图
+CREATE VIEW IF NOT EXISTS trend_analysis AS
+SELECT
+    t.restaurant_id,
+    r.name AS restaurant_name,
+    r.district,
+    r.cuisine_type,
+    COUNT(DISTINCT t.period) AS periods_tracked,
+    ROUND(AVG(t.avg_rating), 2) AS overall_avg_rating,
+    ROUND(AVG(t.would_revisit_rate), 2) AS overall_revisit_rate,
+    ROUND(
+        (SELECT AVG(t2.avg_rating) FROM trend_tracking t2 
+         WHERE t2.restaurant_id = t.restaurant_id 
+         AND t2.created_at >= datetime('now', '-90 days')),
+    2) AS recent_90d_avg,
+    ROUND(
+        (SELECT AVG(t2.avg_rating) FROM trend_tracking t2 
+         WHERE t2.restaurant_id = t.restaurant_id 
+         AND t2.created_at < datetime('now', '-90 days') 
+         AND t2.created_at >= datetime('now', '-180 days')),
+    2) AS prior_90d_avg
+FROM trend_tracking t
+JOIN restaurants r ON t.restaurant_id = r.id
+GROUP BY t.restaurant_id;
